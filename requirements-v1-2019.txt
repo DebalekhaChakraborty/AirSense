@@ -1,0 +1,27 @@
+# AirSense V1 - frozen historical dependency set
+# ------------------------------------------------------------------
+# Hard historical cutoff: 2019-04-26
+#
+# Every pin below was published to PyPI BEFORE the cutoff. The release
+# dates were verified against the PyPI JSON API during the reconstruction
+# and are recorded in docs/HISTORICAL_COMPATIBILITY.md.
+#
+# Reference interpreter : CPython 3.6.7
+# Reference OS          : Ubuntu 18.04 LTS
+#
+# IMPORTANT
+# This file describes the REFERENCE HISTORICAL ENVIRONMENT, which is the
+# environment V1 source code is written against. It is NOT necessarily
+# installable on the current host. See docs/HISTORICAL_COMPATIBILITY.md
+# for the verified host incompatibility report.
+#
+# Do not "upgrade to make it install". Doing so silently modernises V1.
+# ------------------------------------------------------------------
+
+numpy==1.15.4          # released 2018-11-04
+pandas==0.23.4         # released 2018-08-04
+scipy==1.1.0           # released 2018-05-05
+scikit-learn==0.20.0   # released 2018-09-26
+matplotlib==3.0.2      # released 2018-11-11
+seaborn==0.9.0         # released 2018-07-16
+jupyter==1.0.0         # released 2015-08-12

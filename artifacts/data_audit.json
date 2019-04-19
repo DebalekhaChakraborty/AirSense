@@ -1,0 +1,79 @@
+{
+  "project": "AirSense",
+  "phase": "V1 / Phase 2 - dataset provenance and audit",
+  "audit_generated_utc": "2026-09-05T21:36:14Z",
+  "audit_generated_note": "Timestamp of this reconstruction run, not a historical date.",
+  "historical_cutoff": "2019-04-26",
+  "audit_tool": "src/data/audit.py (Python standard library only)",
+  "cleaning_performed": false,
+  "rows_removed": 0,
+  "files": [
+    {
+      "filename": "PRSA_data_2010.1.1-2014.12.31.csv",
+      "relative_path": "data/raw/PRSA_data_2010.1.1-2014.12.31.csv",
+      "byte_size": 2010494,
+      "sha256": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+      "row_count": 43824,
+      "column_count": 13,
+      "column_names": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "pm2.5",
+        "DEWP",
+        "TEMP",
+        "PRES",
+        "cbwd",
+        "Iws",
+        "Is",
+        "Ir"
+      ],
+      "ragged_row_count": 0,
+      "missing_values_per_column": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "pm2.5": 2067,
+        "DEWP": 0,
+        "TEMP": 0,
+        "PRES": 0,
+        "cbwd": 0,
+        "Iws": 0,
+        "Is": 0,
+        "Ir": 0
+      },
+      "missing_value_tokens": [
+        "NA",
+        "",
+        "NaN",
+        "nan",
+        "N/A",
+        "null"
+      ],
+      "duplicate_rows_including_index_column": 0,
+      "duplicate_rows_excluding_index_column": 0,
+      "target_column": "pm2.5",
+      "target_column_present": true,
+      "schema_matches_expected": true,
+      "expected_columns": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "pm2.5",
+        "DEWP",
+        "TEMP",
+        "PRES",
+        "cbwd",
+        "Iws",
+        "Is",
+        "Ir"
+      ]
+    }
+  ]
+}
