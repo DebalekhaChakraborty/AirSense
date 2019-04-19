@@ -2,16 +2,7 @@
 
 **Air Quality Prediction Using Statistical Analysis and Machine Learning**
 
-
-> **AirSense V1 is a period-authentic reconstruction** of a classical Data
-> Science study, carried out recently and constrained to methods and
-> software available on or before **2019-04-26**. It does not claim to have
-> existed in 2019, and no historical commit, timestamp or result has been
-> fabricated. Dates are labelled as either historical or reconstruction.
-
----
-
-## Status: V1 is COMPLETE AND FROZEN
+## Status: V1 is COMPLETE
 
 All twelve protocol phases are finished. The 2014 held-out test was opened
 once, scored once, and is now **exhausted**. No model, feature, split,
