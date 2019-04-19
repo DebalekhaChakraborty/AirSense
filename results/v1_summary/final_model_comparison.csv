@@ -1,0 +1,5 @@
+model,model_description,final_fit_period,test_period,n_development,n_test,mae,rmse,r2,mae_rank,primary_metric_winner
+M0,training-median constant baseline (no predictors),2010_2013,2014,33096,8661,65.417388292345,96.74158876077496,-0.06994269588905389,4,False
+M1,ordinary least-squares linear regression,2010_2013,2014,33096,8661,52.90019350167497,73.10340325866784,0.3890449222165434,3,False
+M2,"decision tree regressor (max_depth=12, min_samples_leaf=10)",2010_2013,2014,33096,8661,51.248813500432064,75.52204609989528,0.34794897362805555,2,False
+M3,"random forest regressor (100 trees, max_depth=12, min_samples_leaf=1, max_features=auto)",2010_2013,2014,33096,8661,48.535341383781684,70.27763250915278,0.43536430099564905,1,True

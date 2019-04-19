@@ -1,0 +1,2 @@
+model,strategy,fit_period,evaluation_period,n_train,n_validation,baseline_constant,mae,rmse,r2
+M0,training_median_constant_baseline,2010-01-01 00:00:00 to 2012-12-31 23:00:00,2013-01-01 00:00:00 to 2013-12-31 23:00:00,24418,8678,73.0,67.59115003457018,102.18175289437872,-0.08572583925660648

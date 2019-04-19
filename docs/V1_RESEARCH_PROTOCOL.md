@@ -40,25 +40,32 @@ with a date and a reason.
 
 | Phase | Name | Purpose | Status |
 |---|---|---|---|
-| 1 | Environment reconstruction | Define and verify the 2019 reference environment; record host divergence | **Complete (with blocker)** |
+| 1 | Environment reconstruction | Define and verify the 2019 reference environment; record host divergence | **Complete** |
 | 2 | Dataset provenance and audit | Acquire the original dataset; record identity, dimensions, schema, missingness, digest | **Complete** |
-| 3 | Exploratory data analysis | Understand distributions, temporal patterns, correlations, missingness structure | Not started |
-| 4 | Data cleaning and preprocessing | Decide and apply handling of missing `pm2.5`; write to `data/processed/` | Not started |
-| 5 | Feature preparation | Apply `FEATURE_POLICY.md`; encode `cbwd`; decide engineered features | Not started |
-| 6 | Baseline regression (M0) | Establish the naive error floor | Not started |
-| 7 | Linear regression (M1) | Fit and evaluate | Not started |
-| 8 | Decision tree regression (M2) | Fit and evaluate | Not started |
-| 9 | Random forest regression (M3) | Fit and evaluate | Not started |
-| 10 | Held-out evaluation | Apply M0–M3 to the chronological test set; produce the comparison | Not started |
-| 11 | Error analysis | Where and when models fail; residual structure; severe-episode behaviour | Not started |
-| 12 | Final V1 report | Consolidate findings and limitations | Not started |
+| 3 | Exploratory data analysis | Understand distributions, temporal patterns, correlations, missingness structure | **Complete** |
+| 4 | Data cleaning and preprocessing | Decide and apply handling of missing `pm2.5`; write to `data/processed/` | **Complete** |
+| 5 | Feature preparation | Apply `FEATURE_POLICY.md`; encode `cbwd`; decide engineered features | **Complete** |
+| 6 | Baseline regression (M0) | Establish the naive error floor | **Complete** |
+| 7 | Linear regression (M1) | Fit and evaluate | **Complete** |
+| 8 | Decision tree regression (M2) | Fit and evaluate | **Complete** |
+| 9 | Random forest regression (M3) | Fit and evaluate | **Complete** |
+| 10 | Held-out evaluation | Apply M0–M3 to the chronological test set; produce the comparison | **Complete** |
+| 11 | Error analysis | Where and when models fail; residual structure; severe-episode behaviour | **Complete** |
+| 12 | Final V1 report | Consolidate findings and limitations | **Complete** |
 
-Phases 1 and 2 are complete as recorded in
-[`PHASE_00_FOUNDATION_RECORD.md`](PHASE_00_FOUNDATION_RECORD.md). Phase 1
-carries an unresolved environment blocker (see
-[`HISTORICAL_COMPATIBILITY.md`](HISTORICAL_COMPATIBILITY.md) §4): the pinned
-2019 stack cannot be installed on the current host, so Phases 3 onward
-cannot execute until a conforming environment exists.
+Execution status is recorded in the phase records, not here. Phases 1–2:
+[`PHASE_00_FOUNDATION_RECORD.md`](PHASE_00_FOUNDATION_RECORD.md), with the
+runtime blocker it noted resolved in
+[`PHASE_00A_RUNTIME_RECORD.md`](PHASE_00A_RUNTIME_RECORD.md). Phase 3:
+[`PHASE_01_EDA_RECORD.md`](PHASE_01_EDA_RECORD.md). Phase 4:
+[`PHASE_02_CLEANING_RECORD.md`](PHASE_02_CLEANING_RECORD.md), which freezes
+the chronological boundaries as
+[`CLEANING_AND_SPLIT_POLICY.md`](CLEANING_AND_SPLIT_POLICY.md).
+
+**These are status updates only.** No scientific rule in this protocol has
+been altered: the M0–M3 model list, the primary and decision metrics, the
+temporal-leakage rule, the random-split rule and the reporting standards
+stand exactly as pre-registered.
 
 ### Phase notes
 

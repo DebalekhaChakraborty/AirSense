@@ -1,0 +1,5 @@
+partition,raw_rows,missing_target_rows,supervised_rows,missing_target_rate_percent,start_timestamp,end_timestamp
+development_train,26304,1886,24418,7.170012,2010-01-01 00:00:00,2012-12-31 23:00:00
+validation,8760,82,8678,0.936073,2013-01-01 00:00:00,2013-12-31 23:00:00
+test,8760,99,8661,1.130137,2014-01-01 00:00:00,2014-12-31 23:00:00
+overall,43824,2067,41757,4.716594,2010-01-01 00:00:00,2014-12-31 23:00:00

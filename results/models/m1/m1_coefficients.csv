@@ -1,0 +1,44 @@
+feature,coefficient,feature_type,reference_note
+DEWP,7.630645783344105,raw_meteorological,raw predictor in original units; not scaled
+TEMP,-2.9199517070893304,raw_meteorological,raw predictor in original units; not scaled
+PRES,-2.2147987854806783,raw_meteorological,raw predictor in original units; not scaled
+Iws,-0.10992288397031334,raw_meteorological,raw predictor in original units; not scaled
+Is,-5.551444775854063,raw_meteorological,raw predictor in original units; not scaled
+Ir,-6.0208109028963,raw_meteorological,raw predictor in original units; not scaled
+month_2,-12.879237955279471,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_3,-51.701881988845486,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_4,-105.19620677354145,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_5,-167.14396173280755,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_6,-217.2409818189144,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_7,-248.6468584446892,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_8,-245.46631077004858,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_9,-196.76942007111293,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_10,-117.34326284384709,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_11,-61.732399365119036,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+month_12,-13.056147411490807,calendar_month_one_hot,coefficient is relative to the omitted reference month_1
+hour_1,-0.6060277407972822,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_2,-4.510192100126004,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_3,-7.221712988697558,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_4,-11.036828246709188,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_5,-13.483814862071807,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_6,-16.952501466107854,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_7,-15.075612391663071,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_8,-10.522563810160792,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_9,-4.757134616230987,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_10,1.5401838691711929,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_11,4.831523569549782,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_12,4.9129685828525025,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_13,4.780590038428203,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_14,4.070254831707904,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_15,2.287335305887737,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_16,0.5225076537156178,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_17,-1.8542489584550803,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_18,-4.3314770234250295,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_19,-4.152784739523307,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_20,-1.291788853197072,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_21,0.6781325799760647,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_22,1.1210741112154248,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+hour_23,0.4324250290863127,calendar_hour_one_hot,coefficient is relative to the omitted reference hour_0
+cbwd_NW,-3.9978735258477984,wind_direction_one_hot,coefficient is relative to the omitted reference cbwd_NE
+cbwd_SE,11.730477406674371,wind_direction_one_hot,coefficient is relative to the omitted reference cbwd_NE
+cbwd_cv,15.006820477373813,wind_direction_one_hot,coefficient is relative to the omitted reference cbwd_NE

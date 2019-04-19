@@ -1,0 +1,316 @@
+{
+  "model_id": "M3",
+  "estimator": "sklearn.ensemble.RandomForestRegressor",
+  "sklearn_version": "0.20.0",
+  "phase": "V1 / Protocol Phase 9 - random forest (M3)",
+  "feature_count": 43,
+  "feature_names": [
+    "DEWP",
+    "TEMP",
+    "PRES",
+    "Iws",
+    "Is",
+    "Ir",
+    "month_2",
+    "month_3",
+    "month_4",
+    "month_5",
+    "month_6",
+    "month_7",
+    "month_8",
+    "month_9",
+    "month_10",
+    "month_11",
+    "month_12",
+    "hour_1",
+    "hour_2",
+    "hour_3",
+    "hour_4",
+    "hour_5",
+    "hour_6",
+    "hour_7",
+    "hour_8",
+    "hour_9",
+    "hour_10",
+    "hour_11",
+    "hour_12",
+    "hour_13",
+    "hour_14",
+    "hour_15",
+    "hour_16",
+    "hour_17",
+    "hour_18",
+    "hour_19",
+    "hour_20",
+    "hour_21",
+    "hour_22",
+    "hour_23",
+    "cbwd_NW",
+    "cbwd_SE",
+    "cbwd_cv"
+  ],
+  "feature_representation_note": "Exactly the frozen Phase 5 43-feature matrix, identical to M1 and M2. No model-specific feature engineering was permitted.",
+  "search_space": {
+    "searched": {
+      "max_depth": [
+        8,
+        12,
+        "None"
+      ],
+      "min_samples_leaf": [
+        1,
+        10,
+        50,
+        100
+      ],
+      "max_features": [
+        "auto",
+        "0.5"
+      ]
+    },
+    "fixed": {
+      "n_estimators": 100,
+      "criterion": "mse",
+      "bootstrap": true,
+      "min_samples_split": 2,
+      "random_state": 42,
+      "n_jobs": 1,
+      "oob_score": false
+    },
+    "not_searched": [
+      "n_estimators",
+      "criterion",
+      "bootstrap",
+      "min_samples_split",
+      "random_state",
+      "n_jobs",
+      "oob_score",
+      "max_leaf_nodes",
+      "min_impurity_decrease"
+    ],
+    "candidate_count": 24,
+    "candidate_ordering": "max_depth outer, min_samples_leaf middle, max_features inner; all in declared order, candidate_id 1..24",
+    "frozen_before_any_result": true,
+    "method": "explicit deterministic loop; GridSearchCV, RandomizedSearchCV, KFold, ShuffleSplit and cross_val_score were deliberately not used because the design contains an explicit chronological validation year",
+    "n_estimators_rationale": "100 trees is a conventional, computationally manageable ensemble size entirely available in 2019, giving substantially more averaging than sklearn 0.20's small default. Fixed before results so selection concerns tree structure and feature subsampling, not ensemble size. 50, 200, 500 and 1000 were not tried.",
+    "seed_policy": "random_state=42 and n_jobs=1 for every candidate. One seed only; no best-of-seed reporting.",
+    "bootstrap_policy": "bootstrap=True for every candidate; bootstrap=False was not searched. This is the classical random forest formulation.",
+    "oob_policy": "oob_score=False. Out-of-bag evaluation was not used for selection: it would introduce a second selection framework that ignores temporal ordering, since OOB samples are drawn across the whole training period. 2013 validation MAE is the sole primary criterion.",
+    "criterion_api_note": "criterion='mse' is the scikit-learn 0.20 name; 'squared_error' did not exist until 1.0 and would be a post-cutoff API"
+  },
+  "selection_metric": "validation_mae",
+  "selection_metric_note": "2013 validation MAE, the decision metric frozen in Phase 0 long before M3 existed",
+  "selection_tolerance": 1e-12,
+  "tie_break_policy": [
+    "1. lowest 2013 validation MAE (ties within 1e-12 treated as equal)",
+    "2. lower 2013 validation RMSE",
+    "3. simpler forest: smaller finite max_depth, with None considered more complex than every finite value",
+    "4. larger min_samples_leaf",
+    "5. max_features=0.5 before max_features='auto', because fewer candidate predictors are exposed at each split",
+    "6. deterministic candidate/grid order"
+  ],
+  "tie_break_policy_frozen_before_fitting": true,
+  "n_candidates_tied_on_mae": 1,
+  "no_test_information_used_in_selection": true,
+  "selected_configuration": {
+    "candidate_id": 9,
+    "n_estimators": 100,
+    "criterion": "mse",
+    "bootstrap": true,
+    "max_depth": 12,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "max_features": "auto",
+    "random_state": 42,
+    "n_jobs": 1,
+    "oob_score": false
+  },
+  "selected_forest_structure": {
+    "n_estimators_fitted": 100,
+    "min_observed_tree_depth": 12,
+    "mean_observed_tree_depth": 12.0,
+    "median_observed_tree_depth": 12.0,
+    "max_observed_tree_depth": 12,
+    "min_leaf_count": 1525,
+    "mean_leaf_count": 1662.43,
+    "median_leaf_count": 1662.0,
+    "max_leaf_count": 1827,
+    "min_node_count": 3049,
+    "mean_node_count": 3323.86,
+    "median_node_count": 3323.0,
+    "max_node_count": 3653
+  },
+  "selected_forest_constraint_verification": {
+    "n_estimators_verified": 100,
+    "all_trees_respect_max_depth": true,
+    "all_trees_respect_min_samples_leaf": true
+  },
+  "fit_partition": "development_train",
+  "fit_period": "2010-01-01 00:00:00 to 2012-12-31 23:00:00",
+  "evaluation_partition": "validation",
+  "evaluation_period": "2013-01-01 00:00:00 to 2013-12-31 23:00:00",
+  "evaluation_period_label": "2013_validation",
+  "n_train": 24418,
+  "n_validation": 8678,
+  "upstream_sha256": {
+    "data/raw/PRSA_data_2010.1.1-2014.12.31.csv": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+    "data/processed/features/X_train.csv": "2c61894b4ca4e7657cc12c45f8bfe551a2c7121a90ca1ac0102742bd2ba3353c",
+    "data/processed/features/X_validation.csv": "21c125778d535c124dc7642b0447086d4aa52aac4573d1fa0419ace725700069",
+    "data/processed/features/y_train.csv": "fbcea1e4611e69cf707776e8925daed511539ee08a9809b54c796754fa7b53fa",
+    "data/processed/features/y_validation.csv": "9dc04233f80940865e9ae25e8380b458437fd0dece16b5c9727d72f891c1b0be",
+    "artifacts/split_manifest.json": "79678b839a9d0e178b681daba56482c948b27d68e308d5fcd7d2c40580550f33",
+    "artifacts/feature_schema.json": "a5d7cd37ca1872f299e42e219369b5b79c084d1be679214d96d9878c62446b2f",
+    "artifacts/feature_row_manifest.csv": "5acddf85355b0daddf5c20dbcbf9867236dab3baddcdac316e5775d950846329",
+    "artifacts/m0_baseline_manifest.json": "bd76763ca030da2cc4cb7ee4861dc79bc9668e6c4c256ffe48a6dcc1cd1c5dd9",
+    "artifacts/m1_linear_regression_manifest.json": "395abc4cc8d9a749274d58160a54e372647f6033f78584208219bf8fb27cdfef",
+    "artifacts/m2_decision_tree_manifest.json": "d05632ee3db6c1f746aaf4f41f08812cf2bf2c8feb2bf4d2be7f0b70ef379af0"
+  },
+  "metric_definitions": {
+    "MAE": "mean(abs(y_true - y_pred))",
+    "RMSE": "sqrt(mean((y_true - y_pred) ** 2))",
+    "R2": "1 - SS_res / SS_tot"
+  },
+  "metric_implementation": "sklearn.metrics 0.20.0; RMSE computed as sqrt(mean_squared_error) because the squared= keyword did not exist until 0.22",
+  "selected_training_metrics": {
+    "status": "diagnostic only - training metrics played no part in selection",
+    "mae": 32.18185177113941,
+    "rmse": 47.48681416883737,
+    "r2": 0.7168905058493665
+  },
+  "validation_metrics": {
+    "evaluation_period_label": "2013_validation",
+    "result_status": "development validation result - NOT final held-out test performance and NOT a project headline figure",
+    "mae": 47.938822971054385,
+    "rmse": 73.09058507754023,
+    "r2": 0.444484279813415
+  },
+  "model_comparison": {
+    "evaluation_period_label": "2013_validation",
+    "primary_comparison_metric": "MAE",
+    "sign_convention": "improvement_absolute = prior_metric - m3_metric; positive means M3 improved on the prior model. improvement_percent = (prior - m3) / prior * 100. r2_delta = m3_r2 - prior_r2; positive means M3 explains more variance. The convention is identical for M0, M1 and M2.",
+    "m3_mae": 47.938822971054385,
+    "m3_rmse": 73.09058507754023,
+    "m3_r2": 0.444484279813415,
+    "m0": {
+      "source": "artifacts/m0_baseline_manifest.json",
+      "manifest_sha256": "bd76763ca030da2cc4cb7ee4861dc79bc9668e6c4c256ffe48a6dcc1cd1c5dd9",
+      "mae": 67.59115003457018,
+      "rmse": 102.18175289437872,
+      "r2": -0.08572583925660648,
+      "mae_improvement_absolute": 19.65232706351579,
+      "mae_improvement_percent": 29.075296179254845,
+      "rmse_improvement_absolute": 29.091167816838492,
+      "rmse_improvement_percent": 28.47002228167772,
+      "r2_delta": 0.5302101190700215
+    },
+    "m1": {
+      "source": "artifacts/m1_linear_regression_manifest.json",
+      "manifest_sha256": "395abc4cc8d9a749274d58160a54e372647f6033f78584208219bf8fb27cdfef",
+      "mae": 53.333360626133675,
+      "rmse": 76.55842290894269,
+      "r2": 0.3905200356064845,
+      "mae_improvement_absolute": 5.39453765507929,
+      "mae_improvement_percent": 10.11475292714994,
+      "rmse_improvement_absolute": 3.4678378314024627,
+      "rmse_improvement_percent": 4.5296620536803,
+      "r2_delta": 0.05396424420693047
+    },
+    "m2": {
+      "source": "artifacts/m2_decision_tree_manifest.json",
+      "manifest_sha256": "d05632ee3db6c1f746aaf4f41f08812cf2bf2c8feb2bf4d2be7f0b70ef379af0",
+      "mae": 50.82785334616305,
+      "rmse": 77.98411499237778,
+      "r2": 0.36760886630188294,
+      "mae_improvement_absolute": 2.8890303751086677,
+      "mae_improvement_percent": 5.683951189976347,
+      "rmse_improvement_absolute": 4.893529914837558,
+      "rmse_improvement_percent": 6.275034236544013,
+      "r2_delta": 0.07687541351153204
+    },
+    "note": "Development-validation comparison on 2013 only. The primary comparison metric remains MAE, as pre-registered."
+  },
+  "residual_diagnostics": {
+    "residual_definition": "residual = actual_pm25 - predicted_pm25",
+    "n": 8678,
+    "mean_residual": 3.1273286909402938,
+    "median_residual": -9.020883359631522,
+    "residual_std": 73.02785764756035,
+    "min_residual": -392.7890707964601,
+    "max_residual": 688.1190630398593,
+    "pearson_corr_predicted_vs_residual": 0.001759050341656857,
+    "n_negative_predictions": 0,
+    "percent_negative_predictions": 0.0,
+    "prediction_min": 10.312079764636632,
+    "prediction_max": 431.09464899131143,
+    "train_target_min": 0.0,
+    "train_target_max": 994.0,
+    "predictions_within_training_target_range": true,
+    "range_check_tolerance": 1e-09,
+    "predictions_clipped": false
+  },
+  "prediction_invariants": {
+    "n_predictions": 8678,
+    "predictions_finite": true,
+    "actuals_finite": true,
+    "residuals_finite": true,
+    "n_distinct_predictions": 7632,
+    "prediction_std": 65.32967113989864
+  },
+  "row_alignment": {
+    "y_validation_rows": 8678,
+    "manifest_validation_rows": 8678,
+    "phase4_validation_rows": 8678,
+    "identifiers_match_phase4": true,
+    "targets_match_phase4": true,
+    "row_order_preserved": true
+  },
+  "feature_importance_sum": 0.9999999999999999,
+  "feature_importance_caution": "Random-forest impurity-based importance is predictive, not causal. It favours continuous and high-cardinality variables, which offer far more candidate split points than a binary dummy; it divides importance unpredictably across correlated predictors - Phase 3 found |r| of 0.78 to 0.83 among DEWP, TEMP and PRES; and it describes this fitted ensemble rather than an environmental mechanism. It was not used to perform feature selection and did not alter the Phase 5 schema.",
+  "outputs": {
+    "results/models/m3/m3_grid_results.csv": {
+      "sha256": "80b7c6957ff1370fb88db5eb3d07fe5167c882256ee1a1718a7a4cf973fd6200",
+      "rows": 24
+    },
+    "results/models/m3/m3_validation_metrics.csv": {
+      "sha256": "349f6757a8a3088b05a495e517d7120de529b5b4f091d9fe9167ea045a7285e3",
+      "rows": 1
+    },
+    "results/models/m3/m3_validation_predictions.csv": {
+      "sha256": "e88de20474616f95ed9e757feedc6f345ab6ed4f293e1ee0759ef896c765d5ce",
+      "rows": 8678
+    },
+    "results/models/m3/m3_feature_importances.csv": {
+      "sha256": "2670dbbeaf872fe515dd3e96c16186e9bfd9f728f7e5b8e32384466064d022fd",
+      "rows": 43
+    },
+    "figures/m3_validation_actual_vs_predicted.png": {
+      "sha256": "2229b7bbf638d166558b51a2650d13b72679d8bc89250a361f5d56173f0e7e46"
+    },
+    "figures/m3_validation_residuals_vs_predicted.png": {
+      "sha256": "98d9ffc2c51fb1c20c3f9c34f23d6c738aacb7dac15f30b0c62bc5fb95247475"
+    },
+    "figures/m3_grid_mae_by_complexity.png": {
+      "sha256": "b81a1bd88dfff1d024e646fa31b320d5993bfa2f3a59b8efb95d6037c3c7438e"
+    }
+  },
+  "model_serialization": {
+    "serialized": false,
+    "reason": "Protocol Phase 10 refits the selected configuration on the full 2010-2013 development period, so a serialized development-only forest would not be the final model."
+  },
+  "test_quarantine": {
+    "test_partition": "2014",
+    "test_target_quarantine_status": "ACTIVE",
+    "test_features_read": false,
+    "test_target_read": false,
+    "test_predictions_generated": false,
+    "test_evaluation_status": "not_evaluated",
+    "final_test_status": "not_evaluated",
+    "quarantine_lifts_at": "Protocol Phase 10",
+    "selection_used_test_information": false
+  },
+  "final_refit_policy": {
+    "executed": false,
+    "policy": "At Protocol Phase 10 the selected M3 hyperparameters remain frozen, including random_state=42: combine 2010-2013 development data, refit RandomForestRegressor with exactly those parameters, generate 2014 predictions once, open the 2014 target once, calculate MAE/RMSE/R2 once, and do not retune after seeing 2014."
+  },
+  "note": "No execution timestamp is recorded so that repeated runs are byte-identical."
+}

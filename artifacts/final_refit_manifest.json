@@ -1,0 +1,230 @@
+{
+  "project": "AirSense",
+  "phase": "V1 / Protocol Phase 10 Stage A - blind final refit and prediction",
+  "stage": "A",
+  "pretest_development_freeze_sha256": "98568e88cccb6a64a6e52dc03a76b0e3b3e5b7d750ece3d81e3790fb0beb0bf9",
+  "raw_dataset_sha256": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+  "feature_schema_sha256": "a5d7cd37ca1872f299e42e219369b5b79c084d1be679214d96d9878c62446b2f",
+  "split_manifest_sha256": "79678b839a9d0e178b681daba56482c948b27d68e308d5fcd7d2c40580550f33",
+  "final_fit_period": "2010-01-01 00:00:00 to 2013-12-31 23:00:00",
+  "test_period": "2014-01-01 00:00:00 to 2014-12-31 23:00:00",
+  "n_development": 33096,
+  "n_test_predictors": 8661,
+  "feature_count": 43,
+  "feature_names": [
+    "DEWP",
+    "TEMP",
+    "PRES",
+    "Iws",
+    "Is",
+    "Ir",
+    "month_2",
+    "month_3",
+    "month_4",
+    "month_5",
+    "month_6",
+    "month_7",
+    "month_8",
+    "month_9",
+    "month_10",
+    "month_11",
+    "month_12",
+    "hour_1",
+    "hour_2",
+    "hour_3",
+    "hour_4",
+    "hour_5",
+    "hour_6",
+    "hour_7",
+    "hour_8",
+    "hour_9",
+    "hour_10",
+    "hour_11",
+    "hour_12",
+    "hour_13",
+    "hour_14",
+    "hour_15",
+    "hour_16",
+    "hour_17",
+    "hour_18",
+    "hour_19",
+    "hour_20",
+    "hour_21",
+    "hour_22",
+    "hour_23",
+    "cbwd_NW",
+    "cbwd_SE",
+    "cbwd_cv"
+  ],
+  "feature_engineering_rerun": false,
+  "feature_engineering_note": "The Phase-5 matrices were concatenated unchanged. No get_dummies was re-run, no reference category changed, no 2013-derived level added, no scaling applied.",
+  "models": {
+    "M0": {
+      "strategy": "training_median_constant_baseline",
+      "final_development_median": 73.0,
+      "predictors_used": [],
+      "note": "recomputed on the combined 2010-2013 development target as pre-registered; the Phase-6 constant was not reused"
+    },
+    "M1": {
+      "estimator": "sklearn.linear_model.LinearRegression",
+      "fit_intercept": true,
+      "scaling": "none",
+      "regularization": "none",
+      "intercept": 2435.4089340577248,
+      "coefficient_artifact": "results/final_test/refit/m1_final_coefficients.csv",
+      "coefficient_artifact_sha256": "943d4b2ed7bbebe2b00c459dc9b9824b677a72ded0520b717c5abf15d9ce80e3",
+      "design_diagnostics": {
+        "matrix": "design_with_intercept_[1|X]_44_columns",
+        "n_rows": 33096,
+        "n_columns": 44,
+        "matrix_rank": 44,
+        "rank_deficient": false,
+        "largest_singular_value": 184985.6986747344,
+        "smallest_singular_value": 0.8682802196026143,
+        "smallest_nonzero_singular_value": 0.8682802196026143,
+        "condition_number": 213048.38518536882,
+        "condition_number_definition": "largest / smallest non-zero singular value; non-zero means > max(m, n) * eps * largest",
+        "status": "descriptive only - M1 is not altered"
+      }
+    },
+    "M2": {
+      "estimator": "sklearn.tree.DecisionTreeRegressor",
+      "frozen_hyperparameters": {
+        "criterion": "mse",
+        "splitter": "best",
+        "max_depth": 12,
+        "min_samples_split": 2,
+        "min_samples_leaf": 10,
+        "max_features": "None",
+        "random_state": 42
+      },
+      "final_tree_structure": {
+        "observed_tree_depth": 12,
+        "node_count": 1787,
+        "leaf_count": 894
+      },
+      "importance_artifact": "results/final_test/refit/m2_final_feature_importances.csv",
+      "importance_artifact_sha256": "d3d0b82ca5ebf9b778fe28a05704adc8e70b8182766b5f0d5c73e9a10f733ba6",
+      "importance_sum": 0.9999999999999999
+    },
+    "M3": {
+      "estimator": "sklearn.ensemble.RandomForestRegressor",
+      "frozen_hyperparameters": {
+        "n_estimators": 100,
+        "criterion": "mse",
+        "bootstrap": true,
+        "max_depth": 12,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "max_features": "auto",
+        "random_state": 42,
+        "n_jobs": 1,
+        "oob_score": false
+      },
+      "final_forest_structure": {
+        "n_estimators_fitted": 100,
+        "min_observed_tree_depth": 12,
+        "mean_observed_tree_depth": 12.0,
+        "median_observed_tree_depth": 12.0,
+        "max_observed_tree_depth": 12,
+        "min_leaf_count": 1594,
+        "mean_leaf_count": 1784.46,
+        "median_leaf_count": 1781.0,
+        "max_leaf_count": 1927,
+        "min_node_count": 3187,
+        "mean_node_count": 3567.92,
+        "median_node_count": 3561.0,
+        "max_node_count": 3853
+      },
+      "importance_artifact": "results/final_test/refit/m3_final_feature_importances.csv",
+      "importance_artifact_sha256": "0945405ead5207543da9febb0306f0b76fedb6b18f2678bce7fe224a5a2435a1",
+      "importance_sum": 1.0
+    }
+  },
+  "blind_prediction_summaries": [
+    {
+      "model": "M0",
+      "n_predictions": 8661,
+      "n_distinct_predictions": 1,
+      "prediction_min": 73.0,
+      "prediction_max": 73.0,
+      "prediction_mean": 73.0,
+      "prediction_std": 0.0,
+      "n_negative_predictions": 0,
+      "all_finite": true,
+      "within_development_target_range": true,
+      "development_target_min": 0.0,
+      "development_target_max": 994.0
+    },
+    {
+      "model": "M1",
+      "n_predictions": 8661,
+      "n_distinct_predictions": 8657,
+      "prediction_min": -162.1385709451447,
+      "prediction_max": 243.57228961476903,
+      "prediction_mean": 97.66174987786685,
+      "prediction_std": 58.149849990322146,
+      "n_negative_predictions": 466,
+      "all_finite": true,
+      "within_development_target_range": false,
+      "development_target_min": 0.0,
+      "development_target_max": 994.0
+    },
+    {
+      "model": "M2",
+      "n_predictions": 8661,
+      "n_distinct_predictions": 617,
+      "prediction_min": 5.214285714285714,
+      "prediction_max": 449.15384615384613,
+      "prediction_mean": 100.54418461876148,
+      "prediction_std": 70.51447882090051,
+      "n_negative_predictions": 0,
+      "all_finite": true,
+      "within_development_target_range": true,
+      "development_target_min": 0.0,
+      "development_target_max": 994.0
+    },
+    {
+      "model": "M3",
+      "n_predictions": 8661,
+      "n_distinct_predictions": 7930,
+      "prediction_min": 5.77788460716855,
+      "prediction_max": 459.89965965132944,
+      "prediction_mean": 100.57932024377995,
+      "prediction_std": 64.54966962867304,
+      "n_negative_predictions": 0,
+      "all_finite": true,
+      "within_development_target_range": true,
+      "development_target_min": 0.0,
+      "development_target_max": 994.0
+    }
+  ],
+  "outputs": {
+    "results/final_test/blind_final_predictions.csv": {
+      "sha256": "362b664ac840c450d2149e4bc02e0bf4f77b9d197adfb80dae4ad7470839e87d",
+      "rows": 8661
+    },
+    "results/final_test/refit/m1_final_coefficients.csv": {
+      "sha256": "943d4b2ed7bbebe2b00c459dc9b9824b677a72ded0520b717c5abf15d9ce80e3",
+      "rows": 43
+    },
+    "results/final_test/refit/m2_final_feature_importances.csv": {
+      "sha256": "d3d0b82ca5ebf9b778fe28a05704adc8e70b8182766b5f0d5c73e9a10f733ba6",
+      "rows": 43
+    },
+    "results/final_test/refit/m3_final_feature_importances.csv": {
+      "sha256": "0945405ead5207543da9febb0306f0b76fedb6b18f2678bce7fe224a5a2435a1",
+      "rows": 43
+    },
+    "results/final_test/refit/final_refit_diagnostics.csv": {
+      "sha256": "47213a0308d11d9585937eb64c1436f49aa2da810222e9ffb3927ace8f264e22",
+      "rows": 4
+    }
+  },
+  "test_target_status": "sealed",
+  "test_metrics_status": "not_computed",
+  "test_target_read": false,
+  "phase4_test_partition_read": false,
+  "hyperparameter_search_performed": false,
+  "note": "Stage A contains no test metric of any kind. No execution timestamp is recorded so that repeated runs are byte-identical."
+}

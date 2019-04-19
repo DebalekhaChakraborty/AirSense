@@ -1,0 +1,19 @@
+{
+  "project": "AirSense",
+  "freeze_type": "final_blind_prediction",
+  "created_at_protocol_phase": "Protocol Phase 10 Stage A - after blind refit, prediction and determinism verification, before any test-target access",
+  "2014_target_status": "sealed",
+  "blind_prediction_status": "frozen",
+  "final_models_status": "frozen",
+  "statement": "Once this artifact exists, no model and no prediction may change. Stage B may only reveal the 2014 target and calculate scores.",
+  "referenced_sha256": {
+    "artifacts/pretest_development_freeze.json": "98568e88cccb6a64a6e52dc03a76b0e3b3e5b7d750ece3d81e3790fb0beb0bf9",
+    "artifacts/final_refit_manifest.json": "847c35e7956799cc522c65053387cfe6a9221297dc82bb8d2dfc5e4d91ff53b8",
+    "results/final_test/blind_final_predictions.csv": "362b664ac840c450d2149e4bc02e0bf4f77b9d197adfb80dae4ad7470839e87d",
+    "results/final_test/refit/m1_final_coefficients.csv": "943d4b2ed7bbebe2b00c459dc9b9824b677a72ded0520b717c5abf15d9ce80e3",
+    "results/final_test/refit/m2_final_feature_importances.csv": "d3d0b82ca5ebf9b778fe28a05704adc8e70b8182766b5f0d5c73e9a10f733ba6",
+    "results/final_test/refit/m3_final_feature_importances.csv": "0945405ead5207543da9febb0306f0b76fedb6b18f2678bce7fe224a5a2435a1",
+    "results/final_test/refit/final_refit_diagnostics.csv": "47213a0308d11d9585937eb64c1436f49aa2da810222e9ffb3927ace8f264e22"
+  },
+  "note": "No execution timestamp is recorded so that repeated runs are byte-identical."
+}

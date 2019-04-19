@@ -6,6 +6,12 @@ fitted. It governs what may become a model input, what may not, and why.
 **Nothing in this document has been implemented.** No feature has been
 engineered, encoded or written to `data/processed/`.
 
+> **Navigation (added later).** This document is the Phase 0 *declaration*
+> and is preserved as written — its candidate statements were deliberately
+> not rewritten into final decisions. How the policy was resolved in
+> Protocol Phase 5, after the EDA, is recorded separately in
+> [`FEATURE_PREPARATION.md`](FEATURE_PREPARATION.md).
+
 ---
 
 ## 1. Classification of candidate features

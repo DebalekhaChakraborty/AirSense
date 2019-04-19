@@ -1,0 +1,9 @@
+quantity,rows
+raw_total_rows,43824
+excluded_target_missing,2067
+supervised_total_rows,41757
+supervised_development_train,24418
+supervised_validation,8678
+supervised_test,8661
+check_supervised_plus_excluded_equals_raw,1
+check_partition_sum_equals_supervised,1

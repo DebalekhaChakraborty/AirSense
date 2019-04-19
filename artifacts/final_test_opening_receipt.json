@@ -1,0 +1,22 @@
+{
+  "project": "AirSense",
+  "phase": "V1 / Protocol Phase 10 Stage B",
+  "pretest_development_freeze_sha256": "98568e88cccb6a64a6e52dc03a76b0e3b3e5b7d750ece3d81e3790fb0beb0bf9",
+  "final_blind_prediction_freeze_sha256": "4f59c710529e99b8c8a33517a34c503837d471871eb3f12ef987b34e41e7f1eb",
+  "source_test_partition": "data/processed/airsense_test_2014.csv",
+  "source_test_partition_sha256": "9f273de4ae9243c269d6f211229e5d017341e50ee8e7093add3a04dedd903702",
+  "final_test_target_snapshot": "results/final_test/final_test_target_snapshot.csv",
+  "final_test_target_snapshot_sha256": "fc04c671599c3b09c9091518b6629d855b1d98de6e8ed462a3dc383372cf2314",
+  "test_period": "2014",
+  "rows": 8661,
+  "target_access_status": "opened",
+  "model_state_at_open": "frozen",
+  "blind_predictions_state_at_open": "frozen",
+  "primary_metric": "MAE",
+  "secondary_metrics": [
+    "RMSE",
+    "R2"
+  ],
+  "statement": "No development decision may change after this receipt exists. The 2014 target is now exhausted and can no longer be treated as unseen.",
+  "note": "No timestamp is recorded, by reproducibility policy."
+}

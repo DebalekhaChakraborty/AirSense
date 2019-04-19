@@ -1,0 +1,16 @@
+{
+  "freeze_name": "AirSense_V1_Final",
+  "v1_status": "complete_and_frozen",
+  "historical_cutoff": "2019-04-26",
+  "evidence_registry": "artifacts/v1_evidence_registry.csv",
+  "evidence_registry_sha256": "d998446cf213424091843ad661e79afe8cf15d4b861bccc764b53968c69e3742",
+  "final_evidence_manifest": "artifacts/v1_final_evidence_manifest.json",
+  "final_evidence_manifest_sha256": "ba800ac9048b4cae743512b73f7b8b8fce30dd5dd1795c94b226f26bc1f5629f",
+  "raw_dataset_sha256": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+  "final_test_status": "exhausted",
+  "model_development_status": "closed",
+  "model_modification_after_final_test": "none",
+  "future_work_policy": "V2_must_be_separate_from_frozen_V1",
+  "post_freeze_policy": "AirSense V1 is immutable scientific evidence. Future work must not silently edit V1 to improve results, methodology, features, models or conclusions. A genuine factual or documentation correction must be recorded transparently as a post-freeze correction leaving the original evidence intact.",
+  "note": "This receipt does not contain its own digest."
+}

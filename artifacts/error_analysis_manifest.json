@@ -1,0 +1,198 @@
+{
+  "project": "AirSense",
+  "phase": "V1 / Protocol Phase 11 - post-evaluation error analysis",
+  "analysis_type": "descriptive_post_evaluation",
+  "model_modification_status": "none",
+  "final_test_status": "exhausted",
+  "models_fitted": 0,
+  "predictions_generated": 0,
+  "original_test_source_reopened": false,
+  "provenance_sha256": {
+    "artifacts/final_evaluation_manifest.json": "5f3270cc4d85781e6cea3bcd315649628c825a253e5cc0fa949627af1e7cb273",
+    "results/final_test/final_test_predictions.csv": "c09533f32406c5f3caf143631165ee4b0696fd7d5d7e589f308c9249e5617efd",
+    "results/final_test/final_test_target_snapshot.csv": "fc04c671599c3b09c9091518b6629d855b1d98de6e8ed462a3dc383372cf2314",
+    "results/final_test/blind_final_predictions.csv": "362b664ac840c450d2149e4bc02e0bf4f77b9d197adfb80dae4ad7470839e87d",
+    "data/processed/features/X_test.csv": "def2ef73167e43a0bc4fb7521bb228b560cec047faab84e39724dd6416ee67c8",
+    "artifacts/feature_row_manifest.csv": "5acddf85355b0daddf5c20dbcbf9867236dab3baddcdac316e5775d950846329"
+  },
+  "phase10_integrity": {
+    "hashes_verified": 18,
+    "final_predictions_identical_to_blind": true,
+    "final_test_status": "evaluated",
+    "post_test_model_changes": "none",
+    "best_final_model_by_mae": "M3"
+  },
+  "development_population_for_thresholds": {
+    "source": "2010-2013 development target (y_train + y_validation)",
+    "n": 33096,
+    "target_sha256": {
+      "y_train.csv": "fbcea1e4611e69cf707776e8925daed511539ee08a9809b54c796754fa7b53fa",
+      "y_validation.csv": "9dc04233f80940865e9ae25e8380b458437fd0dece16b5c9727d72f891c1b0be"
+    },
+    "note": "thresholds were frozen BEFORE any 2014 subgroup metric was computed; no threshold was optimised on 2014 model performance"
+  },
+  "thresholds": {
+    "P25": 29.0,
+    "P50": 73.0,
+    "P75": 138.0,
+    "P90": 221.0,
+    "P95": 282.0
+  },
+  "concentration_band_definitions": {
+    "le_p25": "actual_pm25 <= 29",
+    "p25_p50": "29 < actual_pm25 <= 73",
+    "p50_p75": "73 < actual_pm25 <= 138",
+    "p75_p90": "138 < actual_pm25 <= 221",
+    "p90_p95": "221 < actual_pm25 <= 282",
+    "gt_p95": "actual_pm25 > 282",
+    "_note": "descriptive relative bands derived from the 2010-2013 development target; NOT regulatory AQI categories"
+  },
+  "severe_hour_definition": {
+    "rule": "actual_pm25 > development P95",
+    "threshold_value": 282.0,
+    "threshold_source": "2010-2013 development target only",
+    "note": "a relative, study-specific tail definition; NOT a regulatory severe-pollution threshold"
+  },
+  "severe_episode_definition": {
+    "rule": "one or more consecutive test timestamps exactly 1 hour apart, all with actual_pm25 > development P95",
+    "gap_policy": "gaps are never bridged; if the next observed severe target is more than one hour later, a new episode begins",
+    "frozen_before_calculation": true
+  },
+  "residual_lag_definitions": {
+    "lags_hours": [
+      1,
+      6,
+      12,
+      24,
+      48,
+      168
+    ],
+    "matching": "exact timestamp; residual(t) paired with residual(t + lag) only when that hour is observed",
+    "row_offset_shifting_used": false,
+    "reason": "the supervised test set has 8,661 of 8,760 hours, so row shifting would pair timestamps separated by a gap"
+  },
+  "residual_convention": "residual = actual_pm25 - predicted_pm25",
+  "sign_convention": "residual > 0 is an underprediction; residual < 0 is an overprediction; residual == 0 is exact",
+  "episode_invariants": {
+    "episodes_contain_only_severe_hours": true,
+    "within_episode_gap_is_exactly_1_hour": true,
+    "episodes_do_not_overlap": true,
+    "every_severe_hour_in_exactly_one_episode": true,
+    "no_non_severe_hour_in_any_episode": true,
+    "episode_hours_sum_equals_severe_count": 512
+  },
+  "lag_pair_verification": {
+    "lag_1h_pairs": 8625,
+    "lag_6h_pairs": 8582,
+    "lag_12h_pairs": 8556,
+    "lag_24h_pairs": 8542,
+    "lag_48h_pairs": 8519,
+    "lag_168h_pairs": 8394,
+    "method": "exact timestamp matching; no row-offset shifting"
+  },
+  "cross_table_reconciliation": {
+    "season_counts_sum_per_model": 8661,
+    "hour_counts_sum_per_model": 8661,
+    "concentration_band_counts_sum_per_model": 8661,
+    "wind_direction_counts_sum_per_model": 8661,
+    "all_models_share_identical_subgroup_rows": true
+  },
+  "final_model_ranking_from_phase10": [
+    4,
+    3,
+    2,
+    1
+  ],
+  "final_ranking_by_mae": [
+    "M3",
+    "M2",
+    "M1",
+    "M0"
+  ],
+  "final_best_model": "M3",
+  "final_test_metrics_unchanged": {
+    "M0": {
+      "mae": 65.417388292345,
+      "rmse": 96.74158876077495,
+      "r2": -0.06994269588905389
+    },
+    "M1": {
+      "mae": 52.90019350167497,
+      "rmse": 73.10340325866784,
+      "r2": 0.3890449222165434
+    },
+    "M2": {
+      "mae": 51.24881350043206,
+      "rmse": 75.52204609989528,
+      "r2": 0.34794897362805555
+    },
+    "M3": {
+      "mae": 48.53534138378168,
+      "rmse": 70.27763250915278,
+      "r2": 0.43536430099564905
+    }
+  },
+  "outputs": {
+    "results/error_analysis/absolute_error_summary.csv": {
+      "sha256": "7d932bc7737004aa12203fe201fc71f43b92be2f51019a0f9e21e11e54d80b40",
+      "rows": 4
+    },
+    "results/error_analysis/prediction_bias_summary.csv": {
+      "sha256": "40cad985bb126f6dbbe6b0df0080d5b958c6e376eb0e58512bbcdd36352e6066",
+      "rows": 4
+    },
+    "results/error_analysis/error_by_season.csv": {
+      "sha256": "403e4ea1030f0cc3c9c881a4e932254760c71506b67b9fbc6c512164c08b8b01",
+      "rows": 16
+    },
+    "results/error_analysis/error_by_hour.csv": {
+      "sha256": "4489b488acd237f9d8a676ed771617fca167a49a8638b18fe649cff8c53973b4",
+      "rows": 96
+    },
+    "results/error_analysis/error_by_concentration_band.csv": {
+      "sha256": "f201ae97a5cc09c06680446e34a280f24dfb234890ab7ea406a8ca6f630e7aa1",
+      "rows": 24
+    },
+    "results/error_analysis/error_by_wind_direction.csv": {
+      "sha256": "8de659fed3257a6d4ac0ceb9de6f94b6de749dd13f11c069479efabff1d21097",
+      "rows": 16
+    },
+    "results/error_analysis/severe_hour_summary.csv": {
+      "sha256": "bc3179d667605e1f24ccb3e5a0b7407e8b61fe3744c2096c788a40775397ee27",
+      "rows": 4
+    },
+    "results/error_analysis/severe_episode_details.csv": {
+      "sha256": "8f114c221af6e48c648a6596b9deb709181d81e7c20b6642d5692fb06dc9a57c",
+      "rows": 41
+    },
+    "results/error_analysis/severe_episode_summary.csv": {
+      "sha256": "153f123385ee6c236cc71b365b314d0f780e79df9d14211d878d6a126a7d384d",
+      "rows": 1
+    },
+    "results/error_analysis/residual_autocorrelation.csv": {
+      "sha256": "8a0c26babebad85eb9ef582ca444ae7d91d28e059494879d5103d9e74ff233eb",
+      "rows": 24
+    },
+    "results/error_analysis/pairwise_error_wins.csv": {
+      "sha256": "d8d0bb2af2b43a10d054a96c25f4c46b13b467e3a910e8ae6e3ba82756db5afa",
+      "rows": 6
+    },
+    "results/error_analysis/m3_vs_m2_error_difference.csv": {
+      "sha256": "d83b314c2784497fc1603e1f6bd99e33b664c6bdbce5a092693a15d6d8464571",
+      "rows": 8661
+    },
+    "results/error_analysis/m3_largest_errors.csv": {
+      "sha256": "0e4029db7adb356d8c4f44cd8f9e8803cfd2a838b8b9ea78292daa476ec699e7",
+      "rows": 25
+    }
+  },
+  "figures": {
+    "figures/error_analysis_mae_by_season.png": "21bc52ba79395c47e3b4cc2050c09a1ee1275e6738d0aa01230cdea3010146b3",
+    "figures/error_analysis_mae_by_hour.png": "6e129aae66d1fba5ee7def53a3f8873f95758b62b5906217c7fd6fc6cc81c91c",
+    "figures/error_analysis_mae_by_concentration_band.png": "1ba4754013a6a4c9143e5a4f5b3eeb1fb1ec11ed604eb851ce0488ccbd54f462",
+    "figures/error_analysis_absolute_error_cdf.png": "323f949c5c1e2329d0724efcc255694ab376d31001129da1eb26e8db56dffd7d",
+    "figures/error_analysis_residual_autocorrelation.png": "fdd79bfaa5c56d7428e11ab586c9d71f454c34b55656314ad7c050b3cf13fe4e",
+    "figures/error_analysis_severe_episodes.png": "933a7b2e2f0a0d50bb854f9871327d06202b06d4abfddc186faeca9bb0b649e2"
+  },
+  "note": "No execution timestamp is recorded so that repeated runs are byte-identical. No finding in this phase may cause M0-M3 to be changed; improvement hypotheses are recorded as future work only."
+}

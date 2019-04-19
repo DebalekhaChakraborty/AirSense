@@ -1,0 +1,262 @@
+{
+  "project": "AirSense",
+  "phase": "V1 / Protocol Phase 5 - feature preparation",
+  "feature_policy_source": "docs/FEATURE_POLICY.md (Phase 0 declaration); resolved in docs/FEATURE_PREPARATION.md",
+  "historical_cutoff": "2019-04-26",
+  "note": "All feature decisions were fixed before any predictive model performance existed. No execution timestamp is recorded here so that repeated runs are byte-identical.",
+  "provenance": {
+    "raw_dataset_sha256": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+    "split_manifest_sha256": "79678b839a9d0e178b681daba56482c948b27d68e308d5fcd7d2c40580550f33",
+    "source_files": {
+      "data/processed/airsense_train_2010_2012.csv": {
+        "sha256": "0d5a14ecf079a661e837759c2334cbca40ac9223d39f0af28df39370d289d140",
+        "rows": 24418
+      },
+      "data/processed/airsense_validation_2013.csv": {
+        "sha256": "41f5c7a733daa6f6617ceb18c0a53b1a1056616482257a50992145565c425f82",
+        "rows": 8678
+      },
+      "data/processed/airsense_test_2014.csv": {
+        "sha256": "9f273de4ae9243c269d6f211229e5d017341e50ee8e7093add3a04dedd903702",
+        "rows": 8661
+      }
+    }
+  },
+  "periods": {
+    "development_train": {
+      "start": "2010-01-01 00:00:00",
+      "end": "2012-12-31 23:00:00",
+      "supervised_rows": 24418
+    },
+    "validation": {
+      "start": "2013-01-01 00:00:00",
+      "end": "2013-12-31 23:00:00",
+      "supervised_rows": 8678
+    },
+    "test": {
+      "start": "2014-01-01 00:00:00",
+      "end": "2014-12-31 23:00:00",
+      "supervised_rows": 8661
+    }
+  },
+  "test_target_quarantine": {
+    "test_usecols": [
+      "No",
+      "year",
+      "month",
+      "day",
+      "hour",
+      "DEWP",
+      "TEMP",
+      "PRES",
+      "cbwd",
+      "Iws",
+      "Is",
+      "Ir"
+    ],
+    "target_column_in_test_usecols": false,
+    "target_column_in_test_dataframe": false,
+    "assertion": "'pm2.5' not in test_dataframe.columns",
+    "assertion_holds": true,
+    "y_test_artifact_created": false,
+    "status": "ACTIVE - 2014 target not read in Phase 5"
+  },
+  "raw_included_features": [
+    "DEWP",
+    "TEMP",
+    "PRES",
+    "Iws",
+    "Is",
+    "Ir"
+  ],
+  "excluded_source_fields": {
+    "No": "observation identifier and traceability field, not a physical predictor; retained only in alignment manifests",
+    "year": "the evaluation periods are disjoint later years, so a numeric year would ask the model to extrapolate a calendar counter into values it never saw; Phase 3 found no monotonic annual PM2.5 trend that would justify that extrapolation",
+    "day": "day-of-month has no predeclared physical interpretation in the V1 hypothesis, is not naturally ordinal across month boundaries, and Phase 3 identified no defensible day-of-month relationship",
+    "pm2.5": "the prediction target; never a predictor"
+  },
+  "categorical_fields": [
+    "month",
+    "hour",
+    "cbwd"
+  ],
+  "training_vocabulary": {
+    "month": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "hour": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23"
+    ],
+    "cbwd": [
+      "NE",
+      "NW",
+      "SE",
+      "cv"
+    ]
+  },
+  "vocabulary_source": "development_train (2010-2012) only; validation and test are compatibility checks, never unioned into the vocabulary",
+  "reference_categories": {
+    "month": "1",
+    "hour": "0",
+    "cbwd": "NE"
+  },
+  "reference_category_rationale": "one level per categorical is omitted so the dummy block is not exactly linearly dependent with the intercept of an unregularized LinearRegression; the references are declared in advance and are not selected for predictive advantage",
+  "feature_names": [
+    "DEWP",
+    "TEMP",
+    "PRES",
+    "Iws",
+    "Is",
+    "Ir",
+    "month_2",
+    "month_3",
+    "month_4",
+    "month_5",
+    "month_6",
+    "month_7",
+    "month_8",
+    "month_9",
+    "month_10",
+    "month_11",
+    "month_12",
+    "hour_1",
+    "hour_2",
+    "hour_3",
+    "hour_4",
+    "hour_5",
+    "hour_6",
+    "hour_7",
+    "hour_8",
+    "hour_9",
+    "hour_10",
+    "hour_11",
+    "hour_12",
+    "hour_13",
+    "hour_14",
+    "hour_15",
+    "hour_16",
+    "hour_17",
+    "hour_18",
+    "hour_19",
+    "hour_20",
+    "hour_21",
+    "hour_22",
+    "hour_23",
+    "cbwd_NW",
+    "cbwd_SE",
+    "cbwd_cv"
+  ],
+  "feature_count": 43,
+  "shared_by_models": [
+    "M1",
+    "M2",
+    "M3"
+  ],
+  "scaling_policy": "none - no StandardScaler, MinMaxScaler, RobustScaler, manual z-scoring or normalization; predictors keep their original units",
+  "target_transformation_policy": "none - pm2.5 is written unmodified; no log, standardisation, normalisation, clipping or binning",
+  "engineered_feature_policy": {
+    "season": "not created - redundant with the month one-hot block",
+    "weekend": "not created - the Phase 0 admission condition (a weekday/weekend PM2.5 difference established by the pre-modelling EDA) was not met, because Phase 3 did not perform that comparison",
+    "cyclical_sin_cos": "not created - month and hour are represented categorically, which lets a linear model fit non-monotone structure without imposing a sinusoidal shape",
+    "lag_and_rolling": "not created - a lagged target would change the task definition to forecasting",
+    "interactions_and_polynomials": "not created",
+    "target_encoding": "prohibited"
+  },
+  "outputs": {
+    "data/processed/features/X_train.csv": {
+      "sha256": "2c61894b4ca4e7657cc12c45f8bfe551a2c7121a90ca1ac0102742bd2ba3353c",
+      "rows": 24418,
+      "columns": 43
+    },
+    "data/processed/features/X_validation.csv": {
+      "sha256": "21c125778d535c124dc7642b0447086d4aa52aac4573d1fa0419ace725700069",
+      "rows": 8678,
+      "columns": 43
+    },
+    "data/processed/features/X_test.csv": {
+      "sha256": "def2ef73167e43a0bc4fb7521bb228b560cec047faab84e39724dd6416ee67c8",
+      "rows": 8661,
+      "columns": 43
+    },
+    "data/processed/features/y_train.csv": {
+      "sha256": "fbcea1e4611e69cf707776e8925daed511539ee08a9809b54c796754fa7b53fa",
+      "rows": 24418,
+      "columns": 1
+    },
+    "data/processed/features/y_validation.csv": {
+      "sha256": "9dc04233f80940865e9ae25e8380b458437fd0dece16b5c9727d72f891c1b0be",
+      "rows": 8678,
+      "columns": 1
+    },
+    "artifacts/feature_row_manifest.csv": {
+      "sha256": "5acddf85355b0daddf5c20dbcbf9867236dab3baddcdac316e5775d950846329",
+      "rows": 41757
+    },
+    "results/features/feature_decisions.csv": {
+      "sha256": "64c11b6a05cf3cc30cd2ce8de9d954af0d71050624c7e1e8f8a9ebc78906e02a",
+      "rows": 17
+    },
+    "results/features/feature_matrix_summary.csv": {
+      "sha256": "e8fbb475bef967bc4f39e7f6f2314ea67bc250aabb93a2d6cc930a4f301464bf",
+      "rows": 3
+    }
+  },
+  "round_trip_verification": {
+    "development_train": {
+      "meteorological_features_match_source": true,
+      "month_dummies_map_back_exactly": true,
+      "hour_dummies_map_back_exactly": true,
+      "cbwd_dummies_map_back_exactly": true,
+      "row_order_preserved": true
+    },
+    "validation": {
+      "meteorological_features_match_source": true,
+      "month_dummies_map_back_exactly": true,
+      "hour_dummies_map_back_exactly": true,
+      "cbwd_dummies_map_back_exactly": true,
+      "row_order_preserved": true
+    },
+    "test": {
+      "meteorological_features_match_source": true,
+      "month_dummies_map_back_exactly": true,
+      "hour_dummies_map_back_exactly": true,
+      "cbwd_dummies_map_back_exactly": true,
+      "row_order_preserved": true
+    }
+  },
+  "cross_partition_schema_identical": true
+}

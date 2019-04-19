@@ -1,0 +1,236 @@
+{
+  "model_id": "M1",
+  "estimator": "sklearn.linear_model.LinearRegression",
+  "sklearn_version": "0.20.0",
+  "fit_intercept": true,
+  "phase": "V1 / Protocol Phase 7 - linear regression (M1)",
+  "specification_note": "Ordinary least squares on the frozen Phase 5 matrix. No scaling, no regularization, no hyperparameter search, no feature ablation. The specification was fixed before any result was observed.",
+  "feature_count": 43,
+  "feature_names": [
+    "DEWP",
+    "TEMP",
+    "PRES",
+    "Iws",
+    "Is",
+    "Ir",
+    "month_2",
+    "month_3",
+    "month_4",
+    "month_5",
+    "month_6",
+    "month_7",
+    "month_8",
+    "month_9",
+    "month_10",
+    "month_11",
+    "month_12",
+    "hour_1",
+    "hour_2",
+    "hour_3",
+    "hour_4",
+    "hour_5",
+    "hour_6",
+    "hour_7",
+    "hour_8",
+    "hour_9",
+    "hour_10",
+    "hour_11",
+    "hour_12",
+    "hour_13",
+    "hour_14",
+    "hour_15",
+    "hour_16",
+    "hour_17",
+    "hour_18",
+    "hour_19",
+    "hour_20",
+    "hour_21",
+    "hour_22",
+    "hour_23",
+    "cbwd_NW",
+    "cbwd_SE",
+    "cbwd_cv"
+  ],
+  "feature_schema_sha256": "a5d7cd37ca1872f299e42e219369b5b79c084d1be679214d96d9878c62446b2f",
+  "fit_partition": "development_train",
+  "fit_period": "2010-01-01 00:00:00 to 2012-12-31 23:00:00",
+  "evaluation_partition": "validation",
+  "evaluation_period": "2013-01-01 00:00:00 to 2013-12-31 23:00:00",
+  "evaluation_period_label": "2013_validation",
+  "n_train": 24418,
+  "n_validation": 8678,
+  "upstream_sha256": {
+    "data/raw/PRSA_data_2010.1.1-2014.12.31.csv": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+    "data/processed/features/X_train.csv": "2c61894b4ca4e7657cc12c45f8bfe551a2c7121a90ca1ac0102742bd2ba3353c",
+    "data/processed/features/X_validation.csv": "21c125778d535c124dc7642b0447086d4aa52aac4573d1fa0419ace725700069",
+    "data/processed/features/y_train.csv": "fbcea1e4611e69cf707776e8925daed511539ee08a9809b54c796754fa7b53fa",
+    "data/processed/features/y_validation.csv": "9dc04233f80940865e9ae25e8380b458437fd0dece16b5c9727d72f891c1b0be",
+    "artifacts/split_manifest.json": "79678b839a9d0e178b681daba56482c948b27d68e308d5fcd7d2c40580550f33",
+    "artifacts/feature_schema.json": "a5d7cd37ca1872f299e42e219369b5b79c084d1be679214d96d9878c62446b2f",
+    "artifacts/feature_row_manifest.csv": "5acddf85355b0daddf5c20dbcbf9867236dab3baddcdac316e5775d950846329",
+    "artifacts/m0_baseline_manifest.json": "bd76763ca030da2cc4cb7ee4861dc79bc9668e6c4c256ffe48a6dcc1cd1c5dd9"
+  },
+  "training_design_diagnostics": {
+    "condition_number_definition": "largest_singular_value / smallest_nonzero_singular_value, where non-zero means > max(m, n) * eps * largest_singular_value",
+    "computed_on": "development_train (2010-2012) only",
+    "design_with_intercept": {
+      "matrix": "design_with_intercept_[1|X]_44_columns",
+      "n_rows": 24418,
+      "n_columns": 44,
+      "matrix_rank": 44,
+      "n_linearly_independent_columns": 44,
+      "rank_deficient": false,
+      "largest_singular_value": 158930.8976496776,
+      "smallest_singular_value": 0.7483558962227853,
+      "smallest_nonzero_singular_value": 0.7483558962227853,
+      "rank_tolerance": 8.617050759185013e-07,
+      "condition_number": 212373.41544558888
+    },
+    "raw_X_train": {
+      "matrix": "X_train_43_columns",
+      "n_rows": 24418,
+      "n_columns": 43,
+      "matrix_rank": 43,
+      "n_linearly_independent_columns": 43,
+      "rank_deficient": false,
+      "largest_singular_value": 158930.82083846617,
+      "smallest_singular_value": 6.200426907548153,
+      "smallest_nonzero_singular_value": 6.200426907548153,
+      "rank_tolerance": 8.617046594569337e-07,
+      "condition_number": 25632.23842619451
+    },
+    "centred_X_train": {
+      "matrix": "centred_X_train_43_columns_as_sklearn_decomposes",
+      "n_rows": 24418,
+      "n_columns": 43,
+      "matrix_rank": 43,
+      "n_linearly_independent_columns": 43,
+      "rank_deficient": false,
+      "largest_singular_value": 8176.892469613804,
+      "smallest_singular_value": 6.200238161596143,
+      "smallest_nonzero_singular_value": 6.200238161596143,
+      "rank_tolerance": 4.4334171960931334e-08,
+      "condition_number": 1318.8029647410842
+    },
+    "sklearn_estimator_attributes": {
+      "rank_": 43,
+      "n_singular_values": 43,
+      "largest_singular_value": 8176.892469613798,
+      "smallest_singular_value": 6.200238161596139
+    }
+  },
+  "intercept": 2491.5560610308257,
+  "metric_definitions": {
+    "MAE": "mean(abs(y_true - y_pred))",
+    "RMSE": "sqrt(mean((y_true - y_pred) ** 2))",
+    "R2": "1 - SS_res / SS_tot"
+  },
+  "metric_implementation": "sklearn.metrics 0.20.0; RMSE computed as sqrt(mean_squared_error) because the squared= keyword did not exist until 0.22",
+  "validation_metrics": {
+    "evaluation_period_label": "2013_validation",
+    "result_status": "development validation result - NOT final held-out test performance and NOT a project headline figure",
+    "mae": 53.333360626133675,
+    "rmse": 76.55842290894269,
+    "r2": 0.3905200356064845
+  },
+  "m0_comparison": {
+    "m0_source": "artifacts/m0_baseline_manifest.json",
+    "m0_manifest_sha256": "bd76763ca030da2cc4cb7ee4861dc79bc9668e6c4c256ffe48a6dcc1cd1c5dd9",
+    "m0_strategy": "training_median_constant_baseline",
+    "m0_baseline_constant": 73.0,
+    "evaluation_period_label": "2013_validation",
+    "m0_mae": 67.59115003457018,
+    "m0_rmse": 102.18175289437872,
+    "m0_r2": -0.08572583925660648,
+    "m1_mae": 53.333360626133675,
+    "m1_rmse": 76.55842290894269,
+    "m1_r2": 0.3905200356064845,
+    "mae_improvement_absolute": 14.257789408436501,
+    "mae_improvement_percent": 21.094166027866386,
+    "rmse_improvement_absolute": 25.62332998543603,
+    "rmse_improvement_percent": 25.076228641254435,
+    "r2_delta": 0.476245874863091,
+    "primary_comparison_metric": "MAE",
+    "note": "Development-validation comparison on 2013 only. The primary comparison metric remains MAE, as pre-registered; it was not changed because another metric looked more favourable."
+  },
+  "residual_diagnostics": {
+    "residual_definition": "residual = actual_pm25 - predicted_pm25",
+    "n": 8678,
+    "mean_residual": 6.560091111443365,
+    "median_residual": -7.35355328642413,
+    "residual_std": 76.28124179170973,
+    "min_residual": -175.47024709262269,
+    "max_residual": 687.2208658733794,
+    "pearson_corr_predicted_vs_residual": 0.022514822259542894
+  },
+  "equation_reconstruction_check": {
+    "method": "intercept + X_validation.dot(coefficients)",
+    "max_absolute_difference": 0.0,
+    "tolerance": 1e-10,
+    "agrees": true
+  },
+  "prediction_invariants": {
+    "n_predictions": 8678,
+    "n_actuals": 8678,
+    "predictions_finite": true,
+    "actuals_finite": true,
+    "n_distinct_predictions": 8675,
+    "prediction_std": 59.94241648538811,
+    "identical_to_m0_constant": false,
+    "m0_constant": 73.0,
+    "prediction_min": -150.53736362543577,
+    "prediction_max": 264.58282779855926
+  },
+  "row_alignment": {
+    "y_validation_rows": 8678,
+    "manifest_validation_rows": 8678,
+    "phase4_validation_rows": 8678,
+    "identifiers_match_phase4": true,
+    "targets_match_phase4": true,
+    "row_order_preserved": true
+  },
+  "coefficient_interpretation_caution": "Phase 3 found strong pairwise relationships among the meteorological predictors (DEWP-TEMP +0.825, TEMP-PRES -0.827, DEWP-PRES -0.778). Individual coefficients are therefore not stable or individually interpretable, are not comparable across features because units differ and no scaling was applied, and are relative to an omitted reference level for every one-hot block. They describe a conditional association within this fitted linear specification, not a causal effect.",
+  "outputs": {
+    "results/models/m1/m1_coefficients.csv": {
+      "sha256": "1e8bc028c9ea45cc5359e5f05ea4d6a431c604295a208b6df431874b1bcdf11b",
+      "rows": 43
+    },
+    "results/models/m1/m1_training_diagnostics.csv": {
+      "sha256": "6d51c76e0b25f7d40a90735628a29662c5d7e3909db81b795455b9c58a5ab924",
+      "rows": 1
+    },
+    "results/models/m1/m1_validation_metrics.csv": {
+      "sha256": "e05ff31ba284caaec24b77a9219f8981a13e0ed4e3bdce75901ce7ed3140c256",
+      "rows": 1
+    },
+    "results/models/m1/m1_validation_predictions.csv": {
+      "sha256": "3310f6c083cb0972b39c8e54cf4dd586b0342201f7736b58c58a4e6e4c316ab5",
+      "rows": 8678
+    },
+    "figures/m1_validation_actual_vs_predicted.png": {
+      "sha256": "6bf650deb1930c5a8a1423a97b3324599f363d1b8f1cab8469f7f45d266027a6"
+    },
+    "figures/m1_validation_residuals_vs_predicted.png": {
+      "sha256": "eb96f05ab578e3b6207550ec171c722eac3300bd70ab8abb6b3ebb67ff3c3bae"
+    }
+  },
+  "model_serialization": {
+    "serialized": false,
+    "reason": "Protocol Phase 10 refits M1 on the full permitted 2010-2013 development period, so a serialized development-only model would not be the final model. The coefficients, intercept, diagnostics, predictions and metrics fully and deterministically describe this fit."
+  },
+  "test_quarantine": {
+    "test_partition": "2014",
+    "test_target_quarantine_status": "ACTIVE",
+    "test_features_read": false,
+    "test_target_read": false,
+    "test_predictions_generated": false,
+    "test_evaluation_status": "not_evaluated",
+    "final_test_status": "not_evaluated",
+    "quarantine_lifts_at": "Protocol Phase 10"
+  },
+  "final_refit_policy": {
+    "executed": false,
+    "policy": "At Protocol Phase 10, after all model-development decisions are frozen: combine 2010-2013 development data, apply the already-frozen Phase 5 feature policy, refit M1 once, generate 2014 predictions, open the locked 2014 target and calculate MAE/RMSE/R2 once."
+  },
+  "note": "No execution timestamp is recorded so that repeated runs are byte-identical."
+}

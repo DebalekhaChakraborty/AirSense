@@ -1,0 +1,277 @@
+{
+  "model_id": "M2",
+  "estimator": "sklearn.tree.DecisionTreeRegressor",
+  "sklearn_version": "0.20.0",
+  "phase": "V1 / Protocol Phase 8 - decision tree (M2)",
+  "feature_count": 43,
+  "feature_names": [
+    "DEWP",
+    "TEMP",
+    "PRES",
+    "Iws",
+    "Is",
+    "Ir",
+    "month_2",
+    "month_3",
+    "month_4",
+    "month_5",
+    "month_6",
+    "month_7",
+    "month_8",
+    "month_9",
+    "month_10",
+    "month_11",
+    "month_12",
+    "hour_1",
+    "hour_2",
+    "hour_3",
+    "hour_4",
+    "hour_5",
+    "hour_6",
+    "hour_7",
+    "hour_8",
+    "hour_9",
+    "hour_10",
+    "hour_11",
+    "hour_12",
+    "hour_13",
+    "hour_14",
+    "hour_15",
+    "hour_16",
+    "hour_17",
+    "hour_18",
+    "hour_19",
+    "hour_20",
+    "hour_21",
+    "hour_22",
+    "hour_23",
+    "cbwd_NW",
+    "cbwd_SE",
+    "cbwd_cv"
+  ],
+  "feature_representation_note": "Exactly the frozen Phase 5 43-feature matrix, identical to M1. Nothing was altered to suit a tree, so the M1-vs-M2 comparison reflects model class rather than feature engineering.",
+  "search_space": {
+    "searched": {
+      "max_depth": [
+        3,
+        5,
+        8,
+        12,
+        "None"
+      ],
+      "min_samples_leaf": [
+        1,
+        10,
+        50,
+        100
+      ]
+    },
+    "fixed": {
+      "criterion": "mse",
+      "splitter": "best",
+      "min_samples_split": 2,
+      "max_features": "None",
+      "random_state": 42
+    },
+    "not_searched": [
+      "criterion",
+      "splitter",
+      "min_samples_split",
+      "max_features",
+      "max_leaf_nodes",
+      "min_impurity_decrease"
+    ],
+    "candidate_count": 20,
+    "candidate_ordering": "max_depth outer loop, min_samples_leaf inner loop, both in declared order",
+    "frozen_before_any_result": true,
+    "method": "explicit deterministic loop over the declared candidates; GridSearchCV was deliberately not used because the evaluation design is a single declared validation year, not cross-validation folds",
+    "criterion_api_note": "criterion='mse' is the scikit-learn 0.20 name; 'squared_error' did not exist until 1.0 and would be a post-cutoff API"
+  },
+  "selection_metric": "validation_mae",
+  "selection_metric_note": "2013 validation MAE, the decision metric frozen in Phase 0 long before any M2 result existed",
+  "selection_tolerance": 1e-12,
+  "tie_break_policy": [
+    "1. lowest 2013 validation MAE (ties within 1e-12 treated as equal)",
+    "2. lower 2013 validation RMSE",
+    "3. simpler tree: smaller configured max_depth, with None treated as greater than every finite depth",
+    "4. if max_depth equal: larger min_samples_leaf",
+    "5. deterministic grid order (max_depth outer, min_samples_leaf inner)"
+  ],
+  "tie_break_policy_frozen_before_fitting": true,
+  "n_candidates_tied_on_mae": 1,
+  "no_test_information_used_in_selection": true,
+  "selected_configuration": {
+    "candidate_id": 14,
+    "criterion": "mse",
+    "splitter": "best",
+    "max_depth": 12,
+    "min_samples_split": 2,
+    "min_samples_leaf": 10,
+    "max_features": "None",
+    "random_state": 42
+  },
+  "selected_tree_structure": {
+    "configured_max_depth": 12,
+    "configured_min_samples_leaf": 10,
+    "observed_tree_depth": 12,
+    "node_count": 1597,
+    "leaf_count": 799,
+    "root_split_feature": "DEWP",
+    "n_nonzero_importances": 31,
+    "importance_sum": 1.0000000000000002
+  },
+  "fit_partition": "development_train",
+  "fit_period": "2010-01-01 00:00:00 to 2012-12-31 23:00:00",
+  "evaluation_partition": "validation",
+  "evaluation_period": "2013-01-01 00:00:00 to 2013-12-31 23:00:00",
+  "evaluation_period_label": "2013_validation",
+  "n_train": 24418,
+  "n_validation": 8678,
+  "upstream_sha256": {
+    "data/raw/PRSA_data_2010.1.1-2014.12.31.csv": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+    "data/processed/features/X_train.csv": "2c61894b4ca4e7657cc12c45f8bfe551a2c7121a90ca1ac0102742bd2ba3353c",
+    "data/processed/features/X_validation.csv": "21c125778d535c124dc7642b0447086d4aa52aac4573d1fa0419ace725700069",
+    "data/processed/features/y_train.csv": "fbcea1e4611e69cf707776e8925daed511539ee08a9809b54c796754fa7b53fa",
+    "data/processed/features/y_validation.csv": "9dc04233f80940865e9ae25e8380b458437fd0dece16b5c9727d72f891c1b0be",
+    "artifacts/split_manifest.json": "79678b839a9d0e178b681daba56482c948b27d68e308d5fcd7d2c40580550f33",
+    "artifacts/feature_schema.json": "a5d7cd37ca1872f299e42e219369b5b79c084d1be679214d96d9878c62446b2f",
+    "artifacts/feature_row_manifest.csv": "5acddf85355b0daddf5c20dbcbf9867236dab3baddcdac316e5775d950846329",
+    "artifacts/m0_baseline_manifest.json": "bd76763ca030da2cc4cb7ee4861dc79bc9668e6c4c256ffe48a6dcc1cd1c5dd9",
+    "artifacts/m1_linear_regression_manifest.json": "395abc4cc8d9a749274d58160a54e372647f6033f78584208219bf8fb27cdfef"
+  },
+  "metric_definitions": {
+    "MAE": "mean(abs(y_true - y_pred))",
+    "RMSE": "sqrt(mean((y_true - y_pred) ** 2))",
+    "R2": "1 - SS_res / SS_tot"
+  },
+  "metric_implementation": "sklearn.metrics 0.20.0; RMSE computed as sqrt(mean_squared_error) because the squared= keyword did not exist until 0.22",
+  "selected_training_metrics": {
+    "status": "diagnostic only - training metrics played no part in selection",
+    "mae": 37.55916450798239,
+    "rmse": 56.169988481828256,
+    "r2": 0.6038888796663249
+  },
+  "validation_metrics": {
+    "evaluation_period_label": "2013_validation",
+    "result_status": "development validation result - NOT final held-out test performance and NOT a project headline figure",
+    "mae": 50.82785334616305,
+    "rmse": 77.98411499237778,
+    "r2": 0.36760886630188294
+  },
+  "model_comparison": {
+    "evaluation_period_label": "2013_validation",
+    "primary_comparison_metric": "MAE",
+    "m2_mae": 50.82785334616305,
+    "m2_rmse": 77.98411499237778,
+    "m2_r2": 0.36760886630188294,
+    "m0": {
+      "source": "artifacts/m0_baseline_manifest.json",
+      "manifest_sha256": "bd76763ca030da2cc4cb7ee4861dc79bc9668e6c4c256ffe48a6dcc1cd1c5dd9",
+      "mae": 67.59115003457018,
+      "rmse": 102.18175289437872,
+      "r2": -0.08572583925660648,
+      "mae_improvement_absolute": 16.763296688407124,
+      "mae_improvement_percent": 24.80102303309437,
+      "rmse_improvement_absolute": 24.197637902000935,
+      "rmse_improvement_percent": 23.68097749019151,
+      "r2_delta": 0.4533347055584894
+    },
+    "m1": {
+      "source": "artifacts/m1_linear_regression_manifest.json",
+      "manifest_sha256": "395abc4cc8d9a749274d58160a54e372647f6033f78584208219bf8fb27cdfef",
+      "mae": 53.333360626133675,
+      "rmse": 76.55842290894269,
+      "r2": 0.3905200356064845,
+      "mae_improvement_absolute": 2.5055072799706224,
+      "mae_improvement_percent": 4.697823745880563,
+      "rmse_improvement_absolute": -1.425692083435095,
+      "rmse_improvement_percent": -1.862227602481819,
+      "r2_delta": -0.022911169304601575
+    },
+    "note": "Development-validation comparison on 2013 only. The primary comparison metric remains MAE, as pre-registered."
+  },
+  "residual_diagnostics": {
+    "residual_definition": "residual = actual_pm25 - predicted_pm25",
+    "n": 8678,
+    "mean_residual": 2.7777334170024788,
+    "median_residual": -6.133928571428569,
+    "residual_std": 77.93911968594443,
+    "min_residual": -329.7230769230769,
+    "max_residual": 698.8021978021978,
+    "pearson_corr_predicted_vs_residual": -0.15898425045175119,
+    "n_negative_predictions": 0,
+    "percent_negative_predictions": 0.0,
+    "prediction_min": 8.454545454545455,
+    "prediction_max": 377.9,
+    "train_target_min": 0.0,
+    "train_target_max": 994.0,
+    "predictions_within_training_target_range": true,
+    "range_check_tolerance": 1e-09,
+    "predictions_clipped": false
+  },
+  "prediction_invariants": {
+    "n_predictions": 8678,
+    "predictions_finite": true,
+    "actuals_finite": true,
+    "residuals_finite": true,
+    "n_distinct_predictions": 628,
+    "prediction_std": 73.1928291555157
+  },
+  "row_alignment": {
+    "y_validation_rows": 8678,
+    "manifest_validation_rows": 8678,
+    "phase4_validation_rows": 8678,
+    "identifiers_match_phase4": true,
+    "targets_match_phase4": true,
+    "row_order_preserved": true
+  },
+  "feature_importance_caution": "Impurity-based decision-tree feature importance is predictive, not causal. It favours variables offering many possible split points, distributes importance unpredictably among correlated predictors - Phase 3 found |r| of 0.78 to 0.83 among DEWP, TEMP and PRES - and reflects only this fitted partition. It must not be read as scientific mechanism, and it was not used to redesign the Phase 5 feature set. Zero-importance features were retained.",
+  "root_split_interpretation_caution": "The root split feature is a property of this fitted partition, not evidence that the variable is a causally dominant driver.",
+  "outputs": {
+    "results/models/m2/m2_grid_results.csv": {
+      "sha256": "c98464463b11be52177f70e84f0f5bd8ec85387da5f856ce6794a949ee4e7aaa",
+      "rows": 20
+    },
+    "results/models/m2/m2_validation_metrics.csv": {
+      "sha256": "9293fe849e58397a9b7443c6e7094e030d1087514e67668b923996870f9e45c0",
+      "rows": 1
+    },
+    "results/models/m2/m2_validation_predictions.csv": {
+      "sha256": "49074ef654278858de71b95a99bb5a0290d69ebfdd3f4bab821888a94fba90e4",
+      "rows": 8678
+    },
+    "results/models/m2/m2_feature_importances.csv": {
+      "sha256": "a4c94b707500eec596e528e643d5c21b3f02ef13194b08b230775343c6f0edf5",
+      "rows": 43
+    },
+    "figures/m2_validation_actual_vs_predicted.png": {
+      "sha256": "866ea8932e001aad697aeb11fbd0d4708c3d284bd2afa68c44c4fbba53bb7fc4"
+    },
+    "figures/m2_validation_residuals_vs_predicted.png": {
+      "sha256": "b678748222362d9598cd6e52ae9c40079be96ea0c51d7d12e0b8b1faf510b3f9"
+    },
+    "figures/m2_grid_mae_by_complexity.png": {
+      "sha256": "36de8461e449c43f8e485f624cf4bae4a07a7e1257b064d6aa27b93ca4b6d7f0"
+    }
+  },
+  "model_serialization": {
+    "serialized": false,
+    "reason": "Protocol Phase 10 refits the selected configuration on the full 2010-2013 development period, so a serialized development-only tree would not be the final model. The configuration, metrics, predictions, importances and structural diagnostics describe this fit deterministically."
+  },
+  "test_quarantine": {
+    "test_partition": "2014",
+    "test_target_quarantine_status": "ACTIVE",
+    "test_features_read": false,
+    "test_target_read": false,
+    "test_predictions_generated": false,
+    "test_evaluation_status": "not_evaluated",
+    "final_test_status": "not_evaluated",
+    "quarantine_lifts_at": "Protocol Phase 10",
+    "selection_used_test_information": false
+  },
+  "final_refit_policy": {
+    "executed": false,
+    "policy": "At Protocol Phase 10 the selected M2 hyperparameters remain frozen: combine 2010-2013 development data, refit DecisionTreeRegressor with exactly those parameters, generate 2014 predictions once, open the 2014 target once and calculate MAE/RMSE/R2 once. M2 is not retuned after 2014 becomes visible."
+  },
+  "note": "No execution timestamp is recorded so that repeated runs are byte-identical."
+}

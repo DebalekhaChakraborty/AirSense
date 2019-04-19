@@ -1,0 +1,44 @@
+claim_id,claim_category,claim_text,value,source_file,source_field_or_table,verification_method,verified
+C01,dataset,Raw dataset SHA-256 is unchanged from Phase 0,4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c,artifacts/final_evaluation_manifest.json,raw_dataset_sha256,literal_lookup,True
+C02,dataset,Raw hourly records,43824,docs/DATASET_AUDIT.md,row_count,literal_lookup,True
+C03,dataset,Supervised observations after excluding missing targets,41757,artifacts/split_manifest.json,membership_reconciliation.supervised_total_rows,literal_lookup,True
+C04,split,Development-train supervised rows (2010-2012),24418,artifacts/split_manifest.json,partitions.development_train.supervised_rows,literal_lookup,True
+C05,split,Validation supervised rows (2013),8678,artifacts/split_manifest.json,partitions.validation.supervised_rows,literal_lookup,True
+C06,split,Final test supervised rows (2014),8661,artifacts/split_manifest.json,partitions.test.supervised_rows,literal_lookup,True
+C07,features,"Frozen feature count shared by M1, M2 and M3",43,artifacts/feature_schema.json,feature_count,literal_lookup,True
+C08,model_spec,M0 final constant recomputed on 2010-2013,73.0,artifacts/final_refit_manifest.json,models.M0.final_development_median,literal_lookup,True
+C09,model_spec,M1 final intercept,2435.4089340577,artifacts/final_refit_manifest.json,models.M1.intercept,literal_lookup,True
+C10,model_spec,M2 frozen selected hyperparameters,"{""candidate_id"": 14, ""criterion"": ""mse"", ""splitter"": ""best"", ""max_depth"": 12, ""min_samples_split"": 2, ""min_samples_leaf"": 10, ""max_features"": ""None"", ""random_state"": 42}",artifacts/pretest_development_freeze.json,models.M2.selected_hyperparameters,literal_lookup,True
+C11,model_spec,M3 frozen selected hyperparameters,"{""candidate_id"": 9, ""n_estimators"": 100, ""criterion"": ""mse"", ""bootstrap"": true, ""max_depth"": 12, ""min_samples_split"": 2, ""min_samples_leaf"": 1, ""max_features"": ""auto"", ""random_state"": 42, ""n_jobs"": 1, ""oob_score"": false}",artifacts/pretest_development_freeze.json,models.M3.selected_hyperparameters,literal_lookup,True
+C12,final_metric,M0 final 2014 held-out MAE,65.417388292344995,results/final_test/final_test_metrics.csv,M0.mae,literal_lookup,True
+C13,final_metric,M0 final 2014 held-out RMSE,96.741588760774960,results/final_test/final_test_metrics.csv,M0.rmse,literal_lookup,True
+C14,final_metric,M0 final 2014 held-out R2,-0.069942695889054,results/final_test/final_test_metrics.csv,M0.r2,literal_lookup,True
+C15,final_metric,M1 final 2014 held-out MAE,52.900193501674970,results/final_test/final_test_metrics.csv,M1.mae,literal_lookup,True
+C16,final_metric,M1 final 2014 held-out RMSE,73.103403258667839,results/final_test/final_test_metrics.csv,M1.rmse,literal_lookup,True
+C17,final_metric,M1 final 2014 held-out R2,0.389044922216543,results/final_test/final_test_metrics.csv,M1.r2,literal_lookup,True
+C18,final_metric,M2 final 2014 held-out MAE,51.248813500432064,results/final_test/final_test_metrics.csv,M2.mae,literal_lookup,True
+C19,final_metric,M2 final 2014 held-out RMSE,75.522046099895277,results/final_test/final_test_metrics.csv,M2.rmse,literal_lookup,True
+C20,final_metric,M2 final 2014 held-out R2,0.347948973628056,results/final_test/final_test_metrics.csv,M2.r2,literal_lookup,True
+C21,final_metric,M3 final 2014 held-out MAE,48.535341383781684,results/final_test/final_test_metrics.csv,M3.mae,literal_lookup,True
+C22,final_metric,M3 final 2014 held-out RMSE,70.277632509152781,results/final_test/final_test_metrics.csv,M3.rmse,literal_lookup,True
+C23,final_metric,M3 final 2014 held-out R2,0.435364300995649,results/final_test/final_test_metrics.csv,M3.r2,literal_lookup,True
+C24,ranking,"Final ranking by MAE, lowest first",M3 < M2 < M1 < M0,results/final_test/final_test_metrics.csv,mae_rank,derived_recomputation,True
+C25,ranking,Best final model by the pre-registered primary metric,M3,artifacts/final_evaluation_manifest.json,best_final_model_by_mae,literal_lookup,True
+C26,improvement,M3 MAE improvement over M0 (absolute),16.882046908563311,results/final_test/final_test_metrics.csv,M0.mae - M3.mae,derived_recomputation,True
+C27,improvement,M3 MAE improvement over M0 (percent),25.806666,results/final_test/final_test_metrics.csv,(M0.mae - M3.mae) / M0.mae * 100,derived_recomputation,True
+C28,error_analysis,"Severe-hour threshold (development P95; study-specific, not regulatory)",282,artifacts/error_analysis_manifest.json,thresholds.P95,literal_lookup,True
+C29,error_analysis,Severe high-concentration hours in 2014,512,results/error_analysis/severe_episode_summary.csv,number_of_severe_hours,literal_lookup,True
+C30,error_analysis,Severe episodes identified,41,results/error_analysis/severe_episode_summary.csv,number_of_episodes,literal_lookup,True
+C31,error_analysis,Longest severe episode (hours),76,results/error_analysis/severe_episode_summary.csv,episode_duration_max,literal_lookup,True
+C32,error_analysis,M3 MAE on severe hours,160.897391976066984,results/error_analysis/severe_hour_summary.csv,M3.mae,literal_lookup,True
+C33,error_analysis,M3 underprediction rate on severe hours,96.289062500000000,results/error_analysis/severe_hour_summary.csv,M3.underprediction_percent,literal_lookup,True
+C34,error_analysis,M3 residual autocorrelation at 1-hour lag,0.903292435945437,results/error_analysis/residual_autocorrelation.csv,M3.lag_1.pearson_r,literal_lookup,True
+C35,error_analysis,M3 residual autocorrelation at 6-hour lag,0.591595248837292,results/error_analysis/residual_autocorrelation.csv,M3.lag_6.pearson_r,literal_lookup,True
+C36,error_analysis,M3 residual autocorrelation at 12-hour lag,0.438265807478671,results/error_analysis/residual_autocorrelation.csv,M3.lag_12.pearson_r,literal_lookup,True
+C37,error_analysis,M3 residual autocorrelation at 24-hour lag,0.344170197256534,results/error_analysis/residual_autocorrelation.csv,M3.lag_24.pearson_r,literal_lookup,True
+C38,error_analysis,M3 residual autocorrelation at 48-hour lag,0.192623363135009,results/error_analysis/residual_autocorrelation.csv,M3.lag_48.pearson_r,literal_lookup,True
+C39,error_analysis,M3 residual autocorrelation at 168-hour lag,0.103198942008888,results/error_analysis/residual_autocorrelation.csv,M3.lag_168.pearson_r,literal_lookup,True
+C40,error_analysis,M1 negative predictions on the final test,466,results/error_analysis/prediction_bias_summary.csv,M1.n_negative_predictions,literal_lookup,True
+C41,error_analysis,"Row-wise absolute-error wins, M3 over M2",4623,results/error_analysis/pairwise_error_wins.csv,M2_vs_M3.model_b_lower_absolute_error_count,literal_lookup,True
+C42,status,Final test status,evaluated,artifacts/final_evaluation_manifest.json,final_test_status,literal_lookup,True
+C43,status,Model changes after the final test,none,artifacts/final_evaluation_manifest.json,post_test_model_changes,literal_lookup,True

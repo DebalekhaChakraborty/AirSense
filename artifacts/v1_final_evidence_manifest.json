@@ -1,0 +1,152 @@
+{
+  "project": "AirSense",
+  "version": "V1",
+  "title": "Air Quality Prediction Using Statistical Analysis and Machine Learning",
+  "artifact_type": "final_evidence_manifest",
+  "historical_cutoff": "2019-04-26",
+  "task_definition": "concurrent-hour PM2.5 estimation from meteorological and calendar covariates under chronological generalisation; NOT future-horizon forecasting - no lagged target is used",
+  "protocol_completion_status": "Phase 12 complete",
+  "raw_dataset_sha256": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+  "runtime": {
+    "interpreter": "CPython 3.6.7",
+    "direct_dependencies": {
+      "numpy": "1.15.4",
+      "pandas": "0.23.4",
+      "scipy": "1.1.0",
+      "scikit-learn": "0.20.0",
+      "matplotlib": "3.0.2",
+      "seaborn": "0.9.0",
+      "jupyter": "1.0.0"
+    },
+    "note": "period-exact Python environment on a modern substrate"
+  },
+  "population": {
+    "raw_hourly_records": 43824,
+    "excluded_missing_target": 2067,
+    "supervised_observations": 41757
+  },
+  "chronological_split": {
+    "development_train": {
+      "period": "2010-01-01 00:00:00 to 2012-12-31 23:00:00",
+      "supervised_rows": 24418
+    },
+    "validation": {
+      "period": "2013-01-01 00:00:00 to 2013-12-31 23:00:00",
+      "supervised_rows": 8678
+    },
+    "test": {
+      "period": "2014-01-01 00:00:00 to 2014-12-31 23:00:00",
+      "supervised_rows": 8661
+    }
+  },
+  "final_feature_count": 43,
+  "model_specifications": {
+    "M0": {
+      "strategy": "training_median_constant_baseline",
+      "final_constant": 73.0
+    },
+    "M1": {
+      "estimator": "sklearn.linear_model.LinearRegression",
+      "fit_intercept": true,
+      "scaling": "none",
+      "regularization": "none",
+      "final_intercept": 2435.4089340577248
+    },
+    "M2": {
+      "estimator": "sklearn.tree.DecisionTreeRegressor",
+      "frozen_hyperparameters": {
+        "candidate_id": 14,
+        "criterion": "mse",
+        "splitter": "best",
+        "max_depth": 12,
+        "min_samples_split": 2,
+        "min_samples_leaf": 10,
+        "max_features": "None",
+        "random_state": 42
+      }
+    },
+    "M3": {
+      "estimator": "sklearn.ensemble.RandomForestRegressor",
+      "frozen_hyperparameters": {
+        "candidate_id": 9,
+        "n_estimators": 100,
+        "criterion": "mse",
+        "bootstrap": true,
+        "max_depth": 12,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "max_features": "auto",
+        "random_state": 42,
+        "n_jobs": 1,
+        "oob_score": false
+      }
+    }
+  },
+  "final_held_out_metrics": {
+    "M0": {
+      "mae": 65.417388292345,
+      "rmse": 96.74158876077496,
+      "r2": -0.06994269588905389,
+      "mae_rank": 4
+    },
+    "M1": {
+      "mae": 52.90019350167497,
+      "rmse": 73.10340325866784,
+      "r2": 0.3890449222165434,
+      "mae_rank": 3
+    },
+    "M2": {
+      "mae": 51.248813500432064,
+      "rmse": 75.52204609989528,
+      "r2": 0.34794897362805555,
+      "mae_rank": 2
+    },
+    "M3": {
+      "mae": 48.535341383781684,
+      "rmse": 70.27763250915278,
+      "r2": 0.43536430099564905,
+      "mae_rank": 1
+    }
+  },
+  "primary_metric": "MAE",
+  "primary_ranking_by_mae": [
+    "M3",
+    "M2",
+    "M1",
+    "M0"
+  ],
+  "final_winner": "M3",
+  "metric_ranking_note": "M2 outranks M1 on MAE while M1 outranks M2 on RMSE and R2; MAE was pre-registered and governs. M3 is best on all three.",
+  "severe_tail_headline": {
+    "threshold_source": "development P95 (2010-2013), study-specific, not regulatory",
+    "threshold_value": 282.0,
+    "severe_hours": 512,
+    "severe_episodes": 41,
+    "m3_severe_mae": 160.89739197606698,
+    "m3_severe_underprediction_percent": 96.2890625
+  },
+  "residual_autocorrelation_headline": {
+    "m3_lag_1h": 0.903292435945437,
+    "m3_lag_6h": 0.5915952488372921,
+    "m3_lag_12h": 0.4382658074786707,
+    "m3_lag_24h": 0.344170197256534,
+    "m3_lag_48h": 0.19262336313500936,
+    "m3_lag_168h": 0.10319894200888756
+  },
+  "residual_autocorrelation_note": "computed by exact timestamp matching, not row shifting; errors remain strongly temporally structured at short lags",
+  "final_test_status": "exhausted",
+  "test_exhaustion_statement": "The 2014 target has been opened and scored once. It is no longer an unseen test set. No model changed after this point may claim a fresh evaluation on the same split.",
+  "model_modification_after_final_test": "none",
+  "closing_artifacts_sha256": {
+    "v1_evidence_registry_sha256": "d998446cf213424091843ad661e79afe8cf15d4b861bccc764b53968c69e3742",
+    "claims_ledger_sha256": "1dbd0b8f17f3c9f5150eea3ae643f92ef2987c6b8cdcf67d69694433f3f78fc0",
+    "final_model_comparison_sha256": "17c26a1a05b8ec2b70fe6983d478acf39e080f74b24055c777ca327265a45f3a",
+    "key_findings_sha256": "46ffeddf39e7bf200f34b7450bc3768c5fba8ee608b39252818296ff18a35810",
+    "v1_final_report_sha256": "5c87f8d1407cfffebfea5d978741a3ddb075780f8f2ada1bb889274f3cda45f5",
+    "v1_reproducibility_sha256": "dd7a86786b39c6a2534916cbb417300c24b56cb960e9f85eaf9337c55f9d37f9",
+    "phase_10_final_v1_record_sha256": "402d28db156fd545f66464950172ebbfc9327ec34d45df2142333f5fac7fd009",
+    "readme_sha256": "276e05b729a9123ec205174da0590129cddd5c268e83ca75b2581390aab11cb9",
+    "v1_research_protocol_sha256": "8118a0524ce637544b8384a4328e86ed3dd9b0616b86b3f32b755738827b443f"
+  },
+  "note": "This manifest does not contain its own digest. No execution timestamp is recorded so that repeated runs are byte-identical."
+}

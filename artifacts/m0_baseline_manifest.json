@@ -1,0 +1,103 @@
+{
+  "model_id": "M0",
+  "model_type": "constant_predictor",
+  "strategy": "training_median_constant_baseline",
+  "phase": "V1 / Protocol Phase 6 - baseline regression (M0)",
+  "scientific_rationale": "The primary decision metric was frozen in Phase 0 as MAE. For a constant predictor the sample median minimises mean absolute error, so the training median follows deductively from an already-declared metric rather than from any observed result. Exactly one baseline strategy is implemented; no mean baseline was computed and no candidate comparison was performed.",
+  "primary_decision_metric": "MAE",
+  "strategy_frozen_before_results": true,
+  "hyperparameters": null,
+  "predictors_used": [],
+  "predictors_used_note": "M0 deliberately uses none of the 43 prepared features; a baseline that consulted predictors would not be a naive floor.",
+  "fit_partition": "development_train",
+  "fit_period": "2010-01-01 00:00:00 to 2012-12-31 23:00:00",
+  "evaluation_partition": "validation",
+  "evaluation_period": "2013-01-01 00:00:00 to 2013-12-31 23:00:00",
+  "n_train": 24418,
+  "n_validation": 8678,
+  "baseline_constant": 73.0,
+  "metric_definitions": {
+    "MAE": "mean(abs(y_true - y_pred))",
+    "RMSE": "sqrt(mean((y_true - y_pred) ** 2))",
+    "R2": "1 - SS_res / SS_tot"
+  },
+  "metric_implementation": "sklearn.metrics 0.20.0; RMSE computed as sqrt(mean_squared_error) because the squared= keyword did not exist until 0.22",
+  "validation_metrics": {
+    "evaluation_period_label": "2013 validation",
+    "result_status": "development validation result - NOT final held-out test performance and NOT a project headline figure",
+    "mae": 67.59115003457018,
+    "rmse": 102.18175289437872,
+    "r2": -0.08572583925660648
+  },
+  "target_integrity": [
+    {
+      "partition": "development_train",
+      "count": 24418,
+      "n_missing": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 994.0,
+      "n_zero_valued_retained": 2
+    },
+    {
+      "partition": "validation",
+      "count": 8678,
+      "n_missing": 0,
+      "n_infinite": 0,
+      "min": 2.0,
+      "max": 886.0,
+      "n_zero_valued_retained": 0
+    }
+  ],
+  "prediction_invariants": {
+    "n_predictions": 8678,
+    "n_unique_predicted_values": 1,
+    "predicted_value_equals_training_median": true,
+    "n_missing_predictions": 0,
+    "n_missing_actuals": 0,
+    "n_infinite_values": 0
+  },
+  "row_alignment": {
+    "y_validation_rows": 8678,
+    "manifest_validation_rows": 8678,
+    "phase4_validation_rows": 8678,
+    "identifiers_match_phase4": true,
+    "targets_match_phase4": true,
+    "row_order_preserved": true
+  },
+  "upstream_sha256": {
+    "data/raw/PRSA_data_2010.1.1-2014.12.31.csv": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+    "data/processed/features/y_train.csv": "fbcea1e4611e69cf707776e8925daed511539ee08a9809b54c796754fa7b53fa",
+    "data/processed/features/y_validation.csv": "9dc04233f80940865e9ae25e8380b458437fd0dece16b5c9727d72f891c1b0be",
+    "artifacts/split_manifest.json": "79678b839a9d0e178b681daba56482c948b27d68e308d5fcd7d2c40580550f33",
+    "artifacts/feature_schema.json": "a5d7cd37ca1872f299e42e219369b5b79c084d1be679214d96d9878c62446b2f",
+    "artifacts/feature_row_manifest.csv": "5acddf85355b0daddf5c20dbcbf9867236dab3baddcdac316e5775d950846329"
+  },
+  "outputs": {
+    "results/models/m0/m0_validation_predictions.csv": {
+      "sha256": "2bd6c78ae64a28970558c5c67e80c4f2f68e1e08ed32bb0ecc852693ccc3fba6",
+      "rows": 8678
+    },
+    "results/models/m0/m0_validation_metrics.csv": {
+      "sha256": "34a64d8ab662edcb0f3f1054e20991cf8cd6c7e87c0e947ad6c3c2c5754e56eb",
+      "rows": 1
+    }
+  },
+  "test_quarantine": {
+    "test_partition": "2014",
+    "test_target_quarantine_status": "ACTIVE",
+    "test_target_read": false,
+    "test_features_read": false,
+    "test_predictions_generated": false,
+    "test_evaluation_status": "not_evaluated",
+    "final_test_status": "not_evaluated",
+    "quarantine_lifts_at": "Protocol Phase 10",
+    "note": "M0 having no hyperparameters is not a licence to score the test early. Protocol Phase 10 evaluates M0-M3 together, once, on the same locked 2014 partition."
+  },
+  "final_refit_policy": {
+    "executed": false,
+    "policy": "At Protocol Phase 10 the M0 constant is recomputed as the median of the combined 2010-2013 development target, 2014 predictions are generated once, and the locked 2014 target is evaluated once. The constant reported in this phase is a development-validation figure and is not automatically the final M0 constant.",
+    "combined_2010_2013_target_created": false
+  },
+  "note": "No execution timestamp is recorded so that repeated runs are byte-identical."
+}

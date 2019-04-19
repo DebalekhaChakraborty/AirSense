@@ -1,0 +1,18 @@
+source_field,feature_class,decision,representation,reason
+No,identifier,exclude,not in feature matrix,"observation identifier and traceability field, not a physical predictor; kept only in alignment manifests"
+year,calendar,exclude,not in feature matrix,"evaluation periods are disjoint later years, so a numeric year would require extrapolating a calendar counter into unseen values; Phase 3 found no monotonic annual trend"
+day,calendar,exclude,not in feature matrix,"no predeclared physical interpretation, not naturally ordinal across month boundaries, and no Phase 3 evidence for it"
+month,calendar,include,"one-hot, reference month_1",non-monotone seasonal structure observed in Phase 3; categorical encoding lets a linear model represent it without assuming a shape
+hour,calendar,include,"one-hot, reference hour_0",clear diurnal cycle observed in Phase 3; avoids imposing a false ordering 23 > 22 > ... > 0
+DEWP,meteorological,include,raw continuous,direct meteorological measurement; strongest positive rank association with PM2.5 in Phase 3
+TEMP,meteorological,include,raw continuous,"direct meteorological measurement; Phase 3 found its Pearson and Spearman coefficients disagree in sign, indicating non-monotone structure the tree models may represent differently"
+PRES,meteorological,include,raw continuous,direct meteorological measurement
+cbwd,categorical,include,"one-hot, reference cbwd_NE",largest categorical separation of the target observed in Phase 3; vocabulary learned from training only
+Iws,meteorological,include,raw cumulative,"strongest single association with PM2.5 in Phase 3; skew is a documented property of a cumulative quantity, not evidence of error, so it is used as distributed"
+Is,meteorological,include,raw sparse cumulative snow,"zero in most hours, but no evidence establishes the values as erroneous; kept raw for a simple period-authentic baseline"
+Ir,meteorological,include,raw sparse cumulative rain,"zero in most hours; Phase 3 rank association was not distinguishable from zero, but features are not selected on correlation strength at this phase"
+season,engineered,exclude,not created,deterministic function of month; the month one-hot block already carries a more granular form of the same calendar information
+weekend,engineered,exclude,not created,"the Phase 0 policy admitted it only if the pre-modelling EDA established a weekday/weekend PM2.5 difference; Phase 3 did not perform that comparison, so the predeclared condition was not met. This records adherence to the frozen policy, not evidence that weekends have no effect"
+sin/cos month and hour,engineered,exclude,not created,month and hour are represented categorically; adding a cyclical form as well would duplicate the same information under an imposed sinusoidal shape
+pm2.5 lags and rolling means,engineered,exclude,not created,a lagged target changes the task definition to forecasting and would need its own baseline and experiment
+pm2.5,target,exclude from X,y_train / y_validation only,the prediction target; never a predictor. The 2014 target is quarantined and is not read in this phase

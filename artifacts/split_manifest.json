@@ -1,0 +1,149 @@
+{
+  "project": "AirSense",
+  "phase": "V1 / Protocol Phase 4 - cleaning and split freeze",
+  "historical_cutoff": "2019-04-26",
+  "note": "Split boundaries were frozen before any model was fitted and before any predictive metric existed. No execution timestamp is recorded here so that repeated runs are byte-identical.",
+  "source": {
+    "raw_dataset_path": "data/raw/PRSA_data_2010.1.1-2014.12.31.csv",
+    "raw_dataset_sha256": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+    "raw_rows": 43824,
+    "raw_columns": 13,
+    "temporal_integrity": {
+      "first_timestamp": "2010-01-01 00:00:00",
+      "last_timestamp": "2014-12-31 23:00:00",
+      "expected_hourly_slots": 43824,
+      "actual_rows": 43824,
+      "unique_timestamps": 43824,
+      "absent_hourly_slots": 0,
+      "duplicate_timestamps": 0,
+      "monotonic_increasing": true
+    }
+  },
+  "policy": {
+    "split_policy": "chronological_calendar_year_boundaries",
+    "membership_rule": "assigned from calendar timestamp on the full raw timeline, before any target-based exclusion",
+    "supervised_eligibility_rule": "a row is eligible for supervised modelling if and only if pm2.5 is non-missing",
+    "target_imputation": "rejected - no target value is imputed, interpolated, filled or synthesised",
+    "zero_and_extreme_targets": "retained unchanged",
+    "locked_final_test_partition": "test",
+    "test_quarantine_until": "Protocol Phase 10"
+  },
+  "partitions": {
+    "development_train": {
+      "declared_start": "2010-01-01 00:00:00",
+      "declared_end": "2012-12-31 23:00:00",
+      "raw_rows": 26304,
+      "missing_target_rows": 1886,
+      "supervised_rows": 24418,
+      "missing_target_rate_percent": 7.170012165450122,
+      "raw_first_No": 1,
+      "raw_last_No": 26304,
+      "supervised_first_No": 25,
+      "supervised_last_No": 26304,
+      "raw_first_timestamp": "2010-01-01 00:00:00",
+      "raw_last_timestamp": "2012-12-31 23:00:00",
+      "supervised_first_timestamp": "2010-01-02 00:00:00",
+      "supervised_last_timestamp": "2012-12-31 23:00:00",
+      "processed_file": "airsense_train_2010_2012.csv"
+    },
+    "validation": {
+      "declared_start": "2013-01-01 00:00:00",
+      "declared_end": "2013-12-31 23:00:00",
+      "raw_rows": 8760,
+      "missing_target_rows": 82,
+      "supervised_rows": 8678,
+      "missing_target_rate_percent": 0.9360730593607306,
+      "raw_first_No": 26305,
+      "raw_last_No": 35064,
+      "supervised_first_No": 26305,
+      "supervised_last_No": 35064,
+      "raw_first_timestamp": "2013-01-01 00:00:00",
+      "raw_last_timestamp": "2013-12-31 23:00:00",
+      "supervised_first_timestamp": "2013-01-01 00:00:00",
+      "supervised_last_timestamp": "2013-12-31 23:00:00",
+      "processed_file": "airsense_validation_2013.csv"
+    },
+    "test": {
+      "declared_start": "2014-01-01 00:00:00",
+      "declared_end": "2014-12-31 23:00:00",
+      "raw_rows": 8760,
+      "missing_target_rows": 99,
+      "supervised_rows": 8661,
+      "missing_target_rate_percent": 1.13013698630137,
+      "raw_first_No": 35065,
+      "raw_last_No": 43824,
+      "supervised_first_No": 35065,
+      "supervised_last_No": 43824,
+      "raw_first_timestamp": "2014-01-01 00:00:00",
+      "raw_last_timestamp": "2014-12-31 23:00:00",
+      "supervised_first_timestamp": "2014-01-01 00:00:00",
+      "supervised_last_timestamp": "2014-12-31 23:00:00",
+      "processed_file": "airsense_test_2014.csv"
+    }
+  },
+  "label_missingness_shift": {
+    "development_train_missing_rate_percent": 7.170012165450122,
+    "validation_missing_rate_percent": 0.9360730593607306,
+    "test_missing_rate_percent": 1.13013698630137,
+    "train_over_validation_ratio": 7.6596715328467155,
+    "train_over_test_ratio": 6.344374400943744,
+    "shift_type": "target_availability_label_missingness",
+    "note": "Predictors are complete in every partition; only target availability differs. No causal explanation is asserted."
+  },
+  "files": {
+    "data/processed/airsense_supervised.csv": {
+      "sha256": "c86415f427e49a535e45e45b14ce069533a17b8d3f36a9755f5a575064e76076",
+      "rows": 41757
+    },
+    "data/processed/airsense_train_2010_2012.csv": {
+      "sha256": "0d5a14ecf079a661e837759c2334cbca40ac9223d39f0af28df39370d289d140",
+      "rows": 24418
+    },
+    "data/processed/airsense_validation_2013.csv": {
+      "sha256": "41f5c7a733daa6f6617ceb18c0a53b1a1056616482257a50992145565c425f82",
+      "rows": 8678
+    },
+    "data/processed/airsense_test_2014.csv": {
+      "sha256": "9f273de4ae9243c269d6f211229e5d017341e50ee8e7093add3a04dedd903702",
+      "rows": 8661
+    },
+    "artifacts/target_missing_exclusions.csv": {
+      "sha256": "df93dda088ad35d563ae97f7f6f7e9597b551ae10b63fedb7a25cfe2ef9b84c9",
+      "rows": 2067
+    },
+    "results/preprocessing/partition_summary.csv": {
+      "sha256": "00e30347ec0159190918ba6b9235ee9418996ea5d2f36aa38000680fed5ed2ab",
+      "rows": 4
+    },
+    "results/preprocessing/data_reconciliation.csv": {
+      "sha256": "dbb8816eb1ffd187f4b3ba0b1525949d983d5fcdd38a3603c6c90d9054590cb5",
+      "rows": 8
+    }
+  },
+  "membership_reconciliation": {
+    "raw_total_rows": 43824,
+    "excluded_target_missing": 2067,
+    "supervised_total_rows": 41757,
+    "partition_supervised_sum": 41757,
+    "supervised_plus_excluded_equals_raw": true,
+    "partitions_exactly_cover_supervised": true,
+    "partition_overlap_rows": 0
+  },
+  "round_trip_verification": {
+    "supervised_rows_verified": 41757,
+    "development_train_rows_verified": 24418,
+    "validation_rows_verified": 8678,
+    "test_rows_verified": 8661,
+    "excluded_rows_verified": 2067,
+    "supervised_plus_excluded": 43824,
+    "partition_sum": 41757,
+    "partition_overlap": 0,
+    "partitions_exactly_cover_supervised": true,
+    "retained_target_min": 0.0,
+    "retained_target_max": 994.0,
+    "zero_valued_targets_retained": 2
+  },
+  "raw_dataset_sha256_before": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+  "raw_dataset_sha256_after": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+  "raw_dataset_unchanged": true
+}

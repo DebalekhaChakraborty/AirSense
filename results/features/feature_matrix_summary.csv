@@ -1,0 +1,4 @@
+partition,row_count,feature_count,missing_feature_cells,non_numeric_feature_cells,infinite_feature_cells,first_No,last_No,first_timestamp,last_timestamp,unseen_categorical_levels,feature_schema_match,target_row_count
+development_train,24418,43,0,0,0,25,26304,2010-01-02 00:00:00,2012-12-31 23:00:00,none,yes,24418
+validation,8678,43,0,0,0,26305,35064,2013-01-01 00:00:00,2013-12-31 23:00:00,none,yes,8678
+test,8661,43,0,0,0,35065,43824,2014-01-01 00:00:00,2014-12-31 23:00:00,none,yes,

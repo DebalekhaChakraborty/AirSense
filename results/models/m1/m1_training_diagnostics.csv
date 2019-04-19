@@ -1,0 +1,2 @@
+model,n_train,n_features,matrix_rank,n_design_columns_with_intercept,rank_deficient,largest_singular_value,smallest_singular_value,smallest_nonzero_singular_value,condition_number,intercept
+M1,24418,43,44,44,False,158930.8976496776,0.7483558962227853,0.7483558962227853,212373.41544558888,2491.5560610308257

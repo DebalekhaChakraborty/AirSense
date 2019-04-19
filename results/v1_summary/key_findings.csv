@@ -1,0 +1,15 @@
+finding_id,finding,value_or_summary,source_artifact
+F01,"Final 2014 held-out MAE, M3 (best model)",48.535341383781684 ug/m^3,results/final_test/final_test_metrics.csv
+F02,"Final 2014 held-out RMSE, M3",70.277632509152781 ug/m^3,results/final_test/final_test_metrics.csv
+F03,"Final 2014 held-out R2, M3",0.435364300995649,results/final_test/final_test_metrics.csv
+F04,"Severe-hour threshold (development P95, study-specific; not regulatory)",282 ug/m^3,artifacts/error_analysis_manifest.json
+F05,M3 MAE on severe hours (actual > development P95),160.897391976066984 ug/m^3,results/error_analysis/severe_hour_summary.csv
+F06,M3 underprediction rate on severe hours,96.289062500000000 percent,results/error_analysis/severe_hour_summary.csv
+F07,M3 residual autocorrelation at 1-hour lag (exact timestamp matching),0.903292435945437,results/error_analysis/residual_autocorrelation.csv
+F08,M1 physically impossible negative predictions on the final test,466 of 8661 (5.380441 percent),results/error_analysis/prediction_bias_summary.csv
+F09,"Row-wise absolute-error wins, M3 over M2",4623 of 8661 (53.377208 percent),results/error_analysis/pairwise_error_wins.csv
+F10,"Final ranking by the pre-registered primary metric (MAE, lowest first)",M3 < M2 < M1 < M0,results/final_test/final_test_metrics.csv
+F11,Severe high-concentration hours in the 2014 test,512 of 8661,results/error_analysis/severe_episode_summary.csv
+F12,Severe episodes identified (contiguous 1-hour runs above development P95),"41 episodes, longest 76 hours",results/error_analysis/severe_episode_summary.csv
+F13,M3 MAE improvement over the naive baseline M0,16.882046908563311 ug/m^3 (25.806666 percent),results/final_test/final_test_metrics.csv
+F14,Metric-ranking disagreement: M2 beats M1 on MAE while M1 beats M2 on RMSE and R2,M1 MAE 52.900194 vs M2 51.248814; M1 RMSE 73.103403 vs M2 75.522046,results/final_test/final_test_metrics.csv

@@ -1,0 +1,5 @@
+model,n_predictions,n_distinct_predictions,prediction_min,prediction_max,prediction_mean,prediction_std,n_negative_predictions,all_finite,within_development_target_range,development_target_min,development_target_max,final_fit_period,n_development,n_features,structure
+M0,8661,1,73.0,73.0,73.0,0.0,0,True,True,0.0,994.0,2010_2013,33096,0,constant = 73.0
+M1,8661,8657,-162.1385709451447,243.57228961476903,97.66174987786685,58.149849990322146,466,True,False,0.0,994.0,2010_2013,33096,43,intercept=2435.4089340577; rank 44/44; condition 213048
+M2,8661,617,5.214285714285714,449.15384615384613,100.54418461876148,70.51447882090051,0,True,True,0.0,994.0,2010_2013,33096,43,depth 12; 1787 nodes; 894 leaves
+M3,8661,7930,5.77788460716855,459.89965965132944,100.57932024377995,64.54966962867304,0,True,True,0.0,994.0,2010_2013,33096,43,100 trees; mean depth 12.00; mean leaves 1784.46
