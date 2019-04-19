@@ -62,22 +62,66 @@ system cleanup command was run.
 
 ## 3. Chosen isolation method
 
-**micromamba 2.9.0**, a single statically-linked user-space binary
-(18 MB), installed to `~/.local/bin/micromamba`. It was chosen over a full
-Miniconda installation specifically because of the disk constraint: it needs
-no base environment.
+**micromamba 2.9.0**, a single statically-linked user-space binary (18 MB).
+It was chosen over a full Miniconda installation specifically because of the
+disk constraint: it needs no base environment.
 
 | Property | Value |
 |---|---|
-| Environment name | `airsense-v1-2019` |
-| Environment path | `~/micromamba/envs/airsense-v1-2019` |
-| Root prefix | `~/micromamba` |
+| Environment path | **`venv/`**, at the repository root |
+| Absolute path | `<repo>/venv` |
 | Channel | `conda-forge` (with `--override-channels`) |
+| Interpreter | `venv/bin/python` |
 | Environment size | 527 MB |
-| Free disk after | 1.8 GB |
+| Free disk after | 1.6 GB |
 
-The environment lives **outside** the tracked project source, so nothing
-about it enters the repository except the recorded evidence.
+### 3.1 Environment location
+
+The environment lives **inside the repository at `venv/`**, so the project is
+self-contained: one directory holds the source, the data, the documentation
+and the interpreter that runs them.
+
+It is **not tracked by git**. `.gitignore` excludes `venv/` and carries a
+comment explaining why: at ~530 MB it is a build artifact, not source. What
+makes it reproducible is `requirements-v1-2019.txt` plus
+`requirements-v1-2019-lock.txt`; what makes it verifiable is
+`artifacts/runtime_snapshot.json`. Rebuild it with §14.
+
+Note on naming: `venv/` is a **conda-style prefix**, not a `python -m venv`
+virtual environment. The name was chosen for familiarity. It is not
+activated in the usual venv sense — V1 code is run by invoking
+`venv/bin/python` directly.
+
+### 3.2 Relocation and micromamba removal
+
+The environment was first built at `~/micromamba/envs/airsense-v1-2019` and
+subsequently moved into the repository. It was **rebuilt at the new prefix
+rather than moved**, because conda-style prefixes are not relocatable —
+console scripts such as `venv/bin/jupyter` carry an absolute shebang, which a
+plain `mv` would leave pointing at a path that no longer exists. Rebuilding
+reused the package cache, so the second build cost ~0.1 GB rather than a full
+re-download.
+
+Both the old root prefix `~/micromamba` (666 MB) and the micromamba binary
+`~/.local/bin/micromamba` (18 MB) were then **deleted**. Nothing related to
+this environment now exists outside the repository.
+
+Because micromamba hardlinks package files out of its cache, deleting that
+cache was a genuine risk to the new environment, so it was verified
+afterwards rather than assumed:
+
+| Check after deletion | Result |
+|---|---|
+| `venv/bin/python --version` | Python 3.6.7 |
+| `sys.prefix` | `<repo>/venv` |
+| All seven scientific imports | OK |
+| `venv/bin/jupyter` shebang | `#!<repo>/venv/bin/python` — correct prefix |
+| `jupyter --version` | 4.4.0 |
+| Package set vs pre-move | byte-identical (`diff` of `pip freeze` empty) |
+
+**Consequence:** micromamba is no longer installed. Rebuilding the
+environment from scratch requires re-downloading it first — one command,
+included in §14. The existing `venv/` needs it for nothing.
 
 ---
 
@@ -88,7 +132,7 @@ about it enters the repository except the recorded evidence.
 | Implementation | CPython |
 | **Version** | **3.6.7** |
 | `sys.version_info[:3]` | `(3, 6, 7)` |
-| Path | `~/micromamba/envs/airsense-v1-2019/bin/python` |
+| Path | `venv/bin/python` (in-repo) |
 | conda build string | `h357f687_1008_cpython` |
 
 **Exact match to the reference interpreter.** Not 3.6.8, not 3.6.9, not
@@ -105,7 +149,7 @@ Not part of V1 modelling methodology, and permitted to be modern:
 
 | Tool | Version | Role |
 |---|---|---|
-| micromamba | 2.9.0 | acquires CPython 3.6.7 |
+| micromamba | 2.9.0 | acquired CPython 3.6.7; **since removed** |
 | conda-forge channel | — | source of the interpreter |
 | Host CPython 3.11.2 | 3.11.2 | ran the PyPI date-audit queries only |
 
@@ -367,6 +411,7 @@ block Phase 3.
 | `scripts/runtime_snapshot.py` | runtime evidence recorder, stdlib-only, 3.6-compatible |
 | `artifacts/runtime_snapshot.json` | machine-readable runtime evidence |
 | `docs/PHASE_00A_RUNTIME_RECORD.md` | this record |
+| `venv/` | in-repo CPython 3.6.7 execution environment — **untracked** (gitignored build artifact, ~530 MB) |
 
 **Modified**
 
@@ -374,6 +419,7 @@ block Phase 3.
 |---|---|
 | `docs/HISTORICAL_COMPATIBILITY.md` | §3 host table and §4 blocker status updated to reflect the resolved environment |
 | `docs/PHASE_00_FOUNDATION_RECORD.md` | §9 blocker B1 marked resolved, with a pointer here |
+| `.gitignore` | `venv/` entry annotated to explain why the environment is a build artifact rather than source |
 
 **Not modified:** `requirements-v1-2019.txt`, `scripts/preflight.py`,
 `src/data/audit.py`, `scripts/audit_dataset.py`, `README.md`,
@@ -385,12 +431,18 @@ block Phase 3.
 
 ## 14. Reproducing the environment
 
+Run from the repository root.
+
 ```sh
-# bootstrap tooling (not part of the V1 runtime)
-micromamba create -y -n airsense-v1-2019 -c conda-forge --override-channels \
+# 1. bootstrap tooling (not part of the V1 runtime, and not kept afterwards)
+curl -sSL https://micro.mamba.pm/api/micromamba/linux-64/latest \
+  | tar -xj bin/micromamba
+
+# 2. build the interpreter prefix in-repo at venv/
+./bin/micromamba create -y -p ./venv -c conda-forge --override-channels \
   "python=3.6.7" pip
 
-PY=~/micromamba/envs/airsense-v1-2019/bin/python
+PY=./venv/bin/python
 
 # period-consistent packaging tooling
 "$PY" -m pip install --no-cache-dir pip==18.1 setuptools==40.6.3 wheel==0.32.3
@@ -398,10 +450,16 @@ PY=~/micromamba/envs/airsense-v1-2019/bin/python
 # the V1 runtime, transitively locked to pre-cutoff releases
 "$PY" -m pip install --no-cache-dir -r requirements-v1-2019-lock.txt
 
-# verify
+# 5. verify
 "$PY" scripts/preflight.py          # expect: Overall: READY, exit 0
 "$PY" scripts/runtime_snapshot.py   # rewrites artifacts/runtime_snapshot.json
+
+# 6. micromamba is not needed again; remove the bootstrap binary
+rm -rf ./bin
 ```
+
+Numbering note: steps 3 and 4 are the two `pip install` commands above —
+period-consistent packaging tooling, then the locked V1 runtime.
 
 ---
 
@@ -410,6 +468,8 @@ PY=~/micromamba/envs/airsense-v1-2019/bin/python
 **Runtime gate: VERIFIED READY.** Blocker B1 is resolved.
 
 Phase 3 (exploratory data analysis) is now unblocked but **was not started**.
+Run it with `venv/bin/python`, never with the host system interpreter,
+which still reports `HOST-COMPATIBILITY WARNING` with exit code 1.
 No EDA, no cleaning, no split, no feature engineering, no model training and
 no metric calculation was performed in this phase.
 

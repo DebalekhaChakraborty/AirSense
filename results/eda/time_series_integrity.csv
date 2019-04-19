@@ -1,0 +1,12 @@
+property,value
+first_timestamp,2010-01-01 00:00:00
+last_timestamp,2014-12-31 23:00:00
+expected_hourly_timestamps,43824
+actual_rows,43824
+unique_timestamps,43824
+duplicate_timestamps,0
+missing_timestamps,0
+largest_gap_hours,1.0
+monotonic_increasing_in_file_order,True
+strictly_hourly,True
+timestamps_valid,True

@@ -97,15 +97,18 @@ cloud-managed AI services, and any API introduced after 2019-04-26.
 
 Reasoning and the full list: [`docs/HISTORICAL_COMPATIBILITY.md`](docs/HISTORICAL_COMPATIBILITY.md).
 
-> **Known environment blocker.** The current host runs Debian 12 with
-> CPython 3.11, on which the pinned 2019 stack cannot be installed —
-> verified, not assumed: no pinned numeric release resolves for CPython 3.11,
-> and a source build of numpy 1.15.4 fails to compile against the 3.11 C API.
-> Docker is not usable by this account and no 3.6 interpreter is available.
-> Rather than modernise the pins, the host is recorded as a non-conforming
-> execution environment and `scripts/preflight.py` reports a
-> **HOST-COMPATIBILITY WARNING**. Modelling phases cannot run here.
-> Details in [`docs/HISTORICAL_COMPATIBILITY.md`](docs/HISTORICAL_COMPATIBILITY.md) §4.
+> **Environment status: resolved.** The host runs Debian 12 with CPython
+> 3.11, on which the pinned 2019 stack cannot be installed. Rather than
+> modernise the pins, a conforming **CPython 3.6.7** environment was built in
+> user space and lives in-repo at `venv/` (untracked). All seven direct pins
+> install at their frozen versions, and the transitive closure is locked to
+> pre-cutoff releases by
+> [`requirements-v1-2019-lock.txt`](requirements-v1-2019-lock.txt) — without
+> it, an unlocked install resolves 57 of 69 distributions to post-2019
+> releases. `scripts/preflight.py` reports **READY** (exit 0) under `venv/`,
+> and still reports **HOST-COMPATIBILITY WARNING** under the system
+> interpreter. Details in
+> [`docs/PHASE_00A_RUNTIME_RECORD.md`](docs/PHASE_00A_RUNTIME_RECORD.md).
 
 ---
 
@@ -147,28 +150,44 @@ AirSense/
 │   ├── README.md                 dataset provenance
 │   ├── raw/                      original UCI CSV, read-only, never modified
 │   └── processed/                derived data (empty)
-├── notebooks/                    analysis notebooks (empty)
+├── notebooks/
+│   └── 01_exploratory_data_analysis.ipynb
 ├── src/
+│   ├── analysis/                 EDA implementation
 │   ├── data/                     data loading and auditing
 │   ├── features/                 feature preparation (empty)
 │   ├── models/                   model code (empty)
 │   └── visualization/            plotting (empty)
+├── requirements-v1-2019-lock.txt pre-cutoff transitive closure
 ├── scripts/
 │   ├── preflight.py              read-only foundation validation
-│   └── audit_dataset.py          writes artifacts/data_audit.json
+│   ├── audit_dataset.py          writes artifacts/data_audit.json
+│   ├── runtime_snapshot.py       writes artifacts/runtime_snapshot.json
+│   └── run_eda.py                runs the Phase 3 analysis
 ├── artifacts/
-│   └── data_audit.json           machine-readable dataset audit
-├── results/                      model results (empty)
-├── figures/                      generated figures (empty)
+│   ├── data_audit.json           machine-readable dataset audit
+│   ├── runtime_snapshot.json     machine-readable runtime evidence
+│   └── eda_summary.json          machine-readable EDA summary
+├── results/eda/                  15 EDA result tables
+├── figures/                      9 EDA figures
 ├── docs/
 │   ├── HISTORICAL_COMPATIBILITY.md
 │   ├── DATASET_AUDIT.md
 │   ├── RESEARCH_QUESTION.md
 │   ├── FEATURE_POLICY.md
 │   ├── V1_RESEARCH_PROTOCOL.md
-│   └── PHASE_00_FOUNDATION_RECORD.md
-└── tests/                        (empty)
+│   ├── PHASE_00_FOUNDATION_RECORD.md
+│   ├── PHASE_00A_RUNTIME_RECORD.md
+│   ├── EDA_ANALYSIS.md
+│   └── PHASE_01_EDA_RECORD.md
+├── tests/                        (empty)
+└── venv/                         CPython 3.6.7 runtime - UNTRACKED
 ```
+
+`venv/` is the execution environment, not source: it is gitignored and
+rebuilt from the two requirements files. Run V1 code with `venv/bin/python`.
+Despite the name it is a conda-style prefix, not a `python -m venv`
+environment, so invoke the interpreter directly rather than activating it.
 
 ---
 
@@ -178,28 +197,56 @@ AirSense/
 
 | Phase | Status |
 |---|---|
-| 1. Environment reconstruction | Defined and verified; host blocker recorded |
+| 1. Environment reconstruction | Complete — CPython 3.6.7 built in-repo at `venv/`, preflight READY |
 | 2. Dataset provenance and audit | Complete |
-| 3–12. EDA through final report | Not started |
+| 3. Exploratory data analysis | **Complete** — see [`docs/EDA_ANALYSIS.md`](docs/EDA_ANALYSIS.md) |
+| 4–12. Cleaning through final report | Not started |
+
+### Validated findings from Phase 3
+
+High-level only; the full analysis is in
+[`docs/EDA_ANALYSIS.md`](docs/EDA_ANALYSIS.md).
+
+- PM2.5 is strongly right-skewed — mean 98.6 against median 72.0 µg/m³,
+  skewness 1.80, maximum 994.
+- The hourly timeline is **complete**: 43,824 of 43,824 expected timestamps,
+  no gap and no duplicate, already in chronological order.
+- Missing values affect the **target only** (2,067; 4.72%), and they are
+  **strongly year-dependent** — 8.31% in 2011 against 0.94% in 2013. This
+  matters for the chronological split and is carried into Phase 4.
+- Cumulative wind speed has the strongest single association with PM2.5
+  measured here, and it is negative (Spearman −0.360).
+- Wind direction separates the target more than any other variable examined:
+  median 31 µg/m³ under `NW` against 98 µg/m³ under `cv`.
+- The meteorological predictors are strongly intercorrelated
+  (|r| ≈ 0.78–0.83 among `DEWP`, `TEMP`, `PRES`), which will limit how far
+  individual linear coefficients can be interpreted.
+
+All EDA artifacts are deterministic: two runs produce byte-identical CSVs,
+JSON and PNGs. No model has been trained and no predictive metric exists.
 
 Done: project structure; historical compatibility contract with verified
-package release dates; frozen requirements; dataset acquired from the
-original UCI source, audited and hashed; research question, feature policy
-and research protocol pre-registered; read-only preflight utility.
+package release dates; frozen requirements plus a pre-cutoff transitive
+lock; a conforming CPython 3.6.7 runtime; dataset acquired from the original
+UCI source, audited and hashed; research question, feature policy and
+research protocol pre-registered; read-only preflight utility; and the
+Phase 3 exploratory data analysis.
 
-**Not done, deliberately:** no exploratory analysis, no cleaning, no feature
-engineering, **no model trained, no metric computed**. `results/`,
-`figures/`, `notebooks/` and `data/processed/` are empty because nothing has
-legitimately been produced for them yet.
+**Not done, deliberately:** no cleaning, no imputation, no encoding, no
+feature engineering, no train/test split, **no model trained, no predictive
+metric computed**. `data/processed/` is empty and `src/models/` holds only an
+empty `__init__.py`.
 
-`artifacts/data_audit.json` contains measurements of the raw file only. There
-are no model results anywhere in this repository, and no placeholder values
-that could be mistaken for results.
+`artifacts/` contains measurements only — a dataset audit, a runtime
+snapshot, and a descriptive EDA summary. There are no model results anywhere
+in this repository, and no placeholder values that could be mistaken for
+results.
 
-Verify the foundation at any time:
+Verify the foundation, and reproduce the analysis, at any time:
 
 ```sh
-python scripts/preflight.py
+venv/bin/python scripts/preflight.py    # expect: Overall: READY, exit 0
+venv/bin/python scripts/run_eda.py      # regenerates results/eda/ and figures/
 ```
 
 ---

@@ -214,8 +214,8 @@ A conforming environment was built in user space and verified.
 
 | Property | Value |
 |---|---|
-| Method | micromamba 2.9.0 (user-space, no root), conda-forge channel |
-| Environment | `airsense-v1-2019` at `~/micromamba/envs/airsense-v1-2019` |
+| Method | micromamba 2.9.0 (user-space, no root), conda-forge channel; micromamba itself removed afterwards |
+| Environment | **`venv/`**, in-repo at the repository root (untracked, gitignored) |
 | Interpreter | **CPython 3.6.7** — exact match to the reference |
 | Direct pins | all seven installed at their frozen versions |
 | Transitive closure | locked to pre-cutoff releases in `requirements-v1-2019-lock.txt` |

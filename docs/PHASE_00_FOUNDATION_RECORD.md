@@ -243,7 +243,7 @@ period-authentic environment on this host. The foundation itself is
 unaffected — it was built with the standard library only.
 
 **Impact (revised after Phase 0A).** Phases 3–12 are unblocked. They must be
-run with `~/micromamba/envs/airsense-v1-2019/bin/python`, never with the
+run with `venv/bin/python` (in-repo), never with the
 host system interpreter, which still reports
 `HOST-COMPATIBILITY WARNING`.
 

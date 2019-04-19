@@ -7,6 +7,14 @@ build/
 dist/
 
 # Environments
+#
+# venv/ is the in-repo CPython 3.6.7 execution environment for AirSense V1.
+# It is a conda-style prefix built by micromamba, roughly 530 MB, and it is
+# deliberately NOT tracked: it is a build artifact, not source. What makes it
+# reproducible is requirements-v1-2019.txt (direct pins) plus
+# requirements-v1-2019-lock.txt (pre-cutoff transitive closure), and what
+# makes it verifiable is artifacts/runtime_snapshot.json. Rebuild it with the
+# recipe in docs/PHASE_00A_RUNTIME_RECORD.md section 14.
 .venv/
 venv/
 env/

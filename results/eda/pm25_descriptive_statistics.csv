@@ -1,0 +1,16 @@
+statistic,value,units
+count_non_missing,41757.000000,
+count_missing,2067.000000,
+mean,98.613215,ug/m^3
+median,72.000000,ug/m^3
+std,92.050387,ug/m^3
+min,0.000000,ug/m^3
+max,994.000000,ug/m^3
+percentile_25,29.000000,ug/m^3
+percentile_75,137.000000,ug/m^3
+iqr,108.000000,ug/m^3
+percentile_90,221.000000,ug/m^3
+percentile_95,284.000000,ug/m^3
+percentile_99,420.000000,ug/m^3
+skewness,1.802311,
+kurtosis_excess,4.768933,

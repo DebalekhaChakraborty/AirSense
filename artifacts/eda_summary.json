@@ -1,0 +1,163 @@
+{
+  "project": "AirSense",
+  "phase": "V1 / Phase 3 - exploratory data analysis",
+  "historical_cutoff": "2019-04-26",
+  "note": "Descriptive characterisation only. No cleaning, imputation, encoding, splitting, feature engineering or modelling was performed. No execution timestamp is recorded here so that repeated runs are byte-identical.",
+  "dataset": {
+    "file": "data/raw/PRSA_data_2010.1.1-2014.12.31.csv",
+    "sha256": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+    "row_count": 43824,
+    "column_count": 13,
+    "columns": [
+      "No",
+      "year",
+      "month",
+      "day",
+      "hour",
+      "pm2.5",
+      "DEWP",
+      "TEMP",
+      "PRES",
+      "cbwd",
+      "Iws",
+      "Is",
+      "Ir"
+    ],
+    "first_timestamp": "2010-01-01 00:00:00",
+    "last_timestamp": "2014-12-31 23:00:00",
+    "n_years": 5,
+    "observations_per_year": {
+      "2010": 8760,
+      "2011": 8760,
+      "2012": 8784,
+      "2013": 8760,
+      "2014": 8760
+    }
+  },
+  "data_quality": {
+    "missing_pm25_count": 2067,
+    "missing_pm25_percent": 4.716593647316539,
+    "columns_with_missing_values": [
+      "pm2.5"
+    ],
+    "duplicate_rows_all_columns": 0,
+    "duplicate_rows_excluding_index": 0
+  },
+  "pm25_descriptive_statistics": {
+    "count_non_missing": 41757.0,
+    "count_missing": 2067.0,
+    "mean": 98.61321455085375,
+    "median": 72.0,
+    "std": 92.05038718924065,
+    "min": 0.0,
+    "max": 994.0,
+    "percentile_25": 29.0,
+    "percentile_75": 137.0,
+    "iqr": 108.0,
+    "percentile_90": 221.0,
+    "percentile_95": 284.0,
+    "percentile_99": 420.0,
+    "skewness": 1.8023114189653855,
+    "kurtosis_excess": 4.768933321102571
+  },
+  "temporal_integrity": {
+    "first_timestamp": "2010-01-01 00:00:00",
+    "last_timestamp": "2014-12-31 23:00:00",
+    "expected_hourly_timestamps": 43824,
+    "actual_rows": 43824,
+    "unique_timestamps": 43824,
+    "duplicate_timestamps": 0,
+    "missing_timestamps": 0,
+    "largest_gap_hours": 1.0,
+    "monotonic_increasing_in_file_order": true,
+    "strictly_hourly": true,
+    "timestamps_valid": true
+  },
+  "pearson_correlation_with_pm25": {
+    "DEWP": 0.17142327190847884,
+    "TEMP": -0.09053400243275748,
+    "PRES": -0.047282308087625444,
+    "Iws": -0.24778444916508538,
+    "Is": 0.01926557605148896,
+    "Ir": -0.05136870554129047
+  },
+  "spearman_correlation_with_pm25": {
+    "DEWP": 0.2997061253827784,
+    "TEMP": 0.010783648336008554,
+    "PRES": -0.14166775859702926,
+    "Iws": -0.36001876812295397,
+    "Is": 0.046978186694235535,
+    "Ir": -0.0023592248598575632
+  },
+  "wind_direction_categories": {
+    "NE": {
+      "row_count": 4997,
+      "row_percent": 11.40242789339175,
+      "pm25_mean": 90.17767031118586,
+      "pm25_median": 55.0
+    },
+    "NW": {
+      "row_count": 14150,
+      "row_percent": 32.28824388462942,
+      "pm25_mean": 70.12763274992584,
+      "pm25_median": 31.0
+    },
+    "SE": {
+      "row_count": 15290,
+      "row_percent": 34.889558232931726,
+      "pm25_mean": 110.82158786797503,
+      "pm25_median": 91.0
+    },
+    "cv": {
+      "row_count": 9387,
+      "row_percent": 21.419769989047097,
+      "pm25_mean": 126.15194543828265,
+      "pm25_median": 98.0
+    }
+  },
+  "season_mapping": {
+    "1": "Winter",
+    "2": "Winter",
+    "3": "Spring",
+    "4": "Spring",
+    "5": "Spring",
+    "6": "Summer",
+    "7": "Summer",
+    "8": "Summer",
+    "9": "Autumn",
+    "10": "Autumn",
+    "11": "Autumn",
+    "12": "Winter"
+  },
+  "generated_result_files": [
+    "dataset_profile.csv",
+    "missing_values.csv",
+    "numerical_feature_summary.csv",
+    "pearson_correlation.csv",
+    "pm25_by_hour.csv",
+    "pm25_by_month.csv",
+    "pm25_by_season.csv",
+    "pm25_by_wind_direction.csv",
+    "pm25_by_year.csv",
+    "pm25_descriptive_statistics.csv",
+    "pm25_missingness_by_hour.csv",
+    "pm25_missingness_by_month.csv",
+    "pm25_missingness_by_year.csv",
+    "pm25_spearman_correlations.csv",
+    "time_series_integrity.csv"
+  ],
+  "generated_figure_files": [
+    "eda_correlation_heatmap.png",
+    "eda_pm25_distribution.png",
+    "eda_pm25_hourly.png",
+    "eda_pm25_meteorology.png",
+    "eda_pm25_missingness.png",
+    "eda_pm25_monthly.png",
+    "eda_pm25_seasonal.png",
+    "eda_pm25_wind_direction.png",
+    "eda_pm25_yearly.png"
+  ],
+  "raw_dataset_sha256_before_analysis": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+  "raw_dataset_sha256_after_analysis": "4127f868775e31b3956522adc0ec75af8937dde6a3896e8beed3a376c6d27f1c",
+  "raw_dataset_unchanged": true
+}

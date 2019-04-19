@@ -1,7 +1,7 @@
 {
   "project": "AirSense",
   "phase": "V1 / Phase 0A - runtime reconstruction",
-  "snapshot_generated_utc": "2026-09-05T22:04:51Z",
+  "snapshot_generated_utc": "2026-09-05T22:14:16Z",
   "snapshot_generated_note": "Timestamp of this reconstruction run, not a historical date.",
   "historical_cutoff": "2019-04-26",
   "reference_environment": {
@@ -16,9 +16,9 @@
       6,
       7
     ],
-    "executable": "/home/debalekha_chakraborty/micromamba/envs/airsense-v1-2019/bin/python",
-    "prefix": "/home/debalekha_chakraborty/micromamba/envs/airsense-v1-2019",
-    "environment_name": "airsense-v1-2019",
+    "executable": "/home/debalekha_chakraborty/AirSense/venv/bin/python",
+    "prefix": "/home/debalekha_chakraborty/AirSense/venv",
+    "environment_name": "venv",
     "matches_reference": true
   },
   "host": {
