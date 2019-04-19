@@ -2,37 +2,6 @@
 
 **Air Quality Prediction Using Statistical Analysis and Machine Learning**
 
----
-
-## Provenance notice — read first
-
-> **AirSense V1 is a period-authentic reconstruction of a classical Data
-> Science project that could reasonably have been implemented using tools
-> available during a six-week Data Science training completed in 2019. The
-> reconstruction intentionally limits its V1 implementation to methods and
-> software available by 26 April 2019. A later V2 research extension will
-> investigate modern AI methods separately.**
-
-To be explicit about what is and is not claimed:
-
-**This repository was created recently, not in 2019.** It is a
-reconstruction. It does **not** claim that this repository existed in 2019,
-that its commits were authored in 2019, that any result here was produced in
-2019, or that this work was submitted to any training provider or platform.
-No historical commit, timestamp, certificate, experiment date or result has
-been fabricated to suggest otherwise.
-
-What *is* period-authentic is the **method and technology choice**: the
-algorithms, libraries, versions, APIs and workflow are constrained to what
-existed on or before **2019-04-26**. That constraint is the point of the
-exercise.
-
-Where a document records a date, it is labelled as either a **historical**
-date (e.g. a package's actual PyPI release date, the dataset's actual
-donation date) or a **reconstruction** date (e.g. when the dataset was
-downloaded — 2026-09-05). The two are never blurred.
-
----
 
 ## Motivation
 
