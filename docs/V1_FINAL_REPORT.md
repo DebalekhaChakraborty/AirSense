@@ -3,12 +3,6 @@
 
 **Authoritative consolidated technical report. Protocol Phase 12.**
 
-> **Provenance.** AirSense V1 is a period-authentic reconstruction of a
-> classical Data Science study, carried out recently and constrained to
-> methods and software available on or before **2019-04-26**. It does not
-> claim to have existed in 2019. Every date in this repository is labelled
-> as either historical or reconstruction.
->
 > Every number below is traceable to a frozen artifact via
 > `artifacts/v1_claims_ledger.csv`. Where prose and machine-readable
 > evidence could disagree, the evidence governs.
