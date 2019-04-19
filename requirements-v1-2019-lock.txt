@@ -1,0 +1,148 @@
+# AirSense V1 - runtime lock file
+# ======================================================================
+# Purpose
+# ----------------------------------------------------------------------
+# requirements-v1-2019.txt declares the seven DIRECT historical
+# dependencies. Installing those seven today causes pip to resolve their
+# TRANSITIVE dependencies to whatever is newest and still importable on
+# CPython 3.6 - which in practice means 2020-2026 releases. An unlocked
+# install produced 57 post-cutoff distributions out of 69, so the direct
+# pins alone do NOT produce a historical runtime.
+#
+# This file pins the complete transitive closure to releases published on
+# or before the cutoff, so the environment is reproducibly historical.
+#
+# Hard historical cutoff : 2019-04-26
+# Reference interpreter  : CPython 3.6.7
+#
+# requirements-v1-2019.txt is the authoritative DIRECT dependency list and
+# is NOT modified by this file. Every direct pin below repeats it exactly.
+#
+# Every version here was verified against the PyPI JSON API as published
+# on or before 2019-04-26. Release dates are recorded in the comments.
+#
+# Selection rule: the newest release published on or before the cutoff
+# that is compatible with CPython 3.6 AND satisfies the version
+# constraints declared by the other pinned packages. Where the newest
+# pre-cutoff release by date would break a declared constraint, the
+# constraint wins and the reason is noted inline.
+# ======================================================================
+
+# ----------------------------------------------------------------------
+# DIRECT dependencies - identical to requirements-v1-2019.txt
+# ----------------------------------------------------------------------
+numpy==1.15.4                 # 2018-11-04
+pandas==0.23.4                # 2018-08-04
+scipy==1.1.0                  # 2018-05-05
+scikit-learn==0.20.0          # 2018-09-26
+matplotlib==3.0.2             # 2018-11-11
+seaborn==0.9.0                # 2018-07-16
+jupyter==1.0.0                # 2015-08-12
+
+# ----------------------------------------------------------------------
+# TRANSITIVE - pandas
+# ----------------------------------------------------------------------
+python-dateutil==2.8.0        # 2019-02-05  required by pandas, matplotlib
+pytz==2019.1                  # 2019-04-10  required by pandas
+six==1.12.0                   # 2018-12-10  required by dateutil, bleach, others
+
+# ----------------------------------------------------------------------
+# TRANSITIVE - matplotlib
+# ----------------------------------------------------------------------
+cycler==0.10.0                # 2016-02-16  required by matplotlib
+kiwisolver==1.1.0             # 2019-04-24  required by matplotlib
+pyparsing==2.4.0              # 2019-04-08  required by matplotlib
+
+# ----------------------------------------------------------------------
+# TRANSITIVE - jupyter metapackage: notebook
+# ----------------------------------------------------------------------
+notebook==5.7.8               # 2019-04-01  required by jupyter
+tornado==6.0.2                # 2019-03-23  required by notebook, jupyter-client
+pyzmq==18.0.1                 # 2019-03-05  required by jupyter-client
+Send2Trash==1.5.0             # 2018-02-16  required by notebook
+terminado==0.8.2              # 2019-03-28  required by notebook
+prometheus-client==0.6.0      # 2019-02-19  required by notebook
+jinja2==2.10.1                # 2019-04-06  required by notebook, nbconvert
+MarkupSafe==1.1.1             # 2019-02-24  required by jinja2
+
+# ----------------------------------------------------------------------
+# TRANSITIVE - jupyter core plumbing
+# ----------------------------------------------------------------------
+jupyter-core==4.4.0           # 2017-10-31  required by notebook, nbformat
+jupyter-client==5.2.4         # 2018-12-10  required by notebook, ipykernel
+traitlets==4.3.2              # 2017-02-23  required across the jupyter stack
+ipython-genutils==0.2.0       # 2017-03-13  required by traitlets, notebook
+nbformat==4.4.0               # 2017-08-20  required by notebook, nbconvert
+jsonschema==3.0.1             # 2019-03-01  required by nbformat
+attrs==19.1.0                 # 2019-03-03  required by jsonschema 3.x
+pyrsistent==0.15.1            # 2019-04-26  required by jsonschema 3.x
+                              #   NOTE: released on the cutoff date itself.
+                              #   "on or before 2019-04-26" - admitted.
+
+# ----------------------------------------------------------------------
+# TRANSITIVE - nbconvert
+# ----------------------------------------------------------------------
+nbconvert==5.4.1              # 2019-02-09  required by notebook, jupyter
+mistune==0.8.4                # 2018-10-11  required by nbconvert
+pandocfilters==1.4.2          # 2017-08-08  required by nbconvert
+testpath==0.4.2               # 2018-10-02  required by nbconvert
+defusedxml==0.6.0             # 2019-04-17  required by nbconvert
+entrypoints==0.3              # 2019-01-07  required by nbconvert
+bleach==3.1.0                 # 2019-01-09  required by nbconvert
+webencodings==0.5.1           # 2017-04-05  required by bleach
+pygments==2.3.1               # 2018-12-16  required by nbconvert, ipython
+
+# ----------------------------------------------------------------------
+# TRANSITIVE - ipython / ipykernel
+# ----------------------------------------------------------------------
+ipykernel==5.1.0              # 2018-10-09  required by notebook, jupyter
+ipython==7.5.0                # 2019-04-25  required by ipykernel
+prompt-toolkit==2.0.9         # 2019-02-19  required by ipython 7.5.0
+                              #   CONSTRAINT OVERRIDE: prompt-toolkit 1.0.16
+                              #   (2019-04-12) is newer by date, but ipython
+                              #   7.5.0 declares prompt_toolkit>=2.0.0,<2.1.0.
+                              #   The declared constraint wins.
+wcwidth==0.1.7                # 2016-07-02  required by prompt-toolkit
+jedi==0.13.3                  # 2019-02-24  required by ipython
+parso==0.3.4                  # 2019-02-12  required by jedi 0.13.3
+                              #   CONSTRAINT OVERRIDE: parso 0.4.0 (2019-04-05)
+                              #   is newer by date, but jedi 0.13.3 declares
+                              #   parso>=0.3.0,<0.4.0. The constraint wins.
+decorator==4.4.0              # 2019-03-16  required by ipython, traitlets
+backcall==0.1.0               # required by ipython
+pickleshare==0.7.5            # 2018-09-25  required by ipython
+pexpect==4.7.0                # 2019-04-07  required by ipython on POSIX
+ptyprocess==0.6.0             # 2018-06-22  required by pexpect, terminado
+
+# ----------------------------------------------------------------------
+# TRANSITIVE - jupyter metapackage: console, qtconsole, widgets
+# ----------------------------------------------------------------------
+jupyter-console==6.0.0        # 2018-10-03  required by jupyter
+qtconsole==4.4.3              # 2018-11-10  required by jupyter
+qtpy==1.7.0                   # 2019-03-16  required by qtconsole
+ipywidgets==7.4.2             # 2018-09-14  required by jupyter
+widgetsnbextension==3.4.2     # 2018-09-14  required by ipywidgets
+
+# ======================================================================
+# DELIBERATELY ABSENT
+# ----------------------------------------------------------------------
+# The unlocked install pulled these in. Each is required only by a
+# POST-cutoff version of another package; with the 2019-era versions
+# pinned above, none is needed. Four of them had no pre-cutoff release at
+# all, i.e. they did not exist on 2019-04-26:
+#
+#   argon2-cffi-bindings   no pre-cutoff release - pulled by notebook 6.x
+#   comm                   no pre-cutoff release - pulled by ipywidgets 8.x
+#   jupyterlab-pygments    no pre-cutoff release - pulled by nbconvert 6.x
+#   nbclient               no pre-cutoff release - pulled by nbconvert 6.x
+#
+# Also dropped, as required only by post-cutoff versions:
+#   argon2-cffi, cffi, pycparser   notebook 6.x password hashing
+#   dataclasses                    py3.6 backport, needed by modern pins
+#   importlib-metadata, zipp       needed by modern jsonschema/entrypoints
+#   nest-asyncio                   needed by modern jupyter-client
+#   typing-extensions              needed by modern importlib-metadata
+#   async-generator                needed by nbclient
+#   jupyterlab-widgets             needed by ipywidgets 8.x
+#   packaging                      needed by modern bleach/nbconvert
+# ======================================================================

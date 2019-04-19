@@ -215,6 +215,16 @@ displayed by UCI today, not verified 2019 license text. Recorded as such in
 
 **B1 — The frozen 2019 environment cannot be reconstructed on this host.**
 
+> **STATUS: RESOLVED in Phase 0A (2026-09-05).** A conforming CPython 3.6.7
+> environment was built in user space with micromamba and verified: all
+> seven direct pins at their frozen versions, the transitive closure locked
+> to pre-cutoff releases, 57 distributions with **0** postdating the cutoff,
+> and preflight reporting **READY** with exit code 0. No pin was modernised.
+> Evidence: [`PHASE_00A_RUNTIME_RECORD.md`](PHASE_00A_RUNTIME_RECORD.md).
+>
+> The findings below remain accurate for the host *system* interpreter and
+> are retained unchanged as the original Phase 0 record.
+
 Verified, not assumed:
 - No pinned numeric release resolves for CPython 3.11 — pip offers only
   numpy ≥ 1.23.2, pandas ≥ 1.5.0, scipy ≥ 1.9.2, scikit-learn ≥ 1.1.3,
@@ -228,9 +238,14 @@ Verified, not assumed:
 - Debian 12 offers no `python3.6` package; no pyenv is installed; disk
   headroom is insufficient for a source interpreter build.
 
-**Impact.** Phases 3–12 cannot be executed in a period-authentic environment
-on this host. The foundation itself is unaffected — it was built with the
-standard library only.
+**Impact (as assessed in Phase 0).** Phases 3–12 cannot be executed in a
+period-authentic environment on this host. The foundation itself is
+unaffected — it was built with the standard library only.
+
+**Impact (revised after Phase 0A).** Phases 3–12 are unblocked. They must be
+run with `~/micromamba/envs/airsense-v1-2019/bin/python`, never with the
+host system interpreter, which still reports
+`HOST-COMPATIBILITY WARNING`.
 
 **Resolution options** (environment-level, outside this phase): grant this
 user Docker daemon access and run `python:3.6`-based image; or free disk

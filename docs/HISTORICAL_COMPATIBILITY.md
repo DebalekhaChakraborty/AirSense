@@ -126,8 +126,14 @@ recorded as observed, not adjusted.
 | pip | 23.0.1 |
 | numpy | 2.4.6 (system-wide; **not** the V1 pin) |
 | pandas / scipy / scikit-learn / matplotlib / seaborn / jupyter | not installed |
-| Other interpreters present | none (no 3.6–3.10, no pyenv, no conda) |
+| Other interpreters present | none system-wide (no 3.6–3.10, no pyenv, no conda) |
 | Docker | binary present (20.10.24), **daemon not usable by this user** |
+
+**Update (Phase 0A).** The host *system* interpreter is still CPython 3.11.2
+and everything above remains true of it. A separate, conforming CPython
+3.6.7 environment has since been built in user space and is what V1 code
+now executes on. See §4.5 and
+[`PHASE_00A_RUNTIME_RECORD.md`](PHASE_00A_RUNTIME_RECORD.md).
 
 ---
 
@@ -195,12 +201,51 @@ Per the contract, the V1 source is **not** modernised to make it install.
   environment**.
 - `scripts/preflight.py` reports this as an explicit
   `HOST-COMPATIBILITY WARNING`, never as a historical-environment `PASS`.
-- No V1 modelling code will be executed until a conforming environment is
-  available. Establishing one requires either Docker daemon access for this
-  user, or disk headroom plus pyenv to build CPython 3.6.7. Both are
-  environment-level actions outside this phase.
+- No V1 modelling code is executed on the host system interpreter.
 
-This is an open blocker, tracked in
+Everything in §4.1–§4.3 remains factually true of the host system
+interpreter and is retained as the original finding. It was **superseded,
+not invalidated**, by §4.5: the fix was to obtain a conforming interpreter,
+never to relax the pins.
+
+### 4.5 Resolved in Phase 0A
+
+A conforming environment was built in user space and verified.
+
+| Property | Value |
+|---|---|
+| Method | micromamba 2.9.0 (user-space, no root), conda-forge channel |
+| Environment | `airsense-v1-2019` at `~/micromamba/envs/airsense-v1-2019` |
+| Interpreter | **CPython 3.6.7** — exact match to the reference |
+| Direct pins | all seven installed at their frozen versions |
+| Transitive closure | locked to pre-cutoff releases in `requirements-v1-2019-lock.txt` |
+| Distributions installed | 57, of which **0 postdate 2019-04-26** |
+| `pip check` | no broken requirements |
+| Preflight | **Overall: READY**, exit code 0 |
+
+Routes rejected, with reasons: Docker (daemon still permission-denied),
+podman (absent), pyenv source build (absent, and unsafe against ~2.4 GB free
+disk), uv (publishes no CPython 3.6 build).
+
+**No pin was modernised to achieve this.** `requirements-v1-2019.txt` is
+byte-identical to its Phase 0 form. The lock file is additive and exists
+solely to stop pip resolving transitive dependencies to post-cutoff
+releases — an unlocked install produced 57 post-cutoff distributions out of
+69.
+
+Two residual points, recorded rather than hidden:
+
+- The interpreter is CPython **3.6.7** exactly, but built by conda-forge as
+  a modern rebuild (`h357f687_1008`), not a 2018 binary.
+- The C-library substrate (OpenSSL 1.1.1w, libsqlite 3.46.0, glibc 2.36,
+  Linux 6.1) is modern. The honest description is *a period-exact Python
+  environment on a modern substrate*, not a 2018 Ubuntu machine.
+
+Full evidence:
+[`PHASE_00A_RUNTIME_RECORD.md`](PHASE_00A_RUNTIME_RECORD.md) and
+[`artifacts/runtime_snapshot.json`](../artifacts/runtime_snapshot.json).
+
+This blocker is **closed**, previously tracked in
 [`PHASE_00_FOUNDATION_RECORD.md`](PHASE_00_FOUNDATION_RECORD.md).
 
 ---
@@ -261,4 +306,10 @@ why the original pin was untenable, evidence that the replacement also
 predates 2019-04-26, and what effect the change has on comparability.
 
 **No deviations recorded.** The pinned set stands as written; the recorded
-issue is with the *host*, not with the pins.
+issue was with the *host*, not with the pins, and it was resolved by
+obtaining a conforming interpreter rather than by changing any version.
+
+**Phase 0A addition (not a deviation).** `requirements-v1-2019-lock.txt` was
+created to pin the transitive closure to pre-cutoff releases. It changes no
+direct pin — it repeats all seven exactly — and exists because correct
+direct pins alone do not produce a historical runtime. See §4.5.
