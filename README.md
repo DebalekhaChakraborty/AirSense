@@ -2,11 +2,7 @@
 
 **Air Quality Prediction Using Statistical Analysis and Machine Learning**
 
-## Status: V1 is COMPLETE
-
-All twelve protocol phases are finished. The 2014 held-out test was opened
-once, scored once, and is now **exhausted**. No model, feature, split,
-hyperparameter, prediction or metric may change.
+The 2014 held-out test was opened once, scored once, and is now **exhausted**. No model, feature, split, hyperparameter, prediction or metric may change.
 
 > ### 2014 HELD-OUT TEST — final result
 >
@@ -629,19 +625,6 @@ venv/bin/python scripts/verify_v1_final.py           # verify the frozen package
 7. **Constraints are documented rather than dissolved.** Where the historical
    environment could not be reproduced, that is recorded as a blocker instead
    of resolved by modernising the pins.
-
----
-
-## Future V2 boundary
-
-A separate **V2** research extension will investigate modern AI methods.
-
-V2 is deliberately kept out of scope here, and out of this repository's V1
-history. It is not designed, described or implemented in V1, and no V1
-document anticipates its technical content. The boundary exists so that V1's
-results stand as an honest account of what 2019 classical methods achieve on
-this problem, uninfluenced by knowledge of later techniques — which is
-exactly what makes a later comparison meaningful.
 
 ---
 
