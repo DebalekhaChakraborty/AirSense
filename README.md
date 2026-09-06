@@ -326,8 +326,7 @@ Full analysis: [`docs/ERROR_ANALYSIS.md`](docs/ERROR_ANALYSIS.md).
 **Not done, deliberately:** no imputation, no scaling, no target
 transformation, and no post-test model change of any kind. All four models
 were evaluated once on the locked 2014 test set; none was retrained, retuned
-or dropped afterwards, and no fifth model was added. Modern methods belong to
-a separate V2 that must not reuse the 2014 partition as an unseen test.
+or dropped afterwards, and no fifth model was added.
 
 ---
 
