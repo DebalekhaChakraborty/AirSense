@@ -8,19 +8,12 @@ and calendar information alone. V1 is the complete classical study: four
 pre-registered models, one frozen feature matrix, a strictly chronological
 evaluation design, and a 2014 held-out test opened exactly once.
 
-> **Provenance.** **AirSense V1 is a period-authentic reconstruction of a
-> classical Data Science study, implemented using methods and software
-> available on or before 2019-04-26. The current research package and
-> experiments were reconstructed later; Git commit dates should not be
-> interpreted as evidence of when the experiments were executed.**
-
 ---
 
-## V1 status: COMPLETE AND FROZEN
+## V1 Status: COMPLETE AND FROZEN
 
 AirSense V1 modelling and evaluation are complete. The 2014 held-out test has
-been consumed and is no longer an unseen test set. Future modelling work
-proceeds separately as **AirSense V2**.
+been consumed and is no longer an unseen test set.
 
 *Frozen* is a statement about the science, not about the documentation: no
 model, feature, split, hyperparameter, prediction, metric or ranking changes,
