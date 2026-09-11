@@ -1,0 +1,85 @@
+{
+  "study": "AirSense V2",
+  "phase": "phase_2_baseline_protocol",
+  "results_generated": false,
+  "predictions_generated": 0,
+  "metrics_computed": 0,
+  "selected_by_performance": false,
+  "baselines": {
+    "B0": {
+      "name": "causal persistence",
+      "definition": "prediction = latest usable target-station PM2.5 observation available at the forecast origin",
+      "rule": [
+        "if PM2.5 is observed at the origin, predict that value",
+        "otherwise apply the frozen causal policy: carry the most recent observation within 6 hours",
+        "if no observation exists within the 6-hour ceiling, predict the station training PM2.5 median"
+      ],
+      "fallback_fitted_on": "train",
+      "guarantees_prediction_for_every_eligible_sample": true,
+      "horizon_dependence": "same rule at every horizon; only the origin moves"
+    },
+    "B1": {
+      "name": "daily seasonal naive",
+      "definition": "prediction = PM2.5 observed at target_timestamp - 24 h",
+      "usable_only_if": [
+        "target_timestamp - 24 h <= forecast_origin",
+        "the observation is causally available at the origin"
+      ],
+      "fallback": "B0",
+      "coincides_with_B0_at_horizon": 24,
+      "coincidence_note": "at h = 24 the seasonal lag equals the origin, so B1 reduces to B0. This is expected and will be reported, not hidden.",
+      "weekly_seasonal_naive_primary": false,
+      "weekly_rejected_because": "training PM2.5 autocorrelation at 168 h was approximately 0.008"
+    },
+    "B2": {
+      "name": "training climatology",
+      "definition": "deterministic lookup of a training-only median",
+      "hierarchy": [
+        "station x month x hour median",
+        "station x hour median",
+        "station median"
+      ],
+      "statistic": "median",
+      "fitted_on": "train",
+      "uses_validation_or_test_statistics": false,
+      "keyed_on": "target_timestamp month and hour",
+      "persisted_before_metrics": true
+    },
+    "B3": {
+      "name": "gradient-boosted causal lag-feature baseline",
+      "definition": "supervised gradient boosting over causal features derived from the canonical 48-hour window",
+      "library": null,
+      "hyperparameters": null,
+      "library_and_grid_frozen_at": "start_of_phase_3_before_validation_is_opened",
+      "obligation": "The implementation package and hyperparameter grid MUST be frozen and recorded at the start of Phase 3, before any validation metric is computed. They must never be chosen from observed performance.",
+      "feature_contract": {
+        "lag_positions_hours_before_origin": [0, 1, 2, 3, 6, 12, 24, 47],
+        "lag_zero_meaning": "value at the forecast origin",
+        "lag_max_justification": "lag 47 is the oldest position inside the canonical [origin-47, origin] window; lag 48 would require a hidden 49th hour and is therefore excluded",
+        "causal_summary_windows_hours": [3, 6, 12, 24, 48],
+        "summary_windows_end_at": "forecast_origin",
+        "centred_rolling_windows": false,
+        "summary_statistics_candidates": ["mean", "min", "max", "std"],
+        "variables": ["PM2.5", "PM10", "SO2", "NO2", "CO", "O3", "TEMP", "PRES", "DEWP", "RAIN", "WSPM"],
+        "additional_features": [
+          "observed masks",
+          "gap ages",
+          "wd_code",
+          "rain_occurred",
+          "origin calendar cyclic",
+          "target calendar cyclic",
+          "station identity",
+          "horizon"
+        ],
+        "day_of_week": false,
+        "weekend": false
+      }
+    }
+  },
+  "evaluation": {
+    "primary_metric_form": "macro_station_horizon_mae",
+    "computed_in_phase_2": false,
+    "common_sample_universe": true,
+    "every_baseline_predicts_every_eligible_sample": true
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "study": "AirSense V2",
+  "phase": "phase_0_foundation",
+  "branch": "master",
+  "starting_master_head": "09942928eef31808c27e621ae26c7ff2c82ed3ed",
+  "dataset": {
+    "name": "Beijing Multi-Site Air-Quality Data",
+    "uci_id": 501,
+    "doi": "10.24432/C5RK5G",
+    "landing_page": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data",
+    "resolved_download_url": "https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip",
+    "license": "CC BY 4.0 as presented by UCI",
+    "period_start": "2013-03-01T00:00:00",
+    "period_end": "2017-02-28T23:00:00",
+    "station_count": 12,
+    "station_names": [
+      "Aotizhongxin",
+      "Changping",
+      "Dingling",
+      "Dongsi",
+      "Guanyuan",
+      "Gucheng",
+      "Huairou",
+      "Nongzhanguan",
+      "Shunyi",
+      "Tiantan",
+      "Wanliu",
+      "Wanshouxigong"
+    ],
+    "row_count": 420768,
+    "schema": [
+      "No",
+      "year",
+      "month",
+      "day",
+      "hour",
+      "PM2.5",
+      "PM10",
+      "SO2",
+      "NO2",
+      "CO",
+      "O3",
+      "TEMP",
+      "PRES",
+      "DEWP",
+      "RAIN",
+      "wd",
+      "WSPM",
+      "station"
+    ]
+  },
+  "raw_archive_sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4",
+  "inner_archive_sha256": "d1b9261c54132f04c374f762f1e5e512af19f95c95fd6bfa1e8ac7e927e3b0b8",
+  "source_csv_aggregate_sha256": "9fbecc200af90f1010574a503badb8057360889b0d5c888f34519210e2e298e8",
+  "source_csv_sha256": {
+    "Aotizhongxin": "a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b",
+    "Changping": "a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7",
+    "Dingling": "3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb",
+    "Dongsi": "9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e",
+    "Guanyuan": "59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9",
+    "Gucheng": "10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951",
+    "Huairou": "812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26",
+    "Nongzhanguan": "572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487",
+    "Shunyi": "520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a",
+    "Tiantan": "0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa",
+    "Wanliu": "0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a",
+    "Wanshouxigong": "ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0"
+  },
+  "dataset_audit_artifact_sha256": {
+    "artifacts/raw_dataset_manifest.json": "3cb3326d04437da6a822ef6340adac21274df095283ec82a177377b303a1796a",
+    "artifacts/dataset_audit.json": "25d134afeefa01813f5ead64a83105267291c4b925368313b12ebfeb7c4d2ca5",
+    "results/dataset_audit/station_summary.csv": "de9ff92f1554619150e4cc1da2cfe34649a6607dbdf4a5d20d35f8dedb52a784",
+    "results/dataset_audit/missingness_by_variable.csv": "0cf468e549684d36032c30980791ee98f124e0d4d7547448759d1db7a4a3e021",
+    "results/dataset_audit/missingness_by_station.csv": "1491441d6fa44d4615838c7ce016c5df46f5638ef1b44cd6f32bba170712eb05",
+    "results/dataset_audit/target_missingness_by_station_year.csv": "9edd147b4e2cb8d0a88856d1d9f8764460495f162c3d6fb45622c3a6bab7286d",
+    "results/dataset_audit/timestamp_grid_audit.csv": "d00d2f4d32fc70a00de7601d1e0a2cad9390f0eb0929d930b57d11ea822d6364"
+  },
+  "document_sha256": {
+    "configs/study.json": "4ea220e89964587c45463bb28bec8d5aff0924f7171d1dcd574c8d927495e575",
+    "docs/V2_RESEARCH_PROTOCOL.md": "74fa991c3985c04e945f3a02736837d872e569c1ad3a71527da85aede6869686",
+    "docs/FORECAST_SEMANTICS.md": "c91c99e23c7fa69dfb057b1ad877dba20b07b9fa8d4c02bbd4aba60873842d78",
+    "docs/MODEL_LANDSCAPE_2026.md": "aa5232b55b2d245debd33af3da5f6aebaa82e26ab314bd53ff66e691e9e45f04",
+    "docs/ENVIRONMENT_PLAN.md": "8414e6db8ab7e71efd626d82ad3674b97debf486290bbed8c11aa5e48e343a3a",
+    "docs/V2_RESEARCH_BLUEPRINT.md": "c806e98f8274131d6b6c0646ebb682f9372eae6535d10fafa3a3b9d3c3e3486c",
+    "docs/DATASET_PROVENANCE.md": "0605f65ddee50236d7a9361d85914ddb463465d2c90e1416374412812927583c",
+    "docs/PHASE_00_V2_FOUNDATION_RECORD.md": "ce804cabec1b2ebebb6b85fb88f5022e969c699e26cadc7bb0928b9328fd9a02"
+  },
+  "forecast_horizons_hours": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "partition_rule": "target_timestamp",
+  "forecast_origin_rule": "target_timestamp_minus_horizon",
+  "split": {
+    "train": {
+      "start": "2013-03-01T00:00:00",
+      "end": "2015-02-28T23:00:00"
+    },
+    "validation": {
+      "start": "2015-03-01T00:00:00",
+      "end": "2016-02-29T23:00:00"
+    },
+    "test": {
+      "start": "2016-03-01T00:00:00",
+      "end": "2017-02-28T23:00:00"
+    }
+  },
+  "information_regimes": [
+    "R0",
+    "R1",
+    "R2",
+    "R3"
+  ],
+  "primary_metric_provisional": "macro_station_horizon_mae",
+  "final_test_status": "sealed",
+  "target_value_statistics_computed": false,
+  "severe_threshold_numeric_value_frozen": false,
+  "model_roster_frozen": false,
+  "environment_frozen": false,
+  "heavy_dependencies_installed": false,
+  "model_runs": 0,
+  "validation_metrics_seen": 0,
+  "test_metrics_seen": 0,
+  "v1_legacy_modified": false,
+  "note": "Deterministic by construction: no wall-clock timestamp and no filesystem mtime is recorded. Content is hashed, not metadata."
+}

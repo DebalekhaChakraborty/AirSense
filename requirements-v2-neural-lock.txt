@@ -1,0 +1,26 @@
+# AirSense V2 neural lock — full resolved closure of the .venv-v2 environment
+# after Phase-4 installation. Protocol Phase 4. CPython 3.11.2, uv 0.9.2.
+# Reconstruct with:
+#     uv venv --python 3.11 .venv-v2
+#     uv pip install --python .venv-v2/bin/python -r requirements-v2-core-lock.txt
+#     uv pip install --python .venv-v2/bin/python torch==2.14.0 \
+#         --index-url https://download.pytorch.org/whl/cpu
+#     uv pip install --python .venv-v2/bin/python safetensors==0.8.0
+#
+# Phase-3 core pins (lightgbm, numpy, scipy) are unchanged and remain
+# authoritative in requirements-v2-core-lock.txt.
+filelock==3.32.3
+fsspec==2026.7.0
+jinja2==3.1.6
+lightgbm==4.7.0
+markupsafe==3.0.3
+mpmath==1.3.0
+narwhals==2.25.0
+networkx==3.6.1
+numpy==2.4.6
+safetensors==0.8.0
+scipy==1.17.1
+setuptools==78.1.0
+sympy==1.14.0
+torch==2.14.0+cpu
+typing-extensions==4.16.0

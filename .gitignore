@@ -19,6 +19,11 @@ dist/
 venv/
 env/
 
+# .venv-v2/ is the AirSense V2 modern execution environment (CPython 3.11).
+# Like V1's venv/ it is a build artifact, not source: what makes it
+# reproducible is requirements-v2-core.txt plus requirements-v2-core-lock.txt.
+.venv-v2/
+
 # Jupyter
 .ipynb_checkpoints/
 
@@ -30,3 +35,20 @@ env/
 # artifacts/data_audit.json, can be verified against the file that the
 # repository actually carries. Raw files are read-only by convention and
 # are never modified in place.
+
+# data/processed/ is the Phase-2 canonical data layer. It is NOT tracked,
+# for one practical reason and one principled one.
+#
+# Practical: data/processed/phase2/sample_index/train.csv is 107.6 MB, above
+# GitHub's 100 MB per-file hard limit, so the tree cannot be pushed with it.
+#
+# Principled: this layer is *derived*, not source. It is regenerated
+# deterministically from the tracked data/raw/ by
+# scripts/build_forecast_dataset.py, and the SHA-256 of every file it
+# produces is recorded in artifacts/v2_phase2_manifest.json. A clone can
+# therefore rebuild the layer and *prove* it is byte-identical to the one the
+# study used, which is a stronger guarantee than carrying the bytes would be.
+#
+# Rebuild before running the validators:
+#   .venv-v2/bin/python scripts/build_forecast_dataset.py
+data/processed/

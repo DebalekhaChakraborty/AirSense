@@ -1,0 +1,7 @@
+scope,horizon,mean_self_attention,mean_total_cross_station_attention
+overall,,0.08819,0.91181
+horizon,1,0.088182,0.911818
+horizon,6,0.088185,0.911815
+horizon,12,0.088198,0.911802
+horizon,24,0.088194,0.911806
+severe,,0.095258,0.904742

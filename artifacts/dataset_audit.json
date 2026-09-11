@@ -1,0 +1,3436 @@
+{
+  "station_count": 12,
+  "station_names": [
+    "Aotizhongxin",
+    "Changping",
+    "Dingling",
+    "Dongsi",
+    "Guanyuan",
+    "Gucheng",
+    "Huairou",
+    "Nongzhanguan",
+    "Shunyi",
+    "Tiantan",
+    "Wanliu",
+    "Wanshouxigong"
+  ],
+  "total_rows": 420768,
+  "rows_per_station": {
+    "Aotizhongxin": 35064,
+    "Changping": 35064,
+    "Dingling": 35064,
+    "Dongsi": 35064,
+    "Guanyuan": 35064,
+    "Gucheng": 35064,
+    "Huairou": 35064,
+    "Nongzhanguan": 35064,
+    "Shunyi": 35064,
+    "Tiantan": 35064,
+    "Wanliu": 35064,
+    "Wanshouxigong": 35064
+  },
+  "all_headers_identical": true,
+  "columns": [
+    "No",
+    "year",
+    "month",
+    "day",
+    "hour",
+    "PM2.5",
+    "PM10",
+    "SO2",
+    "NO2",
+    "CO",
+    "O3",
+    "TEMP",
+    "PRES",
+    "DEWP",
+    "RAIN",
+    "wd",
+    "WSPM",
+    "station"
+  ],
+  "schema_matches_expected": true,
+  "station_identifiers_agree_with_filenames": true,
+  "expected_grid_hours_per_station": 35064,
+  "stations_with_missing_timestamps": [],
+  "stations_with_duplicate_timestamps": [],
+  "duplicate_station_timestamp_pairs": 0,
+  "fully_duplicated_rows": 0,
+  "missing_by_variable": {
+    "No": {
+      "missing": 0,
+      "present": 420768,
+      "missing_rate": 0.0
+    },
+    "year": {
+      "missing": 0,
+      "present": 420768,
+      "missing_rate": 0.0
+    },
+    "month": {
+      "missing": 0,
+      "present": 420768,
+      "missing_rate": 0.0
+    },
+    "day": {
+      "missing": 0,
+      "present": 420768,
+      "missing_rate": 0.0
+    },
+    "hour": {
+      "missing": 0,
+      "present": 420768,
+      "missing_rate": 0.0
+    },
+    "PM2.5": {
+      "missing": 8739,
+      "present": 412029,
+      "missing_rate": 0.02076916
+    },
+    "PM10": {
+      "missing": 6449,
+      "present": 414319,
+      "missing_rate": 0.01532674
+    },
+    "SO2": {
+      "missing": 9021,
+      "present": 411747,
+      "missing_rate": 0.02143937
+    },
+    "NO2": {
+      "missing": 12116,
+      "present": 408652,
+      "missing_rate": 0.02879497
+    },
+    "CO": {
+      "missing": 20701,
+      "present": 400067,
+      "missing_rate": 0.04919813
+    },
+    "O3": {
+      "missing": 13277,
+      "present": 407491,
+      "missing_rate": 0.03155421
+    },
+    "TEMP": {
+      "missing": 398,
+      "present": 420370,
+      "missing_rate": 0.00094589
+    },
+    "PRES": {
+      "missing": 393,
+      "present": 420375,
+      "missing_rate": 0.00093401
+    },
+    "DEWP": {
+      "missing": 403,
+      "present": 420365,
+      "missing_rate": 0.00095777
+    },
+    "RAIN": {
+      "missing": 390,
+      "present": 420378,
+      "missing_rate": 0.00092688
+    },
+    "wd": {
+      "missing": 1822,
+      "present": 418946,
+      "missing_rate": 0.00433018
+    },
+    "WSPM": {
+      "missing": 318,
+      "present": 420450,
+      "missing_rate": 0.00075576
+    },
+    "station": {
+      "missing": 0,
+      "present": 420768,
+      "missing_rate": 0.0
+    }
+  },
+  "target": "PM2.5",
+  "target_value_statistics_computed": false,
+  "cleaning_applied": false,
+  "imputation_applied": false,
+  "stations": [
+    {
+      "file": "PRSA_Data_Aotizhongxin_20130301-20170228.csv",
+      "sha256": "a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b",
+      "size_bytes": 2835916,
+      "filename_station": "Aotizhongxin",
+      "station_column_values": [
+        "Aotizhongxin"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 925,
+        "PM10": 718,
+        "SO2": 935,
+        "NO2": 1023,
+        "CO": 1776,
+        "O3": 1719,
+        "TEMP": 20,
+        "PRES": 20,
+        "DEWP": 20,
+        "RAIN": 20,
+        "wd": 81,
+        "WSPM": 14,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 11,
+          "PM10": 5,
+          "SO2": 101,
+          "NO2": 49,
+          "CO": 864,
+          "O3": 565,
+          "wd": 1
+        },
+        "2014": {
+          "PM2.5": 505,
+          "PM10": 487,
+          "SO2": 573,
+          "NO2": 614,
+          "CO": 585,
+          "O3": 597,
+          "wd": 2
+        },
+        "2015": {
+          "PM2.5": 216,
+          "PM10": 100,
+          "SO2": 108,
+          "NO2": 118,
+          "CO": 165,
+          "O3": 255,
+          "TEMP": 2,
+          "PRES": 2,
+          "DEWP": 2,
+          "RAIN": 2,
+          "wd": 6,
+          "WSPM": 2
+        },
+        "2016": {
+          "PM2.5": 177,
+          "PM10": 111,
+          "SO2": 134,
+          "NO2": 223,
+          "CO": 128,
+          "O3": 279,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 41,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 16,
+          "PM10": 15,
+          "SO2": 19,
+          "NO2": 19,
+          "CO": 34,
+          "O3": 23,
+          "TEMP": 11,
+          "PRES": 11,
+          "DEWP": 11,
+          "RAIN": 11,
+          "wd": 31,
+          "WSPM": 7
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 13,
+          "int": 34126,
+          "missing": 925
+        },
+        "PM10": {
+          "float": 19,
+          "int": 34327,
+          "missing": 718
+        },
+        "SO2": {
+          "float": 417,
+          "int": 33712,
+          "missing": 935
+        },
+        "NO2": {
+          "float": 326,
+          "int": 33715,
+          "missing": 1023
+        },
+        "CO": {
+          "int": 33288,
+          "missing": 1776
+        },
+        "O3": {
+          "float": 908,
+          "int": 32437,
+          "missing": 1719
+        },
+        "TEMP": {
+          "float": 30432,
+          "int": 4612,
+          "missing": 20
+        },
+        "PRES": {
+          "float": 28682,
+          "int": 6362,
+          "missing": 20
+        },
+        "DEWP": {
+          "float": 31475,
+          "int": 3569,
+          "missing": 20
+        },
+        "RAIN": {
+          "float": 1326,
+          "int": 33718,
+          "missing": 20
+        },
+        "wd": {
+          "missing": 81,
+          "text": 34983
+        },
+        "WSPM": {
+          "float": 30409,
+          "int": 4641,
+          "missing": 14
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 66,
+        "RAIN": 33664,
+        "TEMP": 196,
+        "WSPM": 1353
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -35.3,
+          "max": 28.5
+        },
+        "NO2": {
+          "min": 2.0,
+          "max": 290.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 423.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 984.0
+        },
+        "PRES": {
+          "min": 985.9,
+          "max": 1042.0
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 72.5
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 341.0
+        },
+        "TEMP": {
+          "min": -16.8,
+          "max": 40.5
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 11.2
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Changping_20130301-20170228.csv",
+      "sha256": "a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7",
+      "size_bytes": 2722295,
+      "filename_station": "Changping",
+      "station_column_values": [
+        "Changping"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 774,
+        "PM10": 582,
+        "SO2": 628,
+        "NO2": 667,
+        "CO": 1521,
+        "O3": 604,
+        "TEMP": 53,
+        "PRES": 50,
+        "DEWP": 53,
+        "RAIN": 51,
+        "wd": 140,
+        "WSPM": 43,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 33,
+          "PM10": 10,
+          "SO2": 66,
+          "NO2": 103,
+          "CO": 924,
+          "O3": 75,
+          "wd": 5
+        },
+        "2014": {
+          "PM2.5": 281,
+          "PM10": 192,
+          "SO2": 218,
+          "NO2": 247,
+          "CO": 250,
+          "O3": 229
+        },
+        "2015": {
+          "PM2.5": 332,
+          "PM10": 271,
+          "SO2": 196,
+          "NO2": 188,
+          "CO": 191,
+          "O3": 184,
+          "TEMP": 33,
+          "PRES": 33,
+          "DEWP": 33,
+          "RAIN": 34,
+          "wd": 65,
+          "WSPM": 32
+        },
+        "2016": {
+          "PM2.5": 114,
+          "PM10": 96,
+          "SO2": 132,
+          "NO2": 114,
+          "CO": 134,
+          "O3": 99,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 43,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 14,
+          "PM10": 13,
+          "SO2": 16,
+          "NO2": 15,
+          "CO": 22,
+          "O3": 17,
+          "TEMP": 13,
+          "PRES": 10,
+          "DEWP": 13,
+          "RAIN": 10,
+          "wd": 27,
+          "WSPM": 6
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 12,
+          "int": 34278,
+          "missing": 774
+        },
+        "PM10": {
+          "float": 6,
+          "int": 34476,
+          "missing": 582
+        },
+        "SO2": {
+          "float": 402,
+          "int": 34034,
+          "missing": 628
+        },
+        "NO2": {
+          "float": 437,
+          "int": 33960,
+          "missing": 667
+        },
+        "CO": {
+          "int": 33543,
+          "missing": 1521
+        },
+        "O3": {
+          "float": 1484,
+          "int": 32976,
+          "missing": 604
+        },
+        "TEMP": {
+          "float": 30535,
+          "int": 4476,
+          "missing": 53
+        },
+        "PRES": {
+          "float": 28756,
+          "int": 6258,
+          "missing": 50
+        },
+        "DEWP": {
+          "float": 31455,
+          "int": 3556,
+          "missing": 53
+        },
+        "RAIN": {
+          "float": 1276,
+          "int": 33737,
+          "missing": 51
+        },
+        "wd": {
+          "missing": 140,
+          "text": 34924
+        },
+        "WSPM": {
+          "float": 31082,
+          "int": 3939,
+          "missing": 43
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 66,
+        "RAIN": 33663,
+        "TEMP": 186,
+        "WSPM": 417
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -35.1,
+          "max": 27.2
+        },
+        "NO2": {
+          "min": 1.8477,
+          "max": 226.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 429.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 999.0
+        },
+        "PRES": {
+          "min": 982.4,
+          "max": 1036.5
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 52.1
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 310.0
+        },
+        "TEMP": {
+          "min": -16.6,
+          "max": 41.4
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 10.0
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Dingling_20130301-20170228.csv",
+      "sha256": "3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb",
+      "size_bytes": 2675856,
+      "filename_station": "Dingling",
+      "station_column_values": [
+        "Dingling"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 779,
+        "PM10": 656,
+        "SO2": 730,
+        "NO2": 1234,
+        "CO": 2012,
+        "O3": 1214,
+        "TEMP": 53,
+        "PRES": 50,
+        "DEWP": 53,
+        "RAIN": 51,
+        "wd": 140,
+        "WSPM": 43,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 134,
+          "PM10": 151,
+          "SO2": 191,
+          "NO2": 543,
+          "CO": 1363,
+          "O3": 253,
+          "wd": 5
+        },
+        "2014": {
+          "PM2.5": 221,
+          "PM10": 213,
+          "SO2": 210,
+          "NO2": 353,
+          "CO": 239,
+          "O3": 306
+        },
+        "2015": {
+          "PM2.5": 109,
+          "PM10": 95,
+          "SO2": 107,
+          "NO2": 125,
+          "CO": 129,
+          "O3": 157,
+          "TEMP": 33,
+          "PRES": 33,
+          "DEWP": 33,
+          "RAIN": 34,
+          "wd": 65,
+          "WSPM": 32
+        },
+        "2016": {
+          "PM2.5": 306,
+          "PM10": 188,
+          "SO2": 209,
+          "NO2": 197,
+          "CO": 264,
+          "O3": 484,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 43,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 9,
+          "PM10": 9,
+          "SO2": 13,
+          "NO2": 16,
+          "CO": 17,
+          "O3": 14,
+          "TEMP": 13,
+          "PRES": 10,
+          "DEWP": 13,
+          "RAIN": 10,
+          "wd": 27,
+          "WSPM": 6
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 22,
+          "int": 34263,
+          "missing": 779
+        },
+        "PM10": {
+          "float": 28,
+          "int": 34380,
+          "missing": 656
+        },
+        "SO2": {
+          "float": 1036,
+          "int": 33298,
+          "missing": 730
+        },
+        "NO2": {
+          "float": 1061,
+          "int": 32769,
+          "missing": 1234
+        },
+        "CO": {
+          "int": 33052,
+          "missing": 2012
+        },
+        "O3": {
+          "float": 1362,
+          "int": 32488,
+          "missing": 1214
+        },
+        "TEMP": {
+          "float": 30535,
+          "int": 4476,
+          "missing": 53
+        },
+        "PRES": {
+          "float": 28756,
+          "int": 6258,
+          "missing": 50
+        },
+        "DEWP": {
+          "float": 31455,
+          "int": 3556,
+          "missing": 53
+        },
+        "RAIN": {
+          "float": 1276,
+          "int": 33737,
+          "missing": 51
+        },
+        "wd": {
+          "missing": 140,
+          "text": 34924
+        },
+        "WSPM": {
+          "float": 31082,
+          "int": 3939,
+          "missing": 43
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 66,
+        "RAIN": 33663,
+        "TEMP": 186,
+        "WSPM": 417
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -35.1,
+          "max": 27.2
+        },
+        "NO2": {
+          "min": 1.0265,
+          "max": 205.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 500.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 905.0
+        },
+        "PRES": {
+          "min": 982.4,
+          "max": 1036.5
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 52.1
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 156.0
+        },
+        "TEMP": {
+          "min": -16.6,
+          "max": 41.4
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 10.0
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Dongsi_20130301-20170228.csv",
+      "sha256": "9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e",
+      "size_bytes": 2636684,
+      "filename_station": "Dongsi",
+      "station_column_values": [
+        "Dongsi"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 750,
+        "PM10": 553,
+        "SO2": 663,
+        "NO2": 1601,
+        "CO": 3197,
+        "O3": 664,
+        "TEMP": 20,
+        "PRES": 20,
+        "DEWP": 20,
+        "RAIN": 20,
+        "wd": 78,
+        "WSPM": 14,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 143,
+          "PM10": 78,
+          "SO2": 178,
+          "NO2": 107,
+          "CO": 2667,
+          "O3": 123
+        },
+        "2014": {
+          "PM2.5": 97,
+          "PM10": 81,
+          "SO2": 89,
+          "NO2": 1081,
+          "CO": 103,
+          "O3": 127
+        },
+        "2015": {
+          "PM2.5": 127,
+          "PM10": 76,
+          "SO2": 74,
+          "NO2": 78,
+          "CO": 75,
+          "O3": 72,
+          "TEMP": 2,
+          "PRES": 2,
+          "DEWP": 2,
+          "RAIN": 2,
+          "wd": 6,
+          "WSPM": 2
+        },
+        "2016": {
+          "PM2.5": 353,
+          "PM10": 300,
+          "SO2": 304,
+          "NO2": 317,
+          "CO": 318,
+          "O3": 320,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 41,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 30,
+          "PM10": 18,
+          "SO2": 18,
+          "NO2": 18,
+          "CO": 34,
+          "O3": 22,
+          "TEMP": 11,
+          "PRES": 11,
+          "DEWP": 11,
+          "RAIN": 11,
+          "wd": 31,
+          "WSPM": 7
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 17,
+          "int": 34297,
+          "missing": 750
+        },
+        "PM10": {
+          "float": 13,
+          "int": 34498,
+          "missing": 553
+        },
+        "SO2": {
+          "float": 1421,
+          "int": 32980,
+          "missing": 663
+        },
+        "NO2": {
+          "float": 1511,
+          "int": 31952,
+          "missing": 1601
+        },
+        "CO": {
+          "int": 31867,
+          "missing": 3197
+        },
+        "O3": {
+          "float": 996,
+          "int": 33404,
+          "missing": 664
+        },
+        "TEMP": {
+          "float": 29057,
+          "int": 5987,
+          "missing": 20
+        },
+        "PRES": {
+          "float": 28692,
+          "int": 6352,
+          "missing": 20
+        },
+        "DEWP": {
+          "float": 31458,
+          "int": 3586,
+          "missing": 20
+        },
+        "RAIN": {
+          "float": 1306,
+          "int": 33738,
+          "missing": 20
+        },
+        "wd": {
+          "missing": 78,
+          "text": 34986
+        },
+        "WSPM": {
+          "float": 30877,
+          "int": 4173,
+          "missing": 14
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 74,
+        "RAIN": 33673,
+        "TEMP": 332,
+        "WSPM": 623
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -35.3,
+          "max": 28.8
+        },
+        "NO2": {
+          "min": 2.0,
+          "max": 258.0
+        },
+        "O3": {
+          "min": 0.6426,
+          "max": 1071.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 955.0
+        },
+        "PRES": {
+          "min": 987.1,
+          "max": 1042.0
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 46.4
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 300.0
+        },
+        "TEMP": {
+          "min": -16.8,
+          "max": 41.1
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 10.5
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Guanyuan_20130301-20170228.csv",
+      "sha256": "59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9",
+      "size_bytes": 2695860,
+      "filename_station": "Guanyuan",
+      "station_column_values": [
+        "Guanyuan"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 616,
+        "PM10": 429,
+        "SO2": 474,
+        "NO2": 659,
+        "CO": 1753,
+        "O3": 1173,
+        "TEMP": 20,
+        "PRES": 20,
+        "DEWP": 20,
+        "RAIN": 20,
+        "wd": 81,
+        "WSPM": 14,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 102,
+          "PM10": 97,
+          "SO2": 57,
+          "NO2": 197,
+          "CO": 1208,
+          "O3": 685,
+          "wd": 1
+        },
+        "2014": {
+          "PM2.5": 204,
+          "PM10": 104,
+          "SO2": 249,
+          "NO2": 272,
+          "CO": 252,
+          "O3": 306,
+          "wd": 2
+        },
+        "2015": {
+          "PM2.5": 117,
+          "PM10": 86,
+          "SO2": 66,
+          "NO2": 86,
+          "CO": 68,
+          "O3": 69,
+          "TEMP": 2,
+          "PRES": 2,
+          "DEWP": 2,
+          "RAIN": 2,
+          "wd": 6,
+          "WSPM": 2
+        },
+        "2016": {
+          "PM2.5": 140,
+          "PM10": 109,
+          "SO2": 69,
+          "NO2": 71,
+          "CO": 180,
+          "O3": 78,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 41,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 53,
+          "PM10": 33,
+          "SO2": 33,
+          "NO2": 33,
+          "CO": 45,
+          "O3": 35,
+          "TEMP": 11,
+          "PRES": 11,
+          "DEWP": 11,
+          "RAIN": 11,
+          "wd": 31,
+          "WSPM": 7
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 13,
+          "int": 34435,
+          "missing": 616
+        },
+        "PM10": {
+          "float": 16,
+          "int": 34619,
+          "missing": 429
+        },
+        "SO2": {
+          "float": 140,
+          "int": 34450,
+          "missing": 474
+        },
+        "NO2": {
+          "float": 177,
+          "int": 34228,
+          "missing": 659
+        },
+        "CO": {
+          "int": 33311,
+          "missing": 1753
+        },
+        "O3": {
+          "float": 1063,
+          "int": 32828,
+          "missing": 1173
+        },
+        "TEMP": {
+          "float": 30432,
+          "int": 4612,
+          "missing": 20
+        },
+        "PRES": {
+          "float": 28682,
+          "int": 6362,
+          "missing": 20
+        },
+        "DEWP": {
+          "float": 31475,
+          "int": 3569,
+          "missing": 20
+        },
+        "RAIN": {
+          "float": 1326,
+          "int": 33718,
+          "missing": 20
+        },
+        "wd": {
+          "missing": 81,
+          "text": 34983
+        },
+        "WSPM": {
+          "float": 30409,
+          "int": 4641,
+          "missing": 14
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 66,
+        "RAIN": 33664,
+        "TEMP": 196,
+        "WSPM": 1353
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -35.3,
+          "max": 28.5
+        },
+        "NO2": {
+          "min": 2.0,
+          "max": 270.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 415.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 999.0
+        },
+        "PRES": {
+          "min": 985.9,
+          "max": 1042.0
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 72.5
+        },
+        "SO2": {
+          "min": 1.0,
+          "max": 293.0
+        },
+        "TEMP": {
+          "min": -16.8,
+          "max": 40.5
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 11.2
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Gucheng_20130301-20170228.csv",
+      "sha256": "10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951",
+      "size_bytes": 2654625,
+      "filename_station": "Gucheng",
+      "station_column_values": [
+        "Gucheng"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 646,
+        "PM10": 381,
+        "SO2": 507,
+        "NO2": 668,
+        "CO": 1401,
+        "O3": 729,
+        "TEMP": 51,
+        "PRES": 50,
+        "DEWP": 51,
+        "RAIN": 43,
+        "wd": 159,
+        "WSPM": 42,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 136,
+          "PM10": 41,
+          "SO2": 121,
+          "NO2": 93,
+          "CO": 991,
+          "O3": 101,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "wd": 16,
+          "WSPM": 5
+        },
+        "2014": {
+          "PM2.5": 179,
+          "PM10": 120,
+          "SO2": 179,
+          "NO2": 235,
+          "CO": 166,
+          "O3": 417,
+          "TEMP": 1,
+          "DEWP": 1,
+          "wd": 2
+        },
+        "2015": {
+          "PM2.5": 166,
+          "PM10": 109,
+          "SO2": 107,
+          "NO2": 191,
+          "CO": 111,
+          "O3": 108,
+          "TEMP": 26,
+          "PRES": 26,
+          "DEWP": 26,
+          "RAIN": 26,
+          "wd": 101,
+          "WSPM": 26
+        },
+        "2016": {
+          "PM2.5": 144,
+          "PM10": 90,
+          "SO2": 76,
+          "NO2": 116,
+          "CO": 98,
+          "O3": 81,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 22,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 21,
+          "PM10": 21,
+          "SO2": 24,
+          "NO2": 33,
+          "CO": 35,
+          "O3": 22,
+          "TEMP": 10,
+          "PRES": 10,
+          "DEWP": 10,
+          "RAIN": 10,
+          "wd": 18,
+          "WSPM": 6
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 16,
+          "int": 34402,
+          "missing": 646
+        },
+        "PM10": {
+          "float": 16,
+          "int": 34667,
+          "missing": 381
+        },
+        "SO2": {
+          "float": 68,
+          "int": 34489,
+          "missing": 507
+        },
+        "NO2": {
+          "float": 159,
+          "int": 34237,
+          "missing": 668
+        },
+        "CO": {
+          "int": 33663,
+          "missing": 1401
+        },
+        "O3": {
+          "float": 1458,
+          "int": 32877,
+          "missing": 729
+        },
+        "TEMP": {
+          "float": 30433,
+          "int": 4580,
+          "missing": 51
+        },
+        "PRES": {
+          "float": 28686,
+          "int": 6328,
+          "missing": 50
+        },
+        "DEWP": {
+          "float": 31596,
+          "int": 3417,
+          "missing": 51
+        },
+        "RAIN": {
+          "float": 1283,
+          "int": 33738,
+          "missing": 43
+        },
+        "wd": {
+          "missing": 159,
+          "text": 34905
+        },
+        "WSPM": {
+          "float": 29667,
+          "int": 5355,
+          "missing": 42
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 56,
+        "RAIN": 33673,
+        "TEMP": 191,
+        "WSPM": 2492
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -34.6,
+          "max": 27.4
+        },
+        "NO2": {
+          "min": 2.0,
+          "max": 276.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 450.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 994.0
+        },
+        "PRES": {
+          "min": 984.0,
+          "max": 1038.1
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 41.9
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 500.0
+        },
+        "TEMP": {
+          "min": -15.6,
+          "max": 41.6
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 12.0
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Huairou_20130301-20170228.csv",
+      "sha256": "812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26",
+      "size_bytes": 2641027,
+      "filename_station": "Huairou",
+      "station_column_values": [
+        "Huairou"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 953,
+        "PM10": 777,
+        "SO2": 980,
+        "NO2": 1639,
+        "CO": 1422,
+        "O3": 1151,
+        "TEMP": 51,
+        "PRES": 53,
+        "DEWP": 53,
+        "RAIN": 55,
+        "wd": 302,
+        "WSPM": 49,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 292,
+          "PM10": 250,
+          "SO2": 286,
+          "NO2": 671,
+          "CO": 687,
+          "O3": 393
+        },
+        "2014": {
+          "PM2.5": 330,
+          "PM10": 301,
+          "SO2": 372,
+          "NO2": 438,
+          "CO": 378,
+          "O3": 348,
+          "TEMP": 2,
+          "PRES": 4,
+          "DEWP": 4,
+          "RAIN": 4,
+          "wd": 5,
+          "WSPM": 5
+        },
+        "2015": {
+          "PM2.5": 159,
+          "PM10": 85,
+          "SO2": 154,
+          "NO2": 147,
+          "CO": 126,
+          "O3": 224,
+          "TEMP": 31,
+          "PRES": 31,
+          "DEWP": 31,
+          "RAIN": 32,
+          "wd": 129,
+          "WSPM": 32
+        },
+        "2016": {
+          "PM2.5": 156,
+          "PM10": 127,
+          "SO2": 152,
+          "NO2": 367,
+          "CO": 206,
+          "O3": 169,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 122,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 16,
+          "PM10": 14,
+          "SO2": 16,
+          "NO2": 16,
+          "CO": 25,
+          "O3": 17,
+          "TEMP": 11,
+          "PRES": 11,
+          "DEWP": 11,
+          "RAIN": 12,
+          "wd": 46,
+          "WSPM": 7
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 16,
+          "int": 34095,
+          "missing": 953
+        },
+        "PM10": {
+          "float": 19,
+          "int": 34268,
+          "missing": 777
+        },
+        "SO2": {
+          "float": 118,
+          "int": 33966,
+          "missing": 980
+        },
+        "NO2": {
+          "float": 131,
+          "int": 33294,
+          "missing": 1639
+        },
+        "CO": {
+          "int": 33642,
+          "missing": 1422
+        },
+        "O3": {
+          "float": 1299,
+          "int": 32614,
+          "missing": 1151
+        },
+        "TEMP": {
+          "float": 30430,
+          "int": 4583,
+          "missing": 51
+        },
+        "PRES": {
+          "float": 28635,
+          "int": 6376,
+          "missing": 53
+        },
+        "DEWP": {
+          "float": 31495,
+          "int": 3516,
+          "missing": 53
+        },
+        "RAIN": {
+          "float": 1420,
+          "int": 33589,
+          "missing": 55
+        },
+        "wd": {
+          "missing": 302,
+          "text": 34762
+        },
+        "WSPM": {
+          "float": 31322,
+          "int": 3693,
+          "missing": 49
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 73,
+        "RAIN": 33518,
+        "TEMP": 191,
+        "WSPM": 150
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -43.4,
+          "max": 29.1
+        },
+        "NO2": {
+          "min": 1.0265,
+          "max": 231.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 444.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 993.0
+        },
+        "PRES": {
+          "min": 982.8,
+          "max": 1036.5
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 45.9
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 315.0
+        },
+        "TEMP": {
+          "min": -19.9,
+          "max": 40.3
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 12.9
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Nongzhanguan_20130301-20170228.csv",
+      "sha256": "572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487",
+      "size_bytes": 2839705,
+      "filename_station": "Nongzhanguan",
+      "station_column_values": [
+        "Nongzhanguan"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 628,
+        "PM10": 440,
+        "SO2": 446,
+        "NO2": 692,
+        "CO": 1206,
+        "O3": 506,
+        "TEMP": 20,
+        "PRES": 20,
+        "DEWP": 20,
+        "RAIN": 20,
+        "wd": 78,
+        "WSPM": 14,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 39,
+          "PM10": 15,
+          "SO2": 13,
+          "NO2": 60,
+          "CO": 567,
+          "O3": 59
+        },
+        "2014": {
+          "PM2.5": 189,
+          "PM10": 172,
+          "SO2": 184,
+          "NO2": 314,
+          "CO": 242,
+          "O3": 185
+        },
+        "2015": {
+          "PM2.5": 254,
+          "PM10": 141,
+          "SO2": 138,
+          "NO2": 142,
+          "CO": 156,
+          "O3": 142,
+          "TEMP": 2,
+          "PRES": 2,
+          "DEWP": 2,
+          "RAIN": 2,
+          "wd": 6,
+          "WSPM": 2
+        },
+        "2016": {
+          "PM2.5": 121,
+          "PM10": 89,
+          "SO2": 89,
+          "NO2": 153,
+          "CO": 206,
+          "O3": 97,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 41,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 25,
+          "PM10": 23,
+          "SO2": 22,
+          "NO2": 23,
+          "CO": 35,
+          "O3": 23,
+          "TEMP": 11,
+          "PRES": 11,
+          "DEWP": 11,
+          "RAIN": 11,
+          "wd": 31,
+          "WSPM": 7
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 11,
+          "int": 34425,
+          "missing": 628
+        },
+        "PM10": {
+          "float": 23,
+          "int": 34601,
+          "missing": 440
+        },
+        "SO2": {
+          "float": 84,
+          "int": 34534,
+          "missing": 446
+        },
+        "NO2": {
+          "float": 527,
+          "int": 33845,
+          "missing": 692
+        },
+        "CO": {
+          "int": 33858,
+          "missing": 1206
+        },
+        "O3": {
+          "float": 1140,
+          "int": 33418,
+          "missing": 506
+        },
+        "TEMP": {
+          "float": 29057,
+          "int": 5987,
+          "missing": 20
+        },
+        "PRES": {
+          "float": 28692,
+          "int": 6352,
+          "missing": 20
+        },
+        "DEWP": {
+          "float": 31458,
+          "int": 3586,
+          "missing": 20
+        },
+        "RAIN": {
+          "float": 1306,
+          "int": 33738,
+          "missing": 20
+        },
+        "wd": {
+          "missing": 78,
+          "text": 34986
+        },
+        "WSPM": {
+          "float": 30877,
+          "int": 4173,
+          "missing": 14
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 74,
+        "RAIN": 33673,
+        "TEMP": 332,
+        "WSPM": 623
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -35.3,
+          "max": 28.8
+        },
+        "NO2": {
+          "min": 2.0,
+          "max": 273.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 390.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 995.0
+        },
+        "PRES": {
+          "min": 987.1,
+          "max": 1042.0
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 46.4
+        },
+        "SO2": {
+          "min": 0.5712,
+          "max": 257.0
+        },
+        "TEMP": {
+          "min": -16.8,
+          "max": 41.1
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 10.5
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Shunyi_20130301-20170228.csv",
+      "sha256": "520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a",
+      "size_bytes": 2620654,
+      "filename_station": "Shunyi",
+      "station_column_values": [
+        "Shunyi"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 913,
+        "PM10": 548,
+        "SO2": 1296,
+        "NO2": 1365,
+        "CO": 2178,
+        "O3": 1489,
+        "TEMP": 51,
+        "PRES": 51,
+        "DEWP": 54,
+        "RAIN": 51,
+        "wd": 483,
+        "WSPM": 44,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 262,
+          "PM10": 65,
+          "SO2": 485,
+          "NO2": 63,
+          "CO": 1124,
+          "O3": 140,
+          "DEWP": 3,
+          "wd": 1
+        },
+        "2014": {
+          "PM2.5": 191,
+          "PM10": 101,
+          "SO2": 165,
+          "NO2": 655,
+          "CO": 276,
+          "O3": 203
+        },
+        "2015": {
+          "PM2.5": 124,
+          "PM10": 100,
+          "SO2": 198,
+          "NO2": 189,
+          "CO": 313,
+          "O3": 206,
+          "TEMP": 33,
+          "PRES": 33,
+          "DEWP": 33,
+          "RAIN": 33,
+          "wd": 182,
+          "WSPM": 33
+        },
+        "2016": {
+          "PM2.5": 321,
+          "PM10": 267,
+          "SO2": 434,
+          "NO2": 444,
+          "CO": 437,
+          "O3": 925,
+          "TEMP": 8,
+          "PRES": 8,
+          "DEWP": 8,
+          "RAIN": 8,
+          "wd": 201,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 15,
+          "PM10": 15,
+          "SO2": 14,
+          "NO2": 14,
+          "CO": 28,
+          "O3": 15,
+          "TEMP": 10,
+          "PRES": 10,
+          "DEWP": 10,
+          "RAIN": 10,
+          "wd": 99,
+          "WSPM": 6
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 21,
+          "int": 34130,
+          "missing": 913
+        },
+        "PM10": {
+          "float": 28,
+          "int": 34488,
+          "missing": 548
+        },
+        "SO2": {
+          "float": 449,
+          "int": 33319,
+          "missing": 1296
+        },
+        "NO2": {
+          "float": 1060,
+          "int": 32639,
+          "missing": 1365
+        },
+        "CO": {
+          "int": 32886,
+          "missing": 2178
+        },
+        "O3": {
+          "float": 1580,
+          "int": 31995,
+          "missing": 1489
+        },
+        "TEMP": {
+          "float": 30375,
+          "int": 4638,
+          "missing": 51
+        },
+        "PRES": {
+          "float": 28587,
+          "int": 6426,
+          "missing": 51
+        },
+        "DEWP": {
+          "float": 31475,
+          "int": 3535,
+          "missing": 54
+        },
+        "RAIN": {
+          "float": 1255,
+          "int": 33758,
+          "missing": 51
+        },
+        "wd": {
+          "missing": 483,
+          "text": 34581
+        },
+        "WSPM": {
+          "float": 30822,
+          "int": 4198,
+          "missing": 44
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 82,
+        "RAIN": 33702,
+        "TEMP": 199,
+        "WSPM": 792
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -36.0,
+          "max": 27.5
+        },
+        "NO2": {
+          "min": 2.0,
+          "max": 258.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 351.7164
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 999.0
+        },
+        "PRES": {
+          "min": 988.0,
+          "max": 1042.8
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 37.3
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 239.0
+        },
+        "TEMP": {
+          "min": -16.8,
+          "max": 40.6
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 12.8
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Tiantan_20130301-20170228.csv",
+      "sha256": "0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa",
+      "size_bytes": 2655061,
+      "filename_station": "Tiantan",
+      "station_column_values": [
+        "Tiantan"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 677,
+        "PM10": 597,
+        "SO2": 1118,
+        "NO2": 744,
+        "CO": 1126,
+        "O3": 843,
+        "TEMP": 20,
+        "PRES": 20,
+        "DEWP": 20,
+        "RAIN": 20,
+        "wd": 78,
+        "WSPM": 14,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 17,
+          "PM10": 18,
+          "SO2": 23,
+          "NO2": 44,
+          "CO": 440,
+          "O3": 156
+        },
+        "2014": {
+          "PM2.5": 361,
+          "PM10": 345,
+          "SO2": 862,
+          "NO2": 457,
+          "CO": 426,
+          "O3": 436
+        },
+        "2015": {
+          "PM2.5": 154,
+          "PM10": 109,
+          "SO2": 124,
+          "NO2": 133,
+          "CO": 133,
+          "O3": 127,
+          "TEMP": 2,
+          "PRES": 2,
+          "DEWP": 2,
+          "RAIN": 2,
+          "wd": 6,
+          "WSPM": 2
+        },
+        "2016": {
+          "PM2.5": 126,
+          "PM10": 104,
+          "SO2": 87,
+          "NO2": 87,
+          "CO": 87,
+          "O3": 96,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 41,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 19,
+          "PM10": 21,
+          "SO2": 22,
+          "NO2": 23,
+          "CO": 40,
+          "O3": 28,
+          "TEMP": 11,
+          "PRES": 11,
+          "DEWP": 11,
+          "RAIN": 11,
+          "wd": 31,
+          "WSPM": 7
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 12,
+          "int": 34375,
+          "missing": 677
+        },
+        "PM10": {
+          "float": 39,
+          "int": 34428,
+          "missing": 597
+        },
+        "SO2": {
+          "float": 107,
+          "int": 33839,
+          "missing": 1118
+        },
+        "NO2": {
+          "float": 116,
+          "int": 34204,
+          "missing": 744
+        },
+        "CO": {
+          "int": 33938,
+          "missing": 1126
+        },
+        "O3": {
+          "float": 944,
+          "int": 33277,
+          "missing": 843
+        },
+        "TEMP": {
+          "float": 29057,
+          "int": 5987,
+          "missing": 20
+        },
+        "PRES": {
+          "float": 28692,
+          "int": 6352,
+          "missing": 20
+        },
+        "DEWP": {
+          "float": 31458,
+          "int": 3586,
+          "missing": 20
+        },
+        "RAIN": {
+          "float": 1306,
+          "int": 33738,
+          "missing": 20
+        },
+        "wd": {
+          "missing": 78,
+          "text": 34986
+        },
+        "WSPM": {
+          "float": 30877,
+          "int": 4173,
+          "missing": 14
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 74,
+        "RAIN": 33673,
+        "TEMP": 332,
+        "WSPM": 623
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -35.3,
+          "max": 28.8
+        },
+        "NO2": {
+          "min": 2.0,
+          "max": 241.0
+        },
+        "O3": {
+          "min": 0.4284,
+          "max": 674.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 988.0
+        },
+        "PRES": {
+          "min": 987.1,
+          "max": 1042.0
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 46.4
+        },
+        "SO2": {
+          "min": 0.5712,
+          "max": 273.0
+        },
+        "TEMP": {
+          "min": -16.8,
+          "max": 41.1
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 10.5
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Wanliu_20130301-20170228.csv",
+      "sha256": "0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a",
+      "size_bytes": 2659544,
+      "filename_station": "Wanliu",
+      "station_column_values": [
+        "Wanliu"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 382,
+        "PM10": 284,
+        "SO2": 575,
+        "NO2": 1070,
+        "CO": 1812,
+        "O3": 2107,
+        "TEMP": 20,
+        "PRES": 20,
+        "DEWP": 20,
+        "RAIN": 20,
+        "wd": 123,
+        "WSPM": 14,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 21,
+          "PM10": 20,
+          "SO2": 49,
+          "NO2": 90,
+          "CO": 1445,
+          "O3": 894,
+          "wd": 1
+        },
+        "2014": {
+          "PM2.5": 93,
+          "PM10": 69,
+          "SO2": 237,
+          "NO2": 175,
+          "CO": 127,
+          "O3": 668,
+          "wd": 2
+        },
+        "2015": {
+          "PM2.5": 147,
+          "PM10": 95,
+          "SO2": 184,
+          "NO2": 665,
+          "CO": 114,
+          "O3": 284,
+          "TEMP": 2,
+          "PRES": 2,
+          "DEWP": 2,
+          "RAIN": 2,
+          "wd": 15,
+          "WSPM": 2
+        },
+        "2016": {
+          "PM2.5": 103,
+          "PM10": 83,
+          "SO2": 89,
+          "NO2": 124,
+          "CO": 93,
+          "O3": 243,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 75,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 18,
+          "PM10": 17,
+          "SO2": 16,
+          "NO2": 16,
+          "CO": 33,
+          "O3": 18,
+          "TEMP": 11,
+          "PRES": 11,
+          "DEWP": 11,
+          "RAIN": 11,
+          "wd": 30,
+          "WSPM": 7
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 14,
+          "int": 34668,
+          "missing": 382
+        },
+        "PM10": {
+          "float": 12,
+          "int": 34768,
+          "missing": 284
+        },
+        "SO2": {
+          "float": 2948,
+          "int": 31541,
+          "missing": 575
+        },
+        "NO2": {
+          "float": 4394,
+          "int": 29600,
+          "missing": 1070
+        },
+        "CO": {
+          "int": 33252,
+          "missing": 1812
+        },
+        "O3": {
+          "float": 1406,
+          "int": 31551,
+          "missing": 2107
+        },
+        "TEMP": {
+          "float": 30550,
+          "int": 4494,
+          "missing": 20
+        },
+        "PRES": {
+          "float": 28643,
+          "int": 6401,
+          "missing": 20
+        },
+        "DEWP": {
+          "float": 31573,
+          "int": 3471,
+          "missing": 20
+        },
+        "RAIN": {
+          "float": 1372,
+          "int": 33672,
+          "missing": 20
+        },
+        "wd": {
+          "missing": 123,
+          "text": 34941
+        },
+        "WSPM": {
+          "float": 30249,
+          "int": 4801,
+          "missing": 14
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 65,
+        "RAIN": 33608,
+        "TEMP": 172,
+        "WSPM": 1640
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 10000.0
+        },
+        "DEWP": {
+          "min": -34.9,
+          "max": 28.5
+        },
+        "NO2": {
+          "min": 1.6424,
+          "max": 264.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 364.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 951.0
+        },
+        "PRES": {
+          "min": 985.9,
+          "max": 1040.3
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 72.5
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 282.0
+        },
+        "TEMP": {
+          "min": -15.8,
+          "max": 40.5
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 11.2
+        }
+      },
+      "target_value_statistics_computed": false
+    },
+    {
+      "file": "PRSA_Data_Wanshouxigong_20130301-20170228.csv",
+      "sha256": "ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0",
+      "size_bytes": 2871076,
+      "filename_station": "Wanshouxigong",
+      "station_column_values": [
+        "Wanshouxigong"
+      ],
+      "station_identifier_agrees_with_filename": true,
+      "header": [
+        "No",
+        "year",
+        "month",
+        "day",
+        "hour",
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3",
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "wd",
+        "WSPM",
+        "station"
+      ],
+      "header_matches_expected": true,
+      "row_count": 35064,
+      "malformed_rows": 0,
+      "no_column_is_dense_1_to_n": true,
+      "timestamp_min": "2013-03-01T00:00:00",
+      "timestamp_max": "2017-02-28T23:00:00",
+      "unparseable_timestamps": 0,
+      "expected_grid_hours": 35064,
+      "observed_distinct_timestamps": 35064,
+      "missing_timestamps": 0,
+      "missing_timestamp_examples": [],
+      "timestamps_outside_expected_grid": 0,
+      "duplicate_timestamps": 0,
+      "duplicate_timestamp_examples": [],
+      "fully_duplicated_rows_excluding_index": 0,
+      "wind_direction_categories": [
+        "E",
+        "ENE",
+        "ESE",
+        "N",
+        "NE",
+        "NNE",
+        "NNW",
+        "NW",
+        "S",
+        "SE",
+        "SSE",
+        "SSW",
+        "SW",
+        "W",
+        "WNW",
+        "WSW"
+      ],
+      "missing_by_variable": {
+        "No": 0,
+        "year": 0,
+        "month": 0,
+        "day": 0,
+        "hour": 0,
+        "PM2.5": 696,
+        "PM10": 484,
+        "SO2": 669,
+        "NO2": 754,
+        "CO": 1297,
+        "O3": 1078,
+        "TEMP": 19,
+        "PRES": 19,
+        "DEWP": 19,
+        "RAIN": 19,
+        "wd": 79,
+        "WSPM": 13,
+        "station": 0
+      },
+      "missing_by_year": {
+        "2013": {
+          "PM2.5": 41,
+          "PM10": 10,
+          "SO2": 31,
+          "NO2": 87,
+          "CO": 562,
+          "O3": 450,
+          "wd": 1
+        },
+        "2014": {
+          "PM2.5": 209,
+          "PM10": 166,
+          "SO2": 320,
+          "NO2": 349,
+          "CO": 368,
+          "O3": 342,
+          "wd": 1
+        },
+        "2015": {
+          "PM2.5": 222,
+          "PM10": 117,
+          "SO2": 134,
+          "NO2": 128,
+          "CO": 119,
+          "O3": 98,
+          "TEMP": 1,
+          "PRES": 1,
+          "DEWP": 1,
+          "RAIN": 1,
+          "wd": 5,
+          "WSPM": 1
+        },
+        "2016": {
+          "PM2.5": 196,
+          "PM10": 163,
+          "SO2": 152,
+          "NO2": 159,
+          "CO": 156,
+          "O3": 152,
+          "TEMP": 7,
+          "PRES": 7,
+          "DEWP": 7,
+          "RAIN": 7,
+          "wd": 41,
+          "WSPM": 5
+        },
+        "2017": {
+          "PM2.5": 28,
+          "PM10": 28,
+          "SO2": 32,
+          "NO2": 31,
+          "CO": 92,
+          "O3": 36,
+          "TEMP": 11,
+          "PRES": 11,
+          "DEWP": 11,
+          "RAIN": 11,
+          "wd": 31,
+          "WSPM": 7
+        }
+      },
+      "value_kinds": {
+        "No": {
+          "int": 35064
+        },
+        "year": {
+          "int": 35064
+        },
+        "month": {
+          "int": 35064
+        },
+        "day": {
+          "int": 35064
+        },
+        "hour": {
+          "int": 35064
+        },
+        "PM2.5": {
+          "float": 14,
+          "int": 34354,
+          "missing": 696
+        },
+        "PM10": {
+          "float": 10,
+          "int": 34570,
+          "missing": 484
+        },
+        "SO2": {
+          "float": 274,
+          "int": 34121,
+          "missing": 669
+        },
+        "NO2": {
+          "float": 275,
+          "int": 34035,
+          "missing": 754
+        },
+        "CO": {
+          "int": 33767,
+          "missing": 1297
+        },
+        "O3": {
+          "float": 753,
+          "int": 33233,
+          "missing": 1078
+        },
+        "TEMP": {
+          "float": 30497,
+          "int": 4548,
+          "missing": 19
+        },
+        "PRES": {
+          "float": 28717,
+          "int": 6328,
+          "missing": 19
+        },
+        "DEWP": {
+          "float": 31458,
+          "int": 3587,
+          "missing": 19
+        },
+        "RAIN": {
+          "float": 1306,
+          "int": 33739,
+          "missing": 19
+        },
+        "wd": {
+          "missing": 79,
+          "text": 34985
+        },
+        "WSPM": {
+          "float": 31062,
+          "int": 3989,
+          "missing": 13
+        },
+        "station": {
+          "text": 35064
+        }
+      },
+      "negative_values_in_non_negative_columns": {},
+      "zero_valued_counts": {
+        "DEWP": 70,
+        "RAIN": 33684,
+        "TEMP": 226,
+        "WSPM": 635
+      },
+      "covariate_ranges": {
+        "CO": {
+          "min": 100.0,
+          "max": 9800.0
+        },
+        "DEWP": {
+          "min": -35.3,
+          "max": 28.5
+        },
+        "NO2": {
+          "min": 2.0,
+          "max": 251.0
+        },
+        "O3": {
+          "min": 0.2142,
+          "max": 358.0
+        },
+        "PM10": {
+          "min": 2.0,
+          "max": 961.0
+        },
+        "PRES": {
+          "min": 985.1,
+          "max": 1042.0
+        },
+        "RAIN": {
+          "min": 0.0,
+          "max": 46.4
+        },
+        "SO2": {
+          "min": 0.2856,
+          "max": 411.0
+        },
+        "TEMP": {
+          "min": -16.8,
+          "max": 40.6
+        },
+        "WSPM": {
+          "min": 0.0,
+          "max": 13.2
+        }
+      },
+      "target_value_statistics_computed": false
+    }
+  ]
+}

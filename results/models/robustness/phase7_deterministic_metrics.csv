@@ -1,0 +1,3 @@
+model,fit_count,source,macro_station_horizon_MAE,micro_MAE,macro_RMSE,micro_RMSE,macro_R2,severe_MAE,severe_RMSE,severe_mean_residual,severe_underprediction_pct,n_negative,min_prediction
+B0,1,frozen_phase3,33.127699,33.131272,57.654653,62.853741,0.404175,101.273235,152.282754,70.343743,71.624812,0.0,3.0
+B3_R2,1,frozen_phase3,30.111722,30.114311,50.782684,55.12972,0.543162,136.611861,188.46856,132.017957,88.286113,63.0,-32.560593

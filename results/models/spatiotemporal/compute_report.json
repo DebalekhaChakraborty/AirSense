@@ -1,0 +1,25 @@
+{
+  "grouped_batch_size": 512,
+  "hidden_size": 128,
+  "parameter_count": 144001,
+  "training_seconds": {
+    "SA_R2": 763.8,
+    "SA_R3": 765.7
+  },
+  "inference_seconds": {
+    "SA_R2": 15.2,
+    "SA_R3": 15.1
+  },
+  "predictions_per_second": {
+    "SA_R2": 27095.8,
+    "SA_R3": 27288.9
+  },
+  "serialized_model_bytes": {
+    "SA_R2": 577156,
+    "SA_R3": 577156
+  },
+  "peak_rss_bytes": 3179302912,
+  "peak_rss_gb": 3.179,
+  "device": "cpu",
+  "note": "CPU-only measurements on one host; no hardware-independent efficiency claim is made."
+}

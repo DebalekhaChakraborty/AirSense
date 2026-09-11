@@ -1,0 +1,130 @@
+{
+  "study": "AirSense V2",
+  "phase": "phase_6_cross_station_spatiotemporal_modelling",
+  "foundation_manifest_sha256": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+  "phase1_manifest_sha256": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+  "phase2_manifest_sha256": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+  "phase3_manifest_sha256": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+  "phase4_manifest_sha256": "4a3a932afad9f69ee7dd75a7737e2132cda37edeac9de38ed26c5456a20a7716",
+  "phase5_manifest_sha256": "6e99f07141104592c6c01b6a0a857d7b4fac2033e383aaa48b3ab3548168db10",
+  "verification_tooling_registry_sha256": "d8d34f2ec0d48fdad5b7b2ec016d31779b78b88d86be07760111523e31f7c601",
+  "runtime_benchmark_sha256": "221161c8c42e9285f348ea90991124157a86d1e3804c3a9d7f0606b42cd3b21e",
+  "group_schema": {
+    "group_id_format": "<partition>|<YYYYMMDDHH>|h<horizon>",
+    "grouping_source_sha256": "faaa70e2a8a614a2500c58cc84b368e1ac758ecdb2c2e07c3fa509a4db31ed60",
+    "station_order": [
+      "Aotizhongxin",
+      "Changping",
+      "Dingling",
+      "Dongsi",
+      "Guanyuan",
+      "Gucheng",
+      "Huairou",
+      "Nongzhanguan",
+      "Shunyi",
+      "Tiantan",
+      "Wanliu",
+      "Wanshouxigong"
+    ],
+    "station_count": 12
+  },
+  "dynamic_feature_schema_sha256": "142653a75542bbe44976cbd87a809728eb9cc23e583801b5a954596f5b9eef92",
+  "internal_split_sha256": "886392331a5520a8df0a6aa863b49e0eda6862912347fe4c4a6947329dd431ed",
+  "architecture_config_sha256": "837a1f165d9e557a463dfc4f9fb7198078694e7d19a75093fbd3aa534fcc25b5",
+  "architecture_selection_freeze_sha256": "ca3bea4268a2e202ab666e4797ae76bb1562bde59d7c693f8fcecfa6318e4fb1",
+  "external_validation_receipt_sha256": "73342c5d9724de4bfa67a7c1d48d5bd95da8a1ba1c9e224dd4d46cb2745c8b57",
+  "selected": {
+    "candidate_id": "SA_C04",
+    "hidden_size": 128,
+    "learning_rate": 0.001,
+    "mean_internal_macro_station_horizon_mae": 35.290346,
+    "regimes_scored": 2,
+    "parameter_count": 144001
+  },
+  "runtime": {
+    "seed": 42,
+    "deterministic_algorithms": true,
+    "num_threads": 16,
+    "num_interop_threads": 1,
+    "device": "cpu",
+    "dtype": "float32",
+    "dataloader_workers": 0,
+    "amp": false,
+    "torch_compile": false,
+    "notes": []
+  },
+  "candidate_table_sha256": {
+    "internal_candidate_metrics.csv": "9e534701c613072bc8e76552c373c6ec1241d7fc9a6aecbcbaad90aa8e585add",
+    "internal_candidate_selection.csv": "5ccfe4f2c7fa087933a69041447f80cfd0b4882498e4b362c15f3f6f4a04a7f1"
+  },
+  "model_config_and_weight_sha256": {
+    "SA_R2.safetensors": "9d78281d4dc6a10c94b493df0b0c877dd8dc4f27fe73deba366f2f666cd3cabb",
+    "SA_R2_config.json": "5eef311702708bb3a5439401a17fa754574424c818c1b9c92eba0eb757576a5a",
+    "SA_R3.safetensors": "7280af5a34b618fddfddb715ed590483130719baab1f76ff7fd7bacf31e708c5",
+    "SA_R3_config.json": "e3354aec0325dc97ba136fc71d2b653bab2f21f7d40ec1e102ebd764e75cbbb4"
+  },
+  "prediction_array_sha256": {
+    "SA_R2_validation.npy": "37c00a06324270b060c93a9ca97202515ae2397ce0c156ad4aef1bc8cfee2c66",
+    "SA_R3_validation.npy": "d1d4dcf4ed06437b5215fa97948d94e9c8cb46ffff7c2520fc30646ca22e87a0"
+  },
+  "determinism_prediction_sha256": {
+    "SA_R2_validation.npy": "37c00a06324270b060c93a9ca97202515ae2397ce0c156ad4aef1bc8cfee2c66",
+    "SA_R3_validation.npy": "d1d4dcf4ed06437b5215fa97948d94e9c8cb46ffff7c2520fc30646ca22e87a0"
+  },
+  "attention_diagnostic_sha256": {
+    "attention_matrix_by_horizon.csv": "3bbda992f4c7fb5dd308a70db8f77bd88bb66a8e2c0c25ed92b5c3c8c056a0d8",
+    "attention_matrix_overall.csv": "7addae714e5d33b22abca6d48302347114a71466e4f53f27013e501dc91100c0",
+    "attention_matrix_severe.csv": "41e834f10db1732bbba0c678aafacbb692fba5943a0930243d08f78adfe908aa"
+  },
+  "metric_table_sha256": {
+    "phase6_attention_summary.csv": "c042bd4f80371a36674bce3d2bea06a3b491803e01652973e6d43533be0e52dc",
+    "phase6_attention_vs_training_correlation.csv": "ee5a407eb268e592cba0f721b62c9dc3bce097a3459e922da8b6e1b4c460bc39",
+    "phase6_h4_summary.csv": "29e660a79609b5492362e24be56b3112577bb1498c349e202e1f1257a5d1f225",
+    "phase6_metrics_by_horizon.csv": "542716d3a653018da22b2851057af6854f22725703ed54ca091cbd7bf00afd61",
+    "phase6_metrics_by_station.csv": "3686e6839dffcaecd70df1bce92223fa51f322bb51c5e201db7bbed28bc9244e",
+    "phase6_metrics_by_station_horizon.csv": "407cfd568934054be596986ae387439c54bc027d6315681df3a52ad0f679ce89",
+    "phase6_model_comparison.csv": "3ccb1a7bfd374bba1d56b36c7a0ee1e515b4478dd358475f48f8a4ab0daf8578",
+    "phase6_negative_predictions.csv": "f7ac723120489dd1e82c608800a36935e3bda86b2bbafaaa2c6413c4314bc09d",
+    "phase6_severe_metrics.csv": "652fa0f64581233b0718185a1017eef814e5e00ef591763b132dae35bdab5f94"
+  },
+  "figure_sha256": {
+    "phase6_attention_by_horizon.png": "dd18140363ea4581f31eb5e323fd62cfe94c5f7830ba31b34a84ab26191a41e8",
+    "phase6_attention_matrix.png": "ff0393fe15dc7c3b5795883509d831f0751afefa2456080d657dd77d51761a80",
+    "phase6_validation_model_comparison.png": "2ba6fc4db00ad498dce2734d3745c7f70f840d3f9fe50a60ce8a706c36c74459",
+    "phase6_validation_r2_r3_by_horizon.png": "b2dd6e2e7969273a41069a0fa5e15c4918b5deed2679eb925a69e7e31fabaf23",
+    "phase6_validation_r2_r3_by_station.png": "795bab891468e87c5e0a22dc2aa23e71614ec1f438f498724d959807b3829dee",
+    "phase6_validation_r2_vs_r3.png": "d5b5715ecf6224c34c7f3e49b653660755a4fb8e37ef9510eaac6ad4e3de1a4d",
+    "phase6_validation_severe_mae.png": "0a5dca7d993080d1c2d2f931801ca3a50d04c4cb47d20d34d239d66b3199b646",
+    "phase6_validation_station_horizon_gain_heatmap.png": "8812a5ed526c5abe2baf350409d55a7f490e7a78efc9499f5fefd8ab4c3bd0ce"
+  },
+  "compute_report_sha256": "937e2857e71bec55b6a25545025c7881483f026b7012211ed433750a848eccb3",
+  "document_sha256": {
+    "docs/PHASE_06_SPATIOTEMPORAL_RECORD.md": "9656713e86b00f80f0d90edbe483853365e9d5b4bb1b6b618d2c97eb5ba0448a",
+    "docs/SPATIOTEMPORAL_RESULTS.md": "5857c98e5e1482239350c62b1cd1cd6e7262db077928ef3a053797848b95c557"
+  },
+  "severe_threshold": 244.0,
+  "residual_convention": "residual = actual - prediction",
+  "context_hours": 48,
+  "validation_samples_per_model": 413148,
+  "internal_candidate_fits": 8,
+  "full_models": 2,
+  "determinism_refits": 2,
+  "paired_design_identical_capacity": true,
+  "R3_uses_external_coordinates": false,
+  "R3_uses_future_observed_variables": false,
+  "validation_derived_graph": false,
+  "predictions_clipped": false,
+  "severe_balancing": false,
+  "seeds_used": [
+    42
+  ],
+  "multi_seed_robustness": "reserved for Phase 7",
+  "tsfm_loaded": false,
+  "test_predictions": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "v1_legacy_modified": false,
+  "legacy_head": "16c9030cf74508b620cc6d28f90346aa379f29cd",
+  "free_disk_after_kb": 16146672,
+  "note": "Development validation only. No wall-clock timestamp is recorded in canonical scientific content."
+}

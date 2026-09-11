@@ -1,0 +1,24 @@
+{
+  "study": "AirSense V2",
+  "event": "phase6_external_development_validation_opening",
+  "phase3_validation_opening_receipt_sha256": "e5b4a11d8e73cfdef525b6c4d6e7ef00344d3c6a1d6139634f7c1562cb687606",
+  "phase6_architecture_selection_freeze_sha256": "ca3bea4268a2e202ab666e4797ae76bb1562bde59d7c693f8fcecfa6318e4fb1",
+  "sample_universe_manifest_sha256": "7a767a92bc842aa33c14a08af95c3c0e4b0ba15e067cf1d5ad3518f550d7ca70",
+  "validation_sample_index_sha256": "27aa89bcdbf1fe087f82701a2a54989e809c56f2ddee50d6a3254c010a388db5",
+  "external_validation_interval": {
+    "start": "2015-03-01T00:00:00",
+    "end": "2016-02-29T23:00:00"
+  },
+  "validation_groups": 35052,
+  "expected_validation_predictions_per_model": 413148,
+  "context_hours": 48,
+  "severe_threshold": 244.0,
+  "both_modes_selected_using_training_only": true,
+  "external_coordinates_used": false,
+  "validation_derived_graph_built": false,
+  "external_phase6_metrics_seen": 0,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "note": "Records the first station-attention access to external development validation. It deliberately contains no performance value."
+}

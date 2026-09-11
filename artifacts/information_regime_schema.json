@@ -1,0 +1,161 @@
+{
+  "context_hours_primary": 48,
+  "horizons": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "common_sample_universe": true,
+  "regimes": {
+    "R0": {
+      "meteorology": [
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "WSPM"
+      ],
+      "wind_direction": true,
+      "rain_occurred": true,
+      "calendar": [
+        "hour_sin",
+        "hour_cos",
+        "doy_sin",
+        "doy_cos",
+        "month_sin",
+        "month_cos"
+      ],
+      "masks": true,
+      "pollutant_history": [],
+      "pollutant_masks": [],
+      "pollutant_gap_age": [],
+      "cross_station_history": false,
+      "tensor_encoding_fixed": false
+    },
+    "R1": {
+      "meteorology": [
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "WSPM"
+      ],
+      "wind_direction": true,
+      "rain_occurred": true,
+      "calendar": [
+        "hour_sin",
+        "hour_cos",
+        "doy_sin",
+        "doy_cos",
+        "month_sin",
+        "month_cos"
+      ],
+      "masks": true,
+      "pollutant_history": [
+        "PM2.5"
+      ],
+      "pollutant_masks": [
+        "PM2.5"
+      ],
+      "pollutant_gap_age": [
+        "PM2.5"
+      ],
+      "cross_station_history": false,
+      "tensor_encoding_fixed": false
+    },
+    "R2": {
+      "meteorology": [
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "WSPM"
+      ],
+      "wind_direction": true,
+      "rain_occurred": true,
+      "calendar": [
+        "hour_sin",
+        "hour_cos",
+        "doy_sin",
+        "doy_cos",
+        "month_sin",
+        "month_cos"
+      ],
+      "masks": true,
+      "pollutant_history": [
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3"
+      ],
+      "pollutant_masks": [
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3"
+      ],
+      "pollutant_gap_age": [
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3"
+      ],
+      "cross_station_history": false,
+      "tensor_encoding_fixed": false
+    },
+    "R3": {
+      "meteorology": [
+        "TEMP",
+        "PRES",
+        "DEWP",
+        "RAIN",
+        "WSPM"
+      ],
+      "wind_direction": true,
+      "rain_occurred": true,
+      "calendar": [
+        "hour_sin",
+        "hour_cos",
+        "doy_sin",
+        "doy_cos",
+        "month_sin",
+        "month_cos"
+      ],
+      "masks": true,
+      "pollutant_history": [
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3"
+      ],
+      "pollutant_masks": [
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3"
+      ],
+      "pollutant_gap_age": [
+        "PM2.5",
+        "PM10",
+        "SO2",
+        "NO2",
+        "CO",
+        "O3"
+      ],
+      "cross_station_history": true,
+      "tensor_encoding_fixed": false
+    }
+  },
+  "note": "R3 spatial tensor encoding is deliberately unfixed and belongs to the spatiotemporal phase."
+}

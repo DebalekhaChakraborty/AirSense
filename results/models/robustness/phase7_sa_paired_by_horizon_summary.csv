@@ -1,0 +1,5 @@
+horizon,mean_R3_improvement,sample_std_difference,paired_t_95pct_ci_low,paired_t_95pct_ci_high,seeds_R3_better,seeds_R3_worse
+1,0.189341,1.148362,-1.236539,1.61522,2,3
+6,1.989756,0.745338,1.064296,2.915215,5,0
+12,1.544165,0.622408,0.771344,2.316987,5,0
+24,0.170068,0.506025,-0.458245,0.79838,3,2

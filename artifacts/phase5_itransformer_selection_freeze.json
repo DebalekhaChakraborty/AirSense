@@ -1,0 +1,83 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase5_itransformer_selection_freeze",
+  "architecture": "iTransformer",
+  "implementation": "in-repository adaptation, src/models/itransformer_forecaster.py",
+  "selected": {
+    "candidate_id": "IT_C02",
+    "d_model": 64,
+    "learning_rate": 0.001,
+    "mean_internal_macro_station_horizon_mae": 35.287346,
+    "regimes_scored": 2
+  },
+  "selection_rule": "equal-weight mean over R1/R2 of the internal-tuning macro station-horizon MAE",
+  "tie_break_order": [
+    "lower mean macro station-horizon MAE",
+    "lower mean macro station-horizon RMSE",
+    "smaller d_model",
+    "lower learning rate",
+    "lower candidate id"
+  ],
+  "comparison_tolerance": 1e-12,
+  "selected_from": "training-only internal core/tuning split",
+  "internal_split_reused_from_phase4": true,
+  "external_validation_used_for_selection": false,
+  "same_configuration_used_for_all_regimes": true,
+  "regimes": [
+    "R1",
+    "R2"
+  ],
+  "candidate_metrics_sha256": "1b287b4d6a725c08ecd1d8074cf652be11283961cb39da9663d0a608f3a0d937",
+  "candidate_selection_sha256": "6f0eac6f6c96dfa086ef60e0b2eeca2c94c8446336b3b14b1b7ee43013cd13e0",
+  "internal_split_sha256": "886392331a5520a8df0a6aa863b49e0eda6862912347fe4c4a6947329dd431ed",
+  "neural_feature_schema_sha256": "142653a75542bbe44976cbd87a809728eb9cc23e583801b5a954596f5b9eef92",
+  "model_source_sha256": "411e31a27db4329c888941935b1d385880b26d52cc965e63d9ccaeb8e53aede9",
+  "grid_source_sha256": "cb00f21b54f920d2071de4c48761e27fcb5fb1f6fc0dd548eae0bea94887fe8f",
+  "training_protocol": {
+    "encoder_layers": 2,
+    "attention_heads": 4,
+    "feedforward_ratio": 4,
+    "activation": "GELU",
+    "normalization": "LayerNorm",
+    "decoder": null,
+    "positional_encoding_across_variates": false,
+    "dropout": 0.1,
+    "head_hidden": 64,
+    "epochs": 8,
+    "batch_size": 1024,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "grad_clip_global_norm": 1.0,
+    "loss": "L1",
+    "seed": 42,
+    "scheduler": null,
+    "warmup": null,
+    "early_stopping": false
+  },
+  "runtime": {
+    "seed": 42,
+    "deterministic_algorithms": true,
+    "num_threads": 16,
+    "num_interop_threads": 1,
+    "device": "cpu",
+    "dtype": "float32",
+    "dataloader_workers": 0,
+    "amp": false,
+    "torch_compile": false,
+    "notes": []
+  },
+  "seed": 42,
+  "external_validation_metrics_seen": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "frozen_after_this_point": [
+    "d_model",
+    "learning rate",
+    "encoder layers",
+    "attention heads",
+    "epochs",
+    "batch size",
+    "loss",
+    "optimizer"
+  ]
+}

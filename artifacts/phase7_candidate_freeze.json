@@ -1,0 +1,280 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase7_candidate_freeze",
+  "stage": "A_before_any_robustness_experiment",
+  "purpose": "Freeze the final candidate set before robustness results exist, so the set cannot be edited after seeing them.",
+  "candidates": {
+    "B0": {
+      "model": "B0",
+      "stochastic_training": false,
+      "prediction_file": "results/validation/predictions/B0_validation.npy",
+      "prediction_sha256": "0fdffec9b45767ee1b067122158ece282102ebab4500d6711568301c99330fb7",
+      "development_validation": {
+        "macro_station_horizon_MAE": 33.127699,
+        "micro_MAE": 33.131272,
+        "macro_RMSE": 57.654653,
+        "macro_R2": 0.404175,
+        "severe_MAE": 101.273235,
+        "severe_underprediction_pct": 71.624812,
+        "negative_predictions": 0,
+        "rank_of_sixteen": 10,
+        "value_source": "phase3_frozen"
+      },
+      "family": "classical",
+      "regime": "none - causal persistence",
+      "architecture": "repeat the last observed PM2.5 at or before the forecast origin",
+      "parameter_count": 0,
+      "training_configuration": "none; deterministic rule"
+    },
+    "B3_R2": {
+      "model": "B3_R2",
+      "stochastic_training": false,
+      "prediction_file": "results/validation/predictions/B3_R2_validation.npy",
+      "prediction_sha256": "c447db88f257df54594744115504442f469bace3a07382b6345bc45cbfe2db17",
+      "development_validation": {
+        "macro_station_horizon_MAE": 30.111722,
+        "micro_MAE": 30.114311,
+        "macro_RMSE": 50.782684,
+        "macro_R2": 0.543162,
+        "severe_MAE": 136.611861,
+        "severe_underprediction_pct": 88.286113,
+        "negative_predictions": 63,
+        "rank_of_sixteen": 1,
+        "value_source": "phase3_frozen"
+      },
+      "family": "classical",
+      "regime": "R2 - meteorology + PM2.5 + co-pollutant history",
+      "architecture": "LightGBM gradient boosting on engineered lag and rolling features, one model per horizon",
+      "parameter_count": null,
+      "per_horizon_models": {
+        "h1": {
+          "candidate_id": "B3_C07",
+          "model_file": "results/models/b3/b3_R2_h1_B3_C07.txt",
+          "model_sha256": "347b8de0734ebba4bedc4a6b4d1b2da35a69dd86c40233f88b17be92c2655ac6"
+        },
+        "h6": {
+          "candidate_id": "B3_C02",
+          "model_file": "results/models/b3/b3_R2_h6_B3_C02.txt",
+          "model_sha256": "c5a1266a1935dfe57a6698f5441fcb5c09950d3b7633669d385b32770f8b190f"
+        },
+        "h12": {
+          "candidate_id": "B3_C01",
+          "model_file": "results/models/b3/b3_R2_h12_B3_C01.txt",
+          "model_sha256": "910c62f2344ac65b3534056f77aee1addb2bbc47e20adc1bf97a16c625b265d8"
+        },
+        "h24": {
+          "candidate_id": "B3_C01",
+          "model_file": "results/models/b3/b3_R2_h24_B3_C01.txt",
+          "model_sha256": "3133a922b953b63fe64d9e00db17fb9be4b073ca1e73605909b15e0765015000"
+        }
+      },
+      "training_configuration": "frozen Phase-3 B3 grid and selection rule"
+    },
+    "GRU_R1": {
+      "model": "GRU_R1",
+      "stochastic_training": true,
+      "prediction_file": "results/validation/predictions/GRU_R1_validation.npy",
+      "prediction_sha256": "0770870125dc7c1bdfaf01e63025695a058f70e0417eae0499bd7d8c6172080a",
+      "development_validation": {
+        "macro_station_horizon_MAE": 30.912193,
+        "micro_MAE": 30.915224,
+        "macro_RMSE": 51.96115,
+        "macro_R2": 0.544183,
+        "severe_MAE": 118.964535,
+        "severe_underprediction_pct": 93.555484,
+        "negative_predictions": 795,
+        "rank_of_sixteen": 4,
+        "value_source": "phase4_frozen"
+      },
+      "family": "neural",
+      "regime": "R1 - meteorology + PM2.5 history",
+      "architecture": "single-layer unidirectional GRU",
+      "parameter_count": 24641,
+      "weight_sha256": "37e0d900206a1a9e8d076fa5223fa614a41dbf8b0c7b905f4f34f4e4150b6dd7",
+      "config_sha256": "0cc119982f02e0fb14de652d6158195cd667c8ad5a5799fdcb014ac7f756bb35",
+      "capacity": 64,
+      "learning_rate": 0.0003,
+      "selected_candidate": "GRU_C01",
+      "training_configuration": {
+        "epochs": 8,
+        "batch_size": 1024,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "grad_clip_global_norm": 1.0,
+        "loss": "L1",
+        "head_hidden": 64,
+        "dropout": 0.1,
+        "seed": 42,
+        "scheduler": null,
+        "warmup": null,
+        "early_stopping": false
+      }
+    },
+    "TCN_R1": {
+      "model": "TCN_R1",
+      "stochastic_training": true,
+      "prediction_file": "results/validation/predictions/TCN_R1_validation.npy",
+      "prediction_sha256": "10a4c3ccd1c63ada649b117666b89b8d7888032e01ae839d5ef1b82e7b5e1c1c",
+      "development_validation": {
+        "macro_station_horizon_MAE": 30.688629,
+        "micro_MAE": 30.691581,
+        "macro_RMSE": 53.763204,
+        "macro_R2": 0.526118,
+        "severe_MAE": 152.530079,
+        "severe_underprediction_pct": 95.422838,
+        "negative_predictions": 346,
+        "rank_of_sixteen": 3,
+        "value_source": "phase4_frozen"
+      },
+      "family": "neural",
+      "regime": "R1 - meteorology + PM2.5 history",
+      "architecture": "causal dilated temporal convnet, 4 residual blocks",
+      "parameter_count": 29729,
+      "weight_sha256": "16a68eb33fe8846290e1ecc137ce0c33f576237352a06daf8c1db89fea8c1796",
+      "config_sha256": "1b4843135bf5434ef55bf55b37609b8dcbf60143e9eb44e7816ba534b84d4cba",
+      "capacity": 32,
+      "learning_rate": 0.001,
+      "selected_candidate": "TCN_C02",
+      "training_configuration": {
+        "epochs": 8,
+        "batch_size": 1024,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "grad_clip_global_norm": 1.0,
+        "loss": "L1",
+        "head_hidden": 64,
+        "dropout": 0.1,
+        "seed": 42,
+        "scheduler": null,
+        "warmup": null,
+        "early_stopping": false
+      }
+    },
+    "SA_R3": {
+      "model": "SA_R3",
+      "stochastic_training": true,
+      "prediction_file": "results/validation/predictions/SA_R3_validation.npy",
+      "prediction_sha256": "d1d4dcf4ed06437b5215fa97948d94e9c8cb46ffff7c2520fc30646ca22e87a0",
+      "development_validation": {
+        "macro_station_horizon_MAE": 31.532702,
+        "micro_MAE": 31.535098,
+        "macro_RMSE": 53.908016,
+        "macro_R2": 0.52658,
+        "severe_MAE": 121.270043,
+        "severe_underprediction_pct": 88.044645,
+        "negative_predictions": 4,
+        "rank_of_sixteen": 5,
+        "value_source": "phase6"
+      },
+      "family": "spatiotemporal",
+      "regime": "R3 - R2 at every station plus synchronized cross-station history",
+      "architecture": "AirSense Station-Attention Forecaster: shared GRU encoder, multi-head attention across the 12 stations, residual fusion",
+      "parameter_count": 144001,
+      "weight_sha256": "7280af5a34b618fddfddb715ed590483130719baab1f76ff7fd7bacf31e708c5",
+      "config_sha256": "e3354aec0325dc97ba136fc71d2b653bab2f21f7d40ec1e102ebd764e75cbbb4",
+      "hidden_size": 128,
+      "learning_rate": 0.001,
+      "selected_candidate": "SA_C04",
+      "station_order": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "external_coordinates_used": false,
+      "training_configuration": {
+        "temporal_encoder": "shared unidirectional GRU",
+        "gru_layers": 1,
+        "bidirectional": false,
+        "attention_axis": "station",
+        "attention_heads": 4,
+        "attention_dropout": 0.1,
+        "attention_layers": 1,
+        "fusion": "LayerNorm(H + Attention(H))",
+        "graph_convolution": null,
+        "station_count": 12,
+        "head_hidden": 64,
+        "head_dropout": 0.1,
+        "epochs": 8,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "grad_clip_global_norm": 1.0,
+        "loss": "L1",
+        "seed": 42,
+        "scheduler": null,
+        "warmup": null,
+        "early_stopping": false,
+        "output_constrained": false,
+        "external_coordinates": false
+      }
+    }
+  },
+  "excluded_with_reason": {
+    "iTransformer_R1": "Phase-5 inverted Transformer; sixth of sixteen on the primary metric and beaten by every candidate here except B0",
+    "iTransformer_R2": "co-pollutant variant, worse than iTransformer_R1",
+    "SA_R2": "the self-only control arm of the Phase-6 paired experiment, not a candidate forecaster",
+    "GRU_R2 / TCN_R2 / *_R0 / B1 / B2 / B3_R0 / B3_R1": "dominated within their own family on development validation"
+  },
+  "robustness_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "stochastic_models": [
+    "GRU_R1",
+    "TCN_R1",
+    "SA_R3"
+  ],
+  "deterministic_models": [
+    "B0",
+    "B3_R2"
+  ],
+  "selection_rule": {
+    "primary": "development validation macro station-horizon MAE",
+    "secondary": [
+      "severe MAE",
+      "macro RMSE",
+      "macro R2"
+    ],
+    "must_consider": [
+      "mean across seeds",
+      "seed variance",
+      "severe-tail behaviour"
+    ],
+    "forbidden": "selecting on a single best seed"
+  },
+  "frozen_inputs_sha256": {
+    "phase6_model_comparison": "3ccb1a7bfd374bba1d56b36c7a0ee1e515b4478dd358475f48f8a4ab0daf8578",
+    "phase6_severe_metrics": "652fa0f64581233b0718185a1017eef814e5e00ef591763b132dae35bdab5f94",
+    "phase4_architecture_selection_freeze": "501b0b78d99da55ecbdbb4bd0ff70ff210052331e84a1a6726e99c49a2f8b62e",
+    "phase6_architecture_selection_freeze": "ca3bea4268a2e202ab666e4797ae76bb1562bde59d7c693f8fcecfa6318e4fb1",
+    "verification_tooling_registry": "5386ac6f59952a8d7b1f732263384acdae40fe47539947ba0b17342575a444ee"
+  },
+  "upstream_manifest_sha256": {
+    "v2_foundation_manifest.json": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+    "v2_phase1_manifest.json": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+    "v2_phase2_manifest.json": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+    "v2_phase3_manifest.json": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+    "v2_phase4_manifest.json": "4a3a932afad9f69ee7dd75a7737e2132cda37edeac9de38ed26c5456a20a7716",
+    "v2_phase5_manifest.json": "6e99f07141104592c6c01b6a0a857d7b4fac2033e383aaa48b3ab3548168db10",
+    "v2_phase6_manifest.json": "7a197e323efa2d8226c5e824e23e9d7c3a0e5ee2d2022a547d2c4f828117d7a7"
+  },
+  "severe_threshold": 244.0,
+  "context_hours": 48,
+  "candidate_set_may_change_after_results": false,
+  "architecture_search_permitted": false,
+  "feature_changes_permitted": false,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed"
+}

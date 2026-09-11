@@ -1,0 +1,57 @@
+{
+  "artifact": "phase7_multiseed_execution_receipt",
+  "candidate_freeze_sha256": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+  "models_completed": ["GRU_R1", "TCN_R1", "SA_R3", "SA_R2"],
+  "seeds_completed": [42, 43, 44, 45, 46],
+  "trained_prediction_arrays_completed_before_reporting_failure": 16,
+  "frozen_prediction_arrays_rescored": 4,
+  "reporting_failure": {
+    "layer": "post-training CSV header construction",
+    "exception": "KeyError: severe_mae",
+    "cause": "The original runner derived metric names by scoring the first ten validation samples; that slice contained no severe sample, so severe_metrics returned only severe_n.",
+    "model_fit_failed": false,
+    "prediction_array_lost": false,
+    "minimal_fix": "Declare the already-fixed metric names explicitly and add a from-saved reporting path.",
+    "recovery": "All completed arrays were reloaded and rescored; no model was retrained during recovery."
+  },
+  "timing_limitation": {
+    "seed42": "Exact original training and inference timings remain in the frozen Phase-4 and Phase-6 tables.",
+    "seeds43_to_46": "The separate timing values existed only in process memory and were lost when post-training reporting failed.",
+    "retained_measurement": "Monotonic completion-log deltas retain a 0.1-second-resolution upper bound for training plus inference plus loop overhead.",
+    "fabricated_split_used": false
+  },
+  "completion_log": {
+    "GRU_R1": {
+      "42": {"source": "frozen_phase4", "completion_elapsed_seconds": 12.1},
+      "43": {"source": "phase7_refit", "completion_elapsed_seconds": 800.7, "fit_inference_loop_elapsed_seconds": 788.6},
+      "44": {"source": "phase7_refit", "completion_elapsed_seconds": 1655.7, "fit_inference_loop_elapsed_seconds": 855.0},
+      "45": {"source": "phase7_refit", "completion_elapsed_seconds": 2452.6, "fit_inference_loop_elapsed_seconds": 796.9},
+      "46": {"source": "phase7_refit", "completion_elapsed_seconds": 3209.9, "fit_inference_loop_elapsed_seconds": 757.3}
+    },
+    "TCN_R1": {
+      "42": {"source": "frozen_phase4", "completion_elapsed_seconds": 3219.9},
+      "43": {"source": "phase7_refit", "completion_elapsed_seconds": 4853.1, "fit_inference_loop_elapsed_seconds": 1633.2},
+      "44": {"source": "phase7_refit", "completion_elapsed_seconds": 6438.3, "fit_inference_loop_elapsed_seconds": 1585.2},
+      "45": {"source": "phase7_refit", "completion_elapsed_seconds": 8048.2, "fit_inference_loop_elapsed_seconds": 1609.9},
+      "46": {"source": "phase7_refit", "completion_elapsed_seconds": 9613.5, "fit_inference_loop_elapsed_seconds": 1565.3}
+    },
+    "SA_R3": {
+      "42": {"source": "frozen_phase6", "completion_elapsed_seconds": 9625.4},
+      "43": {"source": "phase7_refit", "completion_elapsed_seconds": 10393.6, "fit_inference_loop_elapsed_seconds": 768.2},
+      "44": {"source": "phase7_refit", "completion_elapsed_seconds": 11182.1, "fit_inference_loop_elapsed_seconds": 788.5},
+      "45": {"source": "phase7_refit", "completion_elapsed_seconds": 11961.7, "fit_inference_loop_elapsed_seconds": 779.6},
+      "46": {"source": "phase7_refit", "completion_elapsed_seconds": 12741.8, "fit_inference_loop_elapsed_seconds": 780.1}
+    },
+    "SA_R2": {
+      "42": {"source": "frozen_phase6", "completion_elapsed_seconds": 12751.9},
+      "43": {"source": "phase7_refit", "completion_elapsed_seconds": 13549.1, "fit_inference_loop_elapsed_seconds": 797.2},
+      "44": {"source": "phase7_refit", "completion_elapsed_seconds": 14336.5, "fit_inference_loop_elapsed_seconds": 787.4},
+      "45": {"source": "phase7_refit", "completion_elapsed_seconds": 15130.5, "fit_inference_loop_elapsed_seconds": 794.0},
+      "46": {"source": "phase7_refit", "completion_elapsed_seconds": 15926.9, "fit_inference_loop_elapsed_seconds": 796.4}
+    }
+  },
+  "test_data_accessed": false,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed"
+}

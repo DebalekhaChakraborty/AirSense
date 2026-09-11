@@ -1,0 +1,70 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase5_prevalidation_freeze",
+  "stage": "B_before_any_external_validation_metric",
+  "event": "phase5_external_development_validation_opening",
+  "models": {
+    "iTransformer_R1": {
+      "regime": "R1",
+      "d_model": 64,
+      "learning_rate": 0.001,
+      "parameter_count": 109121,
+      "dynamic_channels": 31,
+      "static_channels": 28,
+      "trained_on": "complete frozen Phase-2 training universe",
+      "initialised_from": "clean seeded initialisation (seed 42)"
+    },
+    "iTransformer_R2": {
+      "regime": "R2",
+      "d_model": 64,
+      "learning_rate": 0.001,
+      "parameter_count": 109121,
+      "dynamic_channels": 46,
+      "static_channels": 28,
+      "trained_on": "complete frozen Phase-2 training universe",
+      "initialised_from": "clean seeded initialisation (seed 42)"
+    }
+  },
+  "training_samples": 821184,
+  "expected_validation_predictions_per_model": 413148,
+  "pm25_history_interface": "src/data/rolling_history.py, Phase-3 guarded rolling series",
+  "phase3_validation_opening_receipt_sha256": "e5b4a11d8e73cfdef525b6c4d6e7ef00344d3c6a1d6139634f7c1562cb687606",
+  "phase5_itransformer_selection_freeze_sha256": "52e9efbaaae3340ee575902e38f181ae09e79ef525b1c2080a276a1eb9684abd",
+  "upstream_manifest_sha256": {
+    "v2_foundation_manifest.json": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+    "v2_phase1_manifest.json": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+    "v2_phase2_manifest.json": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+    "v2_phase3_manifest.json": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+    "v2_phase4_manifest.json": "4a3a932afad9f69ee7dd75a7737e2132cda37edeac9de38ed26c5456a20a7716",
+    "verification_tooling_registry.json": "fae09cc39f6a3f8ad4f648b005f5e504d603d3fb1419d61336213ff4fb01fb4e"
+  },
+  "external_validation_interval": {
+    "start": "2015-03-01T00:00:00",
+    "end": "2016-02-29T23:00:00"
+  },
+  "regimes": [
+    "R1",
+    "R2"
+  ],
+  "horizons": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "severe_threshold": 244.0,
+  "severe_threshold_source": "training_pooled_p95",
+  "residual_convention": "residual = actual - prediction",
+  "predictions_clipped": false,
+  "hyperparameters_selected_from_training_only_internal_split": true,
+  "foundation_model_executed": false,
+  "chronos2_executed": false,
+  "chronos2_gate": "pretraining-overlap audit classification C: direct or material overlap with the sealed test period; no checkpoint downloaded, no inference run",
+  "chronos2_audit_sha256": "bdaf6419ff8f068b557a60dcaca9e87a85db427552de1eed1b37fe66e5e7cd70",
+  "phase5_model_audit_sha256": "6fc319e69941b915d1791bfedda9978537fffb78cabfb0e4839fe7858739ef2d",
+  "external_validation_metrics_seen": 0,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "note": "Records the first iTransformer access to external development validation. It deliberately contains no performance value."
+}

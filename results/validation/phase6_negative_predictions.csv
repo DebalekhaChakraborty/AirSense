@@ -1,0 +1,17 @@
+model,family,n_negative,pct_negative,min_prediction,clipped
+B0,classical,0,0.0,3.0,false
+B1,classical,0,0.0,3.0,false
+B2,classical,0,0.0,14.0,false
+B3_R0,classical,259,0.062689,-16.022535,false
+B3_R1,classical,146,0.035338,-24.882345,false
+B3_R2,classical,63,0.015249,-32.560593,false
+GRU_R0,neural,10,0.00242,-2.593714,false
+GRU_R1,neural,795,0.192425,-20.560755,false
+GRU_R2,neural,818,0.197992,-44.206394,false
+TCN_R0,neural,81,0.019606,-5.474878,false
+TCN_R1,neural,346,0.083747,-41.115227,false
+TCN_R2,neural,1212,0.293357,-45.698238,false
+iTransformer_R1,transformer,376,0.091009,-74.453682,false
+iTransformer_R2,transformer,670,0.162169,-71.941635,false
+SA_R2,spatial,149,0.036065,-10.685699,false
+SA_R3,spatial,4,0.000968,-0.675721,false

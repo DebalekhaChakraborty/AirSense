@@ -1,0 +1,130 @@
+{
+  "study": "AirSense V2",
+  "phase": "phase_4_temporal_neural_baselines",
+  "foundation_manifest_sha256": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+  "phase1_manifest_sha256": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+  "phase2_manifest_sha256": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+  "phase3_manifest_sha256": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+  "verification_tooling_registry_sha256": "867f4cd376f1d2937e8883e2fe8a3f74817df9224d256348fbe1248b06490cd0",
+  "internal_split_sha256": "886392331a5520a8df0a6aa863b49e0eda6862912347fe4c4a6947329dd431ed",
+  "neural_feature_schema_sha256": "142653a75542bbe44976cbd87a809728eb9cc23e583801b5a954596f5b9eef92",
+  "architecture_selection_freeze_sha256": "501b0b78d99da55ecbdbb4bd0ff70ff210052331e84a1a6726e99c49a2f8b62e",
+  "external_validation_receipt_sha256": "0cde04caa4b81ea1c9139917f3e10394fb0713dfea09552082f5ae503470aba3",
+  "requirements_sha256": {
+    "requirements-v2-core.txt": "d4e709abe1196100e642295208be0e309b7032eef6e513e83b9f05b94d3b1c65",
+    "requirements-v2-core-lock.txt": "b23d888ba2f3a50ec7f1f630292acf7e6443dda115e842fef714bc08222c26b6",
+    "requirements-v2-neural.txt": "519c68769c8342645aa7aa2d1033943cd075c3f03c802f787890b2e950c7fc98",
+    "requirements-v2-neural-lock.txt": "344d71088b5b4d4093624bf8a44f1541a77e5ca59c1d711a289b7dd2790acaba"
+  },
+  "runtime": {
+    "seed": 42,
+    "deterministic_algorithms": true,
+    "num_threads": 16,
+    "num_interop_threads": 1,
+    "device": "cpu",
+    "dtype": "float32",
+    "dataloader_workers": 0,
+    "amp": false,
+    "torch_compile": false,
+    "notes": []
+  },
+  "selected": {
+    "GRU": {
+      "candidate_id": "GRU_C01",
+      "capacity": 64,
+      "learning_rate": 0.0003,
+      "mean_internal_macro_station_horizon_mae": 38.230279,
+      "regimes_scored": 3
+    },
+    "TCN": {
+      "candidate_id": "TCN_C02",
+      "capacity": 32,
+      "learning_rate": 0.001,
+      "mean_internal_macro_station_horizon_mae": 38.079681,
+      "regimes_scored": 3
+    }
+  },
+  "candidate_table_sha256": {
+    "internal_candidate_metrics.csv": "3731b658c1b2332bef06087583b728f4d52ae8d53ff85af20cd0aabcc5ba2aa8",
+    "internal_candidate_selection.csv": "4eba2247fb87c58b91b2ceac6adc9e5d1bcb53d512e5a34b40caa5dd94c5f52b",
+    "neural_full_models.csv": "cd3627264d3b8c62f48bb73936b1678a704faa9d2961fb2d049bbdf9aa7aafb1",
+    "neural_training_diagnostics.csv": "28bf0a1c828ff17d1cbbcdf436e84e870f96eedb87ba1696686d5340f378670f"
+  },
+  "model_config_and_weight_sha256": {
+    "GRU_R0.safetensors": "8e8087b5b1fb5cc47b1300b6e8499ef1a3a3b6839565a76b68368e2adf1a815c",
+    "GRU_R0_config.json": "98634e78e4a95684cdc2532cd9689120b2f621d0b2ea04e1db68979c18203f6b",
+    "GRU_R1.safetensors": "37e0d900206a1a9e8d076fa5223fa614a41dbf8b0c7b905f4f34f4e4150b6dd7",
+    "GRU_R1_config.json": "0cc119982f02e0fb14de652d6158195cd667c8ad5a5799fdcb014ac7f756bb35",
+    "GRU_R2.safetensors": "8b014bff8524b7e3f60f73b17155db32961d41cd897c1a8f911414972e508412",
+    "GRU_R2_config.json": "1ca279b699f0a32b0f19c33cf56c492bda7a4335192cd60bfdc864ce40e98c9c",
+    "TCN_R0.safetensors": "8efa9621bb2c4d2c3a71a60fce3c87e6f13567b8ec0d9bc8c40de48b35147bfb",
+    "TCN_R0_config.json": "7a06504f39f353a7d80eab33a0f0f3c0be917e41bf531fcbbd036046d36a00cf",
+    "TCN_R1.safetensors": "16a68eb33fe8846290e1ecc137ce0c33f576237352a06daf8c1db89fea8c1796",
+    "TCN_R1_config.json": "1b4843135bf5434ef55bf55b37609b8dcbf60143e9eb44e7816ba534b84d4cba",
+    "TCN_R2.safetensors": "903b35e704b18f976ab8492ace102cea4564a8a9d3e195122abbe00cb0ff381f",
+    "TCN_R2_config.json": "ed8c313513fd75e7d1999900bff4aa0a94dda742eba1fa2f4d98d20c94b4aa6f"
+  },
+  "prediction_array_sha256": {
+    "B0_source_validation.npy": "9348dc4b90380db661d7c42e852b2899fb9d234db80aabe1e2f0ee842ed51ef6",
+    "B0_validation.npy": "0fdffec9b45767ee1b067122158ece282102ebab4500d6711568301c99330fb7",
+    "B1_direct_validation.npy": "521c7dfed5249fa44b0ae9390c85957b5990446ce4c9f7fb3e660e7999416868",
+    "B1_validation.npy": "43cf28734366859acf54ff68274ecd553902df2b6d658e0f815c1dc174736926",
+    "B2_level_validation.npy": "e331d24107ee77735a8a400ee996f9cbfb92460496f6669dd5e0159687eb552c",
+    "B2_validation.npy": "56b04fd1c71bc9c2bfc6cc76828eb6fa3fbf29df0302205c3c51a7c954f08b90",
+    "B3_R0_validation.npy": "b8da5fff3567a6afff6f4ce8c16b78b01c963719e52c07f267a836df69d45c1f",
+    "B3_R1_validation.npy": "b3436d27837559421008768cad8e05ff701d19373bb999039580fd895b55dca5",
+    "B3_R2_validation.npy": "c447db88f257df54594744115504442f469bace3a07382b6345bc45cbfe2db17",
+    "GRU_R0_validation.npy": "ffe821a4d45acd59f9de5b8aad923be56ca13c7dec5beeebaf75171a5f445970",
+    "GRU_R1_validation.npy": "0770870125dc7c1bdfaf01e63025695a058f70e0417eae0499bd7d8c6172080a",
+    "GRU_R2_validation.npy": "09729bb9e57d3c9d91ffcc42cce1b6594f44fc6729a938d0bf27a3a03a36ebb7",
+    "TCN_R0_validation.npy": "228945e35cf6d768441cae71f40cd867fb0851db745b38530c4cbdf4fae20993",
+    "TCN_R1_validation.npy": "10a4c3ccd1c63ada649b117666b89b8d7888032e01ae839d5ef1b82e7b5e1c1c",
+    "TCN_R2_validation.npy": "8ddf4c658d4e1ce3055b2abe140ebb745b3050fdd02c63c4987ca496b9681428",
+    "validation_actual.npy": "6b9c34e0a11f7d98b35278bb03d8c0bc984b9761c4e9ee5438ff0628b7be5115"
+  },
+  "metric_table_sha256": {
+    "phase4_information_regime_gain.csv": "e1850d89b541690df21c1dbe9cbcb918314f788379f7f7dc9b6a5a7f5b3ab677",
+    "phase4_metrics_by_horizon.csv": "0b0a03efbac439fd3b62b458016e3ad980d3a948527b3351bc3901e791098490",
+    "phase4_metrics_by_station.csv": "f135c9ed371849f0288e3d2dce9f7c52ef71a031767192999232db3a225c8ea5",
+    "phase4_metrics_by_station_horizon.csv": "3e40473a04c5fd19ae0e50355b201f683a804cb3be31365f377821e3dc97ce69",
+    "phase4_model_comparison.csv": "77cf34536a2b0e58c38f438d6ab2aa126c2c495cd2e710ed159609b70058ada4",
+    "phase4_negative_predictions.csv": "8933ce38a2107d9964ed61dab2b553a0b13592b7b9cbfb76d2a96e7bf0f495ff",
+    "phase4_severe_metrics.csv": "18de068a18cfb42428197ea7d9178569869f4d93515602ff279921b21a45eb4f"
+  },
+  "figure_sha256": {
+    "phase4_gru_vs_tcn_station_horizon.png": "a3785b6fd0911e50941dd0bb7039ae444e44d18bd77b630c587b3a8a90e11f3a",
+    "phase4_neural_information_regime_gain.png": "d23591dd9578d545ce20f4a105a782c4f89556bd0e2a797aad80ee140fdc6b10",
+    "phase4_residual_distribution_best_neural.png": "dff1b4d7cf2963dd221bf7e2364b4045313486d71af62ed986c4d9c30b016a67",
+    "phase4_severe_mae_comparison.png": "18d34a106450bcfceae2a9e82c2a3dc4ff764f90139c0b5d296cd63b67e9438e",
+    "phase4_training_curves.png": "21d9b263568c52c86081dea540e6d19955f19a47bbf6d77cb1ea3010fc72b83f",
+    "phase4_validation_mae_by_horizon.png": "cb1a4b180ecffce3b6d9d20f01dbe5c239bb2e57a4f819eaa1150c1d0289d612",
+    "phase4_validation_mae_by_model.png": "712624a05218bd0b7ac2e786b7c5d3a61495306dc370e774b3d243068b1d4b5b"
+  },
+  "document_sha256": {
+    "docs/PHASE_04_TEMPORAL_NEURAL_RECORD.md": "9d8522b5b2df62109de4ba0d1e5f9260ebd29ae5780bb0adcaada9242f00a7e7",
+    "docs/TEMPORAL_NEURAL_RESULTS.md": "95b48a66621dfe2ce900f0f7927fd5150280f7a3a29fc77d165abb6e5d2b6a6b"
+  },
+  "severe_threshold": 244.0,
+  "residual_convention": "residual = actual - prediction",
+  "context_hours": 48,
+  "neural_internal_candidate_fits": 24,
+  "neural_full_models": 6,
+  "neural_full_determinism_refits": 6,
+  "external_validation_predictions_per_model": 413148,
+  "external_validation_predictions_total": 2478888,
+  "r3_implemented": false,
+  "transformer_trained": false,
+  "tsfm_loaded": false,
+  "predictions_clipped": false,
+  "severe_balancing": false,
+  "seeds_used": [
+    42
+  ],
+  "multi_seed_robustness": "reserved for Phase 7",
+  "test_predictions": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "v1_legacy_modified": false,
+  "free_disk_after_kb": 16557624,
+  "note": "Development validation only. No wall-clock timestamp is recorded in canonical scientific content."
+}

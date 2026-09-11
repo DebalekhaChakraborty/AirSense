@@ -1,0 +1,124 @@
+{
+  "study": "AirSense V2",
+  "phase": "phase_5_modern_transformer_and_tsfm_evaluation",
+  "foundation_manifest_sha256": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+  "phase1_manifest_sha256": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+  "phase2_manifest_sha256": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+  "phase3_manifest_sha256": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+  "phase4_manifest_sha256": "4a3a932afad9f69ee7dd75a7737e2132cda37edeac9de38ed26c5456a20a7716",
+  "verification_tooling_registry_sha256": "d8d34f2ec0d48fdad5b7b2ec016d31779b78b88d86be07760111523e31f7c601",
+  "internal_split_sha256": "886392331a5520a8df0a6aa863b49e0eda6862912347fe4c4a6947329dd431ed",
+  "internal_split_reused_from_phase4": true,
+  "neural_feature_schema_sha256": "142653a75542bbe44976cbd87a809728eb9cc23e583801b5a954596f5b9eef92",
+  "itransformer_selection_freeze_sha256": "52e9efbaaae3340ee575902e38f181ae09e79ef525b1c2080a276a1eb9684abd",
+  "prevalidation_freeze_sha256": "ccc10681cfbe36d053f5ed919f8821f14e21aa5409019c1c2397c8e26ade8850",
+  "model_audit_sha256": {
+    "PHASE5_MODEL_AUDIT.md": "6fc319e69941b915d1791bfedda9978537fffb78cabfb0e4839fe7858739ef2d",
+    "CHRONOS2_PRETRAINING_AUDIT.md": "bdaf6419ff8f068b557a60dcaca9e87a85db427552de1eed1b37fe66e5e7cd70"
+  },
+  "requirements_sha256": {
+    "requirements-v2-core.txt": "d4e709abe1196100e642295208be0e309b7032eef6e513e83b9f05b94d3b1c65",
+    "requirements-v2-core-lock.txt": "b23d888ba2f3a50ec7f1f630292acf7e6443dda115e842fef714bc08222c26b6",
+    "requirements-v2-neural.txt": "519c68769c8342645aa7aa2d1033943cd075c3f03c802f787890b2e950c7fc98",
+    "requirements-v2-neural-lock.txt": "344d71088b5b4d4093624bf8a44f1541a77e5ca59c1d711a289b7dd2790acaba"
+  },
+  "runtime": {
+    "seed": 42,
+    "deterministic_algorithms": true,
+    "num_threads": 16,
+    "num_interop_threads": 1,
+    "device": "cpu",
+    "dtype": "float32",
+    "dataloader_workers": 0,
+    "amp": false,
+    "torch_compile": false,
+    "notes": []
+  },
+  "selected": {
+    "candidate_id": "IT_C02",
+    "d_model": 64,
+    "learning_rate": 0.001,
+    "mean_internal_macro_station_horizon_mae": 35.287346,
+    "regimes_scored": 2
+  },
+  "model_source_sha256": {
+    "itransformer_forecaster.py": "411e31a27db4329c888941935b1d385880b26d52cc965e63d9ccaeb8e53aede9",
+    "itransformer_grid.py": "cb00f21b54f920d2071de4c48761e27fcb5fb1f6fc0dd548eae0bea94887fe8f"
+  },
+  "candidate_table_sha256": {
+    "internal_candidate_metrics.csv": "1b287b4d6a725c08ecd1d8074cf652be11283961cb39da9663d0a608f3a0d937",
+    "internal_candidate_selection.csv": "6f0eac6f6c96dfa086ef60e0b2eeca2c94c8446336b3b14b1b7ee43013cd13e0",
+    "itransformer_full_models.csv": "1e5476f9b033d0271334cdad7548923878d03b3a9e2591e45576ce9e6ed59f95",
+    "itransformer_training_diagnostics.csv": "6f325fca8d191c7ca7fde81c8a4802396b8aabae9f1060a1bd24bcb3d546ec02"
+  },
+  "model_config_and_weight_sha256": {
+    "iTransformer_R1.safetensors": "5df7268ffe3864369b4fadcf3ce06bd33506a10a98941777521277917276766f",
+    "iTransformer_R1_config.json": "6f2f2f4b5c1aa4e11d1c456cd812fc0311c88e527367e8e8f0602679f8f3a560",
+    "iTransformer_R2.safetensors": "6cf4be20922a38ee4d8eef258537ec40621b772bb79e2ba5fde3c3ccbc56922d",
+    "iTransformer_R2_config.json": "3362e510dae046eeb7e894a96caf6681c21fe4c34cb0d24381547404ef99c78b"
+  },
+  "prediction_array_sha256": {
+    "iTransformer_R1_validation.npy": "e8e242c9292a6a15324c7be377c65317605741a9d6cb9b99894018a62d8c1dbd",
+    "iTransformer_R2_validation.npy": "1f5be14bd6b15663f5fa308f1951076948820d8490b9f3d1fe718750c7c0d3ba"
+  },
+  "determinism_prediction_sha256": {
+    "iTransformer_R1_validation.npy": "e8e242c9292a6a15324c7be377c65317605741a9d6cb9b99894018a62d8c1dbd",
+    "iTransformer_R2_validation.npy": "1f5be14bd6b15663f5fa308f1951076948820d8490b9f3d1fe718750c7c0d3ba"
+  },
+  "metric_table_sha256": {
+    "phase5_information_regime_gain.csv": "8becdee6a06fcd942351720fef41b1b18c5cd9a01ffb251df8be41f012f47fb4",
+    "phase5_metrics_by_horizon.csv": "074f8bbaa176b89ca49ad851c8fc68e6e35acfac3a835b9051be791602eb9d95",
+    "phase5_metrics_by_station.csv": "46c8dfd15493134d6bf20ba1ae0c2b3171c236cf9f2d0d0c3e638501a29ce8be",
+    "phase5_metrics_by_station_horizon.csv": "75811c6e27b90eaa774d057da5b43dd8da2c347f9a196272b7d2aacadb1347d7",
+    "phase5_model_comparison.csv": "c6301cca7e6a4c5b1ca1f14f2828cbf6694da038a3c319a9c4948bd3b4808941",
+    "phase5_negative_predictions.csv": "27431209de59ec116b1aac6ca127119d3a3b80bf7da92ca304b9fb34548e1318",
+    "phase5_severe_metrics.csv": "4e7be01fefef09e413c062e144d9afc01a96f50173560404d07b3f49f8f77b9f"
+  },
+  "figure_sha256": {
+    "phase5_copollutant_penalty_by_architecture.png": "a6072117e3ce37a9659b41cdba53088b5257655f202d00b3a11f1e28798b536b",
+    "phase5_residual_distribution_best_itransformer.png": "d221bff0005bc37a7cfbfcf72b387a6a166d53f7e18c40c36ecd983d80a35919",
+    "phase5_severe_mae_comparison.png": "703d73b5ccec3896ee77585f36d60a4ca4b724cfee9c18a86c6debb01ee0b393",
+    "phase5_station_horizon_heatmap_itransformer.png": "91fe983fb2cf405c7b3ad129408f2ebfc88a01ee5954e85ad465ac91001e01ce",
+    "phase5_training_curves.png": "2bc06eff480396ad9ae9e25d2c05edce64e494793eac78b826ad384ec06790ab",
+    "phase5_validation_mae_by_horizon.png": "9f2d36ceed3286816aed8ec7aa349c12ce65ff7e4536ceecc59100cc01206f34",
+    "phase5_validation_mae_by_model.png": "05de4c06db8d65214f84e67db0de1c31dfe9d6d4bc20b5484acdd7ef62b94671"
+  },
+  "document_sha256": {
+    "docs/PHASE_05_MODERN_MODELS_RECORD.md": "e32baed8760f2ea68d55bf3ec9fe75b2039a42fb67b2ee8e2b86ac58fe10c4e7",
+    "docs/MODERN_MODEL_RESULTS.md": "106132bff8bef2a4f290935dc9ca0550317c5c396d5712fbbc33c7906a545829"
+  },
+  "severe_threshold": 244.0,
+  "residual_convention": "residual = actual - prediction",
+  "context_hours": 48,
+  "itransformer_internal_candidate_fits": 8,
+  "itransformer_full_models": 2,
+  "itransformer_full_determinism_refits": 2,
+  "external_validation_predictions_per_model": 413148,
+  "external_validation_predictions_total": 826296,
+  "regimes_evaluated": [
+    "R1",
+    "R2"
+  ],
+  "r0_itransformer_trained": false,
+  "r3_implemented": false,
+  "transformer_trained": true,
+  "tsfm_loaded": false,
+  "chronos2_executed": false,
+  "chronos2_checkpoint_downloaded": false,
+  "chronos2_gate": "pretraining-overlap audit classification C",
+  "timesfm3_excluded": "non-commercial weight licence",
+  "moirai2_excluded": "cc-by-nc-4.0 weight licence",
+  "pretrained_weights_used": false,
+  "predictions_clipped": false,
+  "severe_balancing": false,
+  "seeds_used": [
+    42
+  ],
+  "multi_seed_robustness": "reserved for Phase 7",
+  "test_predictions": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "v1_legacy_modified": false,
+  "free_disk_after_kb": 16155860,
+  "note": "Development validation only. No wall-clock timestamp is recorded in canonical scientific content."
+}

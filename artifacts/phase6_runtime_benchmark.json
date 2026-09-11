@@ -1,0 +1,59 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase6_runtime_benchmark",
+  "purpose": "training-only feasibility; no predictive metric was computed and no external validation data was read",
+  "batch_size_rule": "try 512, step deterministically to 256 then 128 on peak RSS above 60% of physical RAM; never chosen by predictive performance",
+  "physical_ram_bytes": 33660616704,
+  "memory_ceiling_bytes": 20196370022,
+  "measurements": [
+    {
+      "grouped_batch_size": 512,
+      "hidden_size_benchmarked": 128,
+      "seconds_per_batch": 0.6884,
+      "peak_rss_bytes": 3104952320,
+      "peak_rss_gb": 3.105,
+      "within_memory_ceiling": true
+    }
+  ],
+  "frozen_grouped_batch_size": 512,
+  "group_counts": {
+    "train_groups": 69745,
+    "train_canonical_samples": 821184,
+    "internal_core_groups": 34733,
+    "internal_tuning_groups": 35012,
+    "validation_groups": 35052,
+    "validation_canonical_samples": 413148
+  },
+  "dynamic_channels": 46,
+  "static_channels": 28,
+  "projection": {
+    "epochs": 8,
+    "internal_fits": 8,
+    "full_refits": 2,
+    "determinism_refits": 2,
+    "core_batches_per_epoch": 68,
+    "train_batches_per_epoch": 137,
+    "internal_selection_hours": 0.87,
+    "full_refit_hours": 0.42,
+    "determinism_refit_hours": 0.42,
+    "external_inference_hours": 0.009,
+    "projected_total_hours": 1.72,
+    "runtime_gate_hours": 36.0,
+    "within_runtime_gate": true
+  },
+  "runtime": {
+    "seed": 42,
+    "deterministic_algorithms": true,
+    "num_threads": 16,
+    "num_interop_threads": 1,
+    "device": "cpu",
+    "dtype": "float32",
+    "dataloader_workers": 0,
+    "amp": false,
+    "torch_compile": false,
+    "notes": []
+  },
+  "external_validation_read": false,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed"
+}

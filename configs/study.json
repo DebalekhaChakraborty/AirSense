@@ -1,0 +1,64 @@
+{
+  "study": "AirSense V2",
+  "title": "Modern Temporal and Spatiotemporal Air-Quality Forecasting",
+  "task": "multi_horizon_pm25_forecasting",
+  "phase": "phase_0_foundation",
+  "branch": "master",
+  "v1_status": "complete_and_frozen_on_legacy",
+  "target": "PM2.5",
+  "target_units": "ug/m3",
+  "forecast_horizons_hours": [1, 6, 12, 24],
+  "partition_rule": "target_timestamp",
+  "forecast_origin_rule": "target_timestamp_minus_horizon",
+  "split": {
+    "train": {
+      "start": "2013-03-01T00:00:00",
+      "end": "2015-02-28T23:00:00"
+    },
+    "validation": {
+      "start": "2015-03-01T00:00:00",
+      "end": "2016-02-29T23:00:00"
+    },
+    "test": {
+      "start": "2016-03-01T00:00:00",
+      "end": "2017-02-28T23:00:00"
+    }
+  },
+  "primary_metric_provisional": "macro_station_horizon_mae",
+  "secondary_metrics_provisional": [
+    "micro_mae",
+    "horizon_wise_mae",
+    "station_wise_mae",
+    "rmse",
+    "r2_where_meaningful"
+  ],
+  "information_regimes": {
+    "R0": "target-station meteorology and calendar history",
+    "R1": "R0 plus target-station PM2.5 history",
+    "R2": "R1 plus target-station co-pollutant history (PM10, SO2, NO2, CO, O3)",
+    "R3": "R2 plus cross-station history"
+  },
+  "severe_threshold_definition": {
+    "primary": "pooled_training_period_pm25_p95",
+    "robustness": "station_specific_training_p95",
+    "derived_from": "training_partition_only",
+    "numeric_value_frozen": false,
+    "note": "Not computed in Phase 0. Freezing deferred to the pre-model phase."
+  },
+  "dataset": {
+    "name": "Beijing Multi-Site Air-Quality Data",
+    "uci_id": 501,
+    "doi": "10.24432/C5RK5G",
+    "stations": 12,
+    "rows": 420768,
+    "period_start": "2013-03-01T00:00:00",
+    "period_end": "2017-02-28T23:00:00"
+  },
+  "final_test_status": "sealed",
+  "model_runs": 0,
+  "validation_metrics_seen": 0,
+  "test_metrics_seen": 0,
+  "model_roster_frozen": false,
+  "environment_frozen": false,
+  "missingness_policy_frozen": false
+}

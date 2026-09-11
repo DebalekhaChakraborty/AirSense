@@ -1,0 +1,105 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase7_pretest_freeze_addendum",
+  "stage": "B_pre_test_confirmatory_hierarchy",
+  "status": "ADDENDUM. The existing Phase-7 pre-test freeze is unchanged and remains authoritative. This document adds a frozen confirmatory hierarchy; it does not restate, supersede or modify any value in that freeze.",
+  "references": {
+    "pretest_freeze_path": "artifacts/phase7_pretest_freeze.json",
+    "pretest_freeze_sha256": "78a0e36080e52941694581eef3280b42f654f00c8865dc306deaac369ccade60",
+    "candidate_freeze_path": "artifacts/phase7_candidate_freeze.json",
+    "candidate_freeze_sha256": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+    "pretest_freeze_rewritten": false
+  },
+  "approved_by": "human review, recorded as a pre-test protocol addendum before any test access",
+  "primary_selection_unchanged": {
+    "model": "B3_R2",
+    "criterion": "macro station-horizon MAE",
+    "development_value": 30.111722,
+    "changed_by_this_addendum": false
+  },
+  "final_test_hierarchy": [
+    {
+      "rank": 1,
+      "model": "B3_R2",
+      "role": "primary confirmatory model",
+      "prespecified_endpoint": "macro station-horizon MAE",
+      "development_macro_station_horizon_MAE": 30.111722,
+      "development_severe_MAE": 136.611861,
+      "stochastic": false
+    },
+    {
+      "rank": 2,
+      "model": "GRU_R1",
+      "role": "secondary confirmatory severe-tail model",
+      "prespecified_endpoint": "severe MAE at the frozen threshold 244.0 ug/m3",
+      "severe_threshold": 244.0,
+      "development_macro_station_horizon_MAE_seed_mean": 30.75906,
+      "development_severe_MAE_seed_mean": 115.793,
+      "development_severe_MAE_seed_sd": 3.601889,
+      "seeds": 5,
+      "stochastic": true
+    },
+    {
+      "rank": 3,
+      "model": "B0",
+      "role": "reference persistence baseline; NOT a selected learned model",
+      "development_macro_station_horizon_MAE": 33.127699,
+      "development_severe_MAE": 101.273235,
+      "stochastic": false
+    }
+  ],
+  "secondary_candidate_rationale": {
+    "reason": "Severe-pollution forecasting was a predeclared secondary research objective throughout V2. Five-seed Phase-7 robustness shows GRU_R1 has materially better severe-tail performance than B3_R2 while remaining competitive overall.",
+    "severe_advantage_over_B3_R2_pct": 15.2394,
+    "overall_cost_against_B3_R2_pct": 2.1498,
+    "replaces_primary_model": false
+  },
+  "excluded_from_confirmatory_set": {
+    "models": [
+      "TCN_R1",
+      "SA_R3",
+      "iTransformer_R1",
+      "iTransformer_R2",
+      "SA_R2",
+      "B1",
+      "B2",
+      "B3_R0",
+      "B3_R1",
+      "GRU_R0",
+      "GRU_R2",
+      "TCN_R0",
+      "TCN_R2"
+    ],
+    "permitted_use": "may appear in historical development tables only",
+    "promotion_after_test_access_permitted": false
+  },
+  "multiple_comparison_discipline": {
+    "primary_confirmatory_result": "B3_R2 macro station-horizon MAE",
+    "secondary_confirmatory_result": "GRU_R1 severe MAE at threshold 244.0",
+    "benchmark_comparison": "B0 persistence",
+    "all_other_station_horizon_and_severe_diagnostics": "descriptive unless explicitly frozen before test opening",
+    "model_selection_after_observing_test_results_permitted": false
+  },
+  "leave_one_station_out_interpretation": {
+    "required_description": "held-out target-station supervision transfer with causal historical observations from the held-out station available",
+    "forbidden_description": "completely unseen-station forecasting",
+    "reason": "the held-out station's historical observation stream remained available to the shared encoder; only its training targets were withheld"
+  },
+  "supporting_evidence_sha256": {
+    "multiseed_metrics": "7649a897b8bdd01a55daa66f293ae18ceb96e092a8e84de28a586b5dd158b803",
+    "multiseed_metrics_by_horizon": "20bc84b8a49f7cb85d3907cd5c24052a5fbda46d8345404db7907eab2f0011ad",
+    "leave_one_station_out": "1c1ceee900ce14ca99931f0c83c9a2ba27348ca013ab381783a7bdeca63c1653",
+    "spatial_analysis": "a98f9546d4868fb8bc255d0f40cafa67b5fe82e7feec5f396941382b112b327c",
+    "station_coordinates": "66ace63ac2daaa97e17ff2ad97cbf526254b2ef144869ffb6c19c402b080e0a1",
+    "verification_tooling_registry": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f"
+  },
+  "severe_threshold": 244.0,
+  "context_hours": 48,
+  "full_development_refit_performed": false,
+  "test_data_accessed": false,
+  "test_targets_accessed": false,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "next_action": "STOP. Do not open the sealed final test."
+}

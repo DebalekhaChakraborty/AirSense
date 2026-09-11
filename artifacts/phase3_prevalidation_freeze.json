@@ -1,0 +1,426 @@
+{
+  "study": "AirSense V2",
+  "phase": "phase_3_prevalidation_freeze",
+  "stage": "A_before_any_numerical_validation_target_access",
+  "runtime": {
+    "python": "3.11.2",
+    "implementation": "CPython",
+    "environment_path": ".venv-v2",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "lightgbm": "4.7.0",
+    "lightgbm_version_source": "https://pypi.org/pypi/lightgbm/json (info.version)",
+    "cpu_logical_cores": 20,
+    "n_jobs_fixed_across_candidates": 16,
+    "thread_policy": "fixed n_jobs for every candidate; threads are never changed between candidates"
+  },
+  "b3_feature_schema": {
+    "context_hours": 48,
+    "lags": [
+      0,
+      1,
+      2,
+      3,
+      6,
+      12,
+      24,
+      47
+    ],
+    "lag_48_excluded_reason": "lag 48 lies outside the canonical [t-47, t] window; admitting it would require a hidden 49th hour",
+    "summary_windows_hours": [
+      3,
+      6,
+      12,
+      24,
+      48
+    ],
+    "summary_statistics": [
+      "mean",
+      "std",
+      "min",
+      "max"
+    ],
+    "summary_windows_end_at": "forecast_origin",
+    "centred_windows": false,
+    "exponentially_weighted_features": false,
+    "mask_fraction_windows_hours": [
+      6,
+      24,
+      48
+    ],
+    "wind_encoding": "deterministic one-hot over 16 frozen training categories plus MISSING",
+    "station_encoding": "deterministic one-hot over the frozen 12-station vocabulary",
+    "target_encoding_used": false,
+    "calendar": "frozen canonical origin and target cyclic channels; day_of_week and weekend excluded",
+    "horizon_as_column": false,
+    "horizon_as_column_reason": "models are trained per horizon, so horizon is constant within a matrix",
+    "per_regime": {
+      "R0": {
+        "numeric_variables": [
+          "TEMP",
+          "PRES",
+          "DEWP",
+          "RAIN",
+          "WSPM"
+        ],
+        "gap_age_variables": [],
+        "feature_count": 207,
+        "feature_names_sha256": "6e8c4338be5e79411dd0d18db4c069b67c10358be66636516ba24b0b9d49094f"
+      },
+      "R1": {
+        "numeric_variables": [
+          "PM2.5",
+          "TEMP",
+          "PRES",
+          "DEWP",
+          "RAIN",
+          "WSPM"
+        ],
+        "gap_age_variables": [
+          "PM2.5"
+        ],
+        "feature_count": 240,
+        "feature_names_sha256": "d572699532186a29f4585473ec80131f32640d1b005d7d92e400aedeee8c634c"
+      },
+      "R2": {
+        "numeric_variables": [
+          "PM2.5",
+          "PM10",
+          "SO2",
+          "NO2",
+          "CO",
+          "O3",
+          "TEMP",
+          "PRES",
+          "DEWP",
+          "RAIN",
+          "WSPM"
+        ],
+        "gap_age_variables": [
+          "PM2.5",
+          "PM10",
+          "SO2",
+          "NO2",
+          "CO",
+          "O3"
+        ],
+        "feature_count": 405,
+        "feature_names_sha256": "a3edbe0e6b975c90ff173b50756e95aeb0de0326ca21474fdffaaf98644dc73a"
+      }
+    }
+  },
+  "b3_candidate_grid": {
+    "count": 8,
+    "generation_order": "nested loop: learning_rate [0.03, 0.07] outer, num_leaves [31, 63], min_child_samples [50, 200] inner",
+    "candidate_ids": [
+      "B3_C01",
+      "B3_C02",
+      "B3_C03",
+      "B3_C04",
+      "B3_C05",
+      "B3_C06",
+      "B3_C07",
+      "B3_C08"
+    ],
+    "n_estimators_num_boost_round": 400,
+    "parameter_spelling": "native LightGBM Booster API",
+    "parameter_spelling_reason": "the lightgbm 4.7.0 sklearn wrapper requires scikit-learn, which is not part of the frozen V2 runtime; the scientific grid is identical and only the spelling is native",
+    "sklearn_equivalent_names": {
+      "n_estimators": "num_boost_round (passed to lgb.train)",
+      "min_child_samples": "min_data_in_leaf",
+      "subsample": "bagging_fraction",
+      "subsample_freq": "bagging_freq",
+      "colsample_bytree": "feature_fraction",
+      "reg_alpha": "lambda_l1",
+      "reg_lambda": "lambda_l2",
+      "random_state": "seed",
+      "n_jobs": "num_threads",
+      "verbose": "verbosity"
+    },
+    "early_stopping": false,
+    "early_stopping_reason": "an early-stopped iteration count would be one more quantity selected by looking at validation",
+    "grid_sha256": "8e2014a5e43cc518d56c3a103a23e08847d87f161250c1fc169994449d814aeb",
+    "candidates": [
+      {
+        "candidate_id": "B3_C01",
+        "learning_rate": 0.03,
+        "num_leaves": 31,
+        "min_child_samples": 50,
+        "parameters": {
+          "objective": "regression_l1",
+          "metric": "l1",
+          "max_depth": -1,
+          "bagging_fraction": 1.0,
+          "bagging_freq": 0,
+          "feature_fraction": 1.0,
+          "lambda_l1": 0.0,
+          "lambda_l2": 1.0,
+          "seed": 42,
+          "data_random_seed": 42,
+          "feature_fraction_seed": 42,
+          "bagging_seed": 42,
+          "extra_seed": 42,
+          "deterministic": true,
+          "force_col_wise": true,
+          "verbosity": -1,
+          "learning_rate": 0.03,
+          "num_leaves": 31,
+          "min_data_in_leaf": 50,
+          "num_threads": 16
+        }
+      },
+      {
+        "candidate_id": "B3_C02",
+        "learning_rate": 0.03,
+        "num_leaves": 31,
+        "min_child_samples": 200,
+        "parameters": {
+          "objective": "regression_l1",
+          "metric": "l1",
+          "max_depth": -1,
+          "bagging_fraction": 1.0,
+          "bagging_freq": 0,
+          "feature_fraction": 1.0,
+          "lambda_l1": 0.0,
+          "lambda_l2": 1.0,
+          "seed": 42,
+          "data_random_seed": 42,
+          "feature_fraction_seed": 42,
+          "bagging_seed": 42,
+          "extra_seed": 42,
+          "deterministic": true,
+          "force_col_wise": true,
+          "verbosity": -1,
+          "learning_rate": 0.03,
+          "num_leaves": 31,
+          "min_data_in_leaf": 200,
+          "num_threads": 16
+        }
+      },
+      {
+        "candidate_id": "B3_C03",
+        "learning_rate": 0.03,
+        "num_leaves": 63,
+        "min_child_samples": 50,
+        "parameters": {
+          "objective": "regression_l1",
+          "metric": "l1",
+          "max_depth": -1,
+          "bagging_fraction": 1.0,
+          "bagging_freq": 0,
+          "feature_fraction": 1.0,
+          "lambda_l1": 0.0,
+          "lambda_l2": 1.0,
+          "seed": 42,
+          "data_random_seed": 42,
+          "feature_fraction_seed": 42,
+          "bagging_seed": 42,
+          "extra_seed": 42,
+          "deterministic": true,
+          "force_col_wise": true,
+          "verbosity": -1,
+          "learning_rate": 0.03,
+          "num_leaves": 63,
+          "min_data_in_leaf": 50,
+          "num_threads": 16
+        }
+      },
+      {
+        "candidate_id": "B3_C04",
+        "learning_rate": 0.03,
+        "num_leaves": 63,
+        "min_child_samples": 200,
+        "parameters": {
+          "objective": "regression_l1",
+          "metric": "l1",
+          "max_depth": -1,
+          "bagging_fraction": 1.0,
+          "bagging_freq": 0,
+          "feature_fraction": 1.0,
+          "lambda_l1": 0.0,
+          "lambda_l2": 1.0,
+          "seed": 42,
+          "data_random_seed": 42,
+          "feature_fraction_seed": 42,
+          "bagging_seed": 42,
+          "extra_seed": 42,
+          "deterministic": true,
+          "force_col_wise": true,
+          "verbosity": -1,
+          "learning_rate": 0.03,
+          "num_leaves": 63,
+          "min_data_in_leaf": 200,
+          "num_threads": 16
+        }
+      },
+      {
+        "candidate_id": "B3_C05",
+        "learning_rate": 0.07,
+        "num_leaves": 31,
+        "min_child_samples": 50,
+        "parameters": {
+          "objective": "regression_l1",
+          "metric": "l1",
+          "max_depth": -1,
+          "bagging_fraction": 1.0,
+          "bagging_freq": 0,
+          "feature_fraction": 1.0,
+          "lambda_l1": 0.0,
+          "lambda_l2": 1.0,
+          "seed": 42,
+          "data_random_seed": 42,
+          "feature_fraction_seed": 42,
+          "bagging_seed": 42,
+          "extra_seed": 42,
+          "deterministic": true,
+          "force_col_wise": true,
+          "verbosity": -1,
+          "learning_rate": 0.07,
+          "num_leaves": 31,
+          "min_data_in_leaf": 50,
+          "num_threads": 16
+        }
+      },
+      {
+        "candidate_id": "B3_C06",
+        "learning_rate": 0.07,
+        "num_leaves": 31,
+        "min_child_samples": 200,
+        "parameters": {
+          "objective": "regression_l1",
+          "metric": "l1",
+          "max_depth": -1,
+          "bagging_fraction": 1.0,
+          "bagging_freq": 0,
+          "feature_fraction": 1.0,
+          "lambda_l1": 0.0,
+          "lambda_l2": 1.0,
+          "seed": 42,
+          "data_random_seed": 42,
+          "feature_fraction_seed": 42,
+          "bagging_seed": 42,
+          "extra_seed": 42,
+          "deterministic": true,
+          "force_col_wise": true,
+          "verbosity": -1,
+          "learning_rate": 0.07,
+          "num_leaves": 31,
+          "min_data_in_leaf": 200,
+          "num_threads": 16
+        }
+      },
+      {
+        "candidate_id": "B3_C07",
+        "learning_rate": 0.07,
+        "num_leaves": 63,
+        "min_child_samples": 50,
+        "parameters": {
+          "objective": "regression_l1",
+          "metric": "l1",
+          "max_depth": -1,
+          "bagging_fraction": 1.0,
+          "bagging_freq": 0,
+          "feature_fraction": 1.0,
+          "lambda_l1": 0.0,
+          "lambda_l2": 1.0,
+          "seed": 42,
+          "data_random_seed": 42,
+          "feature_fraction_seed": 42,
+          "bagging_seed": 42,
+          "extra_seed": 42,
+          "deterministic": true,
+          "force_col_wise": true,
+          "verbosity": -1,
+          "learning_rate": 0.07,
+          "num_leaves": 63,
+          "min_data_in_leaf": 50,
+          "num_threads": 16
+        }
+      },
+      {
+        "candidate_id": "B3_C08",
+        "learning_rate": 0.07,
+        "num_leaves": 63,
+        "min_child_samples": 200,
+        "parameters": {
+          "objective": "regression_l1",
+          "metric": "l1",
+          "max_depth": -1,
+          "bagging_fraction": 1.0,
+          "bagging_freq": 0,
+          "feature_fraction": 1.0,
+          "lambda_l1": 0.0,
+          "lambda_l2": 1.0,
+          "seed": 42,
+          "data_random_seed": 42,
+          "feature_fraction_seed": 42,
+          "bagging_seed": 42,
+          "extra_seed": 42,
+          "deterministic": true,
+          "force_col_wise": true,
+          "verbosity": -1,
+          "learning_rate": 0.07,
+          "num_leaves": 63,
+          "min_data_in_leaf": 200,
+          "num_threads": 16
+        }
+      }
+    ]
+  },
+  "selection": {
+    "criterion": "macro_station_validation_mae",
+    "criterion_definition": "MAE computed independently for each of the 12 stations at that horizon, then averaged with equal weight",
+    "selected_independently_for": "regime x horizon",
+    "tie_break_order": [
+      "lower macro-station MAE",
+      "lower macro-station RMSE",
+      "smaller num_leaves",
+      "larger min_child_samples",
+      "lower candidate id"
+    ],
+    "comparison_tolerance": 1e-12,
+    "micro_mae_used_for_selection": false
+  },
+  "regimes": [
+    "R0",
+    "R1",
+    "R2"
+  ],
+  "r3_implemented": false,
+  "horizons": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "determinism": {
+    "random_state": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "subsample": 1.0,
+    "colsample_bytree": 1.0,
+    "bagging_randomness": false,
+    "feature_subsampling_randomness": false
+  },
+  "upstream": {
+    "foundation_manifest_sha256": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+    "phase1_manifest_sha256": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+    "phase2_manifest_sha256": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+    "sample_universe_manifest_sha256": "7a767a92bc842aa33c14a08af95c3c0e4b0ba15e067cf1d5ad3518f550d7ca70",
+    "preprocessing_statistics_sha256": "c48b27be6c54091478c19c49a6cf9aee24d99e151d9090e120700be1a53c4be5",
+    "windowing_config_sha256": "1d26808d62905f358c5cecaebc8e4b14ab75089354fdfb65da2e856f5861a37c",
+    "baselines_config_sha256": "50ba5278b306764a0d42b1492fd07a30be0ababbcb9a5698fadc0e9b83be4fb0",
+    "preprocessing_config_sha256": "6e273fa776123f73436d3a820d1da674b6a05d0e311668ee73c4e373799fd823"
+  },
+  "severe_threshold": 244.0,
+  "severe_threshold_source": "training_pooled_p95",
+  "residual_convention": "residual = actual - prediction",
+  "validation_period": {
+    "start": "2015-03-01T00:00:00",
+    "end": "2016-02-29T23:00:00"
+  },
+  "final_test_status": "sealed",
+  "validation_metrics_seen": 0,
+  "test_metrics_seen": 0,
+  "test_predictions_generated": 0
+}

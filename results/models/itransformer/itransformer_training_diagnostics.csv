@@ -1,0 +1,3 @@
+model,regime,d_model,learning_rate,parameter_count,training_seconds,first_epoch_train_L1,final_epoch_train_L1
+iTransformer_R1,R1,64,0.001,109121,3595.9,43.734546,29.765728
+iTransformer_R2,R2,64,0.001,109121,6031.6,43.880795,29.850491

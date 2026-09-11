@@ -1,0 +1,29 @@
+{
+  "study": "AirSense V2",
+  "event": "development_validation_opening",
+  "phase3_prevalidation_freeze": "artifacts/phase3_prevalidation_freeze.json",
+  "phase3_prevalidation_freeze_sha256": "4cef2f6ea52422e1f91d20a98748f90f4e1d77a29d8f225458a1032c334a3369",
+  "validation_interval": {
+    "start": "2015-03-01T00:00:00",
+    "end": "2016-02-29T23:00:00"
+  },
+  "allowed_purposes": [
+    "rolling historical PM2.5 context strictly before the forecast origin",
+    "development scoring after a prediction has been produced"
+  ],
+  "forbidden_purposes": [
+    "changing the Phase-2 sample universe",
+    "changing preprocessing",
+    "changing the severe threshold",
+    "inventing features after seeing performance",
+    "changing the primary metric",
+    "any access to the locked final test"
+  ],
+  "b3_candidate_grid_already_frozen": true,
+  "b3_feature_set_already_frozen": true,
+  "primary_metric_already_frozen": true,
+  "severe_threshold_already_frozen": true,
+  "severe_threshold": 244.0,
+  "final_test_status": "sealed",
+  "note": "This receipt records the opening of development validation. It deliberately contains no performance value."
+}

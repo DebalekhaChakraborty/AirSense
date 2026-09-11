@@ -1,0 +1,39 @@
+{
+  "artifact": "phase7_station_coordinates",
+  "purpose": "Analysis-only external coordinates for Phase 7 spatial robustness",
+  "retrieved_at": "2026-09-10",
+  "source": {
+    "citation": "Wu, L., Xie, J. & Kang, K. Changing weekend effects of air pollutants in Beijing under 2020 COVID-19 lockdown controls. npj Urban Sustainability 2, 23 (2022).",
+    "doi": "10.1038/s42949-022-00070-0",
+    "url": "https://www.nature.com/articles/s42949-022-00070-0",
+    "pmc_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9510312/",
+    "table": "Table 1: Descriptions of 32 stations in Beijing",
+    "underlying_monitoring_source": "Beijing Environmental Protection Monitoring Center",
+    "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "mapping_rule": "Exact case-sensitive match between the 12 frozen AirSense station names and source Table 1 station names; no alias inference",
+  "coordinate_reference": "WGS84-style decimal degrees as reported by the source; no transformation applied",
+  "model_input": false,
+  "graph_constructed": false,
+  "causal_interpretation_permitted": false,
+  "limitations": [
+    "The source table describes the monitoring network used for 2018-2020, after the AirSense 2013-2017 observation period.",
+    "The coordinates are used only for descriptive robustness analysis and are not assumed to prove that no station relocated between periods.",
+    "The source reports coordinates to three decimal places, limiting distance precision."
+  ],
+  "stations": [
+    {"station": "Aotizhongxin", "source_station": "Aotizhongxin", "longitude": 116.397, "latitude": 39.982},
+    {"station": "Changping", "source_station": "Changping", "longitude": 116.230, "latitude": 40.217},
+    {"station": "Dingling", "source_station": "Dingling", "longitude": 116.220, "latitude": 40.292},
+    {"station": "Dongsi", "source_station": "Dongsi", "longitude": 116.417, "latitude": 39.929},
+    {"station": "Guanyuan", "source_station": "Guanyuan", "longitude": 116.339, "latitude": 39.929},
+    {"station": "Gucheng", "source_station": "Gucheng", "longitude": 116.184, "latitude": 39.914},
+    {"station": "Huairou", "source_station": "Huairou", "longitude": 116.628, "latitude": 40.328},
+    {"station": "Nongzhanguan", "source_station": "Nongzhanguan", "longitude": 116.461, "latitude": 39.937},
+    {"station": "Shunyi", "source_station": "Shunyi", "longitude": 116.655, "latitude": 40.127},
+    {"station": "Tiantan", "source_station": "Tiantan", "longitude": 116.407, "latitude": 39.886},
+    {"station": "Wanliu", "source_station": "Wanliu", "longitude": 116.287, "latitude": 39.987},
+    {"station": "Wanshouxigong", "source_station": "Wanshouxigong", "longitude": 116.352, "latitude": 39.878}
+  ]
+}

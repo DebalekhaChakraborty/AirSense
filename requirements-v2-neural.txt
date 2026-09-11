@@ -1,0 +1,20 @@
+# AirSense V2 neural runtime — direct pins, Protocol Phase 4.
+#
+# Frozen before any neural training. PyTorch 2.14.0 was verified as the
+# current stable release from the authoritative PyPI package metadata
+# (https://pypi.org/pypi/torch/json, info.version), which requires
+# Python >= 3.10.
+#
+# CPU-ONLY BY CONSTRUCTION. The default PyPI linux-x86_64 wheels are
+# CUDA-enabled and pull in the CUDA 13 toolkit and cuDNN; this host has no
+# GPU, so torch is installed from PyTorch's official CPU wheel index:
+#
+#     uv pip install --python .venv-v2/bin/python torch==2.14.0 \
+#         --index-url https://download.pytorch.org/whl/cpu
+#
+# torchvision and torchaudio are deliberately NOT installed: nothing in
+# Phase 4 depends on them.
+#
+# This file extends, and does not replace, requirements-v2-core.txt.
+torch==2.14.0+cpu
+safetensors==0.8.0

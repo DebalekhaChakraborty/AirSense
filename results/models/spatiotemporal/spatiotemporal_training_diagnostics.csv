@@ -1,0 +1,3 @@
+model,regime,hidden_size,learning_rate,parameter_count,training_seconds,first_epoch_train_L1,final_epoch_train_L1
+SA_R2,R2,128,0.001,144001,763.8,61.939335,34.199435
+SA_R3,R3,128,0.001,144001,765.7,61.955258,32.660328

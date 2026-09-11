@@ -1,0 +1,13 @@
+model,n_negative,pct_negative,min_prediction,clipped
+B0,0,0.0,3.0,false
+B1,0,0.0,3.0,false
+B2,0,0.0,14.0,false
+B3_R0,259,0.062689,-16.022535,false
+B3_R1,146,0.035338,-24.882345,false
+B3_R2,63,0.015249,-32.560593,false
+GRU_R0,10,0.00242,-2.593714,false
+GRU_R1,795,0.192425,-20.560755,false
+GRU_R2,818,0.197992,-44.206394,false
+TCN_R0,81,0.019606,-5.474878,false
+TCN_R1,346,0.083747,-41.115227,false
+TCN_R2,1212,0.293357,-45.698238,false

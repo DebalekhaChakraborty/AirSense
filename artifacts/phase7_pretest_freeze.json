@@ -1,0 +1,1009 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase7_pretest_freeze",
+  "stage": "after_robustness_before_final_test",
+  "candidate_freeze_sha256": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+  "selection_rule": {
+    "primary": "development validation macro station-horizon MAE",
+    "secondary": [
+      "severe MAE",
+      "macro RMSE",
+      "macro R2"
+    ],
+    "must_consider": [
+      "mean across seeds",
+      "seed variance",
+      "severe-tail behaviour"
+    ],
+    "forbidden": "selecting on a single best seed"
+  },
+  "selection_ranking": [
+    {
+      "model": "B3_R2",
+      "fit_count": 1,
+      "primary_macro_MAE_mean": 30.111722,
+      "primary_macro_MAE_sample_std": 0.0,
+      "macro_RMSE_mean": 50.782684,
+      "macro_R2_mean": 0.543162,
+      "severe_MAE_mean": 136.611861,
+      "severe_underprediction_pct_mean": 88.286113
+    },
+    {
+      "model": "TCN_R1",
+      "fit_count": 5,
+      "primary_macro_MAE_mean": 30.543738,
+      "primary_macro_MAE_sample_std": 0.338707,
+      "macro_RMSE_mean": 52.631439,
+      "macro_R2_mean": 0.536332,
+      "severe_MAE_mean": 137.758679,
+      "severe_underprediction_pct_mean": 91.611934
+    },
+    {
+      "model": "GRU_R1",
+      "fit_count": 5,
+      "primary_macro_MAE_mean": 30.75906,
+      "primary_macro_MAE_sample_std": 0.123331,
+      "macro_RMSE_mean": 51.822217,
+      "macro_R2_mean": 0.545714,
+      "severe_MAE_mean": 115.793,
+      "severe_underprediction_pct_mean": 91.398369
+    },
+    {
+      "model": "SA_R3",
+      "fit_count": 5,
+      "primary_macro_MAE_mean": 31.545205,
+      "primary_macro_MAE_sample_std": 0.424712,
+      "macro_RMSE_mean": 54.792075,
+      "macro_R2_mean": 0.518127,
+      "severe_MAE_mean": 136.818892,
+      "severe_underprediction_pct_mean": 93.427774
+    },
+    {
+      "model": "B0",
+      "fit_count": 1,
+      "primary_macro_MAE_mean": 33.127699,
+      "primary_macro_MAE_sample_std": 0.0,
+      "macro_RMSE_mean": 57.654653,
+      "macro_R2_mean": 0.404175,
+      "severe_MAE_mean": 101.273235,
+      "severe_underprediction_pct_mean": 71.624812
+    }
+  ],
+  "selected_final_candidates": [
+    "B3_R2"
+  ],
+  "selected_configuration_and_artifacts": {
+    "B3_R2": {
+      "model": "B3_R2",
+      "stochastic_training": false,
+      "prediction_file": "results/validation/predictions/B3_R2_validation.npy",
+      "prediction_sha256": "c447db88f257df54594744115504442f469bace3a07382b6345bc45cbfe2db17",
+      "development_validation": {
+        "macro_station_horizon_MAE": 30.111722,
+        "micro_MAE": 30.114311,
+        "macro_RMSE": 50.782684,
+        "macro_R2": 0.543162,
+        "severe_MAE": 136.611861,
+        "severe_underprediction_pct": 88.286113,
+        "negative_predictions": 63,
+        "rank_of_sixteen": 1,
+        "value_source": "phase3_frozen"
+      },
+      "family": "classical",
+      "regime": "R2 - meteorology + PM2.5 + co-pollutant history",
+      "architecture": "LightGBM gradient boosting on engineered lag and rolling features, one model per horizon",
+      "parameter_count": null,
+      "per_horizon_models": {
+        "h1": {
+          "candidate_id": "B3_C07",
+          "model_file": "results/models/b3/b3_R2_h1_B3_C07.txt",
+          "model_sha256": "347b8de0734ebba4bedc4a6b4d1b2da35a69dd86c40233f88b17be92c2655ac6"
+        },
+        "h6": {
+          "candidate_id": "B3_C02",
+          "model_file": "results/models/b3/b3_R2_h6_B3_C02.txt",
+          "model_sha256": "c5a1266a1935dfe57a6698f5441fcb5c09950d3b7633669d385b32770f8b190f"
+        },
+        "h12": {
+          "candidate_id": "B3_C01",
+          "model_file": "results/models/b3/b3_R2_h12_B3_C01.txt",
+          "model_sha256": "910c62f2344ac65b3534056f77aee1addb2bbc47e20adc1bf97a16c625b265d8"
+        },
+        "h24": {
+          "candidate_id": "B3_C01",
+          "model_file": "results/models/b3/b3_R2_h24_B3_C01.txt",
+          "model_sha256": "3133a922b953b63fe64d9e00db17fb9be4b073ca1e73605909b15e0765015000"
+        }
+      },
+      "training_configuration": "frozen Phase-3 B3 grid and selection rule"
+    }
+  },
+  "selection_rationale": "The selected model has the lowest development-validation macro station-horizon MAE under the rule declared before robustness. Seed means and sample standard deviations are used for stochastic candidates; deterministic candidates are recorded once. Severe MAE, macro RMSE and macro R2 are retained as secondary evidence and do not override the primary endpoint.",
+  "deterministic_candidates": {
+    "B0": {
+      "fit_count": 1,
+      "prediction_sha256": "0fdffec9b45767ee1b067122158ece282102ebab4500d6711568301c99330fb7",
+      "metrics": {
+        "macro_station_horizon_MAE": 33.127699,
+        "micro_MAE": 33.131272,
+        "macro_RMSE": 57.654653,
+        "micro_RMSE": 62.853741,
+        "macro_R2": 0.404175,
+        "severe_MAE": 101.273235,
+        "severe_RMSE": 152.282754,
+        "severe_mean_residual": 70.343743,
+        "severe_underprediction_pct": 71.624812,
+        "n_negative": 0.0,
+        "min_prediction": 3.0
+      },
+      "training_configuration": "none; deterministic rule"
+    },
+    "B3_R2": {
+      "fit_count": 1,
+      "prediction_sha256": "c447db88f257df54594744115504442f469bace3a07382b6345bc45cbfe2db17",
+      "metrics": {
+        "macro_station_horizon_MAE": 30.111722,
+        "micro_MAE": 30.114311,
+        "macro_RMSE": 50.782684,
+        "micro_RMSE": 55.12972,
+        "macro_R2": 0.543162,
+        "severe_MAE": 136.611861,
+        "severe_RMSE": 188.46856,
+        "severe_mean_residual": 132.017957,
+        "severe_underprediction_pct": 88.286113,
+        "n_negative": 63.0,
+        "min_prediction": -32.560593
+      },
+      "training_configuration": "frozen Phase-3 B3 grid and selection rule"
+    }
+  },
+  "stochastic_multiseed_summary": {
+    "GRU_R1": {
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "fit_count": 5,
+      "configuration_by_seed": {
+        "42": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 42,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        },
+        "43": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 43,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        },
+        "44": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 44,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        },
+        "45": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 45,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        },
+        "46": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 46,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        }
+      },
+      "only_configuration_change_across_runs": "seed",
+      "metrics": {
+        "macro_station_horizon_MAE": {
+          "mean": 30.75906,
+          "sample_std": 0.123331,
+          "min": 30.619271,
+          "max": 30.912193
+        },
+        "micro_MAE": {
+          "mean": 30.762082,
+          "sample_std": 0.123213,
+          "min": 30.622538,
+          "max": 30.915224
+        },
+        "macro_RMSE": {
+          "mean": 51.822217,
+          "sample_std": 0.085633,
+          "min": 51.7271,
+          "max": 51.96115
+        },
+        "micro_RMSE": {
+          "mean": 54.86254,
+          "sample_std": 0.128457,
+          "min": 54.672489,
+          "max": 54.994347
+        },
+        "macro_R2": {
+          "mean": 0.545714,
+          "sample_std": 0.002166,
+          "min": 0.543493,
+          "max": 0.549006
+        },
+        "severe_MAE": {
+          "mean": 115.793,
+          "sample_std": 3.601889,
+          "min": 111.641105,
+          "max": 119.077182
+        },
+        "severe_RMSE": {
+          "mean": 161.609548,
+          "sample_std": 2.430618,
+          "min": 158.607555,
+          "max": 163.830211
+        },
+        "severe_mean_residual": {
+          "mean": 112.291995,
+          "sample_std": 4.220928,
+          "min": 107.006541,
+          "max": 116.404274
+        },
+        "severe_underprediction_pct": {
+          "mean": 91.398369,
+          "sample_std": 1.833663,
+          "min": 88.983687,
+          "max": 93.555484
+        },
+        "n_negative": {
+          "mean": 661.0,
+          "sample_std": 374.426895,
+          "min": 359.0,
+          "max": 1259.0
+        },
+        "min_prediction": {
+          "mean": -28.023639,
+          "sample_std": 9.511298,
+          "min": -43.552399,
+          "max": -20.560755
+        }
+      },
+      "timing_by_seed": {
+        "42": {
+          "training_seconds_exact": 797.2,
+          "inference_seconds_exact": 19.5,
+          "fit_inference_loop_elapsed_seconds_upper_bound": null,
+          "provenance": "exact_frozen_phase_timing"
+        },
+        "43": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 788.6,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "44": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 855.0,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "45": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 796.9,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "46": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 757.3,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        }
+      },
+      "prediction_sha256_by_seed": {
+        "42": "0770870125dc7c1bdfaf01e63025695a058f70e0417eae0499bd7d8c6172080a",
+        "43": "ce30bc377fe1df9380f6eb3c75e0416d6e7b80eebf4a68cdea3a751a2d0b32fc",
+        "44": "af28bee4997adc50ab1735ffb44c1855b5e3f90275604a5b1445e91579a863d7",
+        "45": "6c64062ca527fd9d8d2f2062d321a0c8f945ce707c276c88d04e1a9cd6919024",
+        "46": "080407f95fa61843af96b36305ccf80e563a0a47819f9f80ff31bc10636e07e5"
+      }
+    },
+    "TCN_R1": {
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "fit_count": 5,
+      "configuration_by_seed": {
+        "42": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 42,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        },
+        "43": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 43,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        },
+        "44": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 44,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        },
+        "45": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 45,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        },
+        "46": {
+          "epochs": 8,
+          "batch_size": 1024,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "head_hidden": 64,
+          "dropout": 0.1,
+          "seed": 46,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false
+        }
+      },
+      "only_configuration_change_across_runs": "seed",
+      "metrics": {
+        "macro_station_horizon_MAE": {
+          "mean": 30.543738,
+          "sample_std": 0.338707,
+          "min": 30.162691,
+          "max": 30.964026
+        },
+        "micro_MAE": {
+          "mean": 30.546631,
+          "sample_std": 0.338737,
+          "min": 30.165502,
+          "max": 30.966812
+        },
+        "macro_RMSE": {
+          "mean": 52.631439,
+          "sample_std": 1.125451,
+          "min": 50.827668,
+          "max": 53.763204
+        },
+        "micro_RMSE": {
+          "mean": 55.494777,
+          "sample_std": 0.881243,
+          "min": 54.106818,
+          "max": 56.172075
+        },
+        "macro_R2": {
+          "mean": 0.536332,
+          "sample_std": 0.013778,
+          "min": 0.526062,
+          "max": 0.557539
+        },
+        "severe_MAE": {
+          "mean": 137.758679,
+          "sample_std": 10.429503,
+          "min": 123.102834,
+          "max": 152.530079
+        },
+        "severe_RMSE": {
+          "mean": 182.722174,
+          "sample_std": 9.762558,
+          "min": 168.579401,
+          "max": 195.452583
+        },
+        "severe_mean_residual": {
+          "mean": 133.105033,
+          "sample_std": 11.990414,
+          "min": 117.009009,
+          "max": 150.732632
+        },
+        "severe_underprediction_pct": {
+          "mean": 91.611934,
+          "sample_std": 2.437721,
+          "min": 88.618802,
+          "max": 95.422838
+        },
+        "n_negative": {
+          "mean": 289.6,
+          "sample_std": 96.867435,
+          "min": 169.0,
+          "max": 383.0
+        },
+        "min_prediction": {
+          "mean": -34.584781,
+          "sample_std": 4.90921,
+          "min": -41.115227,
+          "max": -30.34244
+        }
+      },
+      "timing_by_seed": {
+        "42": {
+          "training_seconds_exact": 1576.3,
+          "inference_seconds_exact": 8.8,
+          "fit_inference_loop_elapsed_seconds_upper_bound": null,
+          "provenance": "exact_frozen_phase_timing"
+        },
+        "43": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 1633.2,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "44": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 1585.2,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "45": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 1609.9,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "46": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 1565.3,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        }
+      },
+      "prediction_sha256_by_seed": {
+        "42": "10a4c3ccd1c63ada649b117666b89b8d7888032e01ae839d5ef1b82e7b5e1c1c",
+        "43": "f3c577c7cd797772b241250b7d4ef3d5dcbff7fe242d9444239080999f93b4d5",
+        "44": "2fcc3073ee9d15635c39338aa33ab2c56032a4cf42bc5593bd44aa04b4cfd6a6",
+        "45": "ced242a607f79def21602e2eea8b3d1868ab08fa678bdb29bbff3a219331431c",
+        "46": "01e2afdf44c9ac391cf8a3f05fd3e820368763b1dbc094fffa368a591cfd37d2"
+      }
+    },
+    "SA_R3": {
+      "seeds": [
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "fit_count": 5,
+      "configuration_by_seed": {
+        "42": {
+          "temporal_encoder": "shared unidirectional GRU",
+          "gru_layers": 1,
+          "bidirectional": false,
+          "attention_axis": "station",
+          "attention_heads": 4,
+          "attention_dropout": 0.1,
+          "attention_layers": 1,
+          "fusion": "LayerNorm(H + Attention(H))",
+          "graph_convolution": null,
+          "station_count": 12,
+          "head_hidden": 64,
+          "head_dropout": 0.1,
+          "epochs": 8,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "seed": 42,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false,
+          "output_constrained": false,
+          "external_coordinates": false
+        },
+        "43": {
+          "temporal_encoder": "shared unidirectional GRU",
+          "gru_layers": 1,
+          "bidirectional": false,
+          "attention_axis": "station",
+          "attention_heads": 4,
+          "attention_dropout": 0.1,
+          "attention_layers": 1,
+          "fusion": "LayerNorm(H + Attention(H))",
+          "graph_convolution": null,
+          "station_count": 12,
+          "head_hidden": 64,
+          "head_dropout": 0.1,
+          "epochs": 8,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "seed": 43,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false,
+          "output_constrained": false,
+          "external_coordinates": false
+        },
+        "44": {
+          "temporal_encoder": "shared unidirectional GRU",
+          "gru_layers": 1,
+          "bidirectional": false,
+          "attention_axis": "station",
+          "attention_heads": 4,
+          "attention_dropout": 0.1,
+          "attention_layers": 1,
+          "fusion": "LayerNorm(H + Attention(H))",
+          "graph_convolution": null,
+          "station_count": 12,
+          "head_hidden": 64,
+          "head_dropout": 0.1,
+          "epochs": 8,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "seed": 44,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false,
+          "output_constrained": false,
+          "external_coordinates": false
+        },
+        "45": {
+          "temporal_encoder": "shared unidirectional GRU",
+          "gru_layers": 1,
+          "bidirectional": false,
+          "attention_axis": "station",
+          "attention_heads": 4,
+          "attention_dropout": 0.1,
+          "attention_layers": 1,
+          "fusion": "LayerNorm(H + Attention(H))",
+          "graph_convolution": null,
+          "station_count": 12,
+          "head_hidden": 64,
+          "head_dropout": 0.1,
+          "epochs": 8,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "seed": 45,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false,
+          "output_constrained": false,
+          "external_coordinates": false
+        },
+        "46": {
+          "temporal_encoder": "shared unidirectional GRU",
+          "gru_layers": 1,
+          "bidirectional": false,
+          "attention_axis": "station",
+          "attention_heads": 4,
+          "attention_dropout": 0.1,
+          "attention_layers": 1,
+          "fusion": "LayerNorm(H + Attention(H))",
+          "graph_convolution": null,
+          "station_count": 12,
+          "head_hidden": 64,
+          "head_dropout": 0.1,
+          "epochs": 8,
+          "optimizer": "AdamW",
+          "weight_decay": 0.0001,
+          "grad_clip_global_norm": 1.0,
+          "loss": "L1",
+          "seed": 46,
+          "scheduler": null,
+          "warmup": null,
+          "early_stopping": false,
+          "output_constrained": false,
+          "external_coordinates": false
+        }
+      },
+      "only_configuration_change_across_runs": "seed",
+      "metrics": {
+        "macro_station_horizon_MAE": {
+          "mean": 31.545205,
+          "sample_std": 0.424712,
+          "min": 31.221119,
+          "max": 32.273309
+        },
+        "micro_MAE": {
+          "mean": 31.548111,
+          "sample_std": 0.424646,
+          "min": 31.224066,
+          "max": 32.276232
+        },
+        "macro_RMSE": {
+          "mean": 54.792075,
+          "sample_std": 1.498286,
+          "min": 53.598986,
+          "max": 57.171502
+        },
+        "micro_RMSE": {
+          "mean": 56.616044,
+          "sample_std": 1.11179,
+          "min": 55.712248,
+          "max": 58.369411
+        },
+        "macro_R2": {
+          "mean": 0.518127,
+          "sample_std": 0.018587,
+          "min": 0.488501,
+          "max": 0.533545
+        },
+        "severe_MAE": {
+          "mean": 136.818892,
+          "sample_std": 13.968082,
+          "min": 121.270043,
+          "max": 156.431747
+        },
+        "severe_RMSE": {
+          "mean": 182.977312,
+          "sample_std": 12.710239,
+          "min": 170.608797,
+          "max": 201.168254
+        },
+        "severe_mean_residual": {
+          "mean": 134.548022,
+          "sample_std": 15.12746,
+          "min": 116.473034,
+          "max": 155.363551
+        },
+        "severe_underprediction_pct": {
+          "mean": 93.427774,
+          "sample_std": 3.14191,
+          "min": 88.044645,
+          "max": 96.13651
+        },
+        "n_negative": {
+          "mean": 277.8,
+          "sample_std": 225.627348,
+          "min": 4.0,
+          "max": 601.0
+        },
+        "min_prediction": {
+          "mean": -5.915431,
+          "sample_std": 4.144451,
+          "min": -11.710816,
+          "max": -0.675721
+        }
+      },
+      "timing_by_seed": {
+        "42": {
+          "training_seconds_exact": 765.7,
+          "inference_seconds_exact": 15.1,
+          "fit_inference_loop_elapsed_seconds_upper_bound": null,
+          "provenance": "exact_frozen_phase_timing"
+        },
+        "43": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 768.2,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "44": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 788.5,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "45": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 779.6,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        },
+        "46": {
+          "training_seconds_exact": null,
+          "inference_seconds_exact": null,
+          "fit_inference_loop_elapsed_seconds_upper_bound": 780.1,
+          "provenance": "completion_log_upper_bound_after_timing_split_lost"
+        }
+      },
+      "prediction_sha256_by_seed": {
+        "42": "d1d4dcf4ed06437b5215fa97948d94e9c8cb46ffff7c2520fc30646ca22e87a0",
+        "43": "2c708353694085183dac00a02c7d6c3e2ffac807adb0b78abf388ebb971fa738",
+        "44": "168048f9c87a76bf7cce2a5ea37686f53f21c6cf66663dd3ebe14d2df8dd3dd2",
+        "45": "4c5acf54998f623131ff8c6594479266fc0db2f1ab6715f38c81a8dd24af6f74",
+        "46": "5ce9406899a249af780b430c7e5318eb68edf2e0ec738a6275a88c88b2481052"
+      }
+    }
+  },
+  "paired_cross_station_robustness": {
+    "horizon_SA_R3_vs_SA_R2": {
+      "h1": {
+        "definition": "positive means SA_R3 improves over SA_R2",
+        "mean_difference": 0.189341,
+        "sample_std_difference": 1.148362,
+        "paired_t_95pct_ci": [
+          -1.236539,
+          1.61522
+        ],
+        "seeds_R3_better": 2,
+        "seeds_R3_worse": 3,
+        "all_seeds_same_direction": false,
+        "note": "Small n=5 robustness interval; descriptive, not a new selection endpoint."
+      },
+      "h6": {
+        "definition": "positive means SA_R3 improves over SA_R2",
+        "mean_difference": 1.989756,
+        "sample_std_difference": 0.745338,
+        "paired_t_95pct_ci": [
+          1.064296,
+          2.915215
+        ],
+        "seeds_R3_better": 5,
+        "seeds_R3_worse": 0,
+        "all_seeds_same_direction": true,
+        "note": "Small n=5 robustness interval; descriptive, not a new selection endpoint."
+      },
+      "h12": {
+        "definition": "positive means SA_R3 improves over SA_R2",
+        "mean_difference": 1.544165,
+        "sample_std_difference": 0.622408,
+        "paired_t_95pct_ci": [
+          0.771344,
+          2.316987
+        ],
+        "seeds_R3_better": 5,
+        "seeds_R3_worse": 0,
+        "all_seeds_same_direction": true,
+        "note": "Small n=5 robustness interval; descriptive, not a new selection endpoint."
+      },
+      "h24": {
+        "definition": "positive means SA_R3 improves over SA_R2",
+        "mean_difference": 0.170068,
+        "sample_std_difference": 0.506025,
+        "paired_t_95pct_ci": [
+          -0.458245,
+          0.79838
+        ],
+        "seeds_R3_better": 3,
+        "seeds_R3_worse": 2,
+        "all_seeds_same_direction": false,
+        "note": "Small n=5 robustness interval; descriptive, not a new selection endpoint."
+      }
+    },
+    "h24_SA_R3_vs_SA_R2": {
+      "definition": "positive means SA_R3 improves over SA_R2",
+      "mean_difference": 0.170068,
+      "sample_std_difference": 0.506025,
+      "paired_t_95pct_ci": [
+        -0.458245,
+        0.79838
+      ],
+      "seeds_R3_better": 3,
+      "seeds_R3_worse": 2,
+      "all_seeds_same_direction": false,
+      "note": "Small n=5 robustness interval; descriptive, not a new selection endpoint."
+    },
+    "severe_tail_SA_R3_vs_SA_R2": {
+      "definition": "positive means SA_R3 improves over SA_R2",
+      "mean_difference": 17.618014,
+      "sample_std_difference": 9.457933,
+      "paired_t_95pct_ci": [
+        5.874439,
+        29.361589
+      ],
+      "seeds_R3_better": 5,
+      "seeds_R3_worse": 0,
+      "all_seeds_same_direction": true,
+      "note": "Small n=5 robustness interval; descriptive, not a new selection endpoint."
+    }
+  },
+  "leave_one_station_out": {
+    "protocol": "withhold every training target for one station; its causal history remains an input to the shared encoder",
+    "seed": 42,
+    "station_count": 12,
+    "mean_station_macro_over_horizon_MAE": 31.547887,
+    "normal_mean_station_macro_over_horizon_MAE": 31.532702,
+    "mean_absolute_MAE_penalty": 0.015185,
+    "mean_relative_MAE_penalty_pct": 0.134022,
+    "stations_improved_when_held_out": 5,
+    "mean_station_severe_MAE": 124.804498,
+    "normal_mean_station_severe_MAE": 121.410453,
+    "mean_severe_MAE_penalty": 3.394045,
+    "caveat": "Target-transfer test, not a completely unseen sensor: held-out station history remains visible.",
+    "prediction_sha256_by_station": {
+      "Aotizhongxin": "125da7acec07b3d1ed61fdfc182d9ccbabffad938f12b27d7b6d1830bedf6f5b",
+      "Changping": "c1922bd36041eb3238dc7537c87f85cd4dd5c387dbf3952bf497af5313eff81e",
+      "Dingling": "558accdc06b3dd6f9dc2d717b757df50e44defadb5d545e461702a4e4a04f2b1",
+      "Dongsi": "235faf12cbf61385728e24cc391b7096a4b0cf4a60a40d310342fbb0bc54b3d6",
+      "Guanyuan": "b3f4960340f81c4552725ce2f6097f65943b62582870f95b23ba3f3f387ff43b",
+      "Gucheng": "19b2d792a013831b987fb34bac0fb7f32f926c487bb262213adb8e6282262ace",
+      "Huairou": "25ccae27e36daf8316bc5819beb90d6fdbf5b6cf6c51fc6cd59f5587a5e1ab0b",
+      "Nongzhanguan": "6d0ecd49a6eacbe05b0150bc734745f0390e062993f719d81e19061a37f6f823",
+      "Shunyi": "87d411277467b67fea153dfccda0ceb67060dbb216bceb976446d967a6d267dd",
+      "Tiantan": "ba1dd791af62d1c141ad73718aab6c273866010a7a2b3b456d77bc23391f3410",
+      "Wanliu": "26ea32311c9c5ff3fac8417d509244ea1ae71edcccf7dad09530e055d0976d5a",
+      "Wanshouxigong": "914c44c5668f3f2212b64f81ff1722667fee48169c9b113271e082762d80e3cd"
+    }
+  },
+  "spatial_analysis": {
+    "artifact": "phase7_spatial_analysis",
+    "analysis_only": true,
+    "coordinates_used_as_model_input": false,
+    "graph_constructed": false,
+    "causal_claim": false,
+    "directed_off_diagonal_pairs": 132,
+    "spearman_distance_vs_attention": 0.136289,
+    "spearman_distance_vs_training_pm25_correlation": -0.938086,
+    "spearman_attention_vs_training_pm25_correlation": -0.136508,
+    "linear_attention_per_km_slope": 0.0002441737,
+    "linear_attention_intercept": 0.0763038,
+    "mean_nearest_station_attention": 0.0866483,
+    "median_nearest_station_attention": 0.07923142,
+    "nearest_is_highest_attention_count": 1,
+    "station_count": 12,
+    "distance_quartiles": [
+      {
+        "label": "nearest_quartile",
+        "n_directed_pairs": 34,
+        "mean_distance_km": 7.530921,
+        "mean_attention_weight": 0.08027192
+      },
+      {
+        "label": "q2",
+        "n_directed_pairs": 32,
+        "mean_distance_km": 18.420227,
+        "mean_attention_weight": 0.07623162
+      },
+      {
+        "label": "q3",
+        "n_directed_pairs": 34,
+        "mean_distance_km": 35.313821,
+        "mean_attention_weight": 0.08697197
+      },
+      {
+        "label": "farthest_quartile",
+        "n_directed_pairs": 32,
+        "mean_distance_km": 47.35381,
+        "mean_attention_weight": 0.08800062
+      }
+    ],
+    "coordinate_artifact_sha256": "66ace63ac2daaa97e17ff2ad97cbf526254b2ef144869ffb6c19c402b080e0a1",
+    "attention_matrix_sha256": "7addae714e5d33b22abca6d48302347114a71466e4f53f27013e501dc91100c0",
+    "training_correlation_sha256": "2f69524aa3b654d6c8382d11ad10a5cddb7538c3bdf4d6603ecac6119254e3f5",
+    "candidate_freeze_sha256": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+    "interpretation": "Descriptive robustness evidence only. Attention weights are not causal influence estimates, and geographic association does not establish mechanism."
+  },
+  "determinism_evidence": {
+    "configuration": "torch deterministic algorithms enabled; Python, NumPy and Torch seeds fixed for each run",
+    "seed42_GRU_R1_prediction_rerun_byte_identical": true,
+    "seed42_TCN_R1_prediction_rerun_byte_identical": true,
+    "seed42_SA_R3_prediction_rerun_byte_identical": true,
+    "note": "The selected seed-42 artifacts were independently refit in Phases 4 and 6; Phase 7 reuses and re-scores those byte-identical frozen predictions."
+  },
+  "post_freeze_validator_scope_correction": {
+    "reason": "The required phase7_pretest_freeze.json filename contains the substring test; the Phase-3 filename quarantine mistook that sealed-test declaration for a test result.",
+    "candidate_freeze_registry_sha256": "5386ac6f59952a8d7b1f732263384acdae40fe47539947ba0b17342575a444ee",
+    "current_registry_sha256": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f",
+    "phase3_validator_previous_sha256": "ae2a842307eff20718795bc54bfec53952fbe0026318361e1313558a9e802dc5",
+    "phase3_validator_current_sha256": "68b11a7b0c84c2835f63f23495c832111e0308767be789c23871f902ab19d2a2",
+    "change": "Exclude only filenames containing pretest from the broad artifact-name scan; all other test filenames and the dedicated prediction scan remain enforced.",
+    "scientific_artifacts_changed": false,
+    "models_or_predictions_changed": false,
+    "test_access": "none"
+  },
+  "evidence_sha256": {
+    "results/models/robustness/multiseed_metrics.csv": "7649a897b8bdd01a55daa66f293ae18ceb96e092a8e84de28a586b5dd158b803",
+    "results/models/robustness/multiseed_metrics_by_horizon.csv": "20bc84b8a49f7cb85d3907cd5c24052a5fbda46d8345404db7907eab2f0011ad",
+    "results/models/robustness/phase7_seed_metrics_complete.csv": "503ae32321a6aa24f49e7cce11bb61ea66cf086b201000802739ff862d7dec77",
+    "results/models/robustness/phase7_deterministic_metrics.csv": "ef56eb8491c59f515fea38e2693d83b7237a11ef5fb7318a7e2aef235f40a18e",
+    "results/models/robustness/phase7_h24_paired_robustness.csv": "939b8641394ea3fd0a0a71fa94be952dadecd8f555f2fe53c3fa12a293cd34f4",
+    "results/models/robustness/phase7_sa_paired_by_horizon_summary.csv": "4bf94792c9d08de5e6e68d11d82a9d7d38870e51edbcc0a653b0bca5565c950f",
+    "results/models/robustness/phase7_severe_paired_robustness.csv": "0a8162122652c4b7d883687e714215d14f4a54ef4ed22e1b000738a46166d220",
+    "results/models/robustness/leave_one_station_out.csv": "1c1ceee900ce14ca99931f0c83c9a2ba27348ca013ab381783a7bdeca63c1653",
+    "results/models/robustness/leave_one_station_out_by_horizon.csv": "2a9d519124e7e7bc169a6cc51d508287a519792191d20617e65e248d3c27fa21",
+    "results/models/robustness/station_distance_matrix_km.csv": "8d964f377e6fef9012f8628fd315da04549bf1f0fa91845bbf583b596161a746",
+    "results/models/robustness/spatial_attention_pairs.csv": "e4e99948f31e46299302c4e56307890a0519eb4fd00358d22fccaa4f363a4a97",
+    "results/models/robustness/nearest_station_attention.csv": "4512e5ddce26e608d5827eed244caf15a33686012a552e732156b107219f837f",
+    "artifacts/phase7_station_coordinates.json": "66ace63ac2daaa97e17ff2ad97cbf526254b2ef144869ffb6c19c402b080e0a1",
+    "artifacts/phase7_spatial_analysis.json": "a98f9546d4868fb8bc255d0f40cafa67b5fe82e7feec5f396941382b112b327c",
+    "artifacts/phase7_multiseed_execution_receipt.json": "44e42e9524c01ec8b646c79330d5ebfd187e2c5a5da817e66983e936c6189024",
+    "results/models/neural/determinism/GRU_R1_validation.npy": "0770870125dc7c1bdfaf01e63025695a058f70e0417eae0499bd7d8c6172080a",
+    "results/models/neural/determinism/TCN_R1_validation.npy": "10a4c3ccd1c63ada649b117666b89b8d7888032e01ae839d5ef1b82e7b5e1c1c",
+    "results/models/spatiotemporal/determinism/SA_R3_validation.npy": "d1d4dcf4ed06437b5215fa97948d94e9c8cb46ffff7c2520fc30646ca22e87a0",
+    "scripts/validate_phase3.py": "68b11a7b0c84c2835f63f23495c832111e0308767be789c23871f902ab19d2a2",
+    "artifacts/verification_tooling_registry.json": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f"
+  },
+  "upstream_manifest_sha256": {
+    "v2_foundation_manifest.json": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+    "v2_phase1_manifest.json": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+    "v2_phase2_manifest.json": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+    "v2_phase3_manifest.json": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+    "v2_phase4_manifest.json": "4a3a932afad9f69ee7dd75a7737e2132cda37edeac9de38ed26c5456a20a7716",
+    "v2_phase5_manifest.json": "6e99f07141104592c6c01b6a0a857d7b4fac2033e383aaa48b3ab3548168db10",
+    "v2_phase6_manifest.json": "7a197e323efa2d8226c5e824e23e9d7c3a0e5ee2d2022a547d2c4f828117d7a7"
+  },
+  "severe_threshold": 244.0,
+  "context_hours": 48,
+  "architecture_search_performed": false,
+  "features_changed": false,
+  "context_changed": false,
+  "severe_balancing": false,
+  "target_transformation": false,
+  "predictions_clipped": false,
+  "full_development_refit_performed": false,
+  "test_data_accessed": false,
+  "test_targets_accessed": false,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "next_action": "STOP before opening the sealed final test or refitting on full development data"
+}

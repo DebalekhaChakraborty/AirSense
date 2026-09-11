@@ -1,0 +1,303 @@
+{
+  "study": "AirSense V2",
+  "phase": "phase_1_preprocessing_contract",
+  "fitted_on": "training_partition_only",
+  "training_window": {
+    "start": "2013-03-01T00:00:00",
+    "end": "2015-02-28T23:00:00"
+  },
+  "target_missing_policy": {
+    "rule": "never_impute_target_labels",
+    "eligible_only_if_target_observed": true,
+    "excluded_counts_recorded_in": "results/eda_training/target_eligibility_by_partition_horizon.csv",
+    "applies_to": [
+      "train",
+      "validation",
+      "test"
+    ]
+  },
+  "numeric_missing_policy": {
+    "method": "causal_forward_fill_then_training_median_fallback",
+    "max_forward_fill_hours": 6,
+    "direction": "backward_in_time_only_from_origin",
+    "backward_fill_permitted": false,
+    "interpolation_permitted": false,
+    "centred_statistics_permitted": false,
+    "fallback": "station_specific_training_median",
+    "fallback_fitted_on": "train",
+    "applies_to": [
+      "PM2.5",
+      "PM10",
+      "SO2",
+      "NO2",
+      "CO",
+      "O3",
+      "TEMP",
+      "PRES",
+      "DEWP",
+      "RAIN",
+      "WSPM"
+    ],
+    "justification": "Median PM2.5 gap is 1 h and the P90 gap is 5 h; 1019 of 1112 training PM2.5 gaps are <= 6 h. Autocorrelation is 0.752 at lag 6 but 0.368 at lag 24, so a carried value older than 6 h asserts information the data does not support."
+  },
+  "categorical_missing_policy": {
+    "variables": [
+      "wd"
+    ],
+    "method": "causal_forward_fill_then_explicit_missing_category",
+    "max_forward_fill_hours": 6,
+    "numeric_interpolation_permitted": false,
+    "vocabulary_fitted_on": "train",
+    "vocabulary": [
+      "E",
+      "ENE",
+      "ESE",
+      "N",
+      "NE",
+      "NNE",
+      "NNW",
+      "NW",
+      "S",
+      "SE",
+      "SSE",
+      "SSW",
+      "SW",
+      "W",
+      "WNW",
+      "WSW"
+    ],
+    "reserved_unknown_category": "UNKNOWN",
+    "explicit_missing_category": "MISSING"
+  },
+  "missing_mask_policy": {
+    "emit_observed_mask": true,
+    "mask_variables": [
+      "PM2.5",
+      "PM10",
+      "SO2",
+      "NO2",
+      "CO",
+      "O3",
+      "TEMP",
+      "PRES",
+      "DEWP",
+      "RAIN",
+      "WSPM",
+      "wd"
+    ],
+    "encoding": "1_observed_0_imputed_or_absent",
+    "mask_precedes_imputation": true,
+    "note": "Masks record the state of the raw value before any causal fill, so a model can distinguish a measurement from a carried value."
+  },
+  "time_since_observed_policy": {
+    "emit": true,
+    "variables": [
+      "PM2.5",
+      "PM10",
+      "SO2",
+      "NO2",
+      "CO",
+      "O3"
+    ],
+    "units": "hours",
+    "cap_hours": 168,
+    "value_at_origin_if_never_observed": "cap",
+    "justification": "40% of missing training PM2.5 hours and 60% of missing CO hours fall in runs longer than 24 h, so gap age varies by orders of magnitude and must be visible to the model."
+  },
+  "scaling_policy": {
+    "scheme": "global_training_robust_scaling",
+    "formula": "(x - median) / IQR",
+    "zero_iqr_fallback_formula": "(x - median) / std",
+    "zero_iqr_variables": [
+      "RAIN"
+    ],
+    "zero_iqr_note": "RAIN is zero-inflated in training: median, P25 and P75 are all 0.0, so the IQR denominator is zero and the robust formula is undefined. Such variables use the training standard deviation instead. A companion binary rain-occurred feature is a Phase-2 option, not assumed here.",
+    "fitted_on": "training_partition_pooled_across_stations",
+    "station_specific_scaling": false,
+    "station_specific_rejected_because": "Station level differences are the signal the macro station-horizon metric is designed to compare fairly, and per-station centring would erase them and make leave-one-station-out transfer ill-defined.",
+    "target_transform": "none_in_native_ug_m3",
+    "target_transform_note": "MAE is the primary metric and is reported in native units; a log transform is a Phase-2 option to be decided explicitly, not assumed here.",
+    "applied_to_validation_and_test": "using_training_statistics_only",
+    "training_statistics": {
+      "PM2.5": {
+        "n_observed": 205989,
+        "median": 61.0,
+        "p25": 23.0,
+        "p75": 119.0,
+        "iqr": 96.0,
+        "mean": 83.996758,
+        "std": 79.045565
+      },
+      "PM10": {
+        "n_observed": 207016,
+        "median": 91.0,
+        "p25": 40.0,
+        "p75": 155.0,
+        "iqr": 115.0,
+        "mean": 110.564694,
+        "std": 90.552703
+      },
+      "SO2": {
+        "n_observed": 204833,
+        "median": 11.0,
+        "p25": 4.0,
+        "p75": 28.0,
+        "iqr": 24.0,
+        "mean": 21.331242,
+        "std": 26.347224
+      },
+      "NO2": {
+        "n_observed": 202845,
+        "median": 48.0,
+        "p25": 26.0,
+        "p75": 76.0,
+        "iqr": 50.0,
+        "mean": 54.179178,
+        "std": 35.645278
+      },
+      "CO": {
+        "n_observed": 193849,
+        "median": 1000.0,
+        "p25": 500.0,
+        "p75": 1700.0,
+        "iqr": 1200.0,
+        "mean": 1273.952112,
+        "std": 1081.710144
+      },
+      "O3": {
+        "n_observed": 202046,
+        "median": 42.0,
+        "p25": 10.0,
+        "p75": 80.0,
+        "iqr": 70.0,
+        "mean": 55.616351,
+        "std": 56.256922
+      },
+      "TEMP": {
+        "n_observed": 210064,
+        "median": 14.4,
+        "p25": 3.2,
+        "p75": 23.0,
+        "iqr": 19.8,
+        "mean": 13.555116,
+        "std": 11.276216
+      },
+      "PRES": {
+        "n_observed": 210063,
+        "median": 1010.0,
+        "p25": 1001.8,
+        "p75": 1018.0,
+        "iqr": 16.2,
+        "mean": 1010.144352,
+        "std": 10.221855
+      },
+      "DEWP": {
+        "n_observed": 210059,
+        "median": 2.7,
+        "p25": -9.2,
+        "p75": 15.6,
+        "iqr": 24.8,
+        "mean": 2.552976,
+        "std": 13.916708
+      },
+      "RAIN": {
+        "n_observed": 210069,
+        "median": 0.0,
+        "p25": 0.0,
+        "p75": 0.0,
+        "iqr": 0.0,
+        "mean": 0.0531,
+        "std": 0.724491
+      },
+      "WSPM": {
+        "n_observed": 210063,
+        "median": 1.3,
+        "p25": 0.8,
+        "p75": 2.1,
+        "iqr": 1.3,
+        "mean": 1.635595,
+        "std": 1.245604
+      }
+    },
+    "quantile_method": "linear interpolation between order statistics (type 7)"
+  },
+  "calendar_features": {
+    "frozen": [
+      "origin_hour",
+      "origin_day_of_year",
+      "origin_month",
+      "target_hour",
+      "target_day_of_year",
+      "target_month"
+    ],
+    "cyclic_encoding": [
+      "sin_cos_hour",
+      "sin_cos_day_of_year"
+    ],
+    "target_time_features_permitted": true,
+    "target_time_features_permitted_because": "calendar values at t+h are deterministic and knowable at the origin without observing anything",
+    "optional_low_priority": [
+      "day_of_week",
+      "weekend"
+    ],
+    "optional_because": "Training PM2.5 autocorrelation at a 168 h lag is 0.008, which gives no support for a weekly cycle; retained only as an explicit Phase-2 ablation.",
+    "future_observed_weather_permitted": false
+  },
+  "station_identity_policy": {
+    "encoding": "learned_embedding_or_one_hot_over_12_training_stations",
+    "fitted_on": "train",
+    "must_not_encode_partition_or_future_information": true,
+    "track_b_note": "One-hot station identity cannot transfer to an unseen station; Track B leave-one-station-out will need identity-free or attribute-based station representation."
+  },
+  "sequence_eligibility_rules": {
+    "sample_key": [
+      "station",
+      "target_timestamp",
+      "horizon"
+    ],
+    "rules": [
+      "target_timestamp lies inside the assigned partition",
+      "target PM2.5 at target_timestamp is observed (never imputed)",
+      "forecast_origin = target_timestamp - horizon exists in the dataset timeline",
+      "every input timestamp is <= forecast_origin",
+      "the required context window [origin - context + 1, origin] lies inside the dataset timeline",
+      "missing inputs inside the window are handled by the causal policy above, never by future information"
+    ],
+    "boundary_context_rule": "context may extend into the preceding partition when its timestamps precede the forecast origin; such samples are kept, not discarded",
+    "boundary_context_constraint": "model parameters and all preprocessing statistics remain fitted on the training partition only",
+    "context_dependent_eligibility_finalised_in": "phase_2"
+  },
+  "primary_severe_threshold_definition": {
+    "rule": "pooled_training_pm25_p95",
+    "comparison": "actual_pm25 > threshold",
+    "derived_from": "training_partition_only",
+    "quantile_method": "linear interpolation between order statistics (type 7)",
+    "not_a_regulatory_aqi_category": true
+  },
+  "primary_severe_threshold_value": 244.0,
+  "station_specific_thresholds": {
+    "Aotizhongxin": 247.0,
+    "Changping": 238.0,
+    "Dingling": 234.0,
+    "Dongsi": 254.0,
+    "Guanyuan": 240.15,
+    "Gucheng": 243.0,
+    "Huairou": 221.0,
+    "Nongzhanguan": 259.0,
+    "Shunyi": 238.0,
+    "Tiantan": 241.0,
+    "Wanliu": 258.0,
+    "Wanshouxigong": 253.9
+  },
+  "context_length_candidates": [
+    24,
+    48,
+    72
+  ],
+  "context_length_optional_control": [
+    168
+  ],
+  "context_length_justification": "Training PM2.5 autocorrelation falls from 0.965 at 1 h to 0.368 at 24 h, 0.098 at 48 h and -0.004 at 72 h, with 0.008 at 168 h. Usable own-history memory is effectively exhausted by 48-72 h and there is no weekly structure, so 24/48/72 h brackets the informative range; 168 h is retained only as an optional long-context control.",
+  "context_length_selected_by_model_performance": false,
+  "model_hyperparameters": null
+}

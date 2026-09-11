@@ -1,0 +1,48 @@
+{
+  "artifact": "phase7_spatial_analysis",
+  "analysis_only": true,
+  "coordinates_used_as_model_input": false,
+  "graph_constructed": false,
+  "causal_claim": false,
+  "directed_off_diagonal_pairs": 132,
+  "spearman_distance_vs_attention": 0.136289,
+  "spearman_distance_vs_training_pm25_correlation": -0.938086,
+  "spearman_attention_vs_training_pm25_correlation": -0.136508,
+  "linear_attention_per_km_slope": 0.0002441737,
+  "linear_attention_intercept": 0.0763038,
+  "mean_nearest_station_attention": 0.0866483,
+  "median_nearest_station_attention": 0.07923142,
+  "nearest_is_highest_attention_count": 1,
+  "station_count": 12,
+  "distance_quartiles": [
+    {
+      "label": "nearest_quartile",
+      "n_directed_pairs": 34,
+      "mean_distance_km": 7.530921,
+      "mean_attention_weight": 0.08027192
+    },
+    {
+      "label": "q2",
+      "n_directed_pairs": 32,
+      "mean_distance_km": 18.420227,
+      "mean_attention_weight": 0.07623162
+    },
+    {
+      "label": "q3",
+      "n_directed_pairs": 34,
+      "mean_distance_km": 35.313821,
+      "mean_attention_weight": 0.08697197
+    },
+    {
+      "label": "farthest_quartile",
+      "n_directed_pairs": 32,
+      "mean_distance_km": 47.35381,
+      "mean_attention_weight": 0.08800062
+    }
+  ],
+  "coordinate_artifact_sha256": "66ace63ac2daaa97e17ff2ad97cbf526254b2ef144869ffb6c19c402b080e0a1",
+  "attention_matrix_sha256": "7addae714e5d33b22abca6d48302347114a71466e4f53f27013e501dc91100c0",
+  "training_correlation_sha256": "2f69524aa3b654d6c8382d11ad10a5cddb7538c3bdf4d6603ecac6119254e3f5",
+  "candidate_freeze_sha256": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+  "interpretation": "Descriptive robustness evidence only. Attention weights are not causal influence estimates, and geographic association does not establish mechanism."
+}

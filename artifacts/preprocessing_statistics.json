@@ -1,0 +1,290 @@
+{
+  "source": "phase_1_frozen_training_statistics",
+  "fitted_on": "training_partition_pooled_across_stations",
+  "formula": "(x - median) / IQR",
+  "zero_iqr_fallback_formula": "(x - median) / std",
+  "zero_iqr_variables": [
+    "RAIN"
+  ],
+  "pooled_training_statistics": {
+    "PM2.5": {
+      "n_observed": 205989,
+      "median": 61.0,
+      "p25": 23.0,
+      "p75": 119.0,
+      "iqr": 96.0,
+      "mean": 83.996758,
+      "std": 79.045565
+    },
+    "PM10": {
+      "n_observed": 207016,
+      "median": 91.0,
+      "p25": 40.0,
+      "p75": 155.0,
+      "iqr": 115.0,
+      "mean": 110.564694,
+      "std": 90.552703
+    },
+    "SO2": {
+      "n_observed": 204833,
+      "median": 11.0,
+      "p25": 4.0,
+      "p75": 28.0,
+      "iqr": 24.0,
+      "mean": 21.331242,
+      "std": 26.347224
+    },
+    "NO2": {
+      "n_observed": 202845,
+      "median": 48.0,
+      "p25": 26.0,
+      "p75": 76.0,
+      "iqr": 50.0,
+      "mean": 54.179178,
+      "std": 35.645278
+    },
+    "CO": {
+      "n_observed": 193849,
+      "median": 1000.0,
+      "p25": 500.0,
+      "p75": 1700.0,
+      "iqr": 1200.0,
+      "mean": 1273.952112,
+      "std": 1081.710144
+    },
+    "O3": {
+      "n_observed": 202046,
+      "median": 42.0,
+      "p25": 10.0,
+      "p75": 80.0,
+      "iqr": 70.0,
+      "mean": 55.616351,
+      "std": 56.256922
+    },
+    "TEMP": {
+      "n_observed": 210064,
+      "median": 14.4,
+      "p25": 3.2,
+      "p75": 23.0,
+      "iqr": 19.8,
+      "mean": 13.555116,
+      "std": 11.276216
+    },
+    "PRES": {
+      "n_observed": 210063,
+      "median": 1010.0,
+      "p25": 1001.8,
+      "p75": 1018.0,
+      "iqr": 16.2,
+      "mean": 1010.144352,
+      "std": 10.221855
+    },
+    "DEWP": {
+      "n_observed": 210059,
+      "median": 2.7,
+      "p25": -9.2,
+      "p75": 15.6,
+      "iqr": 24.8,
+      "mean": 2.552976,
+      "std": 13.916708
+    },
+    "RAIN": {
+      "n_observed": 210069,
+      "median": 0.0,
+      "p25": 0.0,
+      "p75": 0.0,
+      "iqr": 0.0,
+      "mean": 0.0531,
+      "std": 0.724491
+    },
+    "WSPM": {
+      "n_observed": 210063,
+      "median": 1.3,
+      "p25": 0.8,
+      "p75": 2.1,
+      "iqr": 1.3,
+      "mean": 1.635595,
+      "std": 1.245604
+    }
+  },
+  "station_training_medians": {
+    "Aotizhongxin": {
+      "PM2.5": 66.0,
+      "PM10": 98.0,
+      "SO2": 13.0,
+      "NO2": 60.0,
+      "CO": 900.0,
+      "O3": 32.0,
+      "TEMP": 14.3,
+      "PRES": 1010.6,
+      "DEWP": 4.0,
+      "RAIN": 0.0,
+      "WSPM": 1.3
+    },
+    "Changping": {
+      "PM2.5": 53.0,
+      "PM10": 80.0,
+      "SO2": 11.0,
+      "NO2": 37.0,
+      "CO": 800.0,
+      "O3": 47.0,
+      "TEMP": 14.7,
+      "PRES": 1007.3,
+      "DEWP": 0.9,
+      "RAIN": 0.0,
+      "WSPM": 1.4
+    },
+    "Dingling": {
+      "PM2.5": 45.0,
+      "PM10": 63.0,
+      "SO2": 7.0,
+      "NO2": 20.9406,
+      "CO": 700.0,
+      "O3": 58.0,
+      "TEMP": 14.7,
+      "PRES": 1007.3,
+      "DEWP": 0.9,
+      "RAIN": 0.0,
+      "WSPM": 1.4
+    },
+    "Dongsi": {
+      "PM2.5": 66.0,
+      "PM10": 94.0,
+      "SO2": 14.0,
+      "NO2": 52.0,
+      "CO": 1100.0,
+      "O3": 43.0,
+      "TEMP": 14.4,
+      "PRES": 1012.0,
+      "DEWP": 2.5,
+      "RAIN": 0.0,
+      "WSPM": 1.5
+    },
+    "Guanyuan": {
+      "PM2.5": 65.0,
+      "PM10": 95.0,
+      "SO2": 12.0,
+      "NO2": 56.0,
+      "CO": 1000.0,
+      "O3": 38.9844,
+      "TEMP": 14.3,
+      "PRES": 1010.6,
+      "DEWP": 4.0,
+      "RAIN": 0.0,
+      "WSPM": 1.3
+    },
+    "Gucheng": {
+      "PM2.5": 65.0,
+      "PM10": 108.0,
+      "SO2": 10.0,
+      "NO2": 58.0,
+      "CO": 1000.0,
+      "O3": 42.0,
+      "TEMP": 14.8,
+      "PRES": 1008.3,
+      "DEWP": 2.4,
+      "RAIN": 0.0,
+      "WSPM": 0.9
+    },
+    "Huairou": {
+      "PM2.5": 52.0,
+      "PM10": 78.0,
+      "SO2": 7.0,
+      "NO2": 31.0,
+      "CO": 900.0,
+      "O3": 52.0,
+      "TEMP": 13.5,
+      "PRES": 1007.1,
+      "DEWP": 2.1,
+      "RAIN": 0.0,
+      "WSPM": 1.2
+    },
+    "Nongzhanguan": {
+      "PM2.5": 65.0,
+      "PM10": 96.0,
+      "SO2": 13.0,
+      "NO2": 56.0,
+      "CO": 1000.0,
+      "O3": 41.0,
+      "TEMP": 14.4,
+      "PRES": 1012.0,
+      "DEWP": 2.5,
+      "RAIN": 0.0,
+      "WSPM": 1.5
+    },
+    "Shunyi": {
+      "PM2.5": 60.0,
+      "PM10": 87.0,
+      "SO2": 7.0,
+      "NO2": 38.0,
+      "CO": 1000.0,
+      "O3": 43.0,
+      "TEMP": 14.3,
+      "PRES": 1012.4,
+      "DEWP": 2.6,
+      "RAIN": 0.0,
+      "WSPM": 1.5
+    },
+    "Tiantan": {
+      "PM2.5": 65.0,
+      "PM10": 95.0,
+      "SO2": 10.0,
+      "NO2": 50.0,
+      "CO": 1000.0,
+      "O3": 37.0,
+      "TEMP": 14.4,
+      "PRES": 1012.0,
+      "DEWP": 2.5,
+      "RAIN": 0.0,
+      "WSPM": 1.5
+    },
+    "Wanliu": {
+      "PM2.5": 68.0,
+      "PM10": 105.0,
+      "SO2": 15.0,
+      "NO2": 68.0,
+      "CO": 1000.0,
+      "O3": 26.0,
+      "TEMP": 14.3,
+      "PRES": 1010.6,
+      "DEWP": 4.0,
+      "RAIN": 0.0,
+      "WSPM": 1.3
+    },
+    "Wanshouxigong": {
+      "PM2.5": 67.0,
+      "PM10": 101.0,
+      "SO2": 11.0,
+      "NO2": 54.0,
+      "CO": 1100.0,
+      "O3": 39.0,
+      "TEMP": 14.7,
+      "PRES": 1009.7,
+      "DEWP": 3.0,
+      "RAIN": 0.0,
+      "WSPM": 1.3
+    }
+  },
+  "wind_direction_vocabulary": [
+    "E",
+    "ENE",
+    "ESE",
+    "N",
+    "NE",
+    "NNE",
+    "NNW",
+    "NW",
+    "S",
+    "SE",
+    "SSE",
+    "SSW",
+    "SW",
+    "W",
+    "WNW",
+    "WSW"
+  ],
+  "wind_direction_missing_code": 16,
+  "causal_ffill_max_hours": 6,
+  "gap_age_cap_hours": 168,
+  "target_transform": "none_native_ug_m3"
+}

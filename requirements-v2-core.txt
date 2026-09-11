@@ -1,0 +1,15 @@
+# AirSense V2 core runtime — direct pins, Protocol Phase 3.
+#
+# Frozen before validation was opened. LightGBM 4.7.0 was verified as the
+# current stable release from the authoritative PyPI package metadata
+# (https://pypi.org/pypi/lightgbm/json, info.version), which requires
+# Python >= 3.10.
+#
+# No neural framework is present, by design: PyTorch, TensorFlow, JAX,
+# Transformers, TimesFM, Chronos and Moirai belong to later phases and must
+# not be installed here.
+#
+# Environment: CPython 3.11.2, created with uv at .venv-v2/ (gitignored).
+lightgbm==4.7.0
+numpy==2.4.6
+scipy==1.17.1

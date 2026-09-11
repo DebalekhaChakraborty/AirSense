@@ -1,0 +1,15 @@
+{
+  "study": "AirSense V2",
+  "event": "phase4_external_development_validation_opening",
+  "phase3_validation_opening_receipt_sha256": "e5b4a11d8e73cfdef525b6c4d6e7ef00344d3c6a1d6139634f7c1562cb687606",
+  "phase4_architecture_selection_freeze_sha256": "501b0b78d99da55ecbdbb4bd0ff70ff210052331e84a1a6726e99c49a2f8b62e",
+  "external_validation_interval": {
+    "start": "2015-03-01T00:00:00",
+    "end": "2016-02-29T23:00:00"
+  },
+  "six_neural_models_fully_selected": true,
+  "hyperparameters_selected_from_training_only_internal_split": true,
+  "external_neural_validation_metrics_seen": 0,
+  "test_status": "sealed",
+  "note": "Records the first neural access to external development validation. It deliberately contains no performance value."
+}

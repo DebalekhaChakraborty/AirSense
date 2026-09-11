@@ -1,0 +1,74 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase4_architecture_selection_freeze",
+  "selected": {
+    "GRU": {
+      "candidate_id": "GRU_C01",
+      "capacity": 64,
+      "learning_rate": 0.0003,
+      "mean_internal_macro_station_horizon_mae": 38.230279,
+      "regimes_scored": 3
+    },
+    "TCN": {
+      "candidate_id": "TCN_C02",
+      "capacity": 32,
+      "learning_rate": 0.001,
+      "mean_internal_macro_station_horizon_mae": 38.079681,
+      "regimes_scored": 3
+    }
+  },
+  "selection_rule": "equal-weight mean over R0/R1/R2 of the internal-tuning macro station-horizon MAE",
+  "tie_break_order": [
+    "lower mean macro station-horizon MAE",
+    "lower mean macro station-horizon RMSE",
+    "smaller architecture capacity",
+    "lower learning rate",
+    "lower candidate id"
+  ],
+  "comparison_tolerance": 1e-12,
+  "selected_from": "training-only internal core/tuning split",
+  "external_validation_used_for_selection": false,
+  "same_configuration_used_for_all_regimes": true,
+  "candidate_metrics_sha256": "3731b658c1b2332bef06087583b728f4d52ae8d53ff85af20cd0aabcc5ba2aa8",
+  "candidate_selection_sha256": "4eba2247fb87c58b91b2ceac6adc9e5d1bcb53d512e5a34b40caa5dd94c5f52b",
+  "internal_split_sha256": "886392331a5520a8df0a6aa863b49e0eda6862912347fe4c4a6947329dd431ed",
+  "neural_feature_schema_sha256": "142653a75542bbe44976cbd87a809728eb9cc23e583801b5a954596f5b9eef92",
+  "training_protocol": {
+    "epochs": 8,
+    "batch_size": 1024,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "grad_clip_global_norm": 1.0,
+    "loss": "L1",
+    "head_hidden": 64,
+    "dropout": 0.1,
+    "seed": 42,
+    "scheduler": null,
+    "warmup": null,
+    "early_stopping": false
+  },
+  "runtime": {
+    "seed": 42,
+    "deterministic_algorithms": true,
+    "num_threads": 16,
+    "num_interop_threads": 1,
+    "device": "cpu",
+    "dtype": "float32",
+    "dataloader_workers": 0,
+    "amp": false,
+    "torch_compile": false,
+    "notes": []
+  },
+  "seed": 42,
+  "external_neural_validation_metrics_seen": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed",
+  "frozen_after_this_point": [
+    "architecture capacity",
+    "learning rate",
+    "epochs",
+    "batch size",
+    "loss",
+    "optimizer"
+  ]
+}

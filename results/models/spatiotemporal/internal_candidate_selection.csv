@@ -1,0 +1,5 @@
+candidate_id,hidden_size,learning_rate,regimes_scored,mean_macro_station_horizon_MAE,mean_macro_RMSE,selected
+SA_C01,64,0.0003,2,43.910904,69.111097,false
+SA_C02,64,0.001,2,35.601739,52.538297,false
+SA_C03,128,0.0003,2,37.759906,57.693354,false
+SA_C04,128,0.001,2,35.290346,52.847059,true

@@ -1,0 +1,5 @@
+candidate_id,d_model,learning_rate,regimes_scored,mean_macro_station_horizon_MAE,mean_macro_RMSE,selected
+IT_C01,64,0.0003,2,36.070144,53.502516,false
+IT_C02,64,0.001,2,35.287346,52.207649,true
+IT_C03,128,0.0003,2,36.406986,54.306609,false
+IT_C04,128,0.001,2,35.695592,52.982608,false

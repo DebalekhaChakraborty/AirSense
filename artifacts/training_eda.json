@@ -1,0 +1,191 @@
+{
+  "partition": "train",
+  "training_start": "2013-03-01T00:00:00",
+  "training_end": "2015-02-28T23:00:00",
+  "stations": [
+    "Aotizhongxin",
+    "Changping",
+    "Dingling",
+    "Dongsi",
+    "Guanyuan",
+    "Gucheng",
+    "Huairou",
+    "Nongzhanguan",
+    "Shunyi",
+    "Tiantan",
+    "Wanliu",
+    "Wanshouxigong"
+  ],
+  "hours_per_station": 17520,
+  "training_rows": 210240,
+  "target_observed": 205989,
+  "target_missing": 4251,
+  "quantile_method": "linear interpolation between order statistics (type 7)",
+  "pooled_pm25_summary": {
+    "count": 205989,
+    "mean": 83.996758,
+    "std": 79.045565,
+    "min": 2.0,
+    "max": 844.0,
+    "p01": 3.0,
+    "p05": 6.0,
+    "p25": 23.0,
+    "p50": 61.0,
+    "p75": 119.0,
+    "p90": 191.0,
+    "p95": 244.0,
+    "p99": 351.0,
+    "median": 61.0,
+    "skewness": 1.64448,
+    "excess_kurtosis": 3.640253
+  },
+  "pooled_training_p95": 244.0,
+  "station_training_p95": {
+    "Aotizhongxin": 247.0,
+    "Changping": 238.0,
+    "Dingling": 234.0,
+    "Dongsi": 254.0,
+    "Guanyuan": 240.15,
+    "Gucheng": 243.0,
+    "Huairou": 221.0,
+    "Nongzhanguan": 259.0,
+    "Shunyi": 238.0,
+    "Tiantan": 241.0,
+    "Wanliu": 258.0,
+    "Wanshouxigong": 253.9
+  },
+  "autocorrelation_pooled_pairs": {
+    "1": {
+      "r": 0.965086,
+      "pairs": 204865
+    },
+    "2": {
+      "r": 0.91888,
+      "pairs": 204466
+    },
+    "3": {
+      "r": 0.873972,
+      "pairs": 204378
+    },
+    "6": {
+      "r": 0.751537,
+      "pairs": 203980
+    },
+    "12": {
+      "r": 0.566832,
+      "pairs": 203512
+    },
+    "24": {
+      "r": 0.368044,
+      "pairs": 202844
+    },
+    "48": {
+      "r": 0.097818,
+      "pairs": 202161
+    },
+    "72": {
+      "r": -0.004124,
+      "pairs": 201647
+    },
+    "168": {
+      "r": 0.008177,
+      "pairs": 200145
+    }
+  },
+  "wind_direction_categories": [
+    "E",
+    "ENE",
+    "ESE",
+    "N",
+    "NE",
+    "NNE",
+    "NNW",
+    "NW",
+    "S",
+    "SE",
+    "SSE",
+    "SSW",
+    "SW",
+    "W",
+    "WNW",
+    "WSW"
+  ],
+  "eligibility_counts": {
+    "train|1": {
+      "candidates": 210240,
+      "origin_before_dataset": 12,
+      "target_missing": 4251,
+      "eligible": 205977
+    },
+    "train|6": {
+      "candidates": 210240,
+      "origin_before_dataset": 72,
+      "target_missing": 4251,
+      "eligible": 205917
+    },
+    "train|12": {
+      "candidates": 210240,
+      "origin_before_dataset": 144,
+      "target_missing": 4251,
+      "eligible": 205845
+    },
+    "train|24": {
+      "candidates": 210240,
+      "origin_before_dataset": 288,
+      "target_missing": 4251,
+      "eligible": 205701
+    },
+    "validation|1": {
+      "candidates": 105408,
+      "origin_before_dataset": 0,
+      "target_missing": 2121,
+      "eligible": 103287
+    },
+    "validation|6": {
+      "candidates": 105408,
+      "origin_before_dataset": 0,
+      "target_missing": 2121,
+      "eligible": 103287
+    },
+    "validation|12": {
+      "candidates": 105408,
+      "origin_before_dataset": 0,
+      "target_missing": 2121,
+      "eligible": 103287
+    },
+    "validation|24": {
+      "candidates": 105408,
+      "origin_before_dataset": 0,
+      "target_missing": 2121,
+      "eligible": 103287
+    },
+    "test|1": {
+      "candidates": 105120,
+      "origin_before_dataset": 0,
+      "target_missing": 2367,
+      "eligible": 102753
+    },
+    "test|6": {
+      "candidates": 105120,
+      "origin_before_dataset": 0,
+      "target_missing": 2367,
+      "eligible": 102753
+    },
+    "test|12": {
+      "candidates": 105120,
+      "origin_before_dataset": 0,
+      "target_missing": 2367,
+      "eligible": 102753
+    },
+    "test|24": {
+      "candidates": 105120,
+      "origin_before_dataset": 0,
+      "target_missing": 2367,
+      "eligible": 102753
+    }
+  },
+  "validation_target_analysis": false,
+  "test_target_analysis": false,
+  "model_runs": 0,
+  "predictions_generated": 0
+}

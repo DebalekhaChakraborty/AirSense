@@ -1,0 +1,13 @@
+target_station,nearest_source_station,distance_km,mean_attention_weight,attention_rank_among_other_stations,highest_attention_source_station,nearest_is_highest_attention
+Aotizhongxin,Dongsi,6.134942,0.07802129,8,Dingling,False
+Changping,Dingling,8.382697,0.13664861,1,Dingling,True
+Dingling,Changping,8.382697,0.08953794,3,Shunyi,False
+Dongsi,Nongzhanguan,3.855633,0.08534434,3,Dingling,False
+Guanyuan,Wanshouxigong,5.778351,0.07628838,8,Dingling,False
+Gucheng,Wanliu,11.957292,0.06337641,11,Dingling,False
+Huairou,Shunyi,22.467444,0.10899716,2,Dingling,False
+Nongzhanguan,Dongsi,3.855633,0.07781855,7,Dingling,False
+Shunyi,Huairou,22.467444,0.08892781,2,Dingling,False
+Tiantan,Wanshouxigong,4.776571,0.07635624,8,Dingling,False
+Wanliu,Guanyuan,7.825419,0.07875693,7,Dingling,False
+Wanshouxigong,Tiantan,4.776571,0.07970592,6,Dingling,False

@@ -1,0 +1,2 @@
+scope,hours,observed,missing,missing_pct,count,mean,std,min,p01,p05,p25,p50,p75,p90,p95,p99,max,median,skewness,excess_kurtosis
+pooled_training,210240,205989,4251,2.021975,205989,83.996758,79.045565,2.0,3.0,6.0,23.0,61.0,119.0,191.0,244.0,351.0,844.0,61.0,1.64448,3.640253

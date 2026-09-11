@@ -1,0 +1,13 @@
+scope,increment,from_model,to_model,from_macro_MAE,to_macro_MAE,absolute_MAE_improvement,relative_MAE_improvement_pct
+overall,R0_to_R1_pm25_history,B3_R0,B3_R1,40.623282,30.472594,10.150687,24.987364
+horizon_1,R0_to_R1_pm25_history,B3_R0,B3_R1,31.951415,9.24478,22.706635,71.066132
+horizon_6,R0_to_R1_pm25_history,B3_R0,B3_R1,36.117432,26.713071,9.404361,26.038288
+horizon_12,R0_to_R1_pm25_history,B3_R0,B3_R1,42.846422,37.29794,5.548482,12.949698
+horizon_24,R0_to_R1_pm25_history,B3_R0,B3_R1,51.577856,48.634585,2.943272,5.706464
+severe,R0_to_R1_pm25_history,B3_R0,B3_R1,176.973428,138.850707,38.12272,21.541494
+overall,R1_to_R2_copollutant_history,B3_R1,B3_R2,30.472594,30.111722,0.360872,1.18425
+horizon_1,R1_to_R2_copollutant_history,B3_R1,B3_R2,9.24478,9.022346,0.222434,2.406048
+horizon_6,R1_to_R2_copollutant_history,B3_R1,B3_R2,26.713071,26.457257,0.255815,0.957638
+horizon_12,R1_to_R2_copollutant_history,B3_R1,B3_R2,37.29794,36.763023,0.534918,1.434175
+horizon_24,R1_to_R2_copollutant_history,B3_R1,B3_R2,48.634585,48.204264,0.430321,0.884804
+severe,R1_to_R2_copollutant_history,B3_R1,B3_R2,138.850707,136.966263,1.884444,1.357173
