@@ -1,0 +1,4 @@
+model,severe_n,severe_MAE,severe_RMSE,severe_mean_residual,severe_underprediction_pct,severe_macro_station_horizon_MAE,contributing_cells,total_cells
+B3_R2,20336,131.901121,173.423318,127.650421,88.596577,131.557564,48,48
+GRU_R1,20336,109.33289,141.985607,106.594564,93.73033,109.960239,48,48
+B0,20336,93.224479,134.656962,65.549321,72.59048,92.572546,48,48

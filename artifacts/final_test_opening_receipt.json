@@ -1,0 +1,45 @@
+{
+  "study": "AirSense V2",
+  "artifact": "final_test_opening_receipt",
+  "authorization": "Human-approved AirSense V2 locked final-test opening",
+  "authorization_detail": "Authorized by the locked Phase-8 execution prompt and the human-approved pre-opening protocol correction recorded in artifacts/phase8_preopening_protocol_amendment.json. Every pre-opening gate passed before this receipt was written.",
+  "preopening_integrity_receipt_sha256": "f5874620337843092a11d31b1cb79ab8d299444608a9ef121579a512ee864c67",
+  "pretest_git_snapshot": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+  "phase7_freeze_sha256": "78a0e36080e52941694581eef3280b42f654f00c8865dc306deaac369ccade60",
+  "phase7_addendum_sha256": "6a1342b7a70eb6b238df95ae5c62950db258e23f70d7feb6c3245de7013708e2",
+  "phase7_registry_sha256": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f",
+  "phase8_registry_sha256": "c59abf2765fbb0782ea2f52761be3a60aca7e9892242ba4b3c1787fe9facc021",
+  "phase8_protocol_amendment_sha256": "abfc1d50e027f132b213ac826b4d263555aa2d0924415fd92a2a2d6fd29537ab",
+  "confirmatory_models": [
+    "B3_R2",
+    "GRU_R1",
+    "B0"
+  ],
+  "primary_model": "B3_R2",
+  "secondary_model": "GRU_R1",
+  "secondary_model_seed": 42,
+  "reference_model": "B0",
+  "test_interval": {
+    "start": "2016-03-01T00:00:00",
+    "end": "2017-02-28T23:00:00",
+    "partition_by": "target timestamp"
+  },
+  "test_sample_count": 411012,
+  "test_index_sha256": "29928d53832aa032b45ce5cd9d45fb45e8026b18020c0eec42c0c6c1dbffd57e",
+  "context_hours": 48,
+  "horizons": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "severe_threshold": 244.0,
+  "model_retraining": 0,
+  "model_selection_after_test_permitted": false,
+  "predictions_clipped": false,
+  "test_target_accessed": false,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "status": "AUTHORIZED_TO_OPEN",
+  "next_action": "Stage A: chronological prediction generation. The first numerical final-test target may be read only by the Stage-B scoring layer, after the prediction lock exists."
+}

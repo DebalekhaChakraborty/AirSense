@@ -1,0 +1,129 @@
+{
+  "study": "AirSense V2",
+  "artifact": "v2_phase8_manifest",
+  "phase": "phase_8_locked_final_test",
+  "branch": "master",
+  "pretest_git_snapshot": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+  "head_at_evaluation": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+  "legacy_unchanged": true,
+  "protocol_amendment": {
+    "artifact": "artifacts/phase8_preopening_protocol_amendment.json",
+    "sha256": "abfc1d50e027f132b213ac826b4d263555aa2d0924415fd92a2a2d6fd29537ab",
+    "scientific_protocol_changed": false,
+    "storage_namespace_corrected": true
+  },
+  "upstream_manifest_sha256": {
+    "v2_foundation_manifest.json": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+    "v2_phase1_manifest.json": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+    "v2_phase2_manifest.json": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+    "v2_phase3_manifest.json": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+    "v2_phase4_manifest.json": "4a3a932afad9f69ee7dd75a7737e2132cda37edeac9de38ed26c5456a20a7716",
+    "v2_phase5_manifest.json": "6e99f07141104592c6c01b6a0a857d7b4fac2033e383aaa48b3ab3548168db10",
+    "v2_phase6_manifest.json": "7a197e323efa2d8226c5e824e23e9d7c3a0e5ee2d2022a547d2c4f828117d7a7"
+  },
+  "phase7_freeze_sha256": {
+    "phase7_candidate_freeze.json": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+    "phase7_pretest_freeze.json": "78a0e36080e52941694581eef3280b42f654f00c8865dc306deaac369ccade60",
+    "phase7_pretest_freeze_addendum.json": "6a1342b7a70eb6b238df95ae5c62950db258e23f70d7feb6c3245de7013708e2"
+  },
+  "verification_tooling_registry_sha256": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f",
+  "phase7_registry_mutated_by_phase8": false,
+  "phase8_verification_tooling_registry_sha256": "c59abf2765fbb0782ea2f52761be3a60aca7e9892242ba4b3c1787fe9facc021",
+  "phase8_validator_sha256": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231",
+  "phase8_code_sha256": {
+    "src/evaluation/final_test.py": "458da6ba54d886432e13aea339e5d006243099692703a707cab5a1fe8db4b2a3",
+    "scripts/run_phase8_final_test.py": "a6eaf547f7080b65191efb2f7b7e4ce18fe66e94d4289de224800734811a9013",
+    "scripts/build_phase8_receipts.py": "145d5d8cb3096add35e9230728cf246854c2e51fd87fbbcbfb93131bf3604f09",
+    "scripts/verify_phase8_independently.py": "e164555b557bba778e344083778e00b9f12064c47450842a398c706afc9c4cb6",
+    "scripts/build_phase8_figures.py": "4f2447970baa9c367cb765a4cefbff709a17de88631801bf6663b63b880211f5",
+    "tests/test_phase8_final_test.py": "415f9b6b69167e28ce7c741153fc11824a0835940bec65d84f614aec21c7e7f1"
+  },
+  "preopening_integrity_receipt_sha256": "f5874620337843092a11d31b1cb79ab8d299444608a9ef121579a512ee864c67",
+  "opening_receipt_sha256": "52c5e68caf1b5e40a206b290995a921654b8ee6f9f7f4f22a077633f97c8599b",
+  "test_index_sha256": "29928d53832aa032b45ce5cd9d45fb45e8026b18020c0eec42c0c6c1dbffd57e",
+  "model_artifact_sha256": {
+    "B3_R2_h1": "347b8de0734ebba4bedc4a6b4d1b2da35a69dd86c40233f88b17be92c2655ac6",
+    "B3_R2_h6": "c5a1266a1935dfe57a6698f5441fcb5c09950d3b7633669d385b32770f8b190f",
+    "B3_R2_h12": "910c62f2344ac65b3534056f77aee1addb2bbc47e20adc1bf97a16c625b265d8",
+    "B3_R2_h24": "3133a922b953b63fe64d9e00db17fb9be4b073ca1e73605909b15e0765015000",
+    "GRU_R1.safetensors": "37e0d900206a1a9e8d076fa5223fa614a41dbf8b0c7b905f4f34f4e4150b6dd7",
+    "GRU_R1_config.json": "0cc119982f02e0fb14de652d6158195cd667c8ad5a5799fdcb014ac7f756bb35"
+  },
+  "prediction_sha256": {
+    "B3_R2": "cfd1d13cf0f5568f6c3f7b20babfe4ed6efef45596a25f947664dd73068dd8f5",
+    "GRU_R1": "8656e6a6104074eca01f40724c2aa7842f8bb9d4f5736f63325bc76b79b41e6a",
+    "B0": "a2792b5456f5284b6edecdb7d388e62caa2ee35187ef16a862890a6043550c65"
+  },
+  "prediction_file": {
+    "B3_R2": "artifacts/phase8_predictions/B3_R2.npy",
+    "GRU_R1": "artifacts/phase8_predictions/GRU_R1.npy",
+    "B0": "artifacts/phase8_predictions/B0.npy"
+  },
+  "prediction_lock_sha256": "25751d669a3ff3096728c049db9b593d2620f4938e281d8eeaef147952fe91b5",
+  "metric_table_sha256": {
+    "confirmatory_endpoints.json": "d5276586785e29e1339d035943ce90abd4f00abfd3366810efbd8cdde23a6354",
+    "final_model_comparison.csv": "ab062658d3987d7ccce8724fb91b76e7b2915ca529bced0b58319bc41780033d",
+    "metrics_by_horizon.csv": "602939ec89d8217a9d517f581e805f5b3ff654e03c96c116d04880807575f092",
+    "metrics_by_station.csv": "780d3beed337aff88158c9b8841b68aa15c36b9192ac2fd8bcccf04471cde072",
+    "metrics_by_station_horizon.csv": "12a2e50fcac34bc6bb2ebd64d3bd777f8568a8e1550405e1c99d9b8fe7353987",
+    "negative_predictions.csv": "345ee269a81976942884902a60c5a309d905fb274f5c9d628b24696f62262079",
+    "severe_metrics.csv": "27f205ff5c28ba9edfde7f7a0f64f28d83bc293725fdfe5131c9bea9847b2540"
+  },
+  "confirmatory_endpoints_sha256": "d5276586785e29e1339d035943ce90abd4f00abfd3366810efbd8cdde23a6354",
+  "primary_results_lock_sha256": "5c92451317f8348dbac978a23bd11246aee89355746d270efcc599c780027b5e",
+  "final_test_metrics_sha256": "eaff81fd1c237671a4a47f36f27da9ad53c01d5be346e7d990fa5014477f7f38",
+  "figure_sha256": {
+    "phase8_final_test_primary_mae.png": "e56b90dc5a5e777baac72fe527aee49a0c79b5d0404301f486b38c0b5a12aec2",
+    "phase8_final_test_severe_mae.png": "59edd43afcc250de63655482a731f7dde422c56ef6c30b2d28f7226149f05424",
+    "phase8_final_test_mae_by_horizon.png": "f46450dd7ad6bb0d0221808b308412bba37b5ada657979a21a2f464fc653bd0b"
+  },
+  "test_interval": {
+    "start": "2016-03-01T00:00:00",
+    "end": "2017-02-28T23:00:00",
+    "partition_by": "target timestamp"
+  },
+  "test_sample_count": 411012,
+  "severe_sample_count": 20336,
+  "context_hours": 48,
+  "horizons": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "station_horizon_cells": 48,
+  "severe_threshold": 244.0,
+  "severe_rule": "actual > 244.0",
+  "residual_convention": "actual - prediction",
+  "primary_model": "B3_R2",
+  "primary_endpoint": "macro_station_horizon_MAE",
+  "secondary_model": "GRU_R1",
+  "secondary_model_seed": 42,
+  "secondary_endpoint": "severe_MAE_gt_244.0",
+  "reference_model": "B0",
+  "models_evaluated": 3,
+  "model_retraining": 0,
+  "model_refitting": 0,
+  "train_validation_refit_performed": false,
+  "model_selection_after_test": false,
+  "predictions_clipped": false,
+  "future_target_access_violations": 0,
+  "test_predictions_generated": 1233036,
+  "test_metrics_seen": true,
+  "post_test_exploration_performed": false,
+  "environment": {
+    "python": "3.11.2",
+    "python_implementation": "CPython",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "lightgbm": "4.7.0",
+    "torch": "2.14.0+cpu",
+    "safetensors": "0.8.0",
+    "device": "cpu",
+    "cuda_available": false,
+    "torch_threads": 10,
+    "platform": "Linux-6.1.0-52-cloud-amd64-x86_64-with-glibc2.36"
+  },
+  "final_test_status": "evaluated",
+  "next_phase": "post-test error analysis, clearly labelled as post-test and held for human review before it begins"
+}

@@ -1,0 +1,12 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_figure_manifest",
+  "drawn_after_primary_results_lock": true,
+  "primary_results_lock_sha256": "5c92451317f8348dbac978a23bd11246aee89355746d270efcc599c780027b5e",
+  "exploratory_figures": 0,
+  "figure_sha256": {
+    "phase8_final_test_primary_mae.png": "e56b90dc5a5e777baac72fe527aee49a0c79b5d0404301f486b38c0b5a12aec2",
+    "phase8_final_test_severe_mae.png": "59edd43afcc250de63655482a731f7dde422c56ef6c30b2d28f7226149f05424",
+    "phase8_final_test_mae_by_horizon.png": "f46450dd7ad6bb0d0221808b308412bba37b5ada657979a21a2f464fc653bd0b"
+  }
+}

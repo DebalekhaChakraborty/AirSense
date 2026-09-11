@@ -1,0 +1,35 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_confirmatory_endpoints",
+  "stage": "B_locked_final_test_scored",
+  "primary": {
+    "model": "B3_R2",
+    "role": "PRIMARY CONFIRMATORY MODEL",
+    "endpoint": "macro_station_horizon_MAE",
+    "value": 31.98722559774534,
+    "cells": 48
+  },
+  "secondary": {
+    "model": "GRU_R1",
+    "role": "SECONDARY CONFIRMATORY SEVERE-TAIL MODEL",
+    "endpoint": "severe_MAE_gt_244",
+    "severe_threshold": 244.0,
+    "value": 109.3328897571946,
+    "severe_n": 20336,
+    "seed": 42
+  },
+  "reference": {
+    "model": "B0",
+    "role": "REFERENCE BENCHMARK",
+    "macro_station_horizon_MAE": 36.138513538776856,
+    "severe_MAE_gt_244": 93.22447875688434
+  },
+  "test_sample_count": 411012,
+  "severe_sample_count": 20336,
+  "prediction_lock_sha256": "25751d669a3ff3096728c049db9b593d2620f4938e281d8eeaef147952fe91b5",
+  "prediction_sha256": {
+    "B3_R2": "cfd1d13cf0f5568f6c3f7b20babfe4ed6efef45596a25f947664dd73068dd8f5",
+    "GRU_R1": "8656e6a6104074eca01f40724c2aa7842f8bb9d4f5736f63325bc76b79b41e6a",
+    "B0": "a2792b5456f5284b6edecdb7d388e62caa2ee35187ef16a862890a6043550c65"
+  }
+}

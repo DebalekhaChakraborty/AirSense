@@ -1,0 +1,74 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_verification_tooling_registry",
+  "created_in_phase": "phase_8_before_any_numerical_final_test_access",
+  "what_this_is": "An append-only Phase-8 provenance layer over the frozen Phase-7 verification tooling registry. It adds the completed Phase-7 validator and the new Phase-8 validator without changing a single byte of its parent.",
+  "why_it_exists": "artifacts/phase7_pretest_freeze.json hashes the Phase-7 registry as frozen scientific evidence, and validate_phase7.py re-hashes it. Appending to the parent would therefore invalidate historical frozen evidence. The human-approved resolution preserves the parent and records Phase-8 tooling here instead.",
+  "parent_registry": "artifacts/verification_tooling_registry.json",
+  "parent_registry_sha256": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f",
+  "parent_registry_revision": "phase_4_validator_scope_correction + phase_5_validator_scope_correction + phase_6_validator_ownership_correction + phase_7_ownership_rule_generalisation + phase_7_pretest_filename_correction",
+  "protocol_amendment": "artifacts/phase8_preopening_protocol_amendment.json",
+  "validators": {
+    "scripts/validate_foundation.py": {
+      "sha256": "e98eb0efa49f56d42f84a4d00956670d21b8863b798310af51e21d3c94001d40",
+      "status": "pinned unchanged in the parent Phase-7 registry",
+      "parent_registry_sha256": "e98eb0efa49f56d42f84a4d00956670d21b8863b798310af51e21d3c94001d40",
+      "matches_parent_registry": true
+    },
+    "scripts/validate_phase1.py": {
+      "sha256": "226a1af307ee96a5d696ec00fb9211a8aba8a576398426af36f9afbb05247cdd",
+      "status": "pinned unchanged in the parent Phase-7 registry",
+      "parent_registry_sha256": "226a1af307ee96a5d696ec00fb9211a8aba8a576398426af36f9afbb05247cdd",
+      "matches_parent_registry": true
+    },
+    "scripts/validate_phase2.py": {
+      "sha256": "95adac8ea44dd0b7f8de36e23205d17537f3b55783a28500bac3e7f8a4b50f14",
+      "status": "pinned unchanged in the parent Phase-7 registry",
+      "parent_registry_sha256": "95adac8ea44dd0b7f8de36e23205d17537f3b55783a28500bac3e7f8a4b50f14",
+      "matches_parent_registry": true
+    },
+    "scripts/validate_phase3.py": {
+      "sha256": "68b11a7b0c84c2835f63f23495c832111e0308767be789c23871f902ab19d2a2",
+      "status": "pinned unchanged in the parent Phase-7 registry",
+      "parent_registry_sha256": "68b11a7b0c84c2835f63f23495c832111e0308767be789c23871f902ab19d2a2",
+      "matches_parent_registry": true
+    },
+    "scripts/validate_phase4.py": {
+      "sha256": "6a7bc38f7f85afc515347ea78a223bd7c549da17580d2e140e03f55fa17d944b",
+      "status": "pinned unchanged in the parent Phase-7 registry",
+      "parent_registry_sha256": "6a7bc38f7f85afc515347ea78a223bd7c549da17580d2e140e03f55fa17d944b",
+      "matches_parent_registry": true
+    },
+    "scripts/validate_phase5.py": {
+      "sha256": "50fd58c1d2c14fa469f56575deb95b45663a21e47b4b1d7e0718e3ef47596e7a",
+      "status": "pinned unchanged in the parent Phase-7 registry",
+      "parent_registry_sha256": "50fd58c1d2c14fa469f56575deb95b45663a21e47b4b1d7e0718e3ef47596e7a",
+      "matches_parent_registry": true
+    },
+    "scripts/validate_phase6.py": {
+      "sha256": "848ec9fd9c8610d3a28028d790fc84a8d6ffa54a65431b9b941929f51188b1e4",
+      "status": "pinned unchanged in the parent Phase-7 registry",
+      "parent_registry_sha256": "848ec9fd9c8610d3a28028d790fc84a8d6ffa54a65431b9b941929f51188b1e4",
+      "matches_parent_registry": true
+    },
+    "scripts/validate_phase7.py": {
+      "sha256": "72b2b3351a632178f337a7c89a3764c43fea909fcc4ad37436564ea5731f74ba",
+      "status": "completed Phase-7 validator registered by Phase 8 without mutating the Phase-7 registry"
+    },
+    "scripts/validate_phase8.py": {
+      "sha256": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231",
+      "status": "Phase-8 final-test validator frozen before numerical test opening"
+    }
+  },
+  "validator_count": 9,
+  "upstream_validator_sources_changed": false,
+  "phase7_registry_changed": false,
+  "phase7_freeze_changed": false,
+  "scientific_assertions_changed": false,
+  "gates_removed": 0,
+  "gates_disabled": 0,
+  "test_data_accessed": false,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed"
+}

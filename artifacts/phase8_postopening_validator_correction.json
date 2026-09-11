@@ -1,0 +1,51 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_postopening_validator_correction",
+  "stage": "post_opening_human_approved_validation_correction",
+  "status": "Created after the authorized one-way final-test opening, after the results were locked and independently verified. It changes no scientific artifact, no model, no prediction and no metric.",
+  "approved_by": "human review, after the locked final test was opened, predicted, locked, scored and independently verified",
+  "reason": "Phase-3 contains a historical final-test seal gate whose assertion is intentionally false after the authorized Phase-8 one-way final-test opening.",
+  "decision": "Preserve the historical validator unchanged and validate the post-opening state using a separate phase-aware validator.",
+  "detail": {
+    "gate": "No test prediction or test metric artifact exists",
+    "gate_location": "scripts/validate_phase3.py, quarantine()",
+    "gate_scope": "results/validation/predictions, results/validation, results/models/b3 and artifacts, scanned recursively for any filename matching 'test', excluding only 'latest' and 'pretest'",
+    "was_true_through_phase_7": true,
+    "intentionally_false_after_authorized_opening": true,
+    "triggering_paths": [
+      "artifacts/final_test_opening_receipt.json",
+      "artifacts/phase8_final_test_metrics.json"
+    ],
+    "why_the_triggers_are_legitimate": "The opening receipt is the artifact that authorizes the one-way transition, and is mandated by the locked Phase-8 protocol. Its presence is evidence that the transition occurred under authorization. The metrics artifact is the frozen confirmatory result record. Renaming either to obtain a green validator would be evading a seal tripwire rather than satisfying it.",
+    "cascade": "validate_phase4 through validate_phase7 nest validate_phase3 and therefore also return non-zero. No gate owned by Phase 4, 5, 6 or 7 fails.",
+    "why_this_was_not_visible_before_opening": "The opening receipt is written immediately before Stage A, so the gate could not fire until the moment the test was legitimately opened. Any conforming Phase-8 execution reaches the same state."
+  },
+  "resolution": {
+    "new_validator": "scripts/validate_phase8_postopening.py",
+    "new_validator_purpose": "Validate the repository after the authorized one-way transition without pretending the historical pre-test seal still exists.",
+    "phase_0_to_2_requirement": "PASS outright with existing gate counts 24 / 31 / 58",
+    "phase_3_requirement": "exactly one failing gate, the historical seal gate, triggered by exactly the two authorized Phase-8 artifacts and nothing else",
+    "phase_4_to_7_requirement": "no independently owned gate failure; the only tolerated failures are the nested Phase-3 seal cascade",
+    "phase_8_requirement": "every non-upstream gate of the pre-opening-frozen validator still passes, and the confirmatory values reconcile independently against the frozen result artifacts"
+  },
+  "upstream_validator_modified": false,
+  "existing_phase8_validator_modified": false,
+  "scientific_files_changed": false,
+  "models_changed": false,
+  "weights_changed": false,
+  "predictions_changed": false,
+  "metrics_changed": false,
+  "sample_universe_changed": false,
+  "confirmatory_hierarchy_changed": false,
+  "primary_endpoint_changed": false,
+  "secondary_endpoint_changed": false,
+  "severe_threshold_changed": false,
+  "artifacts_renamed": 0,
+  "gates_removed": 0,
+  "gates_disabled": 0,
+  "historical_gate_suppressed": false,
+  "historical_gate_reinterpreted": false,
+  "historical_gate_expected_to_fail_after_authorized_opening": true,
+  "post_test_analysis_started": false,
+  "final_test_status": "evaluated"
+}

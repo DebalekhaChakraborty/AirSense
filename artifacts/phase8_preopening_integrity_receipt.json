@@ -1,0 +1,191 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_preopening_integrity_receipt",
+  "stage": "pre_opening_all_gates_green_test_still_sealed",
+  "git": {
+    "branch": "master",
+    "head": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+    "origin_master": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+    "legacy": "16c9030cf74508b620cc6d28f90346aa379f29cd",
+    "head_is_pretest_snapshot": true,
+    "working_tree_clean_before_phase8_artifacts": true,
+    "working_tree_clean_now": false,
+    "uncommitted_paths_are_phase8_outputs_only": true,
+    "uncommitted_paths": [
+      "artifacts/phase8_preopening_protocol_amendment.json",
+      "artifacts/phase8_verification_tooling_registry.json",
+      "docs/PHASE_08_FINAL_TEST_PROTOCOL.md",
+      "scripts/build_phase8_figures.py",
+      "scripts/build_phase8_manifest.py",
+      "scripts/build_phase8_receipts.py",
+      "scripts/run_phase8_final_test.py",
+      "scripts/validate_phase8.py",
+      "scripts/verify_phase8_independently.py",
+      "src/evaluation/final_test.py",
+      "tests/test_phase8_final_test.py"
+    ],
+    "git_writes_performed": 0
+  },
+  "upstream_validators": {
+    "validate_foundation.py": {
+      "exit_code": 0,
+      "gates": 24,
+      "passed": 24,
+      "failed": 0
+    },
+    "validate_phase1.py": {
+      "exit_code": 0,
+      "gates": 31,
+      "passed": 31,
+      "failed": 0
+    },
+    "validate_phase2.py": {
+      "exit_code": 0,
+      "gates": 58,
+      "passed": 58,
+      "failed": 0
+    },
+    "validate_phase3.py": {
+      "exit_code": 0,
+      "gates": 47,
+      "passed": 47,
+      "failed": 0
+    },
+    "validate_phase4.py": {
+      "exit_code": 0,
+      "gates": 74,
+      "passed": 74,
+      "failed": 0
+    },
+    "validate_phase5.py": {
+      "exit_code": 0,
+      "gates": 95,
+      "passed": 95,
+      "failed": 0
+    },
+    "validate_phase6.py": {
+      "exit_code": 0,
+      "gates": 97,
+      "passed": 97,
+      "failed": 0
+    },
+    "validate_phase7.py": {
+      "exit_code": 0,
+      "gates": 32,
+      "passed": 32,
+      "failed": 0
+    }
+  },
+  "upstream_manifest_sha256": {
+    "v2_foundation_manifest.json": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+    "v2_phase1_manifest.json": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+    "v2_phase2_manifest.json": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+    "v2_phase3_manifest.json": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+    "v2_phase4_manifest.json": "4a3a932afad9f69ee7dd75a7737e2132cda37edeac9de38ed26c5456a20a7716",
+    "v2_phase5_manifest.json": "6e99f07141104592c6c01b6a0a857d7b4fac2033e383aaa48b3ab3548168db10",
+    "v2_phase6_manifest.json": "7a197e323efa2d8226c5e824e23e9d7c3a0e5ee2d2022a547d2c4f828117d7a7"
+  },
+  "phase7_freeze_sha256": "78a0e36080e52941694581eef3280b42f654f00c8865dc306deaac369ccade60",
+  "phase7_addendum_sha256": "6a1342b7a70eb6b238df95ae5c62950db258e23f70d7feb6c3245de7013708e2",
+  "phase7_candidate_freeze_sha256": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+  "phase7_registry_sha256": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f",
+  "phase7_registry_matches_freeze": true,
+  "phase8_registry_sha256": "c59abf2765fbb0782ea2f52761be3a60aca7e9892242ba4b3c1787fe9facc021",
+  "phase8_protocol_amendment_sha256": "abfc1d50e027f132b213ac826b4d263555aa2d0924415fd92a2a2d6fd29537ab",
+  "phase8_validator_sha256": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231",
+  "phase8_runner_sha256": "a6eaf547f7080b65191efb2f7b7e4ce18fe66e94d4289de224800734811a9013",
+  "phase8_evaluation_layer_sha256": "458da6ba54d886432e13aea339e5d006243099692703a707cab5a1fe8db4b2a3",
+  "phase8_unit_test_sha256": "415f9b6b69167e28ce7c741153fc11824a0835940bec65d84f614aec21c7e7f1",
+  "test_index_sha256": "29928d53832aa032b45ce5cd9d45fb45e8026b18020c0eec42c0c6c1dbffd57e",
+  "test_index_matches_phase2_universe": true,
+  "test_sample_count": 411012,
+  "b3_r2_models": {
+    "h1": {
+      "candidate_id": "B3_C07",
+      "model_file": "results/models/b3/b3_R2_h1_B3_C07.txt",
+      "sha256": "347b8de0734ebba4bedc4a6b4d1b2da35a69dd86c40233f88b17be92c2655ac6",
+      "matches_pretest_freeze": true
+    },
+    "h6": {
+      "candidate_id": "B3_C02",
+      "model_file": "results/models/b3/b3_R2_h6_B3_C02.txt",
+      "sha256": "c5a1266a1935dfe57a6698f5441fcb5c09950d3b7633669d385b32770f8b190f",
+      "matches_pretest_freeze": true
+    },
+    "h12": {
+      "candidate_id": "B3_C01",
+      "model_file": "results/models/b3/b3_R2_h12_B3_C01.txt",
+      "sha256": "910c62f2344ac65b3534056f77aee1addb2bbc47e20adc1bf97a16c625b265d8",
+      "matches_pretest_freeze": true
+    },
+    "h24": {
+      "candidate_id": "B3_C01",
+      "model_file": "results/models/b3/b3_R2_h24_B3_C01.txt",
+      "sha256": "3133a922b953b63fe64d9e00db17fb9be4b073ca1e73605909b15e0765015000",
+      "matches_pretest_freeze": true
+    }
+  },
+  "gru_r1_model": {
+    "weights": "results/models/neural/GRU_R1.safetensors",
+    "weights_sha256": "37e0d900206a1a9e8d076fa5223fa614a41dbf8b0c7b905f4f34f4e4150b6dd7",
+    "config": "results/models/neural/GRU_R1_config.json",
+    "config_sha256": "0cc119982f02e0fb14de652d6158195cd667c8ad5a5799fdcb014ac7f756bb35",
+    "seed": 42
+  },
+  "b0_protocol": {
+    "protocol_source": "src/models/baselines.py",
+    "protocol_sha256": "1f06f357d121b32321b37a9eb22d68c62679f10491b6a5721ee472a33bbf44b7",
+    "rolling_history_source": "src/data/rolling_history.py",
+    "rolling_history_sha256": "34e541d16e217bca76111db06c5ac20e0e1f74a71c589bd59f45d94138018cea",
+    "rule": "PM2.5 observed at origin, else causal carry within 6 h, else station training median"
+  },
+  "feature_schema_sha256": {
+    "information_regime_schema.json": "f97dd4c384692efbbaf9eff68d9ea9ab27f5f7b46f63fea8d9572a92918c6d17",
+    "neural_feature_schema.json": "142653a75542bbe44976cbd87a809728eb9cc23e583801b5a954596f5b9eef92",
+    "b3_features.py": "13a531208e39ae289b889c29bbbfb6fe886f30aaefc962f74cc3e1a5e7484936",
+    "neural_features.py": "69df59acd2b25a510e5bf970a5a0fe88ed385dbf0487cfa0391ed0b42e68fdc1"
+  },
+  "environment": {
+    "python": "3.11.2",
+    "python_implementation": "CPython",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "lightgbm": "4.7.0",
+    "torch": "2.14.0+cpu",
+    "safetensors": "0.8.0",
+    "device": "cpu",
+    "cuda_available": false,
+    "torch_threads": 10,
+    "platform": "Linux-6.1.0-52-cloud-amd64-x86_64-with-glibc2.36"
+  },
+  "confirmatory_hierarchy": {
+    "primary": {
+      "model": "B3_R2",
+      "endpoint": "macro station-horizon MAE"
+    },
+    "secondary": {
+      "model": "GRU_R1",
+      "seed": 42,
+      "endpoint": "severe MAE at 244.0"
+    },
+    "reference": {
+      "model": "B0",
+      "role": "persistence benchmark, not a selected learned model"
+    }
+  },
+  "severe_threshold": 244.0,
+  "context_hours": 48,
+  "horizons": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "phase7_frozen_registry_mutated": false,
+  "upstream_validator_modified": false,
+  "model_retraining": 0,
+  "test_target_accessed": false,
+  "test_predictions_generated": 0,
+  "test_metrics_seen": 0,
+  "final_test_status": "sealed"
+}

@@ -1,0 +1,64 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_prediction_lock",
+  "stage": "A_complete_predictions_frozen_before_scoring",
+  "opening_receipt_sha256": "52c5e68caf1b5e40a206b290995a921654b8ee6f9f7f4f22a077633f97c8599b",
+  "preopening_integrity_receipt_sha256": "f5874620337843092a11d31b1cb79ab8d299444608a9ef121579a512ee864c67",
+  "test_index_sha256": "29928d53832aa032b45ce5cd9d45fb45e8026b18020c0eec42c0c6c1dbffd57e",
+  "test_sample_count": 411012,
+  "models": {
+    "B3_R2": {
+      "prediction_file": "artifacts/phase8_predictions/B3_R2.npy",
+      "length": 411012,
+      "dtype": "float32",
+      "bytes": 1644176,
+      "sha256": "cfd1d13cf0f5568f6c3f7b20babfe4ed6efef45596a25f947664dd73068dd8f5"
+    },
+    "GRU_R1": {
+      "prediction_file": "artifacts/phase8_predictions/GRU_R1.npy",
+      "length": 411012,
+      "dtype": "float32",
+      "bytes": 1644176,
+      "sha256": "8656e6a6104074eca01f40724c2aa7842f8bb9d4f5736f63325bc76b79b41e6a"
+    },
+    "B0": {
+      "prediction_file": "artifacts/phase8_predictions/B0.npy",
+      "length": 411012,
+      "dtype": "float32",
+      "bytes": 1644176,
+      "sha256": "a2792b5456f5284b6edecdb7d388e62caa2ee35187ef16a862890a6043550c65"
+    }
+  },
+  "model_artifact_sha256": {
+    "B3_R2_h1": "347b8de0734ebba4bedc4a6b4d1b2da35a69dd86c40233f88b17be92c2655ac6",
+    "B3_R2_h6": "c5a1266a1935dfe57a6698f5441fcb5c09950d3b7633669d385b32770f8b190f",
+    "B3_R2_h12": "910c62f2344ac65b3534056f77aee1addb2bbc47e20adc1bf97a16c625b265d8",
+    "B3_R2_h24": "3133a922b953b63fe64d9e00db17fb9be4b073ca1e73605909b15e0765015000",
+    "GRU_R1.safetensors": "37e0d900206a1a9e8d076fa5223fa614a41dbf8b0c7b905f4f34f4e4150b6dd7",
+    "GRU_R1_config.json": "0cc119982f02e0fb14de652d6158195cd667c8ad5a5799fdcb014ac7f756bb35"
+  },
+  "b0_source_counts": {
+    "observed_at_origin": 404852,
+    "short_causal_carry": 4939,
+    "station_training_median_fallback": 1221
+  },
+  "alignment_verified": true,
+  "chronological_blocks": 13,
+  "reveal_ledger": {
+    "reveal_ceiling_index": 35062,
+    "blocks_advanced": 13,
+    "index_checks": 793,
+    "indices_checked": 1233036,
+    "max_index_read": 35062,
+    "max_forecast_origin": 35062,
+    "future_target_access_violations": 0,
+    "violation_detail": []
+  },
+  "future_target_access_violations": 0,
+  "model_retraining": 0,
+  "predictions_clipped": false,
+  "test_metrics_seen": 0,
+  "prediction_generation_complete": true,
+  "predictions_frozen_before_scoring": true,
+  "final_test_status": "opened_for_locked_evaluation"
+}

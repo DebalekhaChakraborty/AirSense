@@ -1,0 +1,4 @@
+model,n_negative,pct_negative,min_prediction
+B3_R2,53,0.012895,-14.424702
+GRU_R1,1358,0.330404,-28.539839
+B0,0,0.0,2.0

@@ -1,0 +1,50 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_postopening_tooling_registry",
+  "created_in_phase": "phase_8_after_the_authorized_one_way_final_test_opening",
+  "what_this_is": "An append-only post-opening provenance layer. It adds the Phase-8 post-opening final-state validator without changing a byte of either existing registry.",
+  "why_it_exists": "The Phase-3 historical seal gate is intentionally false after the authorized opening, so the pre-opening-frozen Phase-8 validator can no longer return zero in full mode. Rather than patch a validator after metrics were seen, a separate post-opening validator checks the final state and is registered here.",
+  "parent_registry": "artifacts/phase8_verification_tooling_registry.json",
+  "parent_registry_sha256": "c59abf2765fbb0782ea2f52761be3a60aca7e9892242ba4b3c1787fe9facc021",
+  "phase7_registry_lineage": {
+    "registry": "artifacts/verification_tooling_registry.json",
+    "sha256": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f",
+    "unchanged_since_phase_7": true,
+    "note": "Hashed as frozen evidence inside artifacts/phase7_pretest_freeze.json; never modified."
+  },
+  "correction_record": "artifacts/phase8_postopening_validator_correction.json",
+  "correction_record_sha256": "af823f28d8704cb19d1246c40129b5c959fd8acb2fffbeccc8b58e70c7e56d30",
+  "validators": {
+    "scripts/validate_phase8_postopening.py": {
+      "sha256": "f029363c0d268d6db10750214f65a292d33c962b98bdc7c5b27624da0a506121",
+      "status": "Human-approved Phase-8 post-opening final-state validator",
+      "revision": "severe-boundary assertion corrected before acceptance: the first draft required boundary samples to be severe, which inverted the frozen strict '>' rule; no scientific value changed"
+    },
+    "scripts/validate_phase8.py": {
+      "sha256": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231",
+      "status": "Pre-opening-frozen Phase-8 validator preserved as historical evidence.",
+      "matches_preopening_registry": true,
+      "source_changed_after_metrics_seen": false
+    }
+  },
+  "inherited_validator_sha256": {
+    "scripts/validate_foundation.py": "e98eb0efa49f56d42f84a4d00956670d21b8863b798310af51e21d3c94001d40",
+    "scripts/validate_phase1.py": "226a1af307ee96a5d696ec00fb9211a8aba8a576398426af36f9afbb05247cdd",
+    "scripts/validate_phase2.py": "95adac8ea44dd0b7f8de36e23205d17537f3b55783a28500bac3e7f8a4b50f14",
+    "scripts/validate_phase3.py": "68b11a7b0c84c2835f63f23495c832111e0308767be789c23871f902ab19d2a2",
+    "scripts/validate_phase4.py": "6a7bc38f7f85afc515347ea78a223bd7c549da17580d2e140e03f55fa17d944b",
+    "scripts/validate_phase5.py": "50fd58c1d2c14fa469f56575deb95b45663a21e47b4b1d7e0718e3ef47596e7a",
+    "scripts/validate_phase6.py": "848ec9fd9c8610d3a28028d790fc84a8d6ffa54a65431b9b941929f51188b1e4",
+    "scripts/validate_phase7.py": "72b2b3351a632178f337a7c89a3764c43fea909fcc4ad37436564ea5731f74ba",
+    "scripts/validate_phase8.py": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231"
+  },
+  "inherited_validators_unchanged": true,
+  "upstream_validator_sources_changed": false,
+  "phase7_registry_changed": false,
+  "phase8_preopening_registry_changed": false,
+  "phase7_freeze_changed": false,
+  "scientific_assertions_changed": false,
+  "gates_removed": 0,
+  "gates_disabled": 0,
+  "final_test_status": "evaluated"
+}
