@@ -17,16 +17,25 @@ distinction:
   by **exactly** the two authorized Phase-8 artifacts;
 * Phases 4-7 must show no independently owned failure - their only tolerated
   failures are the nested upstream cascade from Phase 3;
-* every non-upstream Phase-8 gate from the pre-opening-frozen validator must
-  still pass;
+* the pre-opening-frozen Phase-8 validator must fail on **nothing** beyond its
+  two exact-pre-test-HEAD assertions;
 * the confirmatory values must reconcile independently against the frozen
   result artifacts, which are the numerical authority.
+
+Git state is checked by **immutable freeze-point ancestry**, not by equality
+with any single commit. The pre-test snapshot must be an ancestor of the
+locked-evaluation checkpoint, and that checkpoint an ancestor of HEAD, so later
+scientific phases can legitimately descend from it while neither anchor can be
+rewritten out of history. `git merge-base --is-ancestor` is used rather than a
+search of the log, so a detached or rewritten history cannot satisfy it.
 
 Nothing here trains, predicts, rewrites or recomputes through model code. It
 reads frozen evidence and re-derives declared assertions.
 
 Usage:
     .venv-v2/bin/python scripts/validate_phase8_postopening.py
+    .venv-v2/bin/python scripts/validate_phase8_postopening.py \
+        --postcommit-receipt
 """
 
 import ast
@@ -61,6 +70,21 @@ AUTHORIZED_SEAL_TRIGGERS = sorted([
 ])
 
 PRETEST_GIT_SHA = "75494266792e09bbcfa51c00aaacec58c5b0fb4a"
+PRE_TEST_SHA = "75494266792e09bbcfa51c00aaacec58c5b0fb4a"
+LOCKED_EVALUATION_SHA = "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b"
+PRE_TEST_SUBJECT = "Freeze AirSense V2 pre-test research state"
+LOCKED_EVALUATION_SUBJECT = "Freeze AirSense V2 locked final-test evaluation"
+
+# The pre-opening-frozen Phase-8 validator asserts exact equality between HEAD
+# and the pre-test snapshot. That was correct while the repository sat on that
+# commit and is intentionally false once the authorized locked-evaluation
+# checkpoint exists. Those two gates are tolerated here - and only those two -
+# exactly as the Phase-3 seal cascade is. Every other gate it owns must pass.
+HISTORICAL_HEAD_GATES = {
+    "HEAD is the pre-test evidence snapshot",
+    "origin/master matches the pre-test snapshot",
+}
+
 EXPECTED_TEST_SAMPLES = 411012
 EXPECTED_TOTAL_PREDICTIONS = 1233036
 EXPECTED_SEVERE_N = 20336
@@ -105,6 +129,86 @@ def sha256_of_file(path):
 def load_json(path):
     with open(str(path), encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def git(*args):
+    result = subprocess.run(["git"] + list(args), cwd=str(PROJECT_ROOT),
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    return result.returncode, result.stdout.decode("utf-8").strip()
+
+
+def commit_exists(sha):
+    code, _ = git("cat-file", "-e", "%s^{commit}" % sha)
+    return code == 0
+
+
+def is_ancestor(ancestor, descendant):
+    """True only on a real ancestry relation, not on mere presence in the log."""
+    code, _ = git("merge-base", "--is-ancestor", ancestor, descendant)
+    return code == 0
+
+
+def git_ancestry(report, record):
+    """Immutable freeze-point ancestry, replacing exact pre-test HEAD equality.
+
+    The repository legitimately moves forward: the locked-evaluation checkpoint
+    descends from the pre-test snapshot, and later phases will descend from the
+    checkpoint. What must never change is that both freeze points remain in
+    history, in order.
+    """
+    _, head = git("rev-parse", "HEAD")
+    _, origin = git("rev-parse", "origin/master")
+    _, branch = git("branch", "--show-current")
+
+    report.add("A  Pre-test snapshot commit exists",
+               commit_exists(PRE_TEST_SHA), PRE_TEST_SHA)
+    report.add("B  Locked-evaluation commit exists",
+               commit_exists(LOCKED_EVALUATION_SHA), LOCKED_EVALUATION_SHA)
+    report.add("C  Pre-test snapshot is an ancestor of locked evaluation",
+               is_ancestor(PRE_TEST_SHA, LOCKED_EVALUATION_SHA))
+    report.add("D  Locked evaluation is an ancestor of current HEAD",
+               is_ancestor(LOCKED_EVALUATION_SHA, head), head)
+    report.add("E  History contains both freeze points in the correct order",
+               commit_exists(PRE_TEST_SHA) and commit_exists(
+                   LOCKED_EVALUATION_SHA)
+               and is_ancestor(PRE_TEST_SHA, LOCKED_EVALUATION_SHA)
+               and is_ancestor(LOCKED_EVALUATION_SHA, head))
+    report.add("F  origin/master equals current HEAD",
+               origin == head and origin != "",
+               "HEAD %s, origin/master %s" % (head, origin))
+    report.add("   Branch is master", branch == "master", branch)
+
+    subjects = {}
+    for label, sha, expected in (
+            ("pre_test", PRE_TEST_SHA, PRE_TEST_SUBJECT),
+            ("locked_evaluation", LOCKED_EVALUATION_SHA,
+             LOCKED_EVALUATION_SUBJECT)):
+        _, subject = git("log", "-1", "--format=%s", sha)
+        subjects[label] = subject
+        report.add("   %s commit subject is unchanged" % label.replace(
+            "_", " "), subject == expected, "%r" % subject)
+
+    _, legacy = git("rev-parse", "legacy")
+    report.add("   V1 legacy is untouched",
+               legacy == "16c9030cf74508b620cc6d28f90346aa379f29cd", legacy)
+
+    record["git_ancestry"] = OrderedDict([
+        ("pre_test_sha", PRE_TEST_SHA),
+        ("locked_evaluation_sha", LOCKED_EVALUATION_SHA),
+        ("head", head),
+        ("origin_master", origin),
+        ("branch", branch),
+        ("pre_test_exists", commit_exists(PRE_TEST_SHA)),
+        ("locked_evaluation_exists", commit_exists(LOCKED_EVALUATION_SHA)),
+        ("pre_test_is_ancestor_of_locked_evaluation",
+         is_ancestor(PRE_TEST_SHA, LOCKED_EVALUATION_SHA)),
+        ("locked_evaluation_is_ancestor_of_head",
+         is_ancestor(LOCKED_EVALUATION_SHA, head)),
+        ("origin_master_equals_head", origin == head),
+        ("commit_subjects", subjects),
+        ("legacy", legacy),
+        ("semantics", "immutable freeze-point ancestry"),
+    ])
 
 
 def run_validator(name, interpreter):
@@ -232,19 +336,30 @@ def frozen_phase8_validator(report, record):
             gates.append(match.group(2))
             if match.group(2) == "FAIL":
                 failures.append(match.group(1).strip())
-    report.add("Every non-upstream gate of the frozen Phase-8 validator "
-               "passes", result.returncode == 0 and not failures,
-               "exit %d, failures %s" % (result.returncode, failures))
+    beyond_head = [label for label in failures
+                   if label not in HISTORICAL_HEAD_GATES]
+    report.add("Frozen Phase-8 validator fails on no gate beyond its "
+               "historical HEAD assertions", not beyond_head,
+               "unexpected failures: %s" % beyond_head)
+    report.add("Its only failures are the two exact-pre-test-HEAD gates",
+               sorted(failures) == sorted(HISTORICAL_HEAD_GATES),
+               "failures: %s" % failures)
     record["validate_phase8.py"] = OrderedDict([
-        ("status", "non_upstream_gates_PASS"),
+        ("status", "non_upstream_scientific_gates_PASS_with_expected_"
+                   "historical_head_assertions"),
         ("source_unchanged", True),
         ("sha256", sha256_of_file(PROJECT_ROOT / "scripts"
                                   / "validate_phase8.py")),
         ("gates_checked", len(gates)),
-        ("failures", failures),
+        ("historical_head_gate_failures", sorted(failures)),
+        ("failures_beyond_historical_head_gates", beyond_head),
+        ("historical_head_semantics", "EXPECTED_TRANSITION"),
         ("note", "Pre-opening-frozen Phase-8 validator preserved as "
-                 "historical evidence; its full-mode run also reports the "
-                 "expected upstream seal cascade."),
+                 "historical evidence. It asserts exact equality between HEAD "
+                 "and the pre-test snapshot, which the authorized "
+                 "locked-evaluation checkpoint intentionally makes false, and "
+                 "its full-mode run also reports the expected Phase-3 seal "
+                 "cascade. Its source is never patched."),
     ])
 
 
@@ -445,12 +560,13 @@ def state_transition(report):
                not offenders, "offenders: %s" % offenders)
 
 
-def write_receipt(path, report, record):
+def write_receipt(path, artifact, stage, report, record):
     """Record what this run measured. Written only when every gate passed."""
     payload = OrderedDict([
         ("study", "AirSense V2"),
-        ("artifact", "phase8_postopening_validation_receipt"),
-        ("stage", "post_opening_final_state_verified"),
+        ("artifact", artifact),
+        ("stage", stage),
+        ("git_state", record.get("git_ancestry", {})),
         ("phase8_manifest_sha256",
          sha256_of_file(ARTIFACTS / "v2_phase8_manifest.json")),
         ("primary_results_lock_sha256",
@@ -467,6 +583,15 @@ def write_receipt(path, report, record):
             ARTIFACTS / "phase8_postopening_tooling_registry.json")),
         ("postopening_validator_sha256", sha256_of_file(
             PROJECT_ROOT / "scripts" / "validate_phase8_postopening.py")),
+        ("postcommit_correction_record_sha256", sha256_of_file(
+            ARTIFACTS / "phase8_postcommit_validator_correction.json")
+         if (ARTIFACTS
+             / "phase8_postcommit_validator_correction.json").is_file()
+         else None),
+        ("postcommit_tooling_registry_sha256", sha256_of_file(
+            ARTIFACTS / "phase8_postcommit_tooling_registry.json")
+         if (ARTIFACTS / "phase8_postcommit_tooling_registry.json").is_file()
+         else None),
         ("validators", OrderedDict([
             ("validate_foundation.py", "PASS"),
             ("validate_phase1.py", "PASS"),
@@ -481,7 +606,8 @@ def write_receipt(path, report, record):
             ("validate_phase7.py",
              "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE"),
             ("validate_phase8.py",
-             "historical result recorded, source unchanged"),
+             "historical result recorded, source unchanged; exact-pre-test-"
+             "HEAD gates are an EXPECTED_TRANSITION"),
             ("validate_phase8_postopening.py", "PASS"),
         ])),
         ("validator_detail", record),
@@ -491,6 +617,8 @@ def write_receipt(path, report, record):
         ("phase3_seal_gate_triggers", AUTHORIZED_SEAL_TRIGGERS),
         ("historical_gate_suppressed", False),
         ("historical_gate_reinterpreted", False),
+        ("git_semantics", "immutable freeze-point ancestry"),
+        ("scientific_drift", 0),
         ("upstream_validator_modified", False),
         ("existing_phase8_validator_modified", False),
         ("scientific_drift", 0),
@@ -509,13 +637,20 @@ def write_receipt(path, report, record):
 
 
 def main():
-    receipt_path = None
-    if "--receipt" in sys.argv:
+    receipt_path = artifact = stage = None
+    if "--postcommit-receipt" in sys.argv:
+        receipt_path = ARTIFACTS / "phase8_postcommit_validation_receipt.json"
+        artifact = "phase8_postcommit_validation_receipt"
+        stage = "post_commit_final_state_verified"
+    elif "--receipt" in sys.argv:
         receipt_path = ARTIFACTS / "phase8_postopening_validation_receipt.json"
+        artifact = "phase8_postopening_validation_receipt"
+        stage = "post_opening_final_state_verified"
 
     report = Report()
     record = OrderedDict()
 
+    git_ancestry(report, record)
     phase_0_to_2(report, record)
     phase_3_seal_transition(report, record)
     phase_4_to_7_cascade(report, record)
@@ -533,8 +668,9 @@ def main():
     print("Final test: EVALUATED. Phase 3 seal gate: EXPECTED_TRANSITION.")
     print("Scientific drift: 0. Prediction drift: 0. Metric drift: 0.")
     if receipt_path is not None:
-        print("post-opening validation receipt  %s"
-              % write_receipt(receipt_path, report, record))
+        print("%s  %s" % (receipt_path.name,
+                          write_receipt(receipt_path, artifact, stage,
+                                        report, record)))
     return 0
 
 

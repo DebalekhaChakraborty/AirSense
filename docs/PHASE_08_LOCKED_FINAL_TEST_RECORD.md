@@ -478,3 +478,72 @@ tooling registry.
 
 Neither existing registry was rewritten. The Phase-7 registry remains
 `a1ec2652…79122f`, exactly as `artifacts/phase7_pretest_freeze.json` hashes it.
+
+---
+
+## POST-EVALUATION GIT CHECKPOINT SEMANTICS
+
+*Added after the locked final-test evaluation was committed and pushed. No
+result is reinterpreted and no metric value above changes.*
+
+The study now has two immutable evidence anchors in `master`:
+
+| Commit | Subject | Role |
+|---|---|---|
+| `7549426` | Freeze AirSense V2 pre-test research state | the repository exactly as it stood before the sealed test was ever opened |
+| `9a787a6` | Freeze AirSense V2 locked final-test evaluation | the locked evaluation, purely additive: 37 files, 5,413 insertions, 0 deletions, 0 modifications |
+
+Neither commit was rewritten, and neither may be.
+
+### Two validators, two correct semantics
+
+`scripts/validate_phase8.py` was frozen before numerical test opening and
+asserts **exact equality** between HEAD and the pre-test snapshot. Once the
+locked-evaluation checkpoint exists, HEAD has necessarily moved, so its two git
+gates — `HEAD is the pre-test evidence snapshot` and `origin/master matches the
+pre-test snapshot` — now fail.
+
+That source is preserved byte-for-byte. It is evidence of the protocol as it
+stood before the test was opened, and its failing gates are a historical
+transition, exactly like the Phase-3 seal gate. It is **not** relabelled as
+currently applicable, and it is **not** patched.
+
+`scripts/validate_phase8_postopening.py` validates the repository as it evolves
+and therefore uses **immutable freeze-point ancestry** instead:
+
+| | Assertion |
+|---|---|
+| A | the pre-test snapshot commit exists |
+| B | the locked-evaluation commit exists |
+| C | the pre-test snapshot is an ancestor of the locked-evaluation commit |
+| D | the locked-evaluation commit is an ancestor of current HEAD |
+| E | history contains both freeze points, in that order |
+| F | `origin/master` equals current HEAD |
+
+Ancestry is tested with `git merge-base --is-ancestor`, which requires a real
+ancestry relation. Finding a SHA somewhere in `git log` is explicitly not
+accepted, so a rewritten or grafted history cannot satisfy these gates. Both
+commit subjects are verified too.
+
+This is stronger than log membership and weaker than equality in exactly one
+dimension — the tip — which is the dimension that must be free to move so that
+Phase 9 and later legitimate work can descend from the locked-evaluation
+checkpoint without either anchor becoming unverifiable.
+
+The post-opening validator also tolerates **exactly** the two historical
+exact-HEAD gates of the frozen validator and requires every other gate it owns
+to pass, the same treatment already given to the Phase-3 seal cascade.
+
+### Provenance
+
+| Artifact | Role |
+|---|---|
+| `artifacts/phase8_postcommit_validator_correction.json` | the decision, both validator SHAs, and the semantics change |
+| `artifacts/phase8_postcommit_tooling_registry.json` | append-only; parent is the post-opening registry, whose lineage runs back through the pre-opening Phase-8 registry to the frozen Phase-7 registry |
+| `artifacts/phase8_postcommit_validation_receipt.json` | what the corrected run measured |
+
+The earlier `phase8_postopening_validator_correction.json` and all three prior
+registries were left untouched; they remain historical evidence of the state
+they described. Change scope: **Git state semantics only.**
+`scientific_assertion_changed: false`, `scientific_result_changed: false`,
+`gates_removed: 0`, `scientific_detection_weakened: false`.

@@ -1,0 +1,58 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_postcommit_tooling_registry",
+  "created_in_phase": "phase_8_after_the_authorized_locked_evaluation_git_checkpoint",
+  "what_this_is": "An append-only provenance layer recording the Git-state semantics correction to the post-opening validator. It rewrites no existing registry.",
+  "change_scope": "Git state semantics only",
+  "scientific_assertion_changed": false,
+  "scientific_result_changed": false,
+  "parent_registry": "artifacts/phase8_postopening_tooling_registry.json",
+  "parent_registry_sha256": "d61b7ee7f2f1f62e9ba8f6c265ac05a21fe194f035e339680819c15fb1194331",
+  "registry_lineage": [
+    {
+      "registry": "artifacts/verification_tooling_registry.json",
+      "sha256": "a1ec2652df1c6c58bce666ccb8c8bda30743ab1209a5aa7469351ca23d79122f",
+      "role": "frozen Phase-7 registry, hashed inside phase7_pretest_freeze.json",
+      "unchanged": true
+    },
+    {
+      "registry": "artifacts/phase8_verification_tooling_registry.json",
+      "sha256": "c59abf2765fbb0782ea2f52761be3a60aca7e9892242ba4b3c1787fe9facc021",
+      "role": "pre-opening Phase-8 registry",
+      "unchanged": true
+    },
+    {
+      "registry": "artifacts/phase8_postopening_tooling_registry.json",
+      "sha256": "d61b7ee7f2f1f62e9ba8f6c265ac05a21fe194f035e339680819c15fb1194331",
+      "role": "post-opening registry, direct parent of this one",
+      "unchanged": true
+    }
+  ],
+  "correction_record": "artifacts/phase8_postcommit_validator_correction.json",
+  "correction_record_sha256": "a5f5f860acdcb2e918aaf35ceacf9fffa9e3d05889f39852f890d5c01095322c",
+  "previous_correction_record": "artifacts/phase8_postopening_validator_correction.json",
+  "previous_correction_record_sha256": "af823f28d8704cb19d1246c40129b5c959fd8acb2fffbeccc8b58e70c7e56d30",
+  "previous_correction_record_rewritten": false,
+  "validators": {
+    "scripts/validate_phase8_postopening.py": {
+      "sha256": "e293550a3abf35802e7d8c33fe2e577f949ec20caab84ed0c9858645e20362af",
+      "status": "Human-approved Phase-8 post-opening final-state validator, Git-state semantics corrected after the locked-evaluation checkpoint",
+      "historical_predecessor_sha256": "f029363c0d268d6db10750214f65a292d33c962b98bdc7c5b27624da0a506121",
+      "change": "exact pre-test HEAD equality -> immutable freeze-point ancestry; tolerates exactly the two historical exact-HEAD gates of the frozen Phase-8 validator",
+      "scientific_gates_changed": false
+    },
+    "scripts/validate_phase8.py": {
+      "sha256": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231",
+      "status": "Pre-opening-frozen Phase-8 validator preserved as historical evidence; never patched.",
+      "matches_preopening_registry": true,
+      "exact_head_gates_now_expected_to_fail": true
+    }
+  },
+  "upstream_validator_sources_changed": false,
+  "inherited_validators_unchanged": true,
+  "gates_removed": 0,
+  "gates_disabled": 0,
+  "scientific_detection_weakened": false,
+  "post_test_exploration_started": false,
+  "final_test_status": "evaluated"
+}

@@ -1,0 +1,62 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_postcommit_validator_correction",
+  "stage": "post_commit_git_state_semantics_correction",
+  "status": "Created after the authorized locked-evaluation Git checkpoint was committed and pushed. It changes Git state semantics in the post-opening validator only. No scientific artifact, model, prediction or metric is touched.",
+  "approved_by": "human review, after the locked final-test evaluation was committed as 9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+  "reason": "The repository received the authorized locked-evaluation Git checkpoint after Phase-8 validation. Exact equality between current HEAD and the pre-test snapshot is therefore intentionally false. Post-opening validation now verifies immutable Git ancestry across both research freeze points.",
+  "pre_test_sha": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+  "pre_test_subject": "Freeze AirSense V2 pre-test research state",
+  "locked_evaluation_sha": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+  "locked_evaluation_subject": "Freeze AirSense V2 locked final-test evaluation",
+  "previous_postopening_validator_sha256": "f029363c0d268d6db10750214f65a292d33c962b98bdc7c5b27624da0a506121",
+  "new_postopening_validator_sha256": "e293550a3abf35802e7d8c33fe2e577f949ec20caab84ed0c9858645e20362af",
+  "git_semantics_changed": "exact pre-test HEAD equality -> immutable freeze-point ancestry",
+  "new_git_assertions": {
+    "A": "the pre-test snapshot commit exists",
+    "B": "the locked-evaluation commit exists",
+    "C": "the pre-test snapshot is an ancestor of the locked-evaluation commit",
+    "D": "the locked-evaluation commit is an ancestor of current HEAD",
+    "E": "history contains both immutable freeze points in the correct order",
+    "F": "origin/master equals current HEAD",
+    "method": "git merge-base --is-ancestor, which tests a real ancestry relation; presence of a SHA anywhere in git log is explicitly not accepted",
+    "commit_subjects_verified": true
+  },
+  "why_not_weakened": "Ancestry is strictly stronger than log membership and strictly weaker than equality only in the one dimension that must be allowed to move: the tip. Both freeze points remain unrewritable without failing the gate, and a rewritten or detached history cannot satisfy merge-base ancestry.",
+  "frozen_validator_treatment": {
+    "validator": "scripts/validate_phase8.py",
+    "modified": false,
+    "failing_gates_after_the_checkpoint": [
+      "HEAD is the pre-test evidence snapshot",
+      "origin/master matches the pre-test snapshot"
+    ],
+    "classification": "EXPECTED_TRANSITION, analogous to the Phase-3 historical seal gate",
+    "handling": "The post-opening validator tolerates exactly these two gate failures and requires every other gate it owns to pass. The frozen source is never patched and is retained as evidence of the protocol as it stood before numerical test opening."
+  },
+  "existing_validate_phase8_modified": false,
+  "upstream_validators_modified": false,
+  "previous_postopening_correction_record_rewritten": false,
+  "existing_tooling_registries_rewritten": false,
+  "scientific_files_changed": false,
+  "models_changed": false,
+  "weights_changed": false,
+  "predictions_changed": false,
+  "metrics_changed": false,
+  "sample_universe_changed": false,
+  "confirmatory_hierarchy_changed": false,
+  "primary_endpoint_changed": false,
+  "secondary_endpoint_changed": false,
+  "severe_threshold_changed": false,
+  "gates_removed": 0,
+  "gates_disabled": 0,
+  "scientific_detection_weakened": false,
+  "post_test_exploration_started": false,
+  "confirmatory_results_unchanged": {
+    "primary_B3_R2_macro_station_horizon_MAE": 31.98722559774534,
+    "secondary_GRU_R1_severe_MAE_gt_244": 109.3328897571946,
+    "severe_n": 20336,
+    "reference_B0_macro_station_horizon_MAE": 36.138513538776856,
+    "reference_B0_severe_MAE_gt_244": 93.22447875688434
+  },
+  "final_test_status": "evaluated"
+}
