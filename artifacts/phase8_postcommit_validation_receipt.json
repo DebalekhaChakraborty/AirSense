@@ -1,0 +1,204 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase8_postcommit_validation_receipt",
+  "stage": "post_commit_final_state_verified",
+  "git_state": {
+    "pre_test_sha": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+    "locked_evaluation_sha": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+    "head": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+    "origin_master": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+    "branch": "master",
+    "pre_test_exists": true,
+    "locked_evaluation_exists": true,
+    "pre_test_is_ancestor_of_locked_evaluation": true,
+    "locked_evaluation_is_ancestor_of_head": true,
+    "origin_master_equals_head": true,
+    "commit_subjects": {
+      "pre_test": "Freeze AirSense V2 pre-test research state",
+      "locked_evaluation": "Freeze AirSense V2 locked final-test evaluation"
+    },
+    "legacy": "16c9030cf74508b620cc6d28f90346aa379f29cd",
+    "semantics": "immutable freeze-point ancestry"
+  },
+  "phase8_manifest_sha256": "a83fd1556c2f4a173c4aded4f0d54ecdbc3aee5859d237269f55518298fe0a36",
+  "primary_results_lock_sha256": "5c92451317f8348dbac978a23bd11246aee89355746d270efcc599c780027b5e",
+  "prediction_lock_sha256": "25751d669a3ff3096728c049db9b593d2620f4938e281d8eeaef147952fe91b5",
+  "opening_receipt_sha256": "52c5e68caf1b5e40a206b290995a921654b8ee6f9f7f4f22a077633f97c8599b",
+  "preopening_integrity_receipt_sha256": "f5874620337843092a11d31b1cb79ab8d299444608a9ef121579a512ee864c67",
+  "postopening_correction_record_sha256": "af823f28d8704cb19d1246c40129b5c959fd8acb2fffbeccc8b58e70c7e56d30",
+  "postopening_tooling_registry_sha256": "d61b7ee7f2f1f62e9ba8f6c265ac05a21fe194f035e339680819c15fb1194331",
+  "postopening_validator_sha256": "e293550a3abf35802e7d8c33fe2e577f949ec20caab84ed0c9858645e20362af",
+  "postcommit_correction_record_sha256": "a5f5f860acdcb2e918aaf35ceacf9fffa9e3d05889f39852f890d5c01095322c",
+  "postcommit_tooling_registry_sha256": "19797553a520954c51447b90d4f4c3662458a005de9431199bf234ab088422f2",
+  "validators": {
+    "validate_foundation.py": "PASS",
+    "validate_phase1.py": "PASS",
+    "validate_phase2.py": "PASS",
+    "validate_phase3.py": "EXPECTED_HISTORICAL_SEAL_TRANSITION",
+    "validate_phase4.py": "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE",
+    "validate_phase5.py": "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE",
+    "validate_phase6.py": "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE",
+    "validate_phase7.py": "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE",
+    "validate_phase8.py": "historical result recorded, source unchanged; exact-pre-test-HEAD gates are an EXPECTED_TRANSITION",
+    "validate_phase8_postopening.py": "PASS"
+  },
+  "validator_detail": {
+    "git_ancestry": {
+      "pre_test_sha": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+      "locked_evaluation_sha": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+      "head": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+      "origin_master": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+      "branch": "master",
+      "pre_test_exists": true,
+      "locked_evaluation_exists": true,
+      "pre_test_is_ancestor_of_locked_evaluation": true,
+      "locked_evaluation_is_ancestor_of_head": true,
+      "origin_master_equals_head": true,
+      "commit_subjects": {
+        "pre_test": "Freeze AirSense V2 pre-test research state",
+        "locked_evaluation": "Freeze AirSense V2 locked final-test evaluation"
+      },
+      "legacy": "16c9030cf74508b620cc6d28f90346aa379f29cd",
+      "semantics": "immutable freeze-point ancestry"
+    },
+    "validate_foundation.py": {
+      "status": "PASS",
+      "exit_code": 0,
+      "gates": 24,
+      "failures": []
+    },
+    "validate_phase1.py": {
+      "status": "PASS",
+      "exit_code": 0,
+      "gates": 31,
+      "failures": []
+    },
+    "validate_phase2.py": {
+      "status": "PASS",
+      "exit_code": 0,
+      "gates": 58,
+      "failures": []
+    },
+    "validate_phase3.py": {
+      "status": "EXPECTED_HISTORICAL_SEAL_TRANSITION",
+      "phase3_historical_seal_gate": "EXPECTED_TRANSITION",
+      "exit_code": 1,
+      "gates": 47,
+      "passed": 46,
+      "failures": [
+        "No test prediction or test metric artifact exists"
+      ],
+      "seal_gate_triggers": [
+        "artifacts/final_test_opening_receipt.json",
+        "artifacts/phase8_final_test_metrics.json"
+      ],
+      "scientific_gates": "PASS"
+    },
+    "validate_phase4.py": {
+      "status": "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE",
+      "scientific_gates": "PASS",
+      "historical_seal_dependency": "EXPECTED_TRANSITION",
+      "exit_code": 1,
+      "gates": 74,
+      "passed": 73,
+      "cascade_failures": [
+        "Upstream validate_phase3.py passes"
+      ],
+      "independent_failures": []
+    },
+    "validate_phase5.py": {
+      "status": "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE",
+      "scientific_gates": "PASS",
+      "historical_seal_dependency": "EXPECTED_TRANSITION",
+      "exit_code": 1,
+      "gates": 95,
+      "passed": 93,
+      "cascade_failures": [
+        "Upstream validate_phase3.py passes",
+        "Upstream validate_phase4.py passes"
+      ],
+      "independent_failures": []
+    },
+    "validate_phase6.py": {
+      "status": "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE",
+      "scientific_gates": "PASS",
+      "historical_seal_dependency": "EXPECTED_TRANSITION",
+      "exit_code": 1,
+      "gates": 97,
+      "passed": 94,
+      "cascade_failures": [
+        "Upstream validate_phase3.py passes",
+        "Upstream validate_phase4.py passes",
+        "Upstream validate_phase5.py passes"
+      ],
+      "independent_failures": []
+    },
+    "validate_phase7.py": {
+      "status": "SCIENTIFIC_GATES_PASS_WITH_EXPECTED_PHASE3_SEAL_CASCADE",
+      "scientific_gates": "PASS",
+      "historical_seal_dependency": "EXPECTED_TRANSITION",
+      "exit_code": 1,
+      "gates": 32,
+      "passed": 28,
+      "cascade_failures": [
+        "Upstream validate_phase3.py passes",
+        "Upstream validate_phase4.py passes",
+        "Upstream validate_phase5.py passes",
+        "Upstream validate_phase6.py passes"
+      ],
+      "independent_failures": []
+    },
+    "validate_phase8.py": {
+      "status": "non_upstream_scientific_gates_PASS_with_expected_historical_head_assertions",
+      "source_unchanged": true,
+      "sha256": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231",
+      "gates_checked": 62,
+      "historical_head_gate_failures": [
+        "HEAD is the pre-test evidence snapshot",
+        "origin/master matches the pre-test snapshot"
+      ],
+      "failures_beyond_historical_head_gates": [],
+      "historical_head_semantics": "EXPECTED_TRANSITION",
+      "note": "Pre-opening-frozen Phase-8 validator preserved as historical evidence. It asserts exact equality between HEAD and the pre-test snapshot, which the authorized locked-evaluation checkpoint intentionally makes false, and its full-mode run also reports the expected Phase-3 seal cascade. Its source is never patched."
+    },
+    "severe_boundary_samples_excluded": 232,
+    "confirmatory_reconciliation": {
+      "B3_R2 primary macro station-horizon MAE": {
+        "recomputed": 31.98722559774534,
+        "frozen": 31.98722559774534
+      },
+      "B0 reference macro station-horizon MAE": {
+        "recomputed": 36.138513538776856,
+        "frozen": 36.138513538776856
+      },
+      "GRU_R1 secondary severe MAE": {
+        "recomputed": 109.3328897571946,
+        "frozen": 109.3328897571946
+      },
+      "B0 reference severe MAE": {
+        "recomputed": 93.22447875688434,
+        "frozen": 93.22447875688434
+      }
+    }
+  },
+  "postopening_validator_gates": 60,
+  "postopening_validator_failures": 0,
+  "phase3_historical_seal_gate": "EXPECTED_TRANSITION",
+  "phase3_seal_gate_triggers": [
+    "artifacts/final_test_opening_receipt.json",
+    "artifacts/phase8_final_test_metrics.json"
+  ],
+  "historical_gate_suppressed": false,
+  "historical_gate_reinterpreted": false,
+  "git_semantics": "immutable freeze-point ancestry",
+  "scientific_drift": 0,
+  "upstream_validator_modified": false,
+  "existing_phase8_validator_modified": false,
+  "prediction_drift": 0,
+  "metric_drift": 0,
+  "models_changed": false,
+  "predictions_changed": false,
+  "metrics_changed": false,
+  "post_test_exploration": false,
+  "final_test_status": "evaluated"
+}
