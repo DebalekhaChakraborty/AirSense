@@ -1,0 +1,184 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase12_readme_update_plan",
+  "phase": "12A",
+  "classification": "RETROSPECTIVE RELEASE METADATA. A PLAN ONLY - README.md WAS NOT EDITED BY THIS TASK. Applying it requires human review.",
+  "readme_state": {
+    "path": "README.md",
+    "current_sha256": "eb79fb6b3cd3574ef9b3c6b1cf784ae99939b8edc541efbf70600dd421ab72d1",
+    "line_count": 238,
+    "docs_linked": 22,
+    "docs_present": 32,
+    "docs_unlinked": [
+      "docs/PHASE7_COORDINATE_ACQUISITION_AUDIT.md",
+      "docs/PHASE_07_ROBUSTNESS_RECORD.md",
+      "docs/PHASE_08_FINAL_TEST_PROTOCOL.md",
+      "docs/PHASE_08_LOCKED_FINAL_TEST_RECORD.md",
+      "docs/PHASE_09_POST_TEST_ANALYSIS_PROTOCOL.md",
+      "docs/PHASE_09_POST_TEST_ERROR_ANALYSIS_RECORD.md",
+      "docs/PHASE_09_V1_V2_FAILURE_MODE_COMPARISON.md",
+      "docs/PHASE_10_FINAL_SCIENTIFIC_SYNTHESIS.md",
+      "docs/PUBLICATION_CLAIM_GUIDE.md",
+      "docs/README_PHASE11_PROPOSED_UPDATE.md"
+    ]
+  },
+  "rule": "Every replacement must cite a frozen source artifact. No number may enter the README that does not trace to Phase 8-11 frozen evidence. Both halves of the headline must travel together.",
+  "stale_statements": [
+    {
+      "readme_line": 9,
+      "current_text": "Status: Phase 6 complete \u2014 cross-station development modelling evaluated.",
+      "why_stale": "Phases 7-11 completed after this was written. The study is scientifically complete.",
+      "proposed_replacement": "Status: Phase 11 complete \u2014 manuscript construction. The study is scientifically complete.",
+      "frozen_source_artifacts": [
+        "artifacts/v2_phase11_manifest.json",
+        "artifacts/phase11_manuscript_summary.json"
+      ],
+      "severity": "P1"
+    },
+    {
+      "readme_line": 11,
+      "current_text": "the locked 2016-03-01 -> 2017-02-28 test remains **SEALED**",
+      "why_stale": "False since Phase 8. final_test_status is 'evaluated' and can never return to sealed.",
+      "proposed_replacement": "The locked 2016-03-01 -> 2017-02-28 test was opened exactly once, at Phase 8, and scored once.",
+      "frozen_source_artifacts": [
+        "artifacts/phase8_primary_results_lock.json"
+      ],
+      "severity": "P0-for-publication"
+    },
+    {
+      "readme_line": 11,
+      "current_text": "no test target has been read, no test prediction generated, no test metric computed",
+      "why_stale": "All three clauses became false at Phase 8: predictions were generated, hashed and scored.",
+      "proposed_replacement": "Predictions were generated chronologically with metrics unseen, hashed before scoring, then scored once.",
+      "frozen_source_artifacts": [
+        "artifacts/phase8_prediction_lock.json",
+        "artifacts/v2_phase8_manifest.json"
+      ],
+      "severity": "P0-for-publication"
+    },
+    {
+      "readme_line": 12,
+      "current_text": "Nothing below is V2 performance.",
+      "why_stale": "The repository now carries the locked confirmatory result.",
+      "proposed_replacement": "Headline locked-test result stated, with both halves: improvement over persistence on average, persistence strongest in the severe tail.",
+      "frozen_source_artifacts": [
+        "artifacts/phase10_canonical_conclusion.json"
+      ],
+      "severity": "P1"
+    },
+    {
+      "readme_line": 65,
+      "current_text": "| Locked final test | 2016-03-01 -> 2017-02-28 (**sealed**) |",
+      "why_stale": "Partition table still labels the test sealed.",
+      "proposed_replacement": "| Locked final test | 2016-03-01 -> 2017-02-28 (opened once at Phase 8; evaluated) |",
+      "frozen_source_artifacts": [
+        "artifacts/phase10_dataset_ledger.json"
+      ],
+      "severity": "P1"
+    },
+    {
+      "readme_line": 219,
+      "current_text": "reproduction instructions end at validate_phase6.py",
+      "why_stale": "No reproduction path for Phases 7-11; five phases of the study are unreachable from the README.",
+      "proposed_replacement": "Extend through Phase 7 (robustness), Phase 8 (locked final test), Phase 9 (post-test analysis), Phase 10 (synthesis), Phase 11 (manuscript + validate_phase11.py).",
+      "frozen_source_artifacts": [
+        "artifacts/phase10_reproducibility_ledger.json"
+      ],
+      "severity": "P1"
+    },
+    {
+      "readme_line": 163,
+      "current_text": "documentation table lists Phase 6 as the latest phase record",
+      "why_stale": "Ten Phase-7..11 documents exist but are not linked.",
+      "proposed_replacement": "Add links for: docs/PHASE7_COORDINATE_ACQUISITION_AUDIT.md, docs/PHASE_07_ROBUSTNESS_RECORD.md, docs/PHASE_08_FINAL_TEST_PROTOCOL.md, docs/PHASE_08_LOCKED_FINAL_TEST_RECORD.md, docs/PHASE_09_POST_TEST_ANALYSIS_PROTOCOL.md, docs/PHASE_09_POST_TEST_ERROR_ANALYSIS_RECORD.md, docs/PHASE_09_V1_V2_FAILURE_MODE_COMPARISON.md, docs/PHASE_10_FINAL_SCIENTIFIC_SYNTHESIS.md, docs/PUBLICATION_CLAIM_GUIDE.md, docs/README_PHASE11_PROPOSED_UPDATE.md",
+      "frozen_source_artifacts": [
+        "artifacts/phase10_master_evidence_index.json"
+      ],
+      "severity": "P2"
+    }
+  ],
+  "statements_requiring_judgement_not_correction": [
+    {
+      "readme_line": 111,
+      "current_text": "pretraining corpus ... overlapping the sealed test window",
+      "assessment": "HISTORICALLY ACCURATE IN CONTEXT - the Chronos-2 audit was conducted while the test was sealed. Reword only if the surrounding tense becomes confusing; do not treat as an error.",
+      "frozen_source_artifacts": [
+        "artifacts/phase10_foundation_model_governance.json"
+      ]
+    },
+    {
+      "readme_line": 236,
+      "current_text": "excluded because its pretraining corpus overlaps the sealed test window",
+      "assessment": "Same as line 111. Governance outcome, not a performance claim; must not be reworded into one.",
+      "frozen_source_artifacts": [
+        "docs/CHRONOS2_PRETRAINING_AUDIT.md"
+      ]
+    }
+  ],
+  "approved_values_for_replacement_text": {
+    "B3_R2_macro_station_horizon_MAE": {
+      "value": 31.98722559774534,
+      "rounded": "31.99",
+      "source": "artifacts/phase8_primary_results_lock.json",
+      "evidence_class": "C1"
+    },
+    "B0_macro_station_horizon_MAE": {
+      "value": 36.138513538776856,
+      "rounded": "36.14",
+      "source": "artifacts/phase8_primary_results_lock.json",
+      "evidence_class": "C1"
+    },
+    "relative_improvement_pct": {
+      "value": 11.487157424383705,
+      "rounded": "11.49",
+      "source": "artifacts/phase10_canonical_conclusion.json",
+      "evidence_class": "C1"
+    },
+    "GRU_R1_severe_MAE": {
+      "value": 109.3328897571946,
+      "rounded": "109.33",
+      "source": "artifacts/phase8_primary_results_lock.json",
+      "evidence_class": "C1"
+    },
+    "B0_severe_MAE": {
+      "value": 93.22447875688434,
+      "rounded": "93.22",
+      "source": "artifacts/phase8_primary_results_lock.json",
+      "evidence_class": "C1"
+    },
+    "severe_n": {
+      "value": 20336,
+      "rounded": "20,336",
+      "source": "artifacts/phase8_primary_results_lock.json",
+      "evidence_class": "C1"
+    },
+    "test_n": {
+      "value": 411012,
+      "rounded": "411,012",
+      "source": "artifacts/phase8_primary_results_lock.json",
+      "evidence_class": "C1"
+    },
+    "severe_threshold": {
+      "value": 244.0,
+      "rounded": "244.0",
+      "source": "artifacts/phase10_dataset_ledger.json",
+      "evidence_class": "C5"
+    }
+  },
+  "frozen_model_roles": {
+    "B3_R2": "PRIMARY CONFIRMATORY MODEL",
+    "GRU_R1": "SECONDARY CONFIRMATORY SEVERE-TAIL MODEL",
+    "B0": "REFERENCE BENCHMARK"
+  },
+  "prohibited_in_any_replacement": [
+    "describing the test as sealed",
+    "calling any model a winner",
+    "quoting the average improvement without the severe-tail result",
+    "any V1-vs-V2 percentage comparison",
+    "any claim of operational readiness",
+    "any foundation-model performance claim"
+  ],
+  "stale_statement_count": 7,
+  "phase_0_11_artifacts_modified": 0,
+  "readme_modified_by_this_task": false
+}

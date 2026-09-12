@@ -1,0 +1,202 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase12_phase7_source_provenance",
+  "phase": "12A",
+  "classification": "RETROSPECTIVE REPRODUCIBILITY METADATA CREATED AFTER STUDY COMPLETION. NOT A PRE-TEST PREREGISTRATION ARTIFACT. DOES NOT MODIFY OR SUPERSEDE THE PHASE-7 PRE-TEST FREEZE.",
+  "what_this_is": "An archival reconstruction of Phase-7 source provenance, derived entirely from immutable Git history by reading the pre-test snapshot commit. It records what the Phase-7 code was at the moment the test was still sealed. It asserts nothing that was not already in Git.",
+  "what_this_is_not": [
+    "It is not a Phase-7 manifest and must never be renamed to v2_phase7_manifest.json.",
+    "It does not backdate anything: Phase 7 shipped without a phase manifest, and that remains true.",
+    "It confers no preregistration status on any file.",
+    "It does not alter, supersede or re-pin any Phase 0-11 artifact."
+  ],
+  "why_it_exists": "A static sweep found Phase 7 to be the only phase without a v2_phase*_manifest.json, and none of its five production scripts had a digest recorded in any artifact. Phase-7 OUTPUTS were always pinned (phase7_pretest_freeze.json and its addendum are hashed inside v2_phase8_manifest.json). The gap was source-code provenance only.",
+  "historical_anchor": {
+    "pre_test_snapshot_sha": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+    "subject": "Freeze AirSense V2 pre-test research state",
+    "read_only_method": "git show <anchor>:<path>, SHA-256 over the exact historical bytes"
+  },
+  "required_phase7_sources": [
+    {
+      "path": "scripts/build_phase7_candidate_freeze.py",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "4a72f94793350c6bda834b096505dc9b69e9e5c0950f30024e8027996d9f7333",
+      "current_sha256": "4a72f94793350c6bda834b096505dc9b69e9e5c0950f30024e8027996d9f7333",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "scripts/build_phase7_pretest_freeze.py",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "eeb58e4125e38b40bf94f708ce343500657735618df2460005c1649a112994f6",
+      "current_sha256": "eeb58e4125e38b40bf94f708ce343500657735618df2460005c1649a112994f6",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "scripts/run_phase7_multiseed.py",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "03fa7a5acf5cba19156829db89564d208395b3b6b2d7668a196b27f69b26b0e8",
+      "current_sha256": "03fa7a5acf5cba19156829db89564d208395b3b6b2d7668a196b27f69b26b0e8",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "scripts/run_phase7_leave_one_station_out.py",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "3c439717e179d20e3e5ca8e06f4af9133f2b2c300f6529a2fb50e34315ccd85e",
+      "current_sha256": "3c439717e179d20e3e5ca8e06f4af9133f2b2c300f6529a2fb50e34315ccd85e",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "scripts/run_phase7_spatial_analysis.py",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "3b9fde9c7db852cd1875838282d0342c31a173f4af31485c3b5c8fa561ee8d31",
+      "current_sha256": "3b9fde9c7db852cd1875838282d0342c31a173f4af31485c3b5c8fa561ee8d31",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "scripts/validate_phase7.py",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "72b2b3351a632178f337a7c89a3764c43fea909fcc4ad37436564ea5731f74ba",
+      "current_sha256": "72b2b3351a632178f337a7c89a3764c43fea909fcc4ad37436564ea5731f74ba",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    }
+  ],
+  "other_phase7_files_at_snapshot": [
+    {
+      "path": "artifacts/phase7_candidate_freeze.json",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+      "current_sha256": "0b6b0518182503425aff92a83a8f5d0f9f3b4721e8e667e052c87785339520c8",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "artifacts/phase7_multiseed_execution_receipt.json",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "44e42e9524c01ec8b646c79330d5ebfd187e2c5a5da817e66983e936c6189024",
+      "current_sha256": "44e42e9524c01ec8b646c79330d5ebfd187e2c5a5da817e66983e936c6189024",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "artifacts/phase7_pretest_freeze.json",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "78a0e36080e52941694581eef3280b42f654f00c8865dc306deaac369ccade60",
+      "current_sha256": "78a0e36080e52941694581eef3280b42f654f00c8865dc306deaac369ccade60",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "artifacts/phase7_pretest_freeze_addendum.json",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "6a1342b7a70eb6b238df95ae5c62950db258e23f70d7feb6c3245de7013708e2",
+      "current_sha256": "6a1342b7a70eb6b238df95ae5c62950db258e23f70d7feb6c3245de7013708e2",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "artifacts/phase7_spatial_analysis.json",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "a98f9546d4868fb8bc255d0f40cafa67b5fe82e7feec5f396941382b112b327c",
+      "current_sha256": "a98f9546d4868fb8bc255d0f40cafa67b5fe82e7feec5f396941382b112b327c",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "artifacts/phase7_station_coordinates.json",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "66ace63ac2daaa97e17ff2ad97cbf526254b2ef144869ffb6c19c402b080e0a1",
+      "current_sha256": "66ace63ac2daaa97e17ff2ad97cbf526254b2ef144869ffb6c19c402b080e0a1",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "docs/PHASE7_COORDINATE_ACQUISITION_AUDIT.md",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "5fae3c405c441b874dbc5cdd0a26b6975f401e1b7a84e6487332857661e1051b",
+      "current_sha256": "5fae3c405c441b874dbc5cdd0a26b6975f401e1b7a84e6487332857661e1051b",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "results/models/robustness/phase7_deterministic_metrics.csv",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "ef56eb8491c59f515fea38e2693d83b7237a11ef5fb7318a7e2aef235f40a18e",
+      "current_sha256": "ef56eb8491c59f515fea38e2693d83b7237a11ef5fb7318a7e2aef235f40a18e",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "results/models/robustness/phase7_h24_paired_robustness.csv",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "939b8641394ea3fd0a0a71fa94be952dadecd8f555f2fe53c3fa12a293cd34f4",
+      "current_sha256": "939b8641394ea3fd0a0a71fa94be952dadecd8f555f2fe53c3fa12a293cd34f4",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "results/models/robustness/phase7_sa_paired_by_horizon_summary.csv",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "4bf94792c9d08de5e6e68d11d82a9d7d38870e51edbcc0a653b0bca5565c950f",
+      "current_sha256": "4bf94792c9d08de5e6e68d11d82a9d7d38870e51edbcc0a653b0bca5565c950f",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "results/models/robustness/phase7_seed_metrics_complete.csv",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "503ae32321a6aa24f49e7cce11bb61ea66cf086b201000802739ff862d7dec77",
+      "current_sha256": "503ae32321a6aa24f49e7cce11bb61ea66cf086b201000802739ff862d7dec77",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    },
+    {
+      "path": "results/models/robustness/phase7_severe_paired_robustness.csv",
+      "existed_at_pretest_snapshot": true,
+      "historical_sha256": "0a8162122652c4b7d883687e714215d14f4a54ef4ed22e1b000738a46166d220",
+      "current_sha256": "0a8162122652c4b7d883687e714215d14f4a54ef4ed22e1b000738a46166d220",
+      "byte_identical_to_pretest_snapshot": true,
+      "present_in_working_tree": true
+    }
+  ],
+  "frozen_output_cross_reference": {
+    "phase7_pretest_freeze": {
+      "path": "artifacts/phase7_pretest_freeze.json",
+      "current_sha256": "78a0e36080e52941694581eef3280b42f654f00c8865dc306deaac369ccade60",
+      "byte_identical_to_pretest_snapshot": true,
+      "final_test_status_recorded": "sealed",
+      "test_metrics_seen_recorded": 0,
+      "pinned_by": "artifacts/v2_phase8_manifest.json -> phase7_freeze_sha256"
+    },
+    "phase7_pretest_freeze_addendum": {
+      "path": "artifacts/phase7_pretest_freeze_addendum.json",
+      "current_sha256": "6a1342b7a70eb6b238df95ae5c62950db258e23f70d7feb6c3245de7013708e2",
+      "byte_identical_to_pretest_snapshot": true,
+      "pinned_by": "artifacts/v2_phase8_manifest.json -> phase7_freeze_sha256"
+    },
+    "phase8_preopening_integrity_receipt": {
+      "path": "artifacts/phase8_preopening_integrity_receipt.json",
+      "present": true,
+      "current_sha256": "f5874620337843092a11d31b1cb79ab8d299444608a9ef121579a512ee864c67",
+      "pinned_by": "artifacts/v2_phase8_manifest.json -> preopening_integrity_receipt_sha256"
+    }
+  },
+  "summary": {
+    "required_sources_checked": 6,
+    "existed_at_pretest_snapshot": 6,
+    "byte_identical_to_pretest_snapshot": 6,
+    "absent_at_pretest_snapshot": [],
+    "modified_since_pretest_snapshot": [],
+    "other_phase7_files_checked": 12,
+    "other_files_byte_identical": 12
+  },
+  "models_trained": 0,
+  "predictions_generated": 0,
+  "new_scientific_metrics": 0,
+  "phase_0_11_artifacts_modified": 0
+}

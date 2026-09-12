@@ -1,0 +1,93 @@
+name: validate
+
+# Release engineering CI. It verifies that the repository's own integrity
+# machinery still reports what it is documented to report.
+#
+# WHAT THIS WORKFLOW DELIBERATELY DOES NOT DO
+#
+#   It does not retrain, rescore or regenerate any scientific artifact, and it
+#   never will. The evidence chain is frozen; CI reads it.
+#
+#   It does not run the six test modules or the eight validators that need
+#   data/processed/. That layer is derived, gitignored and ~256 MB, and
+#   rebuilding it on every push would be slow and pointless: its integrity is
+#   already proven by 101 SHA-256 digests in artifacts/v2_phase2_manifest.json.
+#   The full sweep is a manual job below.
+#
+#   It does not "fix" the three validators that fail by design. If a workflow
+#   ever reports green by relaxing one of those gates, the workflow is wrong.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fast:
+    name: metadata validators + data-free tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # validators verify commit ancestry
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install the data-free subset
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy==2.4.6 scipy==1.17.1 lightgbm==4.7.0
+          pip install torch==2.14.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install safetensors==0.8.0
+          # Pillow is unpinned on purpose: its historical version was never
+          # recorded. See docs/PHASE_12_REPRODUCIBILITY_NOTES.md.
+          pip install Pillow
+
+      - name: Unit tests that need no derived data layer
+        run: |
+          python -m unittest tests.test_preprocessing tests.test_target_history \
+            tests.test_metrics tests.test_b3_features tests.test_scoring \
+            tests.test_itransformer
+
+      - name: Metadata validators
+        run: python scripts/run_all_validators.py --metadata-only
+
+      - name: Frozen evidence has not moved
+        run: python scripts/validate_phase12a.py
+
+  full:
+    name: full sweep (manual; rebuilds the derived layer)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install the full environment
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-v2-core-lock.txt
+          pip install torch==2.14.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install safetensors==0.8.0 Pillow
+
+      - name: Rebuild the derived Phase-2 layer from tracked raw data
+        run: python scripts/build_forecast_dataset.py
+
+      - name: Full unit suite
+        run: python -m unittest discover -s tests
+
+      - name: Full validator sweep
+        # Exits non-zero only on a failure that is NOT documented as by-design.
+        run: python scripts/run_all_validators.py

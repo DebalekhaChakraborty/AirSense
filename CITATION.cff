@@ -1,0 +1,67 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software or its frozen evidence chain, please cite it using
+  the metadata below.
+title: "AirSense V2 — causal multi-horizon PM2.5 forecasting under a sealed final test"
+abstract: >-
+  A leakage-controlled multi-horizon PM2.5 forecasting study over twelve Beijing
+  monitoring stations, evaluated once on a chronologically sealed final test
+  block under a confirmatory hierarchy frozen before the test was opened. The
+  repository carries the full evidence chain: per-phase freezes, manifests,
+  hash-pinned model artifacts and prediction arrays, twelve validators and an
+  independent recomputation path. Engineered causal history improved on causal
+  persistence on average across 1-24 hours; persistence remained the strongest
+  severe-tail benchmark.
+type: software
+authors:
+  - family-names: Chakraborty
+    given-names: Debalekha
+repository-code: "https://github.com/DebalekhaChakraborty/AirSense"
+url: "https://github.com/DebalekhaChakraborty/AirSense"
+license: MIT
+keywords:
+  - PM2.5 forecasting
+  - air quality
+  - multi-horizon time-series forecasting
+  - causal forecasting
+  - chronological generalisation
+  - severe pollution episodes
+  - reproducible machine learning
+  - evaluation governance
+references:
+  - type: data
+    title: "Beijing Multi-Site Air-Quality Data"
+    doi: "10.24432/C5RK5G"
+    notes: >-
+      Dataset from the UCI Machine Learning Repository (ID 501), redistributed
+      in data/raw/ under its own CC BY 4.0 terms as presented by UCI. It is NOT
+      covered by this repository's MIT licence, and the repository authors claim
+      no rights over it.
+    authors:
+      - name: "UCI Machine Learning Repository"
+  - type: article
+    title: >-
+      Changing weekend effects of air pollutants in Beijing under 2020 COVID-19
+      lockdown controls
+    doi: "10.1038/s42949-022-00070-0"
+    year: 2022
+    journal: "npj Urban Sustainability"
+    volume: 2
+    notes: >-
+      Source of the station coordinates used for descriptive spatial
+      diagnostics only. CC BY 4.0.
+    authors:
+      - family-names: Wu
+        given-names: L.
+      - family-names: Xie
+        given-names: J.
+      - family-names: Kang
+        given-names: K.
+# Deliberately omitted, pending author confirmation:
+#   orcid            - not recorded anywhere in this repository; a placeholder
+#                      would be worse than an absence.
+#   affiliation      - the manuscript still carries [AFFILIATION].
+#   version /        - no tagged release exists. Cite the commit SHA instead.
+#   date-released
+#   preferred-citation - the manuscript is in preparation and unpublished;
+#                      asserting a venue, year or DOI would be fabrication.

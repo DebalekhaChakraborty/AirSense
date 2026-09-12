@@ -1,0 +1,59 @@
+# AirSense V2 — packaging metadata.
+#
+# SCOPE NOTE. This file provides project metadata and tool configuration. It is
+# NOT how the study was run: every script bootstraps `src` onto sys.path
+# directly, and nothing in Phases 0-11 required an installed package. Installing
+# this project is a convenience for downstream users and changes no behaviour.
+#
+# The runtime pins here intentionally duplicate requirements-v2-core-lock.txt.
+# Those lock files are frozen historical environment records; this file is not
+# authoritative for reproducing the study. See docs/PHASE_12_REPRODUCIBILITY_NOTES.md.
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airsense-v2"
+version = "2.0.0"
+description = "Causal multi-horizon PM2.5 forecasting under a sealed final test"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Debalekha Chakraborty" }]
+keywords = [
+    "pm25-forecasting", "air-quality", "time-series-forecasting",
+    "causal-forecasting", "chronological-generalisation",
+    "reproducible-machine-learning", "evaluation-governance",
+]
+classifiers = [
+    "Development Status :: 6 - Mature",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy==2.4.6",
+    "scipy==1.17.1",
+    "lightgbm==4.7.0",
+]
+
+[project.optional-dependencies]
+neural = ["torch==2.14.0", "safetensors==0.8.0"]
+# Rendering only. Pillow is deliberately UNPINNED: the version used to render
+# the committed PNGs was never recorded, and asserting one would falsify the
+# historical environment claim. A fresh environment may produce visually
+# identical, byte-different figures.
+figures = ["Pillow"]
+
+[project.urls]
+Repository = "https://github.com/DebalekhaChakraborty/AirSense"
+Issues = "https://github.com/DebalekhaChakraborty/AirSense/issues"
+
+[tool.setuptools]
+packages = ["src", "src.data", "src.models", "src.evaluation", "src.visualization"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json"]

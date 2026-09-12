@@ -1,0 +1,109 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase12_public_release_audit",
+  "phase": "12A",
+  "classification": "RETROSPECTIVE RELEASE METADATA. AUDIT ONLY - NO LICENCE, CITATION OR WORKFLOW FILE WAS CREATED BY THIS TASK.",
+  "repository_is_public": true,
+  "hygiene_items": [
+    {
+      "item": "LICENSE",
+      "status": "absent",
+      "severity": "P0 for a public repository",
+      "finding": "Without a licence file, default copyright applies and no third party may lawfully reuse the code. This is the single largest release gap. LICENCE CHOICE REQUIRES HUMAN APPROVAL and was NOT created by this task."
+    },
+    {
+      "item": "CITATION.cff",
+      "status": "absent",
+      "severity": "P1",
+      "finding": "A manuscript is being prepared from this repository; CITATION.cff is how GitHub renders 'Cite this repository'. Cannot be completed until authorship and the final title are approved."
+    },
+    {
+      "item": "CONTRIBUTING.md",
+      "status": "absent",
+      "severity": "P3",
+      "finding": "Low priority for a frozen single-author study repository; the append-only phase discipline is documented in docs/ instead."
+    },
+    {
+      "item": "SECURITY.md",
+      "status": "absent",
+      "severity": "P3",
+      "finding": "No network service, no credential handling, no user input path. A stub would be ceremony."
+    },
+    {
+      "item": ".github/workflows",
+      "status": "absent",
+      "severity": "P2",
+      "finding": "No CI. 217 unit tests and twelve validators exist and are run manually. CI would catch drift between commits, but note two validators fail BY DESIGN post-opening (validate_phase3, validate_phase8) and any workflow must encode those expected failures rather than 'fix' them."
+    },
+    {
+      "item": "pyproject.toml",
+      "status": "absent",
+      "severity": "P2",
+      "finding": "No packaging metadata. src/ is imported via sys.path bootstrapping in 50 scripts, which works but is not installable."
+    }
+  ],
+  "one_command_validation": {
+    "exists": false,
+    "severity": "P2",
+    "finding": "README documents a hand-run sequence that stops at validate_phase6.py. There is no Makefile, driver script or single entry point. Twelve validators must be invoked individually, two of which fail by design.",
+    "caveat": "Any future one-command runner MUST encode the two expected-failure validators explicitly. A runner that reports overall failure would invite someone to 'fix' a deliberate seal tripwire."
+  },
+  "one_command_environment_reconstruction": {
+    "exists": false,
+    "partial": true,
+    "severity": "P2",
+    "finding": "Reconstruction commands are documented in the headers of requirements-v2-core-lock.txt and requirements-v2-neural-lock.txt (uv venv + uv pip install, torch from the CPU wheel index). They are copy-pasteable but not a single command, and they omit Pillow - see docs/PHASE_12_REPRODUCIBILITY_NOTES.md.",
+    "blocker": "Pillow's historical version is unrecorded; see the reproducibility notes."
+  },
+  "licensing": {
+    "note": "Three distinct licensing questions. They are recorded separately and must never be conflated. Applying a code licence to this repository does NOT and CANNOT relicense the dataset.",
+    "code": {
+      "current": "UNLICENSED - no LICENSE file present",
+      "covers": "src/, scripts/, tests/, configs/",
+      "decision_required_from": "human author",
+      "recommendation": "A permissive licence (MIT/BSD-3/Apache-2.0) is typical for a reproducibility repository. NOT chosen here."
+    },
+    "dataset": {
+      "name": "Beijing Multi-Site Air-Quality Data",
+      "uci_id": 501,
+      "doi": "10.24432/C5RK5G",
+      "license": "CC BY 4.0 as presented by UCI",
+      "location_in_repo": "data/raw/ (tracked, read-only by convention)",
+      "binding_constraint": "The dataset is redistributed here under its own terms as presented by UCI. It is NOT covered by any licence the authors may later apply to the code, and any LICENSE file added must say so explicitly. The authors do not own this dataset."
+    },
+    "manuscript_and_content": {
+      "covers": "manuscript/, docs/, artifacts/, figures/",
+      "current": "unstated",
+      "recommendation": "Documentation and manuscript content are usually licensed separately from code (e.g. CC BY 4.0). Journal copyright transfer may later constrain the manuscript specifically; resolve after venue selection.",
+      "third_party_content": [
+        {
+          "what": "station coordinates used for descriptive diagnostics",
+          "source": "Wu, Xie & Kang (2022), npj Urban Sustainability 2:23",
+          "doi": "10.1038/s42949-022-00070-0",
+          "license": "CC BY 4.0",
+          "constraint": "attribution required; analysis-only, never a model input"
+        }
+      ]
+    }
+  },
+  "large_tracked_content": {
+    "raw_data_mb": 7.81,
+    "results_mb": 112.5,
+    "note": "data/raw/ is tracked deliberately so its SHA-256 can be verified against what the repository carries. results/ carries model weights and prediction arrays that the Phase-8 manifest pins. Neither is accidental.",
+    "observation": "17.7 MB in results/**/determinism/ duplicates weights and prediction arrays already present elsewhere; these are determinism-check outputs. Removing them would change hashes recorded in frozen manifests and MUST NOT be done."
+  },
+  "secrets_scan": {
+    "performed": true,
+    "patterns": [
+      "AWS key id",
+      "secret_key",
+      "api_key",
+      "password",
+      "private key block"
+    ],
+    "findings": 0
+  },
+  "gaps_total": 8,
+  "files_created_by_this_audit": 0,
+  "phase_0_11_artifacts_modified": 0
+}

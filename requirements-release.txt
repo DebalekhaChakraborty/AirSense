@@ -1,0 +1,48 @@
+# AirSense V2 — release convenience environment.
+#
+# THIS IS NOT A HISTORICAL ENVIRONMENT RECORD.
+#
+# The authoritative frozen records are, and remain:
+#     requirements-v2-core-lock.txt      (Phase 3, modelling core)
+#     requirements-v2-neural-lock.txt    (Phase 4, adds CPU torch)
+# Those files are never edited. They describe the environment that produced
+# every number in Phases 3-9.
+#
+# This file exists so that a reader can install one environment and run the
+# tests, the validators and the figure code. It restates the frozen pins
+# verbatim and adds the one dependency the frozen records omit.
+#
+# Reconstruct with:
+#     uv venv --python 3.11 .venv-v2
+#     uv pip install --python .venv-v2/bin/python -r requirements-v2-core-lock.txt
+#     uv pip install --python .venv-v2/bin/python torch==2.14.0 \
+#         --index-url https://download.pytorch.org/whl/cpu
+#     uv pip install --python .venv-v2/bin/python safetensors==0.8.0
+#     uv pip install --python .venv-v2/bin/python Pillow
+#
+# torch MUST come from the CPU wheel index: the default linux-x86_64 wheels are
+# CUDA-enabled and pull in the CUDA toolkit. The study host had no GPU.
+
+# --- frozen modelling core, restated verbatim from the lock files ---
+lightgbm==4.7.0
+narwhals==2.25.0
+numpy==2.4.6
+scipy==1.17.1
+safetensors==0.8.0
+# torch==2.14.0+cpu  -- install from the CPU index, see the command above
+
+# --- rendering only, deliberately UNPINNED ---
+#
+# Pillow is imported by src/visualization/render.py and reached by eight figure
+# scripts. It appears in NO frozen requirements file and NO artifact: the
+# version used to render the committed PNGs was never recorded.
+#
+# Pinning a version here would assert a historical fact that does not exist.
+# Consequence, stated plainly: a fresh environment is NOT expected to reproduce
+# the committed PNG bytes bit-for-bit. The frozen PNG SHA-256 digests in the
+# phase manifests remain the authoritative figure evidence, and all 50 are
+# pinned. Figure *data* is fully reproducible from the frozen tables; it is the
+# PNG encoding that is not guaranteed.
+#
+# See docs/PHASE_12_REPRODUCIBILITY_NOTES.md.
+Pillow

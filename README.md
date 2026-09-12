@@ -6,11 +6,40 @@ AirSense V2 forecasts PM2.5 concentration at 12 Beijing monitoring stations at
 **future** horizons of 1, 6, 12 and 24 hours, using explicit temporal memory and
 cross-station context under strict chronological generalisation.
 
-> **Status: Phase 6 complete — cross-station development modelling
-> evaluated.** Development validation is open; the locked 2016-03-01 →
-> 2017-02-28 test remains **SEALED** — no test target has been read, no test
-> prediction generated, no test metric computed. Nothing below is V2
-> performance.
+> **Status: Phase 11 complete — manuscript construction. The study is
+> scientifically complete.**
+>
+> The locked 2016-03-01 → 2017-02-28 test was **opened exactly once**, at
+> Phase 8, under a confirmatory hierarchy frozen beforehand. Predictions were
+> generated chronologically with metrics unseen, hashed before scoring, then
+> scored once. `final_test_status` is **evaluated** and can never return to
+> sealed. Phases 9 and 10 performed post-test exploratory analysis and final
+> synthesis, adding no new experiment.
+
+### Headline result — locked final test
+
+Both halves belong together; reporting either alone misrepresents the study.
+
+A gradient-boosted model over causal pollutant, meteorological and temporal
+history (`B3_R2`) achieved a macro station-horizon MAE of **31.99 µg/m³**
+against **36.14** for causal persistence (`B0`) — an improvement of
+**11.49%** — and improved on persistence **at every horizon** from 1 to 24
+hours, over 411,012 samples and 48 equally weighted station-horizon cells.
+
+**In the severe tail, persistence won.** Restricted to observed PM2.5 above the
+training pooled P95 of 244.0 µg/m³ (n = 20,336), the prespecified secondary
+model `GRU_R1` reached **109.33 µg/m³** and `B3_R2` **131.90**, while the
+persistence reference benchmark recorded the lowest severe MAE at **93.22**.
+Reliable forecasting of extreme episodes remains the principal open problem.
+
+Frozen model roles: `B3_R2` primary confirmatory · `GRU_R1` (seed 42) secondary
+confirmatory severe-tail · `B0` reference benchmark. Thirteen further models are
+development-only. No foundation model was executed. **No overall winner label is
+assigned**, because the primary model leads overall while the reference
+benchmark leads in the severe tail.
+
+Every number above traces to
+[`artifacts/phase8_primary_results_lock.json`](artifacts/phase8_primary_results_lock.json).
 
 **V1 is complete and frozen on the [`legacy`](../../tree/legacy) branch. V2
 lives on `master`.** V1 is historical evidence and is never modified; V2 is a
@@ -62,9 +91,9 @@ Full record, including a contamination finding in the official archive:
 | Horizons | 1, 6, 12, 24 hours |
 | Train | 2013-03-01 → 2015-02-28 |
 | Validation | 2015-03-01 → 2016-02-29 |
-| Locked final test | 2016-03-01 → 2017-02-28 (**sealed**) |
+| Locked final test | 2016-03-01 → 2017-02-28 (**opened once at Phase 8; evaluated**) |
 | Partition rule | by target timestamp; origin = target − horizon |
-| Primary metric (provisional) | macro station-horizon MAE |
+| Primary metric | macro station-horizon MAE |
 | Severe threshold (frozen, training-only P95) | **244.0 µg/m³** |
 | Primary context length | **48 h** (24 h and 72 h predeclared as robustness) |
 | Common sample universe | 821,184 train · 413,148 validation · 411,012 test |
@@ -163,13 +192,30 @@ Each regime adds exactly one class of information, so any gain is attributable.
 | Spatiotemporal results (Phase 6) | [`SPATIOTEMPORAL_RESULTS.md`](docs/SPATIOTEMPORAL_RESULTS.md) |
 | Phase 6 record | [`PHASE_06_SPATIOTEMPORAL_RECORD.md`](docs/PHASE_06_SPATIOTEMPORAL_RECORD.md) |
 | Chronos-2 pretraining-overlap audit | [`CHRONOS2_PRETRAINING_AUDIT.md`](docs/CHRONOS2_PRETRAINING_AUDIT.md) |
+| Phase 7 record — robustness and pre-test freeze | [`PHASE_07_ROBUSTNESS_RECORD.md`](docs/PHASE_07_ROBUSTNESS_RECORD.md) |
+| Phase 7 coordinate acquisition audit | [`PHASE7_COORDINATE_ACQUISITION_AUDIT.md`](docs/PHASE7_COORDINATE_ACQUISITION_AUDIT.md) |
+| Phase 8 final-test protocol | [`PHASE_08_FINAL_TEST_PROTOCOL.md`](docs/PHASE_08_FINAL_TEST_PROTOCOL.md) |
+| Phase 8 record — locked final test | [`PHASE_08_LOCKED_FINAL_TEST_RECORD.md`](docs/PHASE_08_LOCKED_FINAL_TEST_RECORD.md) |
+| Phase 9 post-test analysis protocol | [`PHASE_09_POST_TEST_ANALYSIS_PROTOCOL.md`](docs/PHASE_09_POST_TEST_ANALYSIS_PROTOCOL.md) |
+| Phase 9 record — post-test error analysis | [`PHASE_09_POST_TEST_ERROR_ANALYSIS_RECORD.md`](docs/PHASE_09_POST_TEST_ERROR_ANALYSIS_RECORD.md) |
+| V1/V2 failure-mode comparison (qualitative) | [`PHASE_09_V1_V2_FAILURE_MODE_COMPARISON.md`](docs/PHASE_09_V1_V2_FAILURE_MODE_COMPARISON.md) |
+| Phase 10 — final scientific synthesis | [`PHASE_10_FINAL_SCIENTIFIC_SYNTHESIS.md`](docs/PHASE_10_FINAL_SCIENTIFIC_SYNTHESIS.md) |
+| Publication claim guide (binding wording) | [`PUBLICATION_CLAIM_GUIDE.md`](docs/PUBLICATION_CLAIM_GUIDE.md) |
+| Phase 12 reproducibility notes | [`PHASE_12_REPRODUCIBILITY_NOTES.md`](docs/PHASE_12_REPRODUCIBILITY_NOTES.md) |
+| Proposed README update (Phase 11, superseded) | [`README_PHASE11_PROPOSED_UPDATE.md`](docs/README_PHASE11_PROPOSED_UPDATE.md) |
+
+The manuscript draft and its evidence apparatus are in
+[`manuscript/`](manuscript/): the draft itself, six tables, a ten-figure plan,
+supplementary methods, a language audit, a readiness review, and a
+claim-traceability matrix mapping 235 quantitative claims to hash-pinned
+artifacts.
 
 Machine-readable contracts: [`configs/study.json`](configs/study.json),
 [`configs/preprocessing.json`](configs/preprocessing.json),
 [`configs/windowing.json`](configs/windowing.json),
 [`configs/baselines.json`](configs/baselines.json).
 
-## Reproduce Phases 0 and 1
+## Reproduce
 
 No ML dependency and nothing to install — the pipeline runs on the standard
 library plus the numpy and Pillow already present on the host:
@@ -217,7 +263,70 @@ python3 scripts/build_phase5_report.py                        # tables + figures
 .venv-v2/bin/python scripts/run_phase6_full_refit.py --determinism
 python3 scripts/build_phase6_report.py                        # tables + figures
 .venv-v2/bin/python scripts/validate_phase6.py                # Phase-6 gates
+
+# Phase 7 — multi-seed robustness, LOSO, spatial diagnostics, pre-test freeze
+.venv-v2/bin/python scripts/build_phase7_candidate_freeze.py
+.venv-v2/bin/python scripts/run_phase7_multiseed.py               # 16 refits, ~4.3 h
+.venv-v2/bin/python scripts/run_phase7_leave_one_station_out.py   # 12 folds, ~2.5 h
+python3 scripts/run_phase7_spatial_analysis.py                    # analysis only
+.venv-v2/bin/python scripts/build_phase7_pretest_freeze.py        # freezes model roles
+.venv-v2/bin/python scripts/validate_phase7.py
+
+# Phase 8 — THE LOCKED FINAL TEST.  READ THE WARNING BELOW BEFORE RUNNING.
+.venv-v2/bin/python scripts/build_phase8_receipts.py --preopening
+.venv-v2/bin/python scripts/run_phase8_final_test.py              # opens the test
+.venv-v2/bin/python scripts/verify_phase8_independently.py        # separate code path
+python3 scripts/build_phase8_figures.py
+.venv-v2/bin/python scripts/build_phase8_manifest.py
+.venv-v2/bin/python scripts/validate_phase8_postopening.py        # current-state gates
+
+# Phase 9 — post-test exploratory analysis, from the frozen prediction arrays
+.venv-v2/bin/python scripts/run_phase9_post_test_analysis.py
+.venv-v2/bin/python scripts/verify_phase9_independently.py
+python3 scripts/build_phase9_figures.py
+.venv-v2/bin/python scripts/build_phase9_summary_and_manifest.py
+.venv-v2/bin/python scripts/validate_phase9.py
+
+# Phase 10 — final synthesis (no new experiment)
+.venv-v2/bin/python scripts/build_phase10_synthesis.py
+.venv-v2/bin/python scripts/verify_phase10_independently.py
+.venv-v2/bin/python scripts/validate_phase10.py
+
+# Phase 11 — manuscript package
+python3 scripts/validate_phase11.py                               # 289 gates
+python3 scripts/verify_phase11_independently.py                   # 54 checks
+
+# Phase 12 — release hardening
+python3 scripts/validate_phase12a.py
 ```
+
+Or, in one command each:
+
+```sh
+make env          # reconstruct the frozen environment
+make data         # rebuild the derived Phase-2 layer from tracked raw data
+make check        # unit suite + every validator, expected failures annotated
+```
+
+> **Running Phase 8 on a fresh clone re-opens the locked test.**
+>
+> In this repository the test was opened once, on 2026-09, and the result is
+> frozen. Re-running `run_phase8_final_test.py` regenerates predictions and
+> metrics; it does not and cannot un-freeze what is recorded. If your rerun
+> disagrees with `artifacts/phase8_primary_results_lock.json`, that is a finding
+> to report — **not** a reason to update the lock.
+
+### Three validators fail by design
+
+`validate_phase3.py`, `validate_phase8.py` and `validate_phase8_postopening.py`
+each assert a repository state that later phases legitimately advanced past: a
+still-sealed test, an unmoved HEAD, and an un-started Phase 9 respectively.
+Their sources are preserved byte-for-byte as historical evidence and must never
+be patched to go green. Two further gates are *conditional* rather than
+by-design — one fails while any tracked file is uncommitted, one while a commit
+is unpushed. `make validate` names every expected and conditional failure, and
+exits non-zero only on a failure that is *not* documented.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 `scripts/acquire_dataset.py --verify-only` re-hashes what is on disk without
 writing anything.
@@ -226,7 +335,12 @@ writing anything.
 
 Phases 0–6 established a design, a data layer, classical baselines, two
 temporal neural baselines, one modern Transformer and one cross-station
-spatiotemporal model — not a result on unseen data. The disk blocker recorded in Phase 1 has been resolved by documented
+spatiotemporal model, all on development data. Phases 7–11 added robustness
+replication, the single locked final-test evaluation, post-test exploratory
+analysis, synthesis and the manuscript package; the headline result above is
+the locked-test outcome. What remains genuinely open is the severe tail: no
+model evaluated here improved on persistence during extreme episodes.
+The disk blocker recorded in Phase 1 has been resolved by documented
 cache cleanup — see [`docs/ENVIRONMENT_PLAN.md`](docs/ENVIRONMENT_PLAN.md).
 This machine still has **no GPU**.
 
@@ -236,3 +350,22 @@ licences, and Chronos-2 — permissively licensed and otherwise suitable — is
 excluded because its pretraining corpus overlaps the sealed test window by
 1,416 hours per station. Every Phase-5 result comes from weights trained here
 from scratch.
+
+## Licensing, citation and contributing
+
+| | |
+|---|---|
+| Code (`src/ scripts/ tests/ configs/`) | [MIT](LICENSE) |
+| Docs, manuscript, artifacts, figures, results | CC BY 4.0 |
+| Dataset (`data/raw/`) | **CC BY 4.0 as presented by UCI — NOT covered by the code licence** |
+
+The MIT licence on the code does not, and cannot, relicense the dataset. The
+repository authors do not own it. Full breakdown, including the third-party
+station coordinates: [`LICENSES.md`](LICENSES.md).
+
+Citation metadata: [`CITATION.cff`](CITATION.cff). No tagged release exists
+yet — cite the commit SHA. The manuscript is unpublished and in preparation, so
+the citation file deliberately asserts no venue, year or DOI for it.
+
+Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md) — read the frozen-evidence
+rule first. Security policy: [`SECURITY.md`](SECURITY.md).
