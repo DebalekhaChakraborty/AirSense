@@ -1,0 +1,13 @@
+model,metric,development_value,locked_test_value,absolute_change,relative_change_pct,note
+B3_R2,macro_station_horizon_MAE,30.111722,31.987226,1.875504,6.228483,deterministic; Phase-3 frozen development validation
+B3_R2,severe_MAE,136.611861,131.901121,-4.71074,-3.448266,deterministic; Phase-3 frozen development validation
+B3_R2,severe_mean_residual,132.017957,127.650421,-4.367536,-3.30829,deterministic; Phase-3 frozen development validation
+B3_R2,severe_underprediction_pct,88.286113,88.596577,0.310464,0.351657,deterministic; Phase-3 frozen development validation
+GRU_R1,macro_station_horizon_MAE,30.912193,33.082098,2.169905,7.019578,"seed-42 development row, the artifact the locked test evaluated (five-seed development means: macro 30.75906, severe 115.793)"
+GRU_R1,severe_MAE,118.964535,109.33289,-9.631645,-8.096232,"seed-42 development row, the artifact the locked test evaluated (five-seed development means: macro 30.75906, severe 115.793)"
+GRU_R1,severe_mean_residual,116.404274,106.594564,-9.80971,-8.427276,"seed-42 development row, the artifact the locked test evaluated (five-seed development means: macro 30.75906, severe 115.793)"
+GRU_R1,severe_underprediction_pct,93.555484,93.73033,0.174846,0.186891,"seed-42 development row, the artifact the locked test evaluated (five-seed development means: macro 30.75906, severe 115.793)"
+B0,macro_station_horizon_MAE,33.127699,36.138514,3.010815,9.088511,deterministic; Phase-3 frozen development validation
+B0,severe_MAE,101.273235,93.224479,-8.048756,-7.947565,deterministic; Phase-3 frozen development validation
+B0,severe_mean_residual,70.343743,65.549321,-4.794422,-6.815704,deterministic; Phase-3 frozen development validation
+B0,severe_underprediction_pct,71.624812,72.59048,0.965668,1.348231,deterministic; Phase-3 frozen development validation

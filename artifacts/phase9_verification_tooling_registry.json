@@ -1,0 +1,40 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase9_verification_tooling_registry",
+  "created_in_phase": "phase_9_before_any_numerical_post_test_output",
+  "what_this_is": "An append-only Phase-9 provenance layer. It pins the Phase-9 validator, frozen before any exploratory analysis ran, without changing a byte of any earlier registry.",
+  "analysis_classification": "POST_TEST_EXPLORATORY",
+  "confirmatory_status": "NONE",
+  "parent_registry": "artifacts/phase8_postcommit_tooling_registry.json",
+  "parent_registry_sha256": "19797553a520954c51447b90d4f4c3662458a005de9431199bf234ab088422f2",
+  "registry_lineage": [
+    "artifacts/verification_tooling_registry.json",
+    "artifacts/phase8_verification_tooling_registry.json",
+    "artifacts/phase8_postopening_tooling_registry.json",
+    "artifacts/phase8_postcommit_tooling_registry.json",
+    "artifacts/phase9_verification_tooling_registry.json"
+  ],
+  "analysis_freeze": "artifacts/phase9_analysis_freeze.json",
+  "analysis_freeze_sha256": "66fda8ee9a5a9facfe3f243fd8fbfa74c24a8dff17c86e205aebe8bcb4ca5e9f",
+  "validators": {
+    "scripts/validate_phase9.py": {
+      "sha256": "a9da314546a4988d330fdee79bde8da59f25a95fecb087e1f0790c9c6f55f0c0",
+      "status": "Phase-9 post-test exploratory validator, frozen before any numerical Phase-9 output was computed",
+      "encodes_expected_findings": false,
+      "revision": "overclaiming check corrected before acceptance: substring matching flagged 'unresolved' for containing 'solved'; it now matches word boundaries. No scientific gate or definition changed."
+    }
+  },
+  "inherited_registries_unchanged": {
+    "verification_tooling_registry.json": true,
+    "phase8_verification_tooling_registry.json": true,
+    "phase8_postopening_tooling_registry.json": true,
+    "phase8_postcommit_tooling_registry.json": true
+  },
+  "upstream_validator_sources_changed": false,
+  "phase8_validators_changed": false,
+  "gates_removed": 0,
+  "gates_disabled": 0,
+  "models_trained": 0,
+  "predictions_generated": 0,
+  "final_test_status": "evaluated"
+}

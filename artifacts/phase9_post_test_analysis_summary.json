@@ -1,0 +1,331 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase9_post_test_analysis_summary",
+  "classification": "POST_TEST_EXPLORATORY",
+  "confirmatory_status": "NONE",
+  "analysis_freeze_sha256": "66fda8ee9a5a9facfe3f243fd8fbfa74c24a8dff17c86e205aebe8bcb4ca5e9f",
+  "protocol_document_sha256": "6df18e778291a803f34288452090ad9b4e2542dd7110445ed97664c4529c04ff",
+  "phase8_locked_results": {
+    "carried_by": "reference and hash; never rewritten",
+    "primary_results_lock": "artifacts/phase8_primary_results_lock.json",
+    "primary_results_lock_sha256": "5c92451317f8348dbac978a23bd11246aee89355746d270efcc599c780027b5e",
+    "prediction_lock_sha256": "25751d669a3ff3096728c049db9b593d2620f4938e281d8eeaef147952fe91b5",
+    "phase8_manifest_sha256": "a83fd1556c2f4a173c4aded4f0d54ecdbc3aee5859d237269f55518298fe0a36",
+    "primary_model": "B3_R2",
+    "secondary_model": "GRU_R1",
+    "reference_model": "B0"
+  },
+  "generalization": {
+    "summary": "All three models lost overall accuracy moving from development validation to the locked test and gained severe-tail accuracy, the 2016-17 tail being slightly easier than 2015-16. Relative ordering is preserved on both endpoints.",
+    "macro_MAE_relative_change_pct": {
+      "B3_R2": 6.228483,
+      "GRU_R1": 7.019578,
+      "B0": 9.088511
+    },
+    "severe_MAE_relative_change_pct": {
+      "B3_R2": -3.448266,
+      "GRU_R1": -8.096232,
+      "B0": -7.947565
+    },
+    "largest_overall_degradation": "B0 (+9.09%)",
+    "smallest_overall_degradation": "B3_R2 (+6.23%)"
+  },
+  "horizon": {
+    "summary": "B3_R2 beats persistence at every horizon, by 9.47% at h=1 rising to 12.30% at h=24. GRU_R1 is markedly worse than persistence at h=1 (-25.16%) and better at longer leads.",
+    "mae_rel_improvement_vs_B0_pct": {
+      "B3_R2": {
+        "1": 9.47129,
+        "6": 11.535976,
+        "12": 10.82335,
+        "24": 12.303556
+      },
+      "GRU_R1": {
+        "1": -25.161958,
+        "6": 8.373819,
+        "12": 11.010741,
+        "24": 12.489832
+      },
+      "B0": {
+        "1": -0.0,
+        "6": -0.0,
+        "12": -0.0,
+        "24": -0.0
+      }
+    },
+    "B0_micro_R2_at_h24": -0.131365,
+    "note": "B0's micro R2 at h=24 is negative: at a full day's lead persistence is worse than predicting the test mean, even though it wins the severe tail."
+  },
+  "station": {
+    "summary": "Northern suburban sites are easiest and central urban sites hardest, for every model. The ordering is near-identical across models, which is associated with site character rather than model behaviour.",
+    "B3_R2_easiest_station": "Huairou",
+    "B3_R2_easiest_MAE": 26.835069,
+    "B3_R2_hardest_station": "Dongsi",
+    "B3_R2_hardest_MAE": 35.738812
+  },
+  "residual_acf": {
+    "summary": "Residual autocorrelation at lag 1 remains ~0.95-0.96 for every model at h=24: a large share of the remaining error is systematic temporal structure, not noise. At lag 24 the models separate by sign.",
+    "lag1_mean_h24": {
+      "B3_R2": 0.962625,
+      "GRU_R1": 0.949952,
+      "B0": 0.952522
+    },
+    "lag24_mean_h24": {
+      "B3_R2": 0.266948,
+      "GRU_R1": -0.232078,
+      "B0": -0.297138
+    },
+    "lag168_mean_h24": {
+      "B3_R2": 0.026647,
+      "GRU_R1": 6.1e-05,
+      "B0": 0.012631
+    }
+  },
+  "target_acf": {
+    "summary": "Observed PM2.5 is strongly autocorrelated: ~0.97 at 1 h, ~0.43 at 24 h. This is the context in which persistence remains hard to beat in the tail.",
+    "mean_over_stations": {
+      "1": 0.971949,
+      "6": 0.780487,
+      "24": 0.427467,
+      "168": 0.02258
+    }
+  },
+  "concentration_regimes": {
+    "summary": "Classic regression to the mean: every model over-predicts in the LOW stratum (negative mean residual) and under-predicts in ELEVATED and SEVERE. Error grows steeply with concentration.",
+    "mean_residual": {
+      "B3_R2": {
+        "LOW": -19.1552,
+        "ELEVATED": 18.365718,
+        "SEVERE": 127.650421
+      },
+      "GRU_R1": {
+        "LOW": -22.121379,
+        "ELEVATED": 14.258622,
+        "SEVERE": 106.594564
+      },
+      "B0": {
+        "LOW": -17.930293,
+        "ELEVATED": 16.844992,
+        "SEVERE": 65.549321
+      }
+    },
+    "MAE": {
+      "B3_R2": {
+        "LOW": 23.153511,
+        "ELEVATED": 31.872526,
+        "SEVERE": 131.901121
+      },
+      "GRU_R1": {
+        "LOW": 26.883211,
+        "ELEVATED": 32.225445,
+        "SEVERE": 109.33289
+      },
+      "B0": {
+        "LOW": 27.768092,
+        "ELEVATED": 40.725282,
+        "SEVERE": 93.224479
+      }
+    }
+  },
+  "severe_tail": {
+    "summary": "The persistence advantage in the tail is entirely a long-horizon phenomenon. At h=1 the three models are close; by h=24 B3_R2 degrades far faster than either GRU_R1 or B0.",
+    "severe_MAE_by_horizon": {
+      "B3_R2": {
+        "1": 26.759515,
+        "6": 100.179087,
+        "12": 170.875184,
+        "24": 229.790698
+      },
+      "GRU_R1": {
+        "1": 56.01053,
+        "6": 99.678358,
+        "12": 129.011948,
+        "24": 152.630723
+      },
+      "B0": {
+        "1": 26.016719,
+        "6": 88.112707,
+        "12": 116.240165,
+        "24": 142.528324
+      }
+    },
+    "underprediction_pct_by_horizon": {
+      "B3_R2": {
+        "1": 63.768686,
+        "6": 91.876475,
+        "12": 98.839496,
+        "24": 99.901652
+      },
+      "GRU_R1": {
+        "1": 90.243902,
+        "6": 93.017309,
+        "12": 95.515342,
+        "24": 96.144768
+      },
+      "B0": {
+        "1": 56.372935,
+        "6": 70.889064,
+        "12": 77.63572,
+        "24": 85.464201
+      }
+    }
+  },
+  "severe_events": {
+    "summary": "586 strict severe events, median duration 4 h, median peak 292 ug/m3. At h=24 no model is usable as an early warning: B3_R2 flags the first severe hour in 0.3% of events.",
+    "n_events": 586,
+    "peak_behaviour": {
+      "B3_R2_h1": {
+        "events_with_a_peak_hour_sample": 586,
+        "mean_abs_error_at_peak": 41.545912,
+        "underpredicted_peak_pct": 92.4915,
+        "flagged_first_severe_hour_pct": 19.4539
+      },
+      "B3_R2_h24": {
+        "events_with_a_peak_hour_sample": 586,
+        "mean_abs_error_at_peak": 225.357642,
+        "underpredicted_peak_pct": 100.0,
+        "flagged_first_severe_hour_pct": 0.3413
+      },
+      "GRU_R1_h1": {
+        "events_with_a_peak_hour_sample": 586,
+        "mean_abs_error_at_peak": 77.141502,
+        "underpredicted_peak_pct": 97.099,
+        "flagged_first_severe_hour_pct": 13.6519
+      },
+      "GRU_R1_h24": {
+        "events_with_a_peak_hour_sample": 586,
+        "mean_abs_error_at_peak": 169.083246,
+        "underpredicted_peak_pct": 94.8805,
+        "flagged_first_severe_hour_pct": 10.4096
+      },
+      "B0_h1": {
+        "events_with_a_peak_hour_sample": 586,
+        "mean_abs_error_at_peak": 33.300341,
+        "underpredicted_peak_pct": 99.1468,
+        "flagged_first_severe_hour_pct": 2.2184
+      },
+      "B0_h24": {
+        "events_with_a_peak_hour_sample": 586,
+        "mean_abs_error_at_peak": 169.943686,
+        "underpredicted_peak_pct": 88.9078,
+        "flagged_first_severe_hour_pct": 16.2116
+      }
+    }
+  },
+  "severe_detection": {
+    "summary": "Recall collapses with horizon for the learned models. At h=24 B3_R2 recalls 0.69% of severe hours while B0 recalls 35.6%, so persistence is also the best severe detector at long lead.",
+    "recall_by_horizon": {
+      "B3_R2": {
+        "1": 0.891817,
+        "6": 0.529504,
+        "12": 0.050354,
+        "24": 0.006884
+      },
+      "GRU_R1": {
+        "1": 0.795043,
+        "6": 0.517703,
+        "12": 0.351692,
+        "24": 0.235641
+      },
+      "B0": {
+        "1": 0.887293,
+        "6": 0.617821,
+        "12": 0.486428,
+        "24": 0.356216
+      }
+    }
+  },
+  "seasonal": {
+    "summary": "Error concentrates in winter. DJF carries the overwhelming majority of severe hours and the largest MAE for every model; JJA has almost no severe hours.",
+    "severe_n_by_season_h24": {
+      "DJF": 3120,
+      "MAM": 1101,
+      "JJA": 28,
+      "SON": 835
+    }
+  },
+  "hour_of_day": {
+    "summary": "A shallow diurnal pattern: error is lowest in the morning around 08:00 and highest just after midnight, with a spread of roughly 7-8 ug/m3 at h=24. Small next to the horizon and concentration effects."
+  },
+  "model_complementarity": {
+    "summary": "The models largely fail together - absolute errors correlate 0.67-0.87 - but B0 complements the learned models in the tail, holding the strictly smallest error on 52.88% of severe samples. No ensemble was constructed.",
+    "pearson_abs_error": {
+      "overall|B3_R2|GRU_R1": 0.801324,
+      "overall|B3_R2|B0": 0.667901,
+      "overall|GRU_R1|B0": 0.872808,
+      "severe|B3_R2|GRU_R1": 0.789259,
+      "severe|B3_R2|B0": 0.684961,
+      "severe|GRU_R1|B0": 0.828026
+    },
+    "strictly_best_of_three_pct": {
+      "overall|B3_R2": 36.892597,
+      "overall|GRU_R1": 29.64439,
+      "overall|B0": 33.463013,
+      "severe|B3_R2": 26.386703,
+      "severe|GRU_R1": 20.736625,
+      "severe|B0": 52.876672
+    }
+  },
+  "negative_predictions": {
+    "summary": "GRU_R1's unconstrained head produces 26x more negative predictions than B3_R2, concentrated at h=1. B0 is structurally non-negative. Nothing was clipped.",
+    "overall": {
+      "B3_R2": {
+        "n_negative": 53,
+        "pct": 0.012895,
+        "min_prediction": -14.424702
+      },
+      "GRU_R1": {
+        "n_negative": 1358,
+        "pct": 0.330404,
+        "min_prediction": -28.539839
+      },
+      "B0": {
+        "n_negative": 0,
+        "pct": 0.0,
+        "min_prediction": 2.0
+      }
+    }
+  },
+  "v1_v2_failure_mode_comparison": {
+    "document": "docs/PHASE_09_V1_V2_FAILURE_MODE_COMPARISON.md",
+    "sha256": "68b8eed71c75e3bb3a0b25d0973d051b45bbb318c9c15e941f78b0ed7bd73bf6",
+    "classification": "QUALITATIVE / STRUCTURAL COMPARISON",
+    "direct_numeric_comparison_made": false,
+    "unresolved_in_both": [
+      "systematic severe under-prediction",
+      "strong residual autocorrelation"
+    ],
+    "weakened": [
+      "overall skill against the available naive reference",
+      "blanket under-prediction at all concentrations"
+    ],
+    "newly_demonstrated_in_v2": "persistence is hard to beat in the severe tail; V1 could not test this because its task had no persistence baseline"
+  },
+  "limitations": [
+    "Single test period, one city, one pollutant.",
+    "GRU_R1's confirmatory role rested on five-seed evidence while the evaluated artifact is the single seed-42 model.",
+    "The locked test did not evaluate the paired regime contrasts that H1-H4 would need, so those remain development-supported and not independently re-tested.",
+    "No uncertainty quantification: none was frozen before the test was opened, so none is reported.",
+    "Severe strata are exploratory, not confirmatory endpoints.",
+    "Error decomposition into bias and variance is only partially identifiable from point forecasts."
+  ],
+  "future_work_candidates": [
+    "Quantile or distributional forecasting for the upper tail.",
+    "Explicit severe-weighted or asymmetric loss.",
+    "Residual models that exploit the remaining lag-1 structure.",
+    "A persistence-anchored hybrid, given B0's tail behaviour.",
+    "Separately frozen post-test uncertainty quantification.",
+    "Event-onset detection framed as classification rather than point regression."
+  ],
+  "models_trained": 0,
+  "new_test_models_evaluated": 0,
+  "predictions_generated": 0,
+  "models_analysed": [
+    "B3_R2",
+    "GRU_R1",
+    "B0"
+  ],
+  "phase8_predictions_modified": false,
+  "phase8_metrics_modified": false,
+  "confirmatory_hierarchy_changed": false,
+  "post_test_exploration_performed": true
+}
