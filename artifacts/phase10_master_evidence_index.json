@@ -1,0 +1,134 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_master_evidence_index",
+  "purpose": "Evidence backbone for Phase-11 manuscript drafting. Every claim must trace here.",
+  "evidence": {
+    "research_question": {
+      "artifact": "docs/PHASE_10_FINAL_SCIENTIFIC_SYNTHESIS.md",
+      "sha256": "f6cb91e6f60025d027b6193133341d689a9c366cce5690e16e16c6529a692fe1",
+      "evidence_class": "C5",
+      "description": "Research question, design and synthesis"
+    },
+    "dataset": {
+      "artifact": "artifacts/phase10_dataset_ledger.json",
+      "sha256": "08676a8c49d636e5ac7fd0ac892ff600afa8344e412b108f0d33c1e459a8a5f9",
+      "evidence_class": "C5",
+      "description": "Dataset and chronological split"
+    },
+    "information_regimes": {
+      "artifact": "artifacts/phase10_information_regime_ledger.json",
+      "sha256": "6da508c559ba01446237af1d5fdc7c4cb094b4d446693c9ea33616345177bdb0",
+      "evidence_class": "C5",
+      "description": "Information regimes and causality rules"
+    },
+    "locked_primary_result": {
+      "artifact": "artifacts/phase8_primary_results_lock.json",
+      "sha256": "5c92451317f8348dbac978a23bd11246aee89355746d270efcc599c780027b5e",
+      "evidence_class": "C1",
+      "description": "Primary confirmatory endpoint"
+    },
+    "locked_secondary_result": {
+      "artifact": "artifacts/phase8_final_test_tables/confirmatory_endpoints.json",
+      "sha256": "d5276586785e29e1339d035943ce90abd4f00abfd3366810efbd8cdde23a6354",
+      "evidence_class": "C1",
+      "description": "Secondary confirmatory endpoint"
+    },
+    "reference_benchmark": {
+      "artifact": "artifacts/phase10_table_locked_test.csv",
+      "sha256": "49d8444423279549fcaef49f97e178d4eac2918cfacf56030bfe68eae80de7b1",
+      "evidence_class": "C1",
+      "description": "Locked-test table including the reference benchmark"
+    },
+    "prediction_lock": {
+      "artifact": "artifacts/phase8_prediction_lock.json",
+      "sha256": "25751d669a3ff3096728c049db9b593d2620f4938e281d8eeaef147952fe91b5",
+      "evidence_class": "C1",
+      "description": "Predictions frozen before scoring"
+    },
+    "model_roles": {
+      "artifact": "artifacts/phase10_model_role_ledger.json",
+      "sha256": "2c1760fb43be6b063ad10702f5e6a6b86b65fd8dc014c26b9ae917d1e1c5ab88",
+      "evidence_class": "C1",
+      "description": "Frozen model roles"
+    },
+    "hypothesis_ledger": {
+      "artifact": "artifacts/phase10_hypothesis_ledger.json",
+      "sha256": "cb7d7f26add40cd73ba3790937f017b7c80b7bed5c5ae5b5545ab0fcf8743609",
+      "evidence_class": "C2",
+      "description": "H1-H5 status and permitted wording"
+    },
+    "development_models": {
+      "artifact": "artifacts/phase10_table_development_models.csv",
+      "sha256": "387417f6d6ef4652a48d4e6aaacd11d079815cb0822ee1479aa651c367d8f273",
+      "evidence_class": "C2",
+      "description": "Development validation comparison"
+    },
+    "robustness_evidence": {
+      "artifact": "artifacts/phase10_table_multiseed_robustness.csv",
+      "sha256": "47f1a13334816ef097cc7403606386ca2917c8501abd8752c9100926c736367a",
+      "evidence_class": "C2",
+      "description": "Multi-seed robustness"
+    },
+    "exploratory_diagnostics": {
+      "artifact": "artifacts/phase10_table_posttest_diagnostics.csv",
+      "sha256": "05e01cf31b064124cec445bd7266451aa0bb745b758f9beafcdb2a6c57f5896b",
+      "evidence_class": "C3",
+      "description": "Post-test exploratory diagnostics"
+    },
+    "post_test_summary": {
+      "artifact": "artifacts/phase9_post_test_analysis_summary.json",
+      "sha256": "6a587f7a628d323c0df06c5620dcba179eed4a48c0c89ee6b9744999678ff5b8",
+      "evidence_class": "C3",
+      "description": "Phase-9 findings"
+    },
+    "v1_v2_continuity": {
+      "artifact": "artifacts/phase10_v1_v2_structural_ledger.json",
+      "sha256": "b29dcd2458ee65312017d7e5f51e02bdd517d23a395a09557aeec8667f822729",
+      "evidence_class": "C4",
+      "description": "Structural continuity with AirSense V1"
+    },
+    "foundation_model_governance": {
+      "artifact": "artifacts/phase10_foundation_model_governance.json",
+      "sha256": "13ec8d14f27b4cbdc2303e57387b95ede5c9a42c5bdb3d87ecb2fad98d541be6",
+      "evidence_class": "C5",
+      "description": "Why no foundation model was executed"
+    },
+    "claim_evidence_matrix": {
+      "artifact": "artifacts/phase10_claim_evidence_matrix.csv",
+      "sha256": "a8690af24f888ff4b7abc6816a65a3b00093025665686caf5cbaa14be9abb41a",
+      "evidence_class": "C5",
+      "description": "Every manuscript-level claim and its source"
+    },
+    "limitations": {
+      "artifact": "artifacts/phase10_limitations_ledger.json",
+      "sha256": "d1d2c827cd9462b5db91b3032354bf18f553390d9a733c60dbbc7632055293db",
+      "evidence_class": "C5",
+      "description": "Study limitations"
+    },
+    "future_work": {
+      "artifact": "artifacts/phase10_future_work_ledger.json",
+      "sha256": "c31463818bbfa438c25a6cf4de5862069772fd328432666c14b8a2a7a677f8ff",
+      "evidence_class": "C5",
+      "description": "Untested future directions"
+    },
+    "reproducibility": {
+      "artifact": "artifacts/phase10_reproducibility_ledger.json",
+      "sha256": "e803161e70d992d605c213aaaf6cab9ffebf89b7d9d80042f68b645598a9467c",
+      "evidence_class": "C5",
+      "description": "Reproduction chain"
+    },
+    "canonical_conclusion": {
+      "artifact": "artifacts/phase10_canonical_conclusion.json",
+      "sha256": "ca0a070272d763779a6cd6bc12e4a9516d52d0521042b95146b05b0b97ea01b3",
+      "evidence_class": "C1",
+      "description": "Evidence-bounded conclusion"
+    },
+    "publication_claim_guide": {
+      "artifact": "docs/PUBLICATION_CLAIM_GUIDE.md",
+      "sha256": "dfc6f04f13ca8627007b4c78489d43177b6a7569897f054a15859d18b4723e4c",
+      "evidence_class": "C5",
+      "description": "Permitted and prohibited wording"
+    }
+  },
+  "entry_count": 21
+}

@@ -1,0 +1,32 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_information_regime_ledger",
+  "evidence_class": "C5",
+  "source": "artifacts/information_regime_schema.json",
+  "context_hours_primary": 48,
+  "horizons": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "common_sample_universe": true,
+  "regimes": {
+    "R0": "meteorology, wind direction, rain occurrence, calendar and masks; no pollutant history",
+    "R1": "R0 plus target-station PM2.5 history, its mask and its gap age",
+    "R2": "R1 plus co-pollutant history (PM10, SO2, NO2, CO, O3) with masks and gap ages",
+    "R3": "R2 plus cross-station history"
+  },
+  "causality_rules": {
+    "future_observed_meteorology": "PROHIBITED",
+    "future_observed_pollutants": "PROHIBITED",
+    "deterministic_future_calendar": "ALLOWED",
+    "historical_observations": "only timestamps <= forecast origin",
+    "rolling_pm25_reveal": "permitted once a timestamp becomes past relative to the forecast origin"
+  },
+  "enforcement": {
+    "index_checks": 1233036,
+    "future_target_access_violations": 0,
+    "source": "artifacts/phase8_prediction_lock.json"
+  }
+}

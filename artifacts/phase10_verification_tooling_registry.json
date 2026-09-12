@@ -1,0 +1,41 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_verification_tooling_registry",
+  "created_in_phase": "phase_10_before_any_synthesis_output",
+  "what_this_is": "An append-only Phase-10 provenance layer pinning the synthesis validator. It rewrites no earlier registry.",
+  "parent_registry": "artifacts/phase9_verification_tooling_registry.json",
+  "parent_registry_sha256": "187ac165553ebb16ca95a672dae0dafa2a014ff33341508985f1b8a3143a427e",
+  "registry_lineage": [
+    "artifacts/verification_tooling_registry.json",
+    "artifacts/phase8_verification_tooling_registry.json",
+    "artifacts/phase8_postopening_tooling_registry.json",
+    "artifacts/phase8_postcommit_tooling_registry.json",
+    "artifacts/phase9_verification_tooling_registry.json",
+    "artifacts/phase10_verification_tooling_registry.json"
+  ],
+  "synthesis_freeze": "artifacts/phase10_synthesis_freeze.json",
+  "synthesis_freeze_sha256": "11dc1dba6e42e9b110ba740222c4e18a0962ae6ac0ebfe235d3a4add1778f525",
+  "validators": {
+    "scripts/validate_phase8.py": {
+      "sha256": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231",
+      "semantics": "Pre-opening-frozen Phase-8 validator. Asserts exact equality between HEAD and the pre-test snapshot; that assertion is intentionally false after the authorized locked-evaluation checkpoint. Preserved as historical evidence, never patched."
+    },
+    "scripts/validate_phase8_postopening.py": {
+      "sha256": "e293550a3abf35802e7d8c33fe2e577f949ec20caab84ed0c9858645e20362af",
+      "semantics": "Post-opening final-state validator. Uses immutable freeze-point ancestry instead of exact HEAD equality, and tolerates exactly the Phase-3 historical seal cascade and the two historical exact-HEAD gates."
+    },
+    "scripts/validate_phase9.py": {
+      "sha256": "a9da314546a4988d330fdee79bde8da59f25a95fecb087e1f0790c9c6f55f0c0",
+      "semantics": "Post-test exploratory validator. Frozen before Phase-9 analysis; checks structure, definitions and reconciliation, never conclusions."
+    },
+    "scripts/validate_phase10.py": {
+      "sha256": "94e9e56b70d5041820e30d9924223d3d8412f72b218062dc7ecae240ee699c42",
+      "semantics": "Final-synthesis validator. Frozen before any Phase-10 synthesis output; gates classification, traceability, arithmetic and prohibited claims."
+    }
+  },
+  "upstream_validators_unchanged": true,
+  "new_scientific_experiment": false,
+  "models_trained": 0,
+  "predictions_generated": 0,
+  "phase10_status": "SYNTHESIS_FROZEN"
+}

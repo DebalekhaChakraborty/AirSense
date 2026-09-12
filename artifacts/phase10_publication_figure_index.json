@@ -1,0 +1,89 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_publication_figure_index",
+  "new_figures_created": 0,
+  "existing_figures_modified": 0,
+  "note": "Selected from existing frozen figures only. Redrawing for journal style, if wanted, belongs to a later phase.",
+  "figures": [
+    {
+      "figure_id": "Figure 1",
+      "source_path": "figures/phase9_generalization_gap.png",
+      "source_phase": "Phase 9",
+      "evidence_class": "C3",
+      "manuscript_role": "Development validation against the locked test",
+      "caption_constraints": "Caption must state that development and locked-test values come from different partitions and that GRU_R1 uses its seed-42 row."
+    },
+    {
+      "figure_id": "Figure 2",
+      "source_path": "figures/phase9_mae_by_horizon.png",
+      "source_phase": "Phase 9",
+      "evidence_class": "C3",
+      "manuscript_role": "Error growth with forecast horizon",
+      "caption_constraints": "Caption must not imply a confirmatory horizon-wise test."
+    },
+    {
+      "figure_id": "Figure 3",
+      "source_path": "figures/phase9_station_mae_heatmap.png",
+      "source_phase": "Phase 9",
+      "evidence_class": "C3",
+      "manuscript_role": "Station-level error structure",
+      "caption_constraints": "Descriptive; ordering is associated with site character."
+    },
+    {
+      "figure_id": "Figure 4",
+      "source_path": "figures/phase9_severe_mae_by_horizon.png",
+      "source_phase": "Phase 9",
+      "evidence_class": "C3",
+      "manuscript_role": "Severe-tail error by horizon",
+      "caption_constraints": "Caption must state the severe rule and that 244.0 is the training pooled P95, not a regulatory threshold."
+    },
+    {
+      "figure_id": "Figure 5",
+      "source_path": "figures/phase9_severe_underprediction.png",
+      "source_phase": "Phase 9",
+      "evidence_class": "C3",
+      "manuscript_role": "Severe under-prediction rate by horizon",
+      "caption_constraints": "Caption must state residual = actual - prediction."
+    },
+    {
+      "figure_id": "Figure 6",
+      "source_path": "figures/phase9_residual_acf.png",
+      "source_phase": "Phase 9",
+      "evidence_class": "C3",
+      "manuscript_role": "Residual autocorrelation at frozen lags",
+      "caption_constraints": "Association only; no causal claim."
+    },
+    {
+      "figure_id": "Figure 7",
+      "source_path": "figures/phase9_concentration_regimes.png",
+      "source_phase": "Phase 9",
+      "evidence_class": "C3",
+      "manuscript_role": "Error by training-frozen concentration stratum",
+      "caption_constraints": "Boundaries are training-derived; no test quantile was computed."
+    },
+    {
+      "figure_id": "Figure 8",
+      "source_path": "figures/phase9_severe_event_peak_error.png",
+      "source_phase": "Phase 9",
+      "evidence_class": "C3",
+      "manuscript_role": "Error at severe-event peaks",
+      "caption_constraints": "Must not be framed as an operational early-warning evaluation."
+    },
+    {
+      "figure_id": "Figure 9",
+      "source_path": "figures/phase8_final_test_primary_mae.png",
+      "source_phase": "Phase 8",
+      "evidence_class": "C1",
+      "manuscript_role": "Locked final-test primary endpoint",
+      "caption_constraints": "The only confirmatory figure; roles must be labelled."
+    },
+    {
+      "figure_id": "Figure 10",
+      "source_path": "figures/phase8_final_test_severe_mae.png",
+      "source_phase": "Phase 8",
+      "evidence_class": "C1",
+      "manuscript_role": "Locked final-test secondary endpoint",
+      "caption_constraints": "Caption must note persistence is a reference benchmark, not a selected model."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_canonical_conclusion",
+  "canonical_locked_results": {
+    "primary_B3_R2_macro_station_horizon_MAE": 31.98722559774534,
+    "secondary_GRU_R1_severe_MAE_gt_244": 109.3328897571946,
+    "severe_n": 20336,
+    "reference_B0_macro_station_horizon_MAE": 36.138513538776856,
+    "reference_B0_severe_MAE_gt_244": 93.22447875688434
+  },
+  "b3r2_relative_improvement_vs_B0_pct": 11.487157424383705,
+  "b3r2_relative_improvement_derivation": "100 * (B0 macro - B3_R2 macro) / B0 macro, from the frozen full-precision values in the primary-results lock. No new metric and no statistical test.",
+  "conclusion": {
+    "locked_confirmatory_C1": "On the sealed 2016-2017 test, opened once under a hierarchy frozen beforehand, a gradient-boosted model over causal pollutant, meteorological and temporal history (B3_R2) achieved a macro station-horizon MAE of 31.98722559774534 against 36.13851353877686 for causal persistence, an improvement of 11.487157%, and it improved on persistence at every horizon from 1 to 24 hours. In the severe stratum (actual PM2.5 > 244.0, n = 20336) the prespecified secondary model GRU_R1 seed 42 reached 109.3328897571946 against 131.9011210000000 for B3_R2, while persistence remained the strongest severe benchmark at 93.22447875688434.",
+    "development_and_robustness_C2": "Development and multi-seed experiments showed substantial value from target PM2.5 history, weak and model-dependent value from co-pollutant history, and a paired cross-station benefit favouring R3 over R2 in all five seeds. None of these contrasts was independently re-tested on the locked final test, because the confirmatory set contained three models and no paired regime variant.",
+    "post_test_exploratory_C3": "Post-test exploratory analysis is consistent with regression toward the conditional mean during extreme episodes: severe errors are strongly one-directional, with the mean residual accounting for most of the severe MAE, and under-prediction rising with forecast horizon. Substantial short-lag residual dependence remains after forecasting, indicating unresolved temporal structure in the locked predictions.",
+    "principal_open_problem": "The principal open problem is reliable forecasting of extreme pollution episodes rather than average multi-horizon accuracy."
+  },
+  "supporting_artifacts": {
+    "primary_results_lock": "artifacts/phase8_primary_results_lock.json",
+    "prediction_lock": "artifacts/phase8_prediction_lock.json",
+    "hypothesis_ledger": "artifacts/phase10_hypothesis_ledger.json",
+    "claim_evidence_matrix": "artifacts/phase10_claim_evidence_matrix.csv",
+    "post_test_summary": "artifacts/phase9_post_test_analysis_summary.json",
+    "limitations": "artifacts/phase10_limitations_ledger.json"
+  },
+  "evidence_classes_used": [
+    "C1",
+    "C2",
+    "C3"
+  ],
+  "new_metric_introduced": false,
+  "new_statistical_test_introduced": false
+}

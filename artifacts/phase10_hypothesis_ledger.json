@@ -1,0 +1,119 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_hypothesis_ledger",
+  "rule": "The locked final test evaluated three models on two endpoints. It did not evaluate the paired regime contrasts H1-H4 require, so no hypothesis is marked as retested there.",
+  "hypotheses": {
+    "H1": {
+      "hypothesis": "Target PM2.5 history improves forecasting.",
+      "original_definition": "Adding target-station PM2.5 history (R0 -> R1) improves macro station-horizon MAE.",
+      "evidence_class": "C2",
+      "supporting_phases": [
+        "Phase 3",
+        "Phase 4"
+      ],
+      "evidence": {
+        "B3_R0_macro_MAE": 40.623282,
+        "B3_R1_macro_MAE": 30.472594,
+        "absolute_improvement": 10.150688
+      },
+      "status": "SUPPORTED ON DEVELOPMENT VALIDATION",
+      "locked_test_retested": false,
+      "why_not_retested": "B3_R0 and B3_R1 were not authorized final-test models.",
+      "limitations": "A single paired contrast on one model family, measured before the test was opened.",
+      "permitted_wording": "Target PM2.5 history substantially improved development validation accuracy.",
+      "prohibited_wording": "Confirmed on the final test."
+    },
+    "H2": {
+      "hypothesis": "The benefit of PM2.5 history is largest at short horizons.",
+      "original_definition": "The R0 -> R1 gain decreases as forecast horizon grows.",
+      "evidence_class": "C2",
+      "supporting_phases": [
+        "Phase 3",
+        "Phase 4"
+      ],
+      "status": "SUPPORTED ON DEVELOPMENT VALIDATION",
+      "locked_test_retested": false,
+      "why_not_retested": "No R0/R1 pair was evaluated on the locked test.",
+      "limitations": "Locked-test horizon results are consistent with the pattern but are not a paired contrast and do not test it.",
+      "permitted_wording": "On development validation the benefit of target history was largest at the shortest horizon and diminished with lead time.",
+      "prohibited_wording": "The final test confirmed the horizon-dependent benefit."
+    },
+    "H3": {
+      "hypothesis": "Co-pollutant history provides additional predictive value.",
+      "original_definition": "Adding co-pollutant history (R1 -> R2) improves macro station-horizon MAE.",
+      "evidence_class": "C2",
+      "supporting_phases": [
+        "Phase 3",
+        "Phase 4",
+        "Phase 5"
+      ],
+      "evidence": {
+        "B3_R1_to_B3_R2": 0.360872,
+        "GRU_R1_to_GRU_R2": -0.930764,
+        "TCN_R1_to_TCN_R2": -3.391252,
+        "iTransformer_R1_to_R2": -0.243316,
+        "note": "Positive means the R2 variant improved. Only the gradient-boosted family improved; all three learned families degraded."
+      },
+      "status": "WEAK / MODEL-DEPENDENT DEVELOPMENT SUPPORT",
+      "locked_test_retested": false,
+      "why_not_retested": "Only B3_R2 was evaluated on the locked test, so no R1/R2 contrast exists there.",
+      "limitations": "The direction of the effect depends on model family; it was positive only for gradient boosting.",
+      "permitted_wording": "Co-pollutant history helped the gradient-boosted model on development validation and degraded the neural and transformer variants.",
+      "prohibited_wording": "Co-pollutants generally improve forecasting."
+    },
+    "H4": {
+      "hypothesis": "Cross-station information provides additional predictive value.",
+      "original_definition": "A cross-station regime (R3) improves on the same architecture without it (R2).",
+      "evidence_class": "C2",
+      "supporting_phases": [
+        "Phase 6",
+        "Phase 7"
+      ],
+      "evidence": {
+        "SA_R2_macro_MAE": 32.239759,
+        "SA_R3_macro_MAE": 31.532702,
+        "absolute_improvement": 0.707058,
+        "relative_improvement_pct": 2.193123,
+        "paired_seeds_R3_better": "5/5 overall",
+        "h24_direction_reliable_across_seeds": false,
+        "h24_single_seed_value": -1.308702,
+        "loso_mean_relative_penalty_pct": 0.134022,
+        "loso_stations_improved_when_held_out": 5
+      },
+      "status": "ROBUSTLY SUPPORTED ON DEVELOPMENT / ROBUSTNESS EVIDENCE, BUT NOT INDEPENDENTLY CONFIRMED ON THE LOCKED TEST",
+      "locked_test_retested": false,
+      "why_not_retested": "SA_R2 and SA_R3 were excluded from the confirmatory set.",
+      "limitations": "The h=24 effect was not reliably directional across seeds. Phase-7 spatial diagnostics found no proximity effect: Spearman(distance, attention) = 0.136289.",
+      "permitted_wording": "Cross-station context improved the same architecture in a paired comparison across all five seeds on development validation.",
+      "prohibited_wording": "Geographic propagation, spatial reasoning, distance-driven attention, or confirmation on the final test."
+    },
+    "H5": {
+      "hypothesis": "Modern and spatiotemporal methods reduce severe-tail error and under-prediction.",
+      "original_definition": "Sequence and cross-station models improve severe MAE relative to engineered and naive baselines.",
+      "evidence_class": "C2/C3",
+      "supporting_phases": [
+        "Phase 4",
+        "Phase 6",
+        "Phase 7",
+        "Phase 8",
+        "Phase 9"
+      ],
+      "evidence": {
+        "development_GRU_R1_severe_MAE": 118.964535,
+        "development_B3_R2_severe_MAE": 136.611861,
+        "development_SA_R3_severe_MAE": 121.270043,
+        "development_B0_severe_MAE": 101.273235,
+        "locked_GRU_R1_severe_MAE": 109.3328897571946,
+        "locked_B3_R2_severe_MAE": 131.901121,
+        "locked_B0_severe_MAE": 93.22447875688434,
+        "locked_severe_n": 20336
+      },
+      "status": "PARTIALLY SUPPORTED AGAINST SOME LEARNED AND ENGINEERED MODELS, BUT NOT SUPPORTED AS SUPERIORITY OVER PERSISTENCE ON THE LOCKED TEST",
+      "locked_test_retested": false,
+      "locked_test_note": "GRU_R1 and B3_R2 both carried confirmatory roles, so the GRU_R1 vs B3_R2 severe comparison is measurable on the locked test. The hypothesis as originally framed concerns a model class rather than these two artifacts, and the class-level contrast was not retested.",
+      "limitations": "The reference persistence benchmark had the lowest severe MAE on the locked test. Phase-7 showed severe-tail metrics swinging 29-35 ug/m3 across seeds, and the evaluated GRU artifact is a single seed.",
+      "permitted_wording": "On the locked test GRU_R1 achieved a lower severe MAE than B3_R2, while persistence remained the strongest severe benchmark.",
+      "prohibited_wording": "The severe-tail problem is addressed; GRU beats persistence in severe pollution; H5 is confirmed."
+    }
+  }
+}

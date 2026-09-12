@@ -1,0 +1,100 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_reproducibility_ledger",
+  "evidence_class": "C5",
+  "repository": "github.com/DebalekhaChakraborty/AirSense",
+  "branch": "master",
+  "git_anchors": {
+    "pre_test_sha": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+    "locked_evaluation_sha": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+    "post_evaluation_validation_sha": "7ccfc7e54f7d9008421cfcf764fcfaacc353e1db",
+    "phase9_closure_sha": "8cc3a7ab8a069b9a187904be68f14b9040928ab4",
+    "legacy_v1_sha": "16c9030cf74508b620cc6d28f90346aa379f29cd"
+  },
+  "raw_data": {
+    "raw_archive_sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4",
+    "source_csv_sha256": {
+      "Aotizhongxin": "a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b",
+      "Changping": "a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7",
+      "Dingling": "3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb",
+      "Dongsi": "9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e",
+      "Guanyuan": "59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9",
+      "Gucheng": "10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951",
+      "Huairou": "812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26",
+      "Nongzhanguan": "572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487",
+      "Shunyi": "520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a",
+      "Tiantan": "0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa",
+      "Wanliu": "0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a",
+      "Wanshouxigong": "ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0"
+    }
+  },
+  "processed_data_regeneration": ".venv-v2/bin/python scripts/build_forecast_dataset.py (data/processed is gitignored; every output digest is in artifacts/v2_phase2_manifest.json)",
+  "sample_universe_sha256": "7a767a92bc842aa33c14a08af95c3c0e4b0ba15e067cf1d5ad3518f550d7ca70",
+  "environment": {
+    "python": "3.11.2",
+    "python_implementation": "CPython",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "lightgbm": "4.7.0",
+    "torch": "2.14.0+cpu",
+    "safetensors": "0.8.0",
+    "device": "cpu",
+    "cuda_available": false,
+    "torch_threads": 10,
+    "platform": "Linux-6.1.0-52-cloud-amd64-x86_64-with-glibc2.36"
+  },
+  "seeds": {
+    "training_seed": 42,
+    "robustness_seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "final_test_artifact_seed": 42
+  },
+  "validator_chain": [
+    "scripts/validate_foundation.py",
+    "scripts/validate_phase1.py",
+    "scripts/validate_phase2.py",
+    "scripts/validate_phase3.py",
+    "scripts/validate_phase4.py",
+    "scripts/validate_phase5.py",
+    "scripts/validate_phase6.py",
+    "scripts/validate_phase7.py",
+    "scripts/validate_phase8.py",
+    "scripts/validate_phase8_postopening.py",
+    "scripts/validate_phase9.py",
+    "scripts/validate_phase10.py"
+  ],
+  "phase_manifest_sha256": {
+    "v2_foundation_manifest.json": "8216ae1c052c12fc2327d780e352357f9db630a10cc13a58a84a58b023090a9c",
+    "v2_phase1_manifest.json": "fd54631beebeaa3c60daf230fe99d38c2261e0790217861def7d23e32cd7f3a5",
+    "v2_phase2_manifest.json": "5902da2104eda8c9a8a84a12725e8c53c3146740f918e81ca50014b3cdbecd6f",
+    "v2_phase3_manifest.json": "0d1755921da51b831a62709580e8d77c9d92206dd0edb1a4cdcd0f180b976ed2",
+    "v2_phase4_manifest.json": "4a3a932afad9f69ee7dd75a7737e2132cda37edeac9de38ed26c5456a20a7716",
+    "v2_phase5_manifest.json": "6e99f07141104592c6c01b6a0a857d7b4fac2033e383aaa48b3ab3548168db10",
+    "v2_phase6_manifest.json": "7a197e323efa2d8226c5e824e23e9d7c3a0e5ee2d2022a547d2c4f828117d7a7",
+    "v2_phase8_manifest.json": "a83fd1556c2f4a173c4aded4f0d54ecdbc3aee5859d237269f55518298fe0a36",
+    "v2_phase9_manifest.json": "8684cb321f1ed22516d5708c5ad744719cb24b8ba4b99d7116c2dcc527e3c1d8"
+  },
+  "opening_receipt_sha256": "52c5e68caf1b5e40a206b290995a921654b8ee6f9f7f4f22a077633f97c8599b",
+  "prediction_lock_sha256": "25751d669a3ff3096728c049db9b593d2620f4938e281d8eeaef147952fe91b5",
+  "primary_results_lock_sha256": "5c92451317f8348dbac978a23bd11246aee89355746d270efcc599c780027b5e",
+  "phase8_final_validation_receipt_sha256": "863d740776024e0ab97a599f0445fcc5b3cf90c9b1a69a79f5597df278d5f13a",
+  "phase9_analysis_freeze_sha256": "66fda8ee9a5a9facfe3f243fd8fbfa74c24a8dff17c86e205aebe8bcb4ca5e9f",
+  "test_access_chronology": [
+    "Phases 0-7: test sealed; no target value materialised.",
+    "Phase 8 pre-opening: all gates green, receipt written, status still sealed.",
+    "Phase 8 opening receipt: AUTHORIZED_TO_OPEN.",
+    "Phase 8 Stage A: chronological prediction generation, metrics unseen.",
+    "Phase 8 prediction lock: arrays hashed before scoring.",
+    "Phase 8 Stage B: scoring; status evaluated.",
+    "Phase 9: post-test exploratory analysis from frozen arrays.",
+    "Phase 10: synthesis only."
+  ],
+  "future_target_access_violations": 0,
+  "model_retraining_after_test": 0,
+  "new_test_model_selection": 0
+}

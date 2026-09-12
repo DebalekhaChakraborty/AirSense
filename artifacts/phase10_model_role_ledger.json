@@ -1,0 +1,41 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_model_role_ledger",
+  "evidence_class": "C1",
+  "frozen_before": "the locked final test was opened",
+  "source": "artifacts/phase7_pretest_freeze_addendum.json",
+  "roles": {
+    "B3_R2": "PRIMARY CONFIRMATORY MODEL",
+    "GRU_R1": "SECONDARY CONFIRMATORY SEVERE-TAIL MODEL",
+    "B0": "REFERENCE BENCHMARK"
+  },
+  "endpoints": {
+    "B3_R2": "macro station-horizon MAE",
+    "GRU_R1": "severe MAE at the frozen threshold 244.0",
+    "B0": "both endpoints, as reference only"
+  },
+  "secondary_model_seed": 42,
+  "secondary_model_artifact": "results/models/neural/GRU_R1.safetensors",
+  "B0_is_a_selected_learned_model": false,
+  "development_only_models": [
+    "B1",
+    "B2",
+    "B3_R0",
+    "B3_R1",
+    "GRU_R0",
+    "GRU_R2",
+    "TCN_R0",
+    "TCN_R1",
+    "TCN_R2",
+    "iTransformer_R1",
+    "iTransformer_R2",
+    "SA_R2",
+    "SA_R3"
+  ],
+  "development_only_permitted_use": "historical development tables only; no locked-test confirmatory role",
+  "promotion_after_test_access_permitted": false,
+  "winner_label_assigned": false,
+  "winner_label_rationale": "The study reports roles frozen before the test was opened and the measured outcome for each. A single overall winner label would collapse endpoints that behave differently: the primary model leads overall while the reference benchmark leads in the severe tail.",
+  "foundation_models_executed": 0,
+  "foundation_model_predictions_generated": 0
+}

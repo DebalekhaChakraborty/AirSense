@@ -1,0 +1,54 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_dataset_ledger",
+  "evidence_class": "C5",
+  "dataset": {
+    "name": "Beijing Multi-Site Air-Quality Data",
+    "uci_id": 501,
+    "doi": "10.24432/C5RK5G",
+    "license": "CC BY 4.0 as presented by UCI",
+    "station_count": 12,
+    "station_names": [
+      "Aotizhongxin",
+      "Changping",
+      "Dingling",
+      "Dongsi",
+      "Guanyuan",
+      "Gucheng",
+      "Huairou",
+      "Nongzhanguan",
+      "Shunyi",
+      "Tiantan",
+      "Wanliu",
+      "Wanshouxigong"
+    ],
+    "row_count": 420768,
+    "period_start": "2013-03-01T00:00:00",
+    "period_end": "2017-02-28T23:00:00",
+    "raw_archive_sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4"
+  },
+  "partitions": {
+    "train": "2013-03-01T00:00:00 to 2015-02-28T23:00:00",
+    "validation": "2015-03-01T00:00:00 to 2016-02-29T23:00:00",
+    "locked_test": "2016-03-01T00:00:00 to 2017-02-28T23:00:00",
+    "partitioned_by": "TARGET TIMESTAMP"
+  },
+  "sample_universe": {
+    "train": 821184,
+    "validation": 413148,
+    "test": 411012,
+    "source": "artifacts/sample_universe_manifest.json"
+  },
+  "context_hours": 48,
+  "horizons": [
+    1,
+    6,
+    12,
+    24
+  ],
+  "station_horizon_cells": 48,
+  "severe_threshold": 244.0,
+  "severe_threshold_source": "pooled training PM2.5 P95; a study-internal quantile, not a regulatory or AQI boundary",
+  "training_median": 61.0,
+  "split_design_recomputed_in_phase10": false
+}

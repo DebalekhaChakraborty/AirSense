@@ -1,0 +1,27 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_final_synthesis_summary",
+  "phase": 10,
+  "classification": "FINAL_SCIENTIFIC_SYNTHESIS",
+  "new_scientific_experiments": 0,
+  "new_test_analyses": 0,
+  "models_trained": 0,
+  "predictions_generated": 0,
+  "new_test_models": 0,
+  "new_metrics_computed": 0,
+  "phase8_drift": 0,
+  "phase9_drift": 0,
+  "confirmatory_hierarchy_changed": false,
+  "locked_test_result_changed": false,
+  "post_test_findings_reclassified_as_confirmatory": false,
+  "manuscript_drafting_started": false,
+  "canonical_locked_results": {
+    "primary_B3_R2_macro_station_horizon_MAE": 31.98722559774534,
+    "secondary_GRU_R1_severe_MAE_gt_244": 109.3328897571946,
+    "severe_n": 20336,
+    "reference_B0_macro_station_horizon_MAE": 36.138513538776856,
+    "reference_B0_severe_MAE_gt_244": 93.22447875688434
+  },
+  "phase10_status": "SYNTHESIS_FROZEN",
+  "next_phase": "Phase 11 manuscript drafting, after human review"
+}

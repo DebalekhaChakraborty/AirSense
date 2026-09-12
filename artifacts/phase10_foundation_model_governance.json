@@ -1,0 +1,32 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_foundation_model_governance",
+  "evidence_class": "C5",
+  "framing": "Reproducibility and governance outcome, not a modelling failure and not a measured model result.",
+  "source": "artifacts/v2_phase5_manifest.json;docs/CHRONOS2_PRETRAINING_AUDIT.md",
+  "models": {
+    "Chronos-2": {
+      "executed": false,
+      "checkpoint_downloaded": false,
+      "reason": "material pretraining overlap identified with the sealed test period through KDD Cup 2018 Beijing data",
+      "gate": "pretraining-overlap audit classification C",
+      "audit_document": "docs/CHRONOS2_PRETRAINING_AUDIT.md",
+      "audit_sha256": "bdaf6419ff8f068b557a60dcaca9e87a85db427552de1eed1b37fe66e5e7cd70",
+      "evidence_strength": "overlap risk established by provenance audit; byte-level contamination was not demonstrated and is not claimed"
+    },
+    "TimesFM-3.0": {
+      "executed": false,
+      "reason": "non-commercial weight licence",
+      "category": "weight licence incompatible with the study's intended use"
+    },
+    "Moirai-2.0-R-small": {
+      "executed": false,
+      "reason": "cc-by-nc-4.0 weight licence",
+      "category": "non-commercial weight licence"
+    }
+  },
+  "foundation_models_executed": 0,
+  "foundation_model_predictions_generated": 0,
+  "permitted_wording": "No eligible foundation model could be evaluated under the study's pretraining-overlap and licensing constraints.",
+  "prohibited_wording": "Foundation models failed, underperformed, or were beaten."
+}

@@ -1,0 +1,57 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_future_work_ledger",
+  "improvement_claimed": false,
+  "note": "These are candidate directions motivated by the observed failure modes. None was attempted, and no claim is made that any would improve results.",
+  "future_work": [
+    {
+      "direction": "Tail-aware loss functions.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Probabilistic forecasting.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Quantile forecasting.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Event-aware training objectives.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Persistence/model hybrid gating.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Forecast meteorology as an exogenous input.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Cross-city external validation.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "A clean-pretraining foundation-model benchmark.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Graph or geographic inductive biases.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Calibrated severe-event warning probabilities.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Longer contexts where scientifically justified.",
+      "tested_in_this_study": false
+    },
+    {
+      "direction": "Uncertainty quantification with predeclared temporal block methods.",
+      "tested_in_this_study": false
+    }
+  ],
+  "future_work_count": 12
+}

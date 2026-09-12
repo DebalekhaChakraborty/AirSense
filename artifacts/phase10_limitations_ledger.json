@@ -1,0 +1,24 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_limitations_ledger",
+  "limitations": [
+    "Single metropolitan air-quality network; one city, one pollutant.",
+    "No independent external-city test set.",
+    "Only historical observed meteorology was available; no future weather forecast inputs were used.",
+    "The GRU secondary test artifact is seed 42, while its secondary role was motivated by five-seed robustness evidence.",
+    "H1 to H4 were not all independently re-tested on the locked final test.",
+    "The severe threshold is the training pooled P95, not a regulatory AQI boundary.",
+    "Phase-9 event, seasonal, detection and residual analyses are post-test exploratory.",
+    "No formal inferential confidence intervals were predeclared for the locked test.",
+    "LOSO evaluates held-out target supervision while retaining the held-out station's causal historical observations; it is not completely unseen-site forecasting.",
+    "Coordinates were used for descriptive spatial diagnostics only, never as model features.",
+    "SA_R3 attention was not proximity-driven and must not be interpreted as physical pollution transport.",
+    "No eligible foundation model was evaluated, because of pretraining-overlap and licensing governance constraints.",
+    "Negative neural predictions were intentionally left unclipped.",
+    "Substantial short-lag residual autocorrelation remains in the locked predictions.",
+    "Severe-episode forecasting remains an open problem.",
+    "Operational early-warning usability was never formally defined or tested.",
+    "GRU predictions carry an order-1e-5 dependence on inference batch composition; immaterial at reported precision but relevant to bitwise reproduction."
+  ],
+  "limitation_count": 17
+}

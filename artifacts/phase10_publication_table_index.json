@@ -1,0 +1,55 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_publication_table_index",
+  "latex_formatting_deferred_to": "Phase 11",
+  "tables": [
+    {
+      "table_id": "Table 1",
+      "title": "Dataset and chronological split",
+      "artifact_source": "artifacts/phase10_dataset_ledger.json",
+      "evidence_class": "C5",
+      "manuscript_section": "Data and protocol",
+      "allowed_interpretation": "Descriptive; establishes the chronological design and the sealed test."
+    },
+    {
+      "table_id": "Table 2",
+      "title": "Model families and information regimes",
+      "artifact_source": "artifacts/phase10_information_regime_ledger.json",
+      "evidence_class": "C5",
+      "manuscript_section": "Methods",
+      "allowed_interpretation": "Definitional; states what each regime may observe."
+    },
+    {
+      "table_id": "Table 3",
+      "title": "Development-validation model comparison",
+      "artifact_source": "artifacts/phase10_table_development_models.csv",
+      "evidence_class": "C2",
+      "manuscript_section": "Development results",
+      "allowed_interpretation": "Development evidence only; must not be read as final-test performance."
+    },
+    {
+      "table_id": "Table 4",
+      "title": "Multi-seed robustness",
+      "artifact_source": "artifacts/phase10_table_multiseed_robustness.csv",
+      "evidence_class": "C2",
+      "manuscript_section": "Robustness",
+      "allowed_interpretation": "Descriptive spread across five seeds; not an inferential interval."
+    },
+    {
+      "table_id": "Table 5",
+      "title": "Locked final-test confirmatory results",
+      "artifact_source": "artifacts/phase10_table_locked_test.csv",
+      "evidence_class": "C1",
+      "manuscript_section": "Locked final-test results",
+      "allowed_interpretation": "The only confirmatory table. Roles are frozen; no post-test promotion."
+    },
+    {
+      "table_id": "Table 6",
+      "title": "Post-test severe and error diagnostics",
+      "artifact_source": "artifacts/phase10_table_posttest_diagnostics.csv",
+      "evidence_class": "C3",
+      "manuscript_section": "Post-test error analysis",
+      "allowed_interpretation": "Exploratory only; must be visibly separated from Table 5."
+    }
+  ]
+}

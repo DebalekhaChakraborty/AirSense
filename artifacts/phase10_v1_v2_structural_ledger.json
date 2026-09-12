@@ -1,0 +1,26 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_v1_v2_structural_ledger",
+  "evidence_class": "C4",
+  "comparison_type": "QUALITATIVE / STRUCTURAL ONLY",
+  "direct_metric_comparison_valid": false,
+  "direct_metric_comparison_reason": "V1 performed concurrent-hour PM2.5 estimation on a different period with a single-station design and a different severe threshold (282.0 vs 244.0). V2 performs future multi-horizon forecasting across 12 stations. The tasks and the severe populations differ.",
+  "v1_task": "concurrent-hour PM2.5 estimation",
+  "v2_task": "true future multi-horizon forecasting",
+  "v1_reference": "legacy branch 16c9030cf74508b620cc6d28f90346aa379f29cd",
+  "structural_continuity_supported": [
+    "systematic severe under-prediction remains",
+    "strong residual temporal structure remains",
+    "carry-forward of recent extreme values remains important"
+  ],
+  "structural_progress": [
+    "strict chronological forecasting protocol",
+    "multi-station evidence",
+    "explicit information regimes",
+    "multi-horizon evaluation",
+    "sealed locked test opened once",
+    "multi-seed robustness analysis",
+    "paired cross-station controlled experiment"
+  ],
+  "percentage_improvements_computed": 0
+}

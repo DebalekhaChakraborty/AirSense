@@ -1,0 +1,103 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase10_synthesis_freeze",
+  "phase10_type": "FINAL_SCIENTIFIC_SYNTHESIS",
+  "stage": "frozen_before_any_phase10_synthesis_output",
+  "purpose": "Convert the completed AirSense V2 research program into a strict, publication-ready evidence structure. Phase 10 synthesises and freezes; it performs no scientific experimentation.",
+  "new_scientific_experiment": false,
+  "new_test_analysis": false,
+  "models_trained": 0,
+  "predictions_generated": 0,
+  "new_metrics_computed": 0,
+  "new_subgroups_defined": 0,
+  "new_thresholds_introduced": 0,
+  "new_statistical_tests": 0,
+  "phase8_results_mutable": false,
+  "phase9_results_mutable": false,
+  "confirmatory_hierarchy_mutable": false,
+  "manuscript_drafting_permitted": false,
+  "manuscript_drafting_phase": "Phase 11, only after Phase 10 is validated and human-reviewed",
+  "permitted_operations": [
+    "parse frozen JSON and CSV artifacts",
+    "cross-check hashes",
+    "recompute an already-defined metric solely for integrity verification",
+    "reproduce an already-implied relative comparison from frozen exact values"
+  ],
+  "forbidden_operations": [
+    "calculate a metric never previously frozen",
+    "define a new subgroup or event type",
+    "run a new bootstrap or significance test",
+    "create a new leaderboard or winner label",
+    "train, refit, load or run any model",
+    "generate any prediction"
+  ],
+  "evidence_classes": {
+    "C1": "LOCKED CONFIRMATORY - obtained under the Phase-8 frozen final-test hierarchy",
+    "C2": "DEVELOPMENT / ROBUSTNESS SUPPORTED - development validation, training-only tuning, multi-seed robustness or LOSO, all before final-test opening",
+    "C3": "POST-TEST EXPLORATORY - first generated during Phase 9, after the test had been evaluated",
+    "C4": "HISTORICAL V1 - from the frozen AirSense V1 program",
+    "C5": "METHODOLOGICAL / GOVERNANCE - dataset integrity, leakage control, pretraining audit, validator provenance, test sealing, reproducibility"
+  },
+  "class_rule": "No Phase-9 finding may be presented as C1.",
+  "git_anchors": {
+    "pre_test_sha": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+    "locked_evaluation_sha": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+    "post_evaluation_validation_sha": "7ccfc7e54f7d9008421cfcf764fcfaacc353e1db",
+    "phase9_closure_sha": "8cc3a7ab8a069b9a187904be68f14b9040928ab4",
+    "phase9_closure_subject": "Freeze AirSense V2 post-test exploratory analysis",
+    "legacy_v1_sha": "16c9030cf74508b620cc6d28f90346aa379f29cd"
+  },
+  "canonical_locked_results": {
+    "primary_B3_R2_macro_station_horizon_MAE": 31.98722559774534,
+    "secondary_GRU_R1_severe_MAE_gt_244": 109.3328897571946,
+    "severe_n": 20336,
+    "reference_B0_macro_station_horizon_MAE": 36.138513538776856,
+    "reference_B0_severe_MAE_gt_244": 93.22447875688434,
+    "source": "artifacts/phase8_primary_results_lock.json",
+    "source_sha256": "5c92451317f8348dbac978a23bd11246aee89355746d270efcc599c780027b5e"
+  },
+  "upstream_freeze_sha256": {
+    "phase8_prediction_lock": "25751d669a3ff3096728c049db9b593d2620f4938e281d8eeaef147952fe91b5",
+    "phase8_primary_results_lock": "5c92451317f8348dbac978a23bd11246aee89355746d270efcc599c780027b5e",
+    "v2_phase8_manifest": "a83fd1556c2f4a173c4aded4f0d54ecdbc3aee5859d237269f55518298fe0a36",
+    "phase8_postcommit_validation_receipt": "863d740776024e0ab97a599f0445fcc5b3cf90c9b1a69a79f5597df278d5f13a",
+    "phase9_analysis_freeze": "66fda8ee9a5a9facfe3f243fd8fbfa74c24a8dff17c86e205aebe8bcb4ca5e9f",
+    "phase9_post_test_analysis_summary": "6a587f7a628d323c0df06c5620dcba179eed4a48c0c89ee6b9744999678ff5b8",
+    "v2_phase9_manifest": "8684cb321f1ed22516d5708c5ad744719cb24b8ba4b99d7116c2dcc527e3c1d8"
+  },
+  "planned_outputs": [
+    "artifacts/phase10_model_role_ledger.json",
+    "artifacts/phase10_hypothesis_ledger.json",
+    "artifacts/phase10_claim_evidence_matrix.csv",
+    "artifacts/phase10_table_locked_test.csv",
+    "artifacts/phase10_table_development_models.csv",
+    "artifacts/phase10_table_multiseed_robustness.csv",
+    "artifacts/phase10_table_posttest_diagnostics.csv",
+    "artifacts/phase10_dataset_ledger.json",
+    "artifacts/phase10_information_regime_ledger.json",
+    "artifacts/phase10_v1_v2_structural_ledger.json",
+    "artifacts/phase10_foundation_model_governance.json",
+    "artifacts/phase10_limitations_ledger.json",
+    "artifacts/phase10_future_work_ledger.json",
+    "artifacts/phase10_reproducibility_ledger.json",
+    "artifacts/phase10_canonical_conclusion.json",
+    "artifacts/phase10_publication_table_index.json",
+    "artifacts/phase10_publication_figure_index.json",
+    "artifacts/phase10_master_evidence_index.json",
+    "artifacts/phase10_final_synthesis_summary.json",
+    "artifacts/v2_phase10_manifest.json",
+    "docs/PUBLICATION_CLAIM_GUIDE.md",
+    "docs/PHASE_10_FINAL_SCIENTIFIC_SYNTHESIS.md"
+  ],
+  "prohibited_claims": [
+    "AirSense solves severe PM2.5 forecasting",
+    "GRU beats persistence in severe pollution",
+    "cross-station attention learns pollution propagation",
+    "foundation models failed",
+    "all hypotheses were confirmed on the final test",
+    "V2 improves V1 by a percentage",
+    "the model is operationally ready for early warning",
+    "a formal bias-variance decomposition was performed"
+  ],
+  "phase10_status": "SYNTHESIS_FROZEN"
+}
