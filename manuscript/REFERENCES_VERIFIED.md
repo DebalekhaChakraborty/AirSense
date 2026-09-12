@@ -50,6 +50,32 @@ canonical publisher URL, and Verification source.
   were never a model input, never a graph, never a selection criterion, and
   were acquired after every model was frozen.
 
+### [V3] Liu et al. (2024) — iTransformer
+
+- **Authors:** Liu, Y., Hu, T., Zhang, H., Wu, H., Wang, S., Ma, L. & Long, M.
+- **Title:** iTransformer: Inverted Transformers Are Effective for Time Series
+  Forecasting
+- **Venue:** International Conference on Learning Representations (ICLR),
+  spotlight presentation (venue id `ICLR.cc/2024/Conference`)
+- **Year:** 2024 (conference); arXiv preprint posted 2023
+- **DOI:** 10.48550/arXiv.2310.06625
+- **Canonical URLs:** https://arxiv.org/abs/2310.06625 ·
+  https://openreview.net/forum?id=JePfAI8fah
+- **Verification source:** Two authoritative pages, because neither alone
+  carried every required field. The arXiv abstract page supplied the verbatim
+  title and the complete seven-author list; it states **no venue**, so the
+  conference could not be confirmed there. The OpenReview record supplied the
+  venue string "ICLR 2024 spotlight" under venue id `ICLR.cc/2024/Conference`,
+  forum `JePfAI8fah`. Neither field was taken from a search snippet or from the
+  repository source comment.
+- **Used in manuscript:** 2.2 Deep temporal forecasting; 4.4 iTransformer-style
+  model.
+- **Scope note:** `src/models/itransformer_forecaster.py` implements the
+  inverted formulation as an **in-repository adaptation**, not a reproduction of
+  the authors' implementation, and the manuscript says so wherever the model is
+  described. The citation establishes the design this study adapted; it makes no
+  claim of equivalence.
+
 ---
 
 ## NEEDS VERIFICATION
@@ -66,7 +92,6 @@ DOI or URL below should be treated as established.
 | N3 | Recent survey of machine-learning PM2.5 forecasting | Authors, title, venue, year, DOI | 2.1 |
 | N4 | Methodological critique of baseline reporting in air-quality forecasting | Authors, title, venue, year, DOI | 2.1 |
 | N5 | Representative recurrent and temporal-convolutional forecasting architectures | Authors, title, venue, year, DOI for each | 2.2 |
-| N6 | iTransformer paper | Authors, title, venue, year, DOI | 2.2 |
 | N7 | Study comparing deep forecasting models against simple baselines | Authors, title, venue, year, DOI | 2.2 |
 | N8 | Representative spatiotemporal graph forecasting work | Authors, title, venue, year, DOI | 2.3 |
 | N9 | Chronos-2 paper | Authors, title, venue, year; arXiv identifier recorded in the repository audit as `arXiv:2510.15821`, **not independently verified here** | 2.4 |

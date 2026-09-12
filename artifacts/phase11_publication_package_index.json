@@ -7,14 +7,14 @@
     {
       "key": "manuscript",
       "path": "manuscript/AirSense_V2_Manuscript.md",
-      "sha256": "4952a340fd5480fbce13ec314725945b6e09656d6ab79b53492997afe5f9e4c3",
+      "sha256": "c418e5cb67845c548ab6e8d6cb6392ef1d6ba76f0c9c8a07548af7280fe6c8aa",
       "purpose": "Primary manuscript, venue-neutral structure.",
       "present": true
     },
     {
       "key": "manuscript_plaintext",
       "path": "manuscript/AirSense_V2_Manuscript_plaintext.txt",
-      "sha256": "e197e8e481f32e5aeb37f38a765d401cb8f84f077eb42a0b40540bee48886031",
+      "sha256": "d9fac704fa1d0fa4cb621400713f308a6731e089e1dc270ef463b386d8477154",
       "purpose": "Portability / similarity-checking copy.",
       "present": true
     },
@@ -28,14 +28,14 @@
     {
       "key": "references",
       "path": "manuscript/REFERENCES_VERIFIED.md",
-      "sha256": "5c379d57a6e44bb25f2b71d8113830847e5cbffe3d36687571d22f9dfed78ff9",
+      "sha256": "16080ed660939dd134418de8f9809826b14209e4addfa3d3019ce0689e5dda73",
       "purpose": "Verified references, separated from those needing verification.",
       "present": true
     },
     {
       "key": "related_work_citation_needs",
       "path": "manuscript/RELATED_WORK_CITATION_NEEDS.md",
-      "sha256": "43e8ab74b941dc4762f275bf135028f71aa3a18c3a15ca8df96e73583fc57474",
+      "sha256": "2d78f4fbc5f7b0229bf35678f80fa984aa870625990ee61b6189bd31c157e03d",
       "purpose": "Every citation placeholder and what would discharge it.",
       "present": true
     },
@@ -98,7 +98,7 @@
     {
       "key": "supplementary_methods",
       "path": "manuscript/SUPPLEMENTARY_METHODS.md",
-      "sha256": "f7195ccc45e61bc780a7737ad343b9ce423481b4322600bc24ddf14537d3fe14",
+      "sha256": "7d30390f2d00cee05cc4f5670b688ca2fdd11c2497b142bf4eaa8e01d57b2005",
       "purpose": "Dense technical detail supporting the methods.",
       "present": true
     },
@@ -126,7 +126,7 @@
     {
       "key": "manuscript_summary",
       "path": "artifacts/phase11_manuscript_summary.json",
-      "sha256": "60aae2832c4b39c419c1ef410141ebe3b4f51b4662db403d12e035bbcf816626",
+      "sha256": "3e7d899046bbc6001fea560960eb3cf10cd631d6ec296148751c474366e514ac",
       "purpose": "Phase-11 manuscript statistics and status.",
       "present": true
     },

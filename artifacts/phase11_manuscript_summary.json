@@ -5,13 +5,13 @@
   "classification": "MANUSCRIPT_CONSTRUCTION",
   "working_title": "Causal Multi-Horizon PM2.5 Forecasting Across a Twelve-Station Urban Network: Improvement over Persistence on Average, an Unresolved Severe Tail",
   "working_title_approved": false,
-  "manuscript_word_count": 9854,
+  "manuscript_word_count": 9939,
   "abstract_word_count": 299,
   "manuscript_tables": 6,
   "planned_figures": 10,
   "new_figures_created": 0,
-  "verified_citation_count": 2,
-  "citation_placeholder_count": 13,
+  "verified_citation_count": 3,
+  "citation_placeholder_count": 12,
   "quantitative_claims_count": 235,
   "quantitative_claims_verified": 235,
   "claims_by_evidence_class": {
@@ -34,6 +34,17 @@
   "hypothesis_status_changed": false,
   "confirmatory_hierarchy_changed": false,
   "manuscript_status": "DRAFT_COMPLETE_PENDING_CITATION_VERIFICATION",
-  "blocking_issue": "Thirteen literature citations remain unverified and appear as REF-NEEDED placeholders. No result, table, figure or quantitative claim depends on any of them.",
-  "readiness_overall": "MAJOR REVISION NEEDED"
+  "blocking_issue": "Twelve literature citations remain unverified and appear as REF-NEEDED placeholders. No result, table, figure or quantitative claim depends on any of them.",
+  "readiness_overall": "MAJOR REVISION NEEDED",
+  "manuscript_corrections": {
+    "applied": true,
+    "scope": "Manuscript and supplementary documents only. No scientific artifact was read, written or reinterpreted.",
+    "corrections": [
+      "B3 mask-fraction windows corrected from '6, 12 and 48' to '6, 24 and 48' in three places, against src/models/b3_features.py MASK_FRACTION_WINDOWS = [6, 24, 48] and phase3_prevalidation_freeze.json b3_feature_schema.mask_fraction_windows_hours.",
+      "Supplementary hyperparameter grids for the iTransformer-style and station-attention families completed; both had been left elided.",
+      "Reproducibility parameter-count table added for the neural families.",
+      "iTransformer citation resolved to verified reference [V3] and removed from the pending list."
+    ],
+    "citation_verification_note": "The arXiv abstract page supplied the verbatim title and the full seven-author list but states no venue and lists 2023. The ICLR 2024 spotlight venue was confirmed separately from the OpenReview record (venue id ICLR.cc/2024/Conference, forum JePfAI8fah). Neither field was taken from a search snippet or from the repository source comment."
+  }
 }

@@ -42,11 +42,20 @@ than about the field.
 **`[REF-NEEDED: representative recurrent and temporal-convolutional forecasting
 architectures]`** — positions the GRU and TCN families.
 
-**`[REF-NEEDED: iTransformer paper: authors, venue, year, DOI]`** — required
-because the manuscript describes an **in-repository iTransformer-style**
-architecture. Without the reference the "style" attribution is unanchored. The
-manuscript must continue to state that the implementation is an in-repository
-adaptation and not an official reference implementation.
+**RESOLVED — now cited as [V3].** Liu, Y., Hu, T., Zhang, H., Wu, H., Wang, S.,
+Ma, L. & Long, M., *iTransformer: Inverted Transformers Are Effective for Time
+Series Forecasting*, ICLR 2024 (spotlight), arXiv:2310.06625,
+DOI 10.48550/arXiv.2310.06625.
+
+Verified against two authoritative pages: the arXiv abstract page for the
+verbatim title and the full author list, and the OpenReview record for the
+venue, which arXiv does not state. The repository source comment in
+`src/models/itransformer_forecaster.py` named this paper all along, but a code
+comment is not a verification source under this study's citation policy, so it
+was treated as a lead and checked independently.
+
+The manuscript continues to state, in both 2.2 and 4.4, that the implementation
+is an in-repository adaptation and not an official reference implementation.
 
 **`[REF-NEEDED: study comparing deep forecasting models against simple
 baselines]`** — supports the claim that added capacity does not always
@@ -102,14 +111,14 @@ citation formatting completeness rather than provenance.
 |---|---:|
 | 1.1 Motivation | 1 |
 | 2.1 Classical / ML forecasting | 2 |
-| 2.2 Deep temporal forecasting | 3 |
+| 2.2 Deep temporal forecasting | 2 |
 | 2.3 Spatial forecasting | 1 |
 | 2.4 Foundation models | 3 |
 | 2.5 Leakage and contamination | 2 |
 | 16. Data availability | 1 |
-| **Total** | **13** |
+| **Total** | **12** |
 
-All thirteen are literature-positioning citations. **No result, table, figure or
+All twelve are literature-positioning citations. **No result, table, figure or
 quantitative claim in this manuscript depends on any of them**; every number
 traces to a hash-pinned repository artifact recorded in
 `manuscript/MANUSCRIPT_CLAIM_TRACEABILITY.csv`.

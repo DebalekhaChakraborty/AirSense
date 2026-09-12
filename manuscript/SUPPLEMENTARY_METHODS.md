@@ -120,7 +120,7 @@ Trailing windows, all ending at the origin and looking only backwards: 3, 6, 12,
 24, 48 hours, with mean, population standard deviation, minimum and maximum. No
 centred rolling window and no exponentially weighted feature.
 
-Additional channels: observed mask at origin and observed fraction over 6, 12
+Additional channels: observed mask at origin and observed fraction over 6, 24
 and 48 hours for every numeric variable; gap age at origin for each pollutant in
 the regime; `rain_occurred` at origin and its trailing means; a 17-way wind
 encoding (sixteen frozen training categories plus MISSING); a 12-way station
@@ -163,8 +163,45 @@ width 64, dropout 0.1, seed 42, no scheduler, no warmup, no early stopping.
 |---|---|---|
 | GRU | hidden ∈ {64, 128} × lr ∈ {3e-4, 1e-3} | hidden 64, lr 3e-4 |
 | TCN | channels ∈ {32, 64} × lr ∈ {3e-4, 1e-3} | channels 32, lr 1e-3 |
-| iTransformer-style | width ∈ {…} × lr ∈ {…} | width 64, lr 1e-3 |
-| Station attention | hidden ∈ {…} × lr ∈ {…} | hidden 128, lr 1e-3, 144,001 parameters |
+| iTransformer-style | d_model ∈ {64, 128} × lr ∈ {3e-4, 1e-3} | d_model 64, lr 1e-3 |
+| Station attention | hidden ∈ {64, 128} × lr ∈ {3e-4, 1e-3} | hidden 128, lr 1e-3 |
+
+Candidate identifiers are `GRU_C01`–`C04`, `TCN_C01`–`C04`, `IT_C01`–`IT_C04`
+and `SA_C01`–`SA_C04`; the selected candidates were `GRU_C01`, `TCN_C02`,
+`IT_C02` and `SA_C04`. Each grid is four candidates crossing capacity with
+learning rate and nothing else, so no other setting could be chosen by looking
+at held-out data.
+
+### Parameter counts
+
+Trainable parameter counts for the neural families, at the selected
+configurations and the regimes each model was evaluated in.
+
+| Model | Regime | Dynamic channels | Capacity | Trainable parameters |
+|---|---|---:|---:|---:|
+| GRU_R1 | R1 | 31 | hidden 64 | **24,641** |
+| TCN_R1 | R1 | 31 | channels 32 | **29,729** |
+| iTransformer_R1 | R1 | 31 | d_model 64 | **109,121** |
+| iTransformer_R2 | R2 | 46 | d_model 64 | **109,121** |
+| SA_R2 / SA_R3 | R2 / R3 | 46 | hidden 128 | **144,001** |
+
+Two points are worth stating explicitly.
+
+The two iTransformer variants have **identical** parameter counts despite
+differing in dynamic channel count (31 against 46). This is a property of the
+inverted formulation rather than a transcription error: the variate embedding
+maps the 48-hour context to the model dimension, so the number of variates
+changes the token-sequence length and not the parameter tensor shapes.
+
+`SA_R2` and `SA_R3` also have identical counts, by construction. The self-only
+attention mask is a registered buffer rather than a parameter, so the paired
+contrast varies information access alone, with capacity and initialisation held
+fixed.
+
+`B0`, `B1` and `B2` are deterministic rules with no fitted parameters. `B3` is
+gradient-boosted and is characterised by its feature count (207, 240 and 405
+for R0, R1 and R2) and its 400 boosting rounds per horizon rather than by a
+parameter count.
 
 ---
 

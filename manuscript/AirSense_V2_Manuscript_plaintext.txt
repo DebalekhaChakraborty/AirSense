@@ -226,7 +226,7 @@ temporal structure rather than receiving it as engineered features
 [REF-NEEDED: representative recurrent and temporal-convolutional forecasting
 architectures]. Inverted-attention transformer designs, which attend across
 variates rather than across time steps, are a more recent development
-[REF-NEEDED: iTransformer paper: authors, venue, year, DOI]. Comparative
+[V3]. Comparative
 studies have questioned whether added architectural capacity translates into
 accuracy gains over well-specified simple baselines on common benchmarks
 [REF-NEEDED: study comparing deep forecasting models against simple baselines].
@@ -425,7 +425,7 @@ features derived from the 48-hour context, trained per horizon.
 Features, frozen before any validation metric existed: lag positions 0, 1,
 2, 3, 6, 12, 24 and 47 hours before the origin; trailing windows of 3, 6, 12,
 24 and 48 hours ending at the origin with mean, standard deviation, minimum and
-maximum; observed mask at origin plus observed fraction over 6, 12 and 48
+maximum; observed mask at origin plus observed fraction over 6, 24 and 48
 hours; gap age at origin for each pollutant in the regime; a rain-occurred
 indicator and its trailing means; a 17-way wind encoding; a 12-way station
 encoding; and frozen origin and target cyclic calendar channels. Day-of-week
@@ -485,8 +485,8 @@ channels 32 at 1e-3.
 
 4.4 iTransformer-style model
 
-An in-repository iTransformer-style architecture, not an official reference
-implementation: attention is applied across variates rather than time steps,
+An in-repository iTransformer-style architecture adapted from [V3], not
+an official reference implementation: attention is applied across variates rather than time steps,
 with 2 encoder layers, 4 heads, feedforward ratio 4, GELU activation, layer
 normalisation, dropout 0.1 and no positional encoding across variates. The
 selected configuration was model width 64 at learning rate 1e-3, under R1 and
@@ -1267,6 +1267,17 @@ dataset 501. DOI: 10.24432/C5RK5G. Licence: CC BY 4.0 as presented by UCI.
 Landing page: https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data
 *Verification source: repository provenance record, with the raw archive and
 all twelve station CSVs pinned by SHA-256.*
+
+[V3] Liu, Y., Hu, T., Zhang, H., Wu, H., Wang, S., Ma, L. & Long, M.
+*iTransformer: Inverted Transformers Are Effective for Time Series
+Forecasting.* International Conference on Learning Representations (ICLR),
+spotlight. arXiv:2310.06625. DOI: 10.48550/arXiv.2310.06625
+OpenReview: https://openreview.net/forum?id=JePfAI8fah
+*Verification sources: the arXiv abstract page, for the verbatim title and the
+complete author list; and the OpenReview record, for the venue string "ICLR
+2024 spotlight" under venue id ICLR.cc/2024/Conference. The architecture used in
+this study is an in-repository adaptation of the inverted formulation, not a
+reproduction of the authors' implementation.*
 
 [V2] Wu, L., Xie, J. & Kang, K. *Changing weekend effects of air pollutants
 in Beijing under 2020 COVID-19 lockdown controls.* npj Urban Sustainability,

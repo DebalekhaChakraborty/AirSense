@@ -12,14 +12,14 @@
   "phase11_validator_sha256": "963602613be8d60af24811dd1c5e8315650afe309d1aa5cf2a7bc31d1f2c6533",
   "phase11_independent_verifier_sha256": "32cd807592ea7a75c91f6b5e944f5403ea409690cf22fc9b0c2e642a1cd25a20",
   "phase11_tooling_registry_sha256": "420dc4ef56378c5bcaaa96c2cbfc809b20cf59b247a686818b1da6456968353a",
-  "phase11_publication_package_index_sha256": "6d2f2b9053dea1fdca91c904159a8389210b62fdbdb3494c3796f59a0acc18ce",
-  "phase11_manuscript_summary_sha256": "60aae2832c4b39c419c1ef410141ebe3b4f51b4662db403d12e035bbcf816626",
+  "phase11_publication_package_index_sha256": "24855926ee8d6d93330024128dfd90d5167d3fbab6a6690de1ff56164e0ce97c",
+  "phase11_manuscript_summary_sha256": "3e7d899046bbc6001fea560960eb3cf10cd631d6ec296148751c474366e514ac",
   "artifact_sha256": {
-    "manuscript/AirSense_V2_Manuscript.md": "4952a340fd5480fbce13ec314725945b6e09656d6ab79b53492997afe5f9e4c3",
-    "manuscript/AirSense_V2_Manuscript_plaintext.txt": "e197e8e481f32e5aeb37f38a765d401cb8f84f077eb42a0b40540bee48886031",
+    "manuscript/AirSense_V2_Manuscript.md": "c418e5cb67845c548ab6e8d6cb6392ef1d6ba76f0c9c8a07548af7280fe6c8aa",
+    "manuscript/AirSense_V2_Manuscript_plaintext.txt": "d9fac704fa1d0fa4cb621400713f308a6731e089e1dc270ef463b386d8477154",
     "manuscript/TITLE_CANDIDATES.md": "af4214c7d6fe04d0965d0e41976887d98e32127d874e3cc0c2e45aa0692d4601",
-    "manuscript/REFERENCES_VERIFIED.md": "5c379d57a6e44bb25f2b71d8113830847e5cbffe3d36687571d22f9dfed78ff9",
-    "manuscript/RELATED_WORK_CITATION_NEEDS.md": "43e8ab74b941dc4762f275bf135028f71aa3a18c3a15ca8df96e73583fc57474",
+    "manuscript/REFERENCES_VERIFIED.md": "16080ed660939dd134418de8f9809826b14209e4addfa3d3019ce0689e5dda73",
+    "manuscript/RELATED_WORK_CITATION_NEEDS.md": "2d78f4fbc5f7b0229bf35678f80fa984aa870625990ee61b6189bd31c157e03d",
     "manuscript/tables/table1_dataset_split.md": "ed06dcd45c3a62106e1f284c42c2fa6505460f8b255bcee0465664dad659f25d",
     "manuscript/tables/table2_model_regimes.md": "317750d902b72d84e96c7b0047eabe2e17fc60e57a8e176bcc5dfa2e124f0b44",
     "manuscript/tables/table3_development_results.md": "8efc3d26d38882c9f24664c931103c6095611641320d5ba5d67d95d91b0d1f06",
@@ -28,11 +28,11 @@
     "manuscript/tables/table6_posttest_diagnostics.md": "72d85fb7a0a003434a4d3529f6b1c9faf7566f8473f30159ee28b7b0818d48a2",
     "manuscript/FIGURE_PLAN.md": "709bdd0926ec90d64fe5dd345bdc2ad231040eb6e38bc3dab4c1cfb4be0bb272",
     "manuscript/SUPPLEMENT_PLAN.md": "40028ec4472c62949b48d40db70c60dff339c549bfecdd8948fd654f1a71e88c",
-    "manuscript/SUPPLEMENTARY_METHODS.md": "f7195ccc45e61bc780a7737ad343b9ce423481b4322600bc24ddf14537d3fe14",
+    "manuscript/SUPPLEMENTARY_METHODS.md": "7d30390f2d00cee05cc4f5670b688ca2fdd11c2497b142bf4eaa8e01d57b2005",
     "manuscript/MANUSCRIPT_CLAIM_TRACEABILITY.csv": "35e6bb967da825f423a99b3b48d56a515feceaa8fa98907e8785af377b63efc9",
     "manuscript/LANGUAGE_AUDIT.md": "ea489247869b6aac46cc0ab327cbac23d01eaa5e35637c76da1c84b42307c41b",
     "manuscript/MANUSCRIPT_READINESS_REVIEW.md": "ecc1db8ede5ab0425f6efe2dc7af0ef9b9c3213896e3a6d8fb22dcf6db7d0557",
-    "artifacts/phase11_manuscript_summary.json": "60aae2832c4b39c419c1ef410141ebe3b4f51b4662db403d12e035bbcf816626",
+    "artifacts/phase11_manuscript_summary.json": "3e7d899046bbc6001fea560960eb3cf10cd631d6ec296148751c474366e514ac",
     "docs/README_PHASE11_PROPOSED_UPDATE.md": "ae1aea741455182d09edef53810933f06b77ec103a3732d85dfd45f4a56a7166"
   },
   "upstream_manifest_sha256": {
@@ -70,5 +70,24 @@
     "negative_tested": true,
     "negative_test_note": "Verified in memory that a corrupted recorded digest, a corrupted prediction-array digest, an unresolvable entry, and a manifest with no recognised keys each now fail.",
     "second_amendment": "Two gates compared current HEAD to the recorded Phase-10 closure by equality: the Git-discipline gate and the manuscript-freeze gate. Equality holds only while Phase 11 is uncommitted, so committing the package would have made this validator fail on its own commit. Both now use freeze-point ancestry, the pattern validate_phase8_postopening already uses. The first instance was corrected before the commit and the second was caught by the commit itself."
+  },
+  "bookkeeping_refresh": {
+    "performed": true,
+    "reason": "Manuscript-only corrections changed five publication documents, leaving their digests stale in the package index and this manifest. Refreshed here.",
+    "scope": "Publication-package bookkeeping only.",
+    "documents_refreshed": [
+      "manuscript/AirSense_V2_Manuscript.md",
+      "manuscript/AirSense_V2_Manuscript_plaintext.txt",
+      "manuscript/REFERENCES_VERIFIED.md",
+      "manuscript/RELATED_WORK_CITATION_NEEDS.md",
+      "manuscript/SUPPLEMENTARY_METHODS.md",
+      "artifacts/phase11_manuscript_summary.json"
+    ],
+    "scientific_artifacts_modified": 0,
+    "phase8_drift": 0,
+    "phase9_drift": 0,
+    "phase10_drift": 0,
+    "validators_modified": 0,
+    "evidence_hashes_modified": 0
   }
 }
