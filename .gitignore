@@ -10,11 +10,25 @@ dist/
 #
 # venv/ is the in-repo CPython 3.6.7 execution environment for AirSense V1.
 # It is a conda-style prefix built by micromamba, roughly 530 MB, and it is
-# deliberately NOT tracked: it is a build artifact, not source. What makes it
-# reproducible is requirements-v1-2019.txt (direct pins) plus
-# requirements-v1-2019-lock.txt (pre-cutoff transitive closure), and what
-# makes it verifiable is artifacts/runtime_snapshot.json. Rebuild it with the
-# recipe in docs/PHASE_00A_RUNTIME_RECORD.md section 14.
+# deliberately NOT tracked: it is a build artifact, not source.
+#
+# IMPORTANT - the rebuild inputs are on the `legacy` branch, NOT on master.
+# What makes it reproducible is requirements-v1-2019.txt (direct pins) plus
+# requirements-v1-2019-lock.txt (pre-cutoff transitive closure); what makes it
+# verifiable is artifacts/runtime_snapshot.json; and the recipe is section 14
+# of docs/PHASE_00A_RUNTIME_RECORD.md. All four are V1 artifacts and exist only
+# on `legacy` (16c9030), because master is a clean V2 implementation that does
+# not reuse V1 code. From a master-only checkout they are all absent, so fetch
+# them with e.g.:
+#   git show legacy:requirements-v1-2019-lock.txt
+#
+# Treat that rebuild path as unproven. The pins are 2019-era and CPython 3.6 is
+# end-of-life, so the wheels may no longer resolve from any index. A working
+# copy of the built environment is therefore archived off-repository, symlinks
+# and permissions preserved:
+#   s3://airsense-evidence-341181499761/gitignored/environments/venv-v1-py367.tar.gz
+# Of everything this repository excludes, this is the item least likely to be
+# reconstructible later, despite being labelled a build artifact.
 .venv/
 venv/
 env/
@@ -31,10 +45,14 @@ env/
 .DS_Store
 
 # NOTE: data/raw/ is intentionally NOT ignored.
-# The raw dataset is tracked so that its SHA-256, recorded in
-# artifacts/data_audit.json, can be verified against the file that the
-# repository actually carries. Raw files are read-only by convention and
-# are never modified in place.
+# The raw dataset is tracked so that its SHA-256 can be verified against the
+# files the repository actually carries. On master those digests live in
+# artifacts/raw_dataset_manifest.json (archive digest plus one per station CSV),
+# and are carried forward into artifacts/v2_foundation_manifest.json.
+# Not artifacts/data_audit.json - that is a V1 artifact and exists only on
+# `legacy`. The master file with a similar name, artifacts/dataset_audit.json,
+# is the schema and row-count audit and records no digests.
+# Raw files are read-only by convention and are never modified in place.
 
 # data/processed/ is the Phase-2 canonical data layer. It is NOT tracked,
 # for one practical reason and one principled one.
