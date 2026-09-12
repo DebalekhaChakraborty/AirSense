@@ -1,0 +1,166 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase11_manuscript_freeze",
+  "phase": 11,
+  "classification": "MANUSCRIPT_CONSTRUCTION",
+  "written_before_manuscript_prose": true,
+  "science_complete": true,
+  "new_scientific_experiments": 0,
+  "new_test_analysis": 0,
+  "new_metrics": 0,
+  "models_trained": 0,
+  "predictions_generated": 0,
+  "phase8_mutable": false,
+  "phase9_mutable": false,
+  "phase10_mutable": false,
+  "hypothesis_status_mutable": false,
+  "confirmatory_hierarchy_mutable": false,
+  "publication_evidence_source": "artifacts/phase10_master_evidence_index.json",
+  "publication_evidence_source_sha256": "679b758b4f18e3528fb5042e8518350d4a1f48f0de3bee7b1343ef89a841753c",
+  "claim_language_authority": "docs/PUBLICATION_CLAIM_GUIDE.md",
+  "claim_language_authority_sha256": "dfc6f04f13ca8627007b4c78489d43177b6a7569897f054a15859d18b4723e4c",
+  "git_anchors": {
+    "pre_test_sha": "75494266792e09bbcfa51c00aaacec58c5b0fb4a",
+    "locked_evaluation_sha": "9a787a6320a3eca2104abfcbf10c8dbd29bfc19b",
+    "post_evaluation_validation_sha": "7ccfc7e54f7d9008421cfcf764fcfaacc353e1db",
+    "phase9_closure_sha": "8cc3a7ab8a069b9a187904be68f14b9040928ab4",
+    "phase10_closure_sha": "9a1685355713dd56d7cf2e912cb16681eabc0531",
+    "phase10_closure_subject": "Freeze AirSense V2 final scientific synthesis",
+    "legacy_v1_sha": "16c9030cf74508b620cc6d28f90346aa379f29cd"
+  },
+  "planned_manuscript_structure": [
+    "Title block with WORKING TITLE marker and author placeholders",
+    "Abstract",
+    "Keywords",
+    "1. Introduction (motivation, challenge, research question, hypotheses, contributions)",
+    "2. Related work",
+    "3. Data and protocol (dataset, chronological partitions, severe threshold, preprocessing, information regimes)",
+    "4. Models (classical references, gradient boosting, GRU and TCN, iTransformer-style, station attention, foundation-model eligibility)",
+    "5. Evaluation metrics",
+    "6. Experimental protocol (seven staged evidence stages)",
+    "7. Development-validation results",
+    "8. Robustness results",
+    "9. Locked final-test results",
+    "10. Post-test exploratory error analysis",
+    "11. Discussion",
+    "12. Limitations",
+    "13. Future work",
+    "14. Conclusion",
+    "15. Reproducibility statement",
+    "16. Data availability, code availability and ethics",
+    "References"
+  ],
+  "planned_tables": [
+    {
+      "id": "Table 1",
+      "file": "manuscript/tables/table1_dataset_split.md",
+      "evidence_class": "C5",
+      "source": "artifacts/phase10_dataset_ledger.json"
+    },
+    {
+      "id": "Table 2",
+      "file": "manuscript/tables/table2_model_regimes.md",
+      "evidence_class": "C5",
+      "source": "artifacts/phase10_information_regime_ledger.json"
+    },
+    {
+      "id": "Table 3",
+      "file": "manuscript/tables/table3_development_results.md",
+      "evidence_class": "C2",
+      "source": "artifacts/phase10_table_development_models.csv"
+    },
+    {
+      "id": "Table 4",
+      "file": "manuscript/tables/table4_multiseed_robustness.md",
+      "evidence_class": "C2",
+      "source": "artifacts/phase10_table_multiseed_robustness.csv"
+    },
+    {
+      "id": "Table 5",
+      "file": "manuscript/tables/table5_locked_final_test.md",
+      "evidence_class": "C1",
+      "source": "artifacts/phase10_table_locked_test.csv"
+    },
+    {
+      "id": "Table 6",
+      "file": "manuscript/tables/table6_posttest_diagnostics.md",
+      "evidence_class": "C3",
+      "source": "artifacts/phase10_table_posttest_diagnostics.csv"
+    }
+  ],
+  "planned_figures": {
+    "new_figures_created": 0,
+    "source_index": "artifacts/phase10_publication_figure_index.json",
+    "source_index_sha256": "286b94739e643e7a4f8c680db8ba12d3c41c5257dd0a947367e27aaf22aaec00",
+    "rule": "Figures are selected from existing frozen Phase-8 and Phase-9 PNGs only. No figure is regenerated, redrawn or newly computed in Phase 11."
+  },
+  "citation_policy": {
+    "fabrication_prohibited": true,
+    "placeholder_form": "[REF-NEEDED: concise description]",
+    "verified_reference_requires": [
+      "title",
+      "authors",
+      "year",
+      "venue",
+      "DOI or canonical publisher URL",
+      "verification source"
+    ],
+    "snippet_only_citation_permitted": false,
+    "references_file": "manuscript/REFERENCES_VERIFIED.md",
+    "unverified_must_remain_visibly_marked": true
+  },
+  "claim_language_policy": {
+    "evidence_classes": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5"
+    ],
+    "class_upgrade_permitted": false,
+    "c3_as_c1_permitted": false,
+    "prohibited_phrases": [
+      "state-of-the-art",
+      "SOTA",
+      "breakthrough",
+      "novel",
+      "proves",
+      "solves",
+      "eliminates",
+      "spatial reasoning",
+      "pollution propagation",
+      "operationally ready",
+      "early-warning ready",
+      "all hypotheses confirmed",
+      "foundation models failed",
+      "outperforms V1",
+      "statistically significant",
+      "unseen-station",
+      "p-value",
+      "confidence interval"
+    ],
+    "required_phrases": [
+      "locked final test",
+      "post-test exploratory",
+      "training pooled P95",
+      "held-out target-station supervision transfer",
+      "reference benchmark",
+      "primary confirmatory model"
+    ],
+    "headline_rule": "Both halves must always travel together: the average improvement over persistence across 1-24 h, and persistence remaining the strongest severe benchmark."
+  },
+  "frozen_locked_values": {
+    "primary_B3_R2_macro_station_horizon_MAE": 31.98722559774534,
+    "secondary_GRU_R1_severe_MAE_gt_244": 109.3328897571946,
+    "reference_B0_macro_station_horizon_MAE": 36.138513538776856,
+    "reference_B0_severe_MAE_gt_244": 93.22447875688434,
+    "B3_R2_severe_MAE_gt_244": 131.90112073760537,
+    "GRU_R1_macro_station_horizon_MAE": 33.08209845348378,
+    "relative_improvement_pct": 11.487157424383705,
+    "severe_n": 20336,
+    "test_n": 411012,
+    "severe_threshold": 244.0,
+    "severe_rule": "actual > 244.0"
+  },
+  "phase11_status": "MANUSCRIPT_FREEZE_WRITTEN"
+}

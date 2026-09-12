@@ -51,4 +51,14 @@ env/
 #
 # Rebuild before running the validators:
 #   .venv-v2/bin/python scripts/build_forecast_dataset.py
+#
+# A byte-identical archive of this layer is also kept off-repository, for
+# durability rather than for integrity:
+#   s3://airsense-evidence-341181499761/gitignored/data-processed/
+# The Phase-2 manifest remains the authority on what the layer must contain; a
+# rebuild remains the stronger check. Git LFS was evaluated for carrying these
+# bytes in-repo and rejected: this is a public repository, GitHub bills LFS
+# bandwidth to the repository owner, and at ~221 MB per clone a free-tier
+# allowance is exhausted in a handful of clones - which would break cloning for
+# everyone, not just the data.
 data/processed/

@@ -1,0 +1,67 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase11_verification_tooling_registry",
+  "phase": 11,
+  "append_only": true,
+  "note": "Appends to the chain. No earlier registry is rewritten. The Phase-7 registry (verification_tooling_registry.json) is hashed inside phase7_pretest_freeze.json as scientific evidence and can never be appended to again.",
+  "parent_registry": "artifacts/phase10_verification_tooling_registry.json",
+  "parent_registry_sha256": "0b1d8c1121036abbc3eb0a20ddea8bb091a0e8c2cf75c16a05ae49a674c2fb2c",
+  "chain": [
+    "artifacts/verification_tooling_registry.json",
+    "artifacts/phase8_verification_tooling_registry.json",
+    "artifacts/phase8_postopening_tooling_registry.json",
+    "artifacts/phase8_postcommit_tooling_registry.json",
+    "artifacts/phase9_verification_tooling_registry.json",
+    "artifacts/phase10_verification_tooling_registry.json",
+    "artifacts/phase11_verification_tooling_registry.json"
+  ],
+  "tools": {
+    "scripts/validate_phase11.py": {
+      "purpose": "Phase-11 manuscript construction validator.",
+      "scope": "Phase-10 zero drift, manuscript freeze, no new science, claim traceability, evidence-class fidelity, hypothesis status, prohibited language, citation integrity, table and figure provenance, tooling-registry chain, Git write discipline.",
+      "interpreter": "python3 (system CPython 3.11.2)",
+      "sha256": null,
+      "new_in_this_phase": true,
+      "sha256_note": "Deliberately null. This registry is read and checked by the very script it would pin, so a self-hash would be circular: the validator cannot verify a digest of itself that changes whenever it changes. The validator's digest is recorded instead in artifacts/v2_phase11_manifest.json, which the validator does not gate on."
+    },
+    "scripts/verify_phase11_independently.py": {
+      "purpose": "Independent recomputation of the manuscript's quantitative claims through a separate parsing path.",
+      "scope": "Re-derives every locked value, hypothesis wording, table value and prohibited-claim check directly from frozen artifacts without reusing validate_phase11.py code.",
+      "interpreter": "python3 (system CPython 3.11.2)",
+      "sha256": "32cd807592ea7a75c91f6b5e944f5403ea409690cf22fc9b0c2e642a1cd25a20",
+      "new_in_this_phase": true
+    },
+    "scripts/validate_phase8.py": {
+      "purpose": "Historical Phase-8 validator, frozen before the test was opened.",
+      "scope": "Referenced, not re-run as authoritative. Its two exact-HEAD git gates fail by design now that HEAD has legitimately moved past the pre-test snapshot. Source is preserved byte-for-byte as historical evidence and must never be patched.",
+      "interpreter": ".venv-v2/bin/python",
+      "sha256": "5794449265392b86c78726d0080301105f6b6abfb0639f822a0e991588b74231",
+      "expected_failures": 5,
+      "new_in_this_phase": false
+    },
+    "scripts/validate_phase8_postopening.py": {
+      "purpose": "Current-state validator for the post-opening repository.",
+      "scope": "Uses immutable freeze-point ancestry rather than exact-HEAD equality.",
+      "interpreter": ".venv-v2/bin/python",
+      "sha256": "e293550a3abf35802e7d8c33fe2e577f949ec20caab84ed0c9858645e20362af",
+      "new_in_this_phase": false
+    },
+    "scripts/validate_phase9.py": {
+      "purpose": "Post-test exploratory analysis validator.",
+      "scope": "Phase-9 tables, figures and analysis freeze.",
+      "interpreter": ".venv-v2/bin/python",
+      "sha256": "a9da314546a4988d330fdee79bde8da59f25a95fecb087e1f0790c9c6f55f0c0",
+      "new_in_this_phase": false
+    },
+    "scripts/validate_phase10.py": {
+      "purpose": "Final scientific synthesis validator.",
+      "scope": "Phase-10 ledgers, claim matrix, canonical conclusion and prohibited-claim enforcement on the synthesis document.",
+      "interpreter": ".venv-v2/bin/python",
+      "sha256": "94e9e56b70d5041820e30d9924223d3d8412f72b218062dc7ecae240ee699c42",
+      "new_in_this_phase": false
+    }
+  },
+  "phase11_new_science": 0,
+  "phase11_models_trained": 0,
+  "phase11_predictions_generated": 0
+}

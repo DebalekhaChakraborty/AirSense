@@ -1,0 +1,142 @@
+{
+  "study": "AirSense V2",
+  "artifact": "phase11_publication_package_index",
+  "phase": 11,
+  "new_science": 0,
+  "items": [
+    {
+      "key": "manuscript",
+      "path": "manuscript/AirSense_V2_Manuscript.md",
+      "sha256": "4952a340fd5480fbce13ec314725945b6e09656d6ab79b53492997afe5f9e4c3",
+      "purpose": "Primary manuscript, venue-neutral structure.",
+      "present": true
+    },
+    {
+      "key": "manuscript_plaintext",
+      "path": "manuscript/AirSense_V2_Manuscript_plaintext.txt",
+      "sha256": "e197e8e481f32e5aeb37f38a765d401cb8f84f077eb42a0b40540bee48886031",
+      "purpose": "Portability / similarity-checking copy.",
+      "present": true
+    },
+    {
+      "key": "title_candidates",
+      "path": "manuscript/TITLE_CANDIDATES.md",
+      "sha256": "af4214c7d6fe04d0965d0e41976887d98e32127d874e3cc0c2e45aa0692d4601",
+      "purpose": "Ten title candidates with the recommended working title and rationale.",
+      "present": true
+    },
+    {
+      "key": "references",
+      "path": "manuscript/REFERENCES_VERIFIED.md",
+      "sha256": "5c379d57a6e44bb25f2b71d8113830847e5cbffe3d36687571d22f9dfed78ff9",
+      "purpose": "Verified references, separated from those needing verification.",
+      "present": true
+    },
+    {
+      "key": "related_work_citation_needs",
+      "path": "manuscript/RELATED_WORK_CITATION_NEEDS.md",
+      "sha256": "43e8ab74b941dc4762f275bf135028f71aa3a18c3a15ca8df96e73583fc57474",
+      "purpose": "Every citation placeholder and what would discharge it.",
+      "present": true
+    },
+    {
+      "key": "table_1",
+      "path": "manuscript/tables/table1_dataset_split.md",
+      "sha256": "ed06dcd45c3a62106e1f284c42c2fa6505460f8b255bcee0465664dad659f25d",
+      "purpose": "Dataset and chronological split (C5).",
+      "present": true
+    },
+    {
+      "key": "table_2",
+      "path": "manuscript/tables/table2_model_regimes.md",
+      "sha256": "317750d902b72d84e96c7b0047eabe2e17fc60e57a8e176bcc5dfa2e124f0b44",
+      "purpose": "Model families and information regimes (C5).",
+      "present": true
+    },
+    {
+      "key": "table_3",
+      "path": "manuscript/tables/table3_development_results.md",
+      "sha256": "8efc3d26d38882c9f24664c931103c6095611641320d5ba5d67d95d91b0d1f06",
+      "purpose": "Development-validation comparison (C2).",
+      "present": true
+    },
+    {
+      "key": "table_4",
+      "path": "manuscript/tables/table4_multiseed_robustness.md",
+      "sha256": "4b0443424d6b9bd3504fe20b29151d9a70d705ff459496a7cfb57ee3f95fb4f5",
+      "purpose": "Multi-seed robustness (C2).",
+      "present": true
+    },
+    {
+      "key": "table_5",
+      "path": "manuscript/tables/table5_locked_final_test.md",
+      "sha256": "36f847257021032d673f4ef7ac14d3357beb57037ab7ad39d7a72eef3218a321",
+      "purpose": "Locked final-test confirmatory results (C1).",
+      "present": true
+    },
+    {
+      "key": "table_6",
+      "path": "manuscript/tables/table6_posttest_diagnostics.md",
+      "sha256": "72d85fb7a0a003434a4d3529f6b1c9faf7566f8473f30159ee28b7b0818d48a2",
+      "purpose": "Post-test severe and error diagnostics (C3).",
+      "present": true
+    },
+    {
+      "key": "figure_plan",
+      "path": "manuscript/FIGURE_PLAN.md",
+      "sha256": "709bdd0926ec90d64fe5dd345bdc2ad231040eb6e38bc3dab4c1cfb4be0bb272",
+      "purpose": "Frozen figure selection, placement and caption constraints.",
+      "present": true
+    },
+    {
+      "key": "supplement_plan",
+      "path": "manuscript/SUPPLEMENT_PLAN.md",
+      "sha256": "40028ec4472c62949b48d40db70c60dff339c549bfecdd8948fd654f1a71e88c",
+      "purpose": "Main-paper versus supplement allocation.",
+      "present": true
+    },
+    {
+      "key": "supplementary_methods",
+      "path": "manuscript/SUPPLEMENTARY_METHODS.md",
+      "sha256": "f7195ccc45e61bc780a7737ad343b9ce423481b4322600bc24ddf14537d3fe14",
+      "purpose": "Dense technical detail supporting the methods.",
+      "present": true
+    },
+    {
+      "key": "claim_traceability",
+      "path": "manuscript/MANUSCRIPT_CLAIM_TRACEABILITY.csv",
+      "sha256": "35e6bb967da825f423a99b3b48d56a515feceaa8fa98907e8785af377b63efc9",
+      "purpose": "Every quantitative claim mapped to a hash-pinned artifact.",
+      "present": true
+    },
+    {
+      "key": "language_audit",
+      "path": "manuscript/LANGUAGE_AUDIT.md",
+      "sha256": "ea489247869b6aac46cc0ab327cbac23d01eaa5e35637c76da1c84b42307c41b",
+      "purpose": "Prohibited and risky phrase audit with a decision per hit.",
+      "present": true
+    },
+    {
+      "key": "readiness_review",
+      "path": "manuscript/MANUSCRIPT_READINESS_REVIEW.md",
+      "sha256": "ecc1db8ede5ab0425f6efe2dc7af0ef9b9c3213896e3a6d8fb22dcf6db7d0557",
+      "purpose": "Submission-readiness assessment by category.",
+      "present": true
+    },
+    {
+      "key": "manuscript_summary",
+      "path": "artifacts/phase11_manuscript_summary.json",
+      "sha256": "60aae2832c4b39c419c1ef410141ebe3b4f51b4662db403d12e035bbcf816626",
+      "purpose": "Phase-11 manuscript statistics and status.",
+      "present": true
+    },
+    {
+      "key": "readme_proposed_update",
+      "path": "docs/README_PHASE11_PROPOSED_UPDATE.md",
+      "sha256": "ae1aea741455182d09edef53810933f06b77ec103a3732d85dfd45f4a56a7166",
+      "purpose": "Proposed README status update, not applied.",
+      "present": true
+    }
+  ],
+  "item_count": 19
+}

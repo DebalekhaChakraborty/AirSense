@@ -1,0 +1,1276 @@
+AIRSENSE V2 - MANUSCRIPT (PLAINTEXT PORTABILITY COPY)
+Generated from manuscript/AirSense_V2_Manuscript.md.
+For portability and similarity checking. The markdown file is authoritative.
+==============================================================================
+
+WORKING TITLE — Causal Multi-Horizon PM2.5 Forecasting Across a Twelve-Station Urban Network: Improvement over Persistence on Average, an Unresolved Severe Tail
+
+WORKING TITLE. Not approved. Candidate titles and the selection rationale
+are in manuscript/TITLE_CANDIDATES.md. The title is provisional until a
+human author approves it.
+
+[AUTHOR NAME]<sup>1</sup>
+
+<sup>1</sup> [AFFILIATION]
+
+Corresponding author: [AUTHOR NAME], [EMAIL], ORCID [ORCID]
+
+
+Abstract
+
+Fine particulate matter is a leading environmental health burden in dense urban
+areas, and short-range forecasts underpin public advisories. Reported
+air-quality forecasting results are dominated by ordinary conditions, so a model
+can post a strong average score while failing during the episodes that motivate
+forecasting at all. This study asks how much a learned model gains over a naive
+causal reference across forecast horizons, and whether any of that gain reaches
+the extreme tail.
+
+We forecast PM2.5 at twelve monitoring stations of the Beijing Multi-Site
+Air-Quality network over 2013-03-01 to 2017-02-28, comprising 420,768 hourly
+records. Data are partitioned into contiguous chronological blocks by target
+timestamp, and the final block is sealed. Every input obeys a strict causal
+rule: no value may postdate its forecast origin, and future observed
+meteorology and pollutants are prohibited by construction. Models observe a
+48-hour context and predict at 1, 6, 12 and 24 hours. Four model families were
+developed — engineered-feature gradient boosting, recurrent and convolutional
+sequence models, an inverted-attention transformer variant, and a
+station-attention model — under nested information regimes. Model roles were
+frozen before the sealed block was opened; it was opened once and scored once,
+over 411,012 samples.
+
+The primary confirmatory model achieved a macro station-horizon mean absolute
+error of 31.99 µg/m³ against 36.14 for causal persistence, an improvement of
+11.49%, and it improved on persistence at every horizon from 1 to 24 hours. In
+the severe stratum, defined as observed PM2.5 above the training pooled P95 of
+244.0 µg/m³ (n = 20,336), the prespecified secondary model reached 109.33 µg/m³
+while persistence remained the strongest severe reference benchmark at 93.22.
+Average multi-horizon accuracy and extreme-episode accuracy therefore diverge:
+the improvement over persistence is real on the bulk distribution and does not
+extend to the tail, which remains the principal open problem.
+
+Keywords
+
+PM2.5 forecasting; air quality; multi-horizon time-series forecasting; causal
+forecasting; chronological generalisation; severe pollution episodes;
+cross-station information; gradient boosting; reproducible machine learning;
+evaluation governance
+
+
+1. Introduction
+
+1.1 Why short-range PM2.5 forecasting matters
+
+Fine particulate matter with aerodynamic diameter below 2.5 µm penetrates deep
+into the respiratory tract and is associated with cardiovascular and
+respiratory morbidity in dense urban populations [REF-NEEDED: authoritative
+review or cohort study establishing PM2.5 health associations, with effect
+sizes]. Operational value depends on lead time: an advisory issued an hour
+ahead supports different decisions from one issued a day ahead. That makes
+PM2.5 forecasting intrinsically multi-horizon rather than a single-step
+problem.
+
+1.2 Why multi-horizon forecasting is hard
+
+Forecast difficulty is not uniform in lead time. Observed PM2.5 is strongly
+autocorrelated at short lags and much less so at a full day's lead, so the
+informational content of recent history decays sharply across exactly the
+range where forecasts are useful. A model tuned to the horizon where
+persistence is nearly unbeatable can look excellent overall while adding
+nothing where the forecast is actually needed.
+
+1.3 Why average accuracy is insufficient
+
+Aggregate error metrics are dominated by ordinary hours. Severe episodes are
+rare by construction, so a model that regresses toward the conditional mean
+during extremes can still minimise mean absolute error overall. Any claim that
+a method improves air-quality forecasting must therefore state which part of
+the distribution improved, and a study that reports only an average has not
+answered the question that motivates the field.
+
+1.4 Why severe episodes are scientifically important
+
+Severe pollution hours carry the health burden and trigger public response.
+They are also the regime where the physical processes driving concentration —
+regional accumulation, boundary-layer collapse, meteorological stagnation —
+differ most from ordinary conditions. A forecasting system evaluated only on
+its average behaviour leaves the scientifically distinctive regime untested.
+
+1.5 Why history, co-pollutants and cross-station context are reasonable dimensions
+
+Three sources of information plausibly add value beyond meteorology: the
+target station's own pollutant history, which carries the autocorrelation
+structure; co-pollutant history, which may index shared emission and
+accumulation processes; and observations from other stations in the network,
+which may carry regional structure not visible at a single site. These are
+distinguishable, so they can be studied as nested information regimes rather
+than conflated into one model.
+
+1.6 Why chronological generalisation and leakage control matter
+
+Air-quality series are strongly autocorrelated, so a randomly partitioned
+evaluation places near-duplicate hours on both sides of the split and reports
+an optimistic number. Contiguous chronological partitioning is the minimum
+defensible design. Beyond partitioning, the subtler risk is that a preprocessing
+statistic, an imputation rule or a smoothing window silently consults data
+after the forecast origin. Leakage of that kind does not announce itself in the
+metric; it merely improves it.
+
+1.7 Why foundation-model eligibility affects valid evaluation
+
+Pretrained time-series foundation models are trained on large heterogeneous
+corpora whose contents are often enumerated only at dataset granularity. If a
+pretraining corpus overlaps the evaluation period and network, a held-out test
+is no longer held out for that model, and the resulting comparison measures
+recall as much as generalisation. Licensing imposes a second, independent
+eligibility constraint. Both are governance questions that must be settled
+before a checkpoint is run, not after.
+
+1.8 Research question
+
+Under strict causal, chronologically partitioned evaluation on a sealed test
+block opened exactly once: how much does a learned model improve on a naive
+causal reference across forecast horizons of 1 to 24 hours, and does that
+improvement extend to severe pollution episodes?
+
+1.9 Hypotheses
+
+Five hypotheses were recorded before the corresponding experiments. They are
+reproduced here in their frozen form; their evidence status is reported in
+Development-validation results, Robustness results and Limitations, and
+the reader should note in advance that none was re-tested as a paired contrast
+on the locked final test.
+
+- H1. Adding target-station PM2.5 history improves macro station-horizon
+  mean absolute error.
+- H2. The benefit of target PM2.5 history is largest at short horizons and
+  decreases as lead time grows.
+- H3. Adding co-pollutant history provides additional predictive value.
+- H4. A cross-station information regime improves on the same architecture
+  without it.
+- H5. Modern sequence and cross-station methods reduce severe-tail error
+  and under-prediction relative to engineered and naive baselines.
+
+1.10 Contributions
+
+We state these factually; none is claimed as unprecedented.
+
+1. A leakage-controlled multi-horizon PM2.5 forecasting framework. Sample
+   eligibility, imputation, scaling and calendar encoding are defined so that
+   every input timestamp is at or before the forecast origin, with the
+   constraint enforced structurally rather than by convention.
+2. An information-regime study. Target history, co-pollutant history and
+   cross-station context are separated into nested regimes evaluated over a
+   common sample universe, so their contributions are distinguishable.
+3. A controlled paired cross-station experiment with multi-seed
+   robustness. One architecture is run with cross-station access enabled and
+   disabled, holding capacity and training protocol fixed, replicated across
+   five seeds.
+4. A locked final-test protocol with a predeclared confirmatory hierarchy.
+   Primary, secondary and reference roles were frozen before the test block was
+   opened; predictions were generated and hashed before any metric was
+   computed; the block was opened once.
+5. A severe-tail analysis that reports a negative result. The reference
+   persistence benchmark achieved the lowest severe error of the three
+   evaluated models, and this is reported rather than reframed.
+6. A foundation-model eligibility audit. Pretraining-overlap and licensing
+   constraints were assessed before any checkpoint was obtained, and the
+   resulting exclusions are documented as a governance outcome.
+7. An evidence-governance framework. Every quantitative claim in this
+   manuscript carries an evidence class and traces to a hash-pinned artifact.
+
+1.11 Evidence classification
+
+Claims in this manuscript carry exactly one evidence class, and the class is
+stated wherever a result is reported.
+
+- C1 — locked confirmatory. Obtained under the frozen final-test hierarchy.
+- C2 — development and robustness. Development validation, training-only
+  tuning and multi-seed replication, all before the test was opened.
+- C3 — post-test exploratory. Generated after the test was scored.
+- C4 — historical. From the earlier frozen AirSense V1 programme.
+- C5 — methodological and governance. Data integrity, leakage control,
+  sealing and provenance.
+
+No C3 finding is presented as C1. The post-test analysis explains the locked
+result; it does not add to it.
+
+
+2. Related work
+
+This section situates the study. Where a claim about prior literature requires
+an external citation that has not been verified against an authoritative
+source, a REF-NEEDED placeholder appears instead. No
+bibliographic entry in this manuscript was generated without verification;
+manuscript/REFERENCES_VERIFIED.md separates verified from unverified
+references, and manuscript/RELATED_WORK_CITATION_NEEDS.md enumerates what
+each placeholder requires.
+
+2.1 Classical and machine-learning air-quality forecasting
+
+Statistical and tree-based methods have long been applied to air-quality
+prediction, typically with engineered lag and rolling-window features over
+pollutant and meteorological series [REF-NEEDED: recent survey or review of
+machine-learning PM2.5 forecasting, covering feature-engineering approaches].
+A recurring methodological concern is that naive references are frequently
+omitted or under-specified, so reported improvements cannot be attributed
+[REF-NEEDED: methodological critique of baseline reporting in air-quality
+forecasting]. This study fixes the reference before the learned models are
+built.
+
+2.2 Deep temporal forecasting
+
+Recurrent, convolutional and attention-based sequence models have been proposed
+for multivariate time-series forecasting, with the stated advantage of learning
+temporal structure rather than receiving it as engineered features
+[REF-NEEDED: representative recurrent and temporal-convolutional forecasting
+architectures]. Inverted-attention transformer designs, which attend across
+variates rather than across time steps, are a more recent development
+[REF-NEEDED: iTransformer paper: authors, venue, year, DOI]. Comparative
+studies have questioned whether added architectural capacity translates into
+accuracy gains over well-specified simple baselines on common benchmarks
+[REF-NEEDED: study comparing deep forecasting models against simple baselines].
+
+2.3 Spatial and multi-station air-quality forecasting
+
+Multi-station forecasting has been approached with graph-structured and
+attention-based models that let a site condition on its neighbours
+[REF-NEEDED: representative spatiotemporal graph forecasting work, e.g. a
+graph-convolutional or diffusion-convolutional recurrent architecture]. Such
+designs are frequently interpreted as learning physical transport. The model
+used here is deliberately weaker in its assumptions: it is a station-attention
+architecture with no graph, no distance mask and no coordinate input, and the
+interpretation question is examined directly rather than assumed.
+
+2.4 Time-series foundation models
+
+Pretrained forecasting models aim to transfer across domains without
+task-specific training [REF-NEEDED: Chronos-2 paper: authors, title, venue,
+year], [REF-NEEDED: TimesFM paper: authors, title, venue, year],
+[REF-NEEDED: Moirai paper: authors, title, venue, year]. Their pretraining
+corpora are typically enumerated at dataset granularity, which makes overlap
+with a specific evaluation period auditable in principle but rarely audited in
+practice.
+
+2.5 Leakage, contamination and chronological generalisation
+
+Evaluation validity in time-series machine learning depends on partitioning,
+preprocessing discipline and, for pretrained models, corpus provenance
+[REF-NEEDED: work on data leakage in time-series or applied machine-learning
+evaluation]. Benchmark contamination for pretrained models is an active
+concern [REF-NEEDED: work on benchmark or pretraining contamination in
+foundation models]. The protocol used here treats all three as first-class
+design constraints rather than as post-hoc caveats.
+
+
+3. Data and protocol
+
+3.1 Dataset
+
+We use the Beijing Multi-Site Air-Quality dataset (UCI ID 501,
+doi:10.24432/C5RK5G), distributed under CC BY 4.0 as presented by UCI. It
+comprises hourly observations from twelve monitoring stations — Aotizhongxin,
+Changping, Dingling, Dongsi, Guanyuan, Gucheng, Huairou, Nongzhanguan, Shunyi,
+Tiantan, Wanliu and Wanshouxigong — over 2013-03-01 to 2017-02-28, giving
+420,768 station-hours. Variables are PM2.5, PM10, SO2, NO2, CO, O3,
+temperature, pressure, dew point, rain, wind speed and categorical wind
+direction. The station order above is frozen and used consistently throughout.
+
+Every source CSV is hash-pinned, and the raw archive digest is recorded, so the
+input to the pipeline is verifiable. No value was cleaned, corrected or
+imputed at source. (C5)
+
+3.2 Chronological partitions
+
+Partitions are contiguous chronological blocks assigned by target
+timestamp, not by forecast origin. Table 1 gives the design.
+
+    Partition          Target window             Eligible samples  Status
+    -----------------  ------------------------  ----------------  -------------------
+    Train              2013-03-01 to 2015-02-28  821,184           open throughout
+    Validation         2015-03-01 to 2016-02-29  413,148           development only
+    Locked final test  2016-03-01 to 2017-02-28  411,012           sealed, opened once
+
+
+Table 1. Dataset and chronological split. (C5)
+
+Partitioning by target timestamp has a consequence worth stating: a target
+early in the validation or test window legitimately has a forecast origin, and
+therefore context, inside the preceding partition. Those samples are kept. A
+forecaster operating on the first day of a new period does have the previous
+day's observations, and using them is rolling-origin history rather than
+leakage. What makes this safe is that model parameters and every preprocessing
+statistic remain fitted on training data alone; newly observed past context may
+enter an input window, but nothing is refitted from it. (C5)
+
+3.3 Forecast task and severe stratum
+
+A sample is the triple (station, target timestamp, horizon). Models observe a
+48-hour context ending at the forecast origin and predict PM2.5 at 1, 6, 12 and
+24 hours ahead, giving 48 station-horizon cells. A sample is eligible only if
+PM2.5 at the target timestamp is observed in the raw data; targets are never
+imputed.
+
+The severe stratum is defined as observed PM2.5 > 244.0 µg/m³. That value
+is the training pooled P95 — a study-internal quantile computed on training
+data only. It is not a regulatory limit and not an air-quality-index
+boundary, and it should not be read as one. The rule is strictly greater than:
+on the locked final test 232 targets sit at exactly 244.0 µg/m³ and are
+excluded from the severe stratum, so a non-strict rule would define a larger
+severe set than the 20,336 samples reported here. The training pooled median, 61.0 µg/m³, bounds the exploratory
+concentration strata used later. (C5)
+
+3.4 Preprocessing
+
+Every rule distinguishes what it is fitted on from what it is applied
+to. Statistics are fitted on training data only and applied unchanged to all
+partitions. (C5)
+
+- Targets are never imputed. A sample with an unobserved target is
+  excluded, not filled.
+- Causal forward fill with a six-hour ceiling. A missing input is carried
+  from the most recent observation at or before the origin, up to six hours.
+  The ceiling is the rounded P90 gap length and is where training
+  autocorrelation stops supporting the carry.
+- Training-median fallback. Beyond six hours the value is replaced by the
+  station's training median and marked as not observed. Long outages are not
+  dropped, because outages concentrate by station and dropping them would bias
+  the macro metric unevenly across sites.
+- Missingness masks and gap age. Every imputed variable carries a binary
+  observed mask computed from the raw value before any fill, plus a
+  time-since-last-observation channel capped at 168 hours, so a one-hour-stale
+  value is distinguishable from a sixty-day-stale one.
+- Robust scaling. Inputs are scaled as (x − median) / IQR with constants
+  pooled across stations over the training partition. Robust rather than
+  standard scaling, because training PM2.5 is right-skewed and a
+  standard-deviation scale is dominated by the tail. Scaling is global rather
+  than per-station, deliberately: station level differences are the signal the
+  macro metric exists to compare.
+- Rain exception. RAIN has a zero interquartile range in training, so its
+  robust denominator is undefined; it falls back to a standard-deviation scale.
+- Wind direction is treated categorically and never interpolated
+  numerically, with a 17-way encoding of the sixteen training compass
+  categories plus an explicit missing state.
+- No target transform. PM2.5 remains in native µg/m³ so that mean absolute
+  error is directly interpretable. No log transform was applied.
+- Prohibited outright: backward fill, any interpolation consulting
+  observations after the origin, centred rolling statistics, any bidirectional
+  transform, and any statistic fitted on validation or test data.
+
+3.5 Information regimes
+
+Models are compared under nested information regimes over a common sample
+universe, so that a difference between regimes is a difference in information
+rather than in data. Table 2 defines them.
+
+    Regime  Available information
+    ------  ------------------------------------------------------------------------------------
+    R0      Meteorology, wind direction, rain occurrence, calendar, masks. No pollutant history.
+    R1      R0 plus target-station PM2.5 history, its mask and its gap age.
+    R2      R1 plus co-pollutant history (PM10, SO2, NO2, CO, O3) with masks and gap ages.
+    R3      R2 plus cross-station history.
+
+
+Table 2. Information regimes. (C5)
+
+The causality rules are absolute and identical in every regime:
+
+- future observed meteorology — prohibited;
+- future observed pollutants — prohibited;
+- deterministic future calendar — permitted, because it is knowable at the
+  origin without observing anything;
+- historical observations — only timestamps at or before the forecast origin;
+- rolling PM2.5 reveal — permitted only once a timestamp has become past
+  relative to the forecast origin.
+
+Enforcement is structural, not advisory. Across 1,233,036 index checks during
+final-test prediction generation there were 0 future-target access
+violations. (C5)
+
+
+4. Models
+
+Four families were developed, plus three naive references. Only three models
+carried a role on the locked final test; the rest are development-only and are
+reported as such. No foundation model was executed.
+
+4.1 Naive reference models
+
+- B0 — causal persistence. Predict the latest usable PM2.5 observation at
+  the target station available at the forecast origin, resolving in order:
+  the value observed at the origin; otherwise the most recent observation
+  within the six-hour ceiling; otherwise the station training median. The
+  fallback guarantees a prediction for every eligible sample, so B0 cannot
+  improve its score by declining hard cases.
+- B1 — daily seasonal naive. Predict the value observed 24 hours before
+  the target, used only when that observation is causally available at the
+  origin, otherwise falling back to B0. At a 24-hour horizon the seasonal lag
+  coincides with the origin, so B1 collapses exactly into B0. This is
+  arithmetic, and it is reported rather than presented as an independent
+  reference.
+- B2 — training climatology. A training-only median indexed by the target
+  timestamp's calendar position, with a deterministic fallback from
+  station-month-hour to station-hour to station. It uses no observation at all
+  and is horizon-independent by construction.
+
+Defining the references before building the learned models is deliberate: it
+prevents a sophisticated model being credited for work a one-line rule already
+does.
+
+4.2 B3 — gradient-boosted causal lag features
+
+B3 is gradient boosting (LightGBM, native Booster API) over engineered causal
+features derived from the 48-hour context, trained per horizon.
+
+Features, frozen before any validation metric existed: lag positions 0, 1,
+2, 3, 6, 12, 24 and 47 hours before the origin; trailing windows of 3, 6, 12,
+24 and 48 hours ending at the origin with mean, standard deviation, minimum and
+maximum; observed mask at origin plus observed fraction over 6, 12 and 48
+hours; gap age at origin for each pollutant in the regime; a rain-occurred
+indicator and its trailing means; a 17-way wind encoding; a 12-way station
+encoding; and frozen origin and target cyclic calendar channels. Day-of-week
+and weekend channels are excluded, because training autocorrelation at a
+168-hour lag gives no support for a weekly cycle.
+
+Lag 48 is deliberately excluded. The canonical window spans exactly 48
+timestamps ending at the origin, so an exact 48-hour lag would sit one hour
+outside it; honouring it would mean quietly reading a 49th hour.
+
+Feature counts are 207, 240 and 405 for R0, R1 and R2 respectively.
+
+Hyperparameters were selected from exactly eight predeclared candidates —
+learning rate in {0.03, 0.07}, leaves in {31, 63}, minimum data per leaf in
+{50, 200} — with 400 boosting rounds fixed, L1 objective, L2 regularisation
+1.0, no bagging or feature subsampling, and no early stopping, because an
+early-stopped iteration count is one more quantity chosen by looking at
+validation. Selection used macro-station validation MAE at that horizon with a
+frozen tie-break order. Determinism was pinned: all seeds 42, deterministic and
+column-wise modes enabled, thread count fixed at 16 across every candidate.
+
+4.3 GRU and TCN sequence models
+
+Both are trained jointly across horizons, with horizon supplied as a four-way
+one-hot static feature, rather than one model per horizon. Each canonical
+sample still receives exactly one prediction and metrics are still reported per
+horizon over the same 48 cells.
+
+- GRU. A single-layer unidirectional GRU over the 48-hour window, final
+  hidden state concatenated with the static vector, followed by a
+  linear-ReLU-dropout-linear head.
+- TCN. Four residual blocks of two kernel-3 causal convolutions with
+  dilations 1, 2, 4 and 8 and left padding only. The receptive field is 61
+  timesteps, covering the whole context; causality is asserted both by formula
+  and by a test that perturbs future inputs and requires bit-identical output
+  at earlier positions.
+
+Both heads are unconstrained — no ReLU, softplus or clipping — so negative
+predictions remain visible rather than being silently hidden.
+
+Dynamic input channels number 28, 31 and 46 for R0, R1 and R2; the static
+vector has 28 channels. Hyperparameters were selected on a training-only
+internal split: a fit block of 410,696 samples over 2013-03-01 to
+2014-02-28 and a scoring block of 410,488 samples over 2014-03-01 to
+2015-02-28. Both are complete annual cycles, the scoring block is strictly
+later, and together they partition the training universe exactly. This matters
+because the development validation partition had already been spent selecting
+classical candidates; tuning every later architecture on the same year would
+compound selection optimism until that partition stopped being informative.
+
+Four candidates per family were scored — GRU hidden size in {64, 128}, TCN
+channels in {32, 64}, learning rate in {3e-4, 1e-3} — with everything else
+fixed: 8 epochs, batch 1024, AdamW, weight decay 1e-4, gradient clipping at
+1.0, L1 loss, head width 64, dropout 0.1, seed 42, no scheduler, no warmup, no
+early stopping. The selected configurations were GRU hidden 64 at 3e-4 and TCN
+channels 32 at 1e-3.
+
+4.4 iTransformer-style model
+
+An in-repository iTransformer-style architecture, not an official reference
+implementation: attention is applied across variates rather than time steps,
+with 2 encoder layers, 4 heads, feedforward ratio 4, GELU activation, layer
+normalisation, dropout 0.1 and no positional encoding across variates. The
+selected configuration was model width 64 at learning rate 1e-3, under R1 and
+R2 only. It is not a foundation model and is not described as one.
+
+4.5 Station-attention model
+
+The cross-station model is an AirSense Station-Attention Forecaster, and it
+is explicitly not an implementation of any published graph forecasting
+architecture. A shared unidirectional GRU encodes each station's context; a
+single 4-head attention layer then operates along the station axis, fused
+by layer normalisation. There is no graph convolution, no distance mask, no
+chosen neighbour set and no coordinate input.
+
+The experiment is a paired contrast holding architecture, capacity,
+training protocol and seed fixed, varying only information access:
+
+- SA_R2 — self-only attention: every off-diagonal station edge is
+  forbidden, so a station may attend only to itself.
+- SA_R3 — unmasked attention: all twelve stations are reachable.
+
+The selected configuration was hidden size 128 at learning rate 1e-3, 144,001
+parameters, grouped batch size 512.
+
+4.6 Foundation-model eligibility
+
+No foundation model was executed, and no foundation-model prediction exists.
+This is a governance outcome, not a measurement, and it must not be read as a
+performance comparison.
+
+- Chronos-2 was excluded before any checkpoint was obtained. Its published
+  pretraining corpus enumerates a dataset whose Beijing air-quality content
+  overlaps the sealed evaluation period and network, which under the study's
+  preregistered contamination policy makes a clean held-out evaluation
+  impossible for this model. The audit established overlap risk by
+  provenance; it did not demonstrate that any specific record entered
+  training, and no such demonstration is claimed.
+- TimesFM-3.0 was excluded because its weight licence is incompatible with
+  the study's intended use.
+- Moirai-2.0-R-small was excluded because its weights carry a
+  non-commercial licence.
+
+Each exclusion was decided before download and inference. The correct summary
+is that no eligible foundation model could be evaluated under the study's
+pretraining-overlap and licensing constraints. (C5)
+
+
+5. Evaluation metrics
+
+Primary metric — macro station-horizon MAE. Mean absolute error is computed
+within each of the 48 station-horizon cells and averaged with equal weight.
+Equal weighting is the point: it prevents high-volume or high-variance sites
+from dominating, and it makes the twelve stations comparable. This metric was
+fixed before any model was built and was never replaced.
+
+Secondary and descriptive metrics. Micro MAE over pooled samples, macro and
+micro RMSE, and coefficient of determination are reported as descriptive
+context. Micro MAE was never used for model selection.
+
+Severe metrics. Restricted to samples with observed PM2.5 > 244.0 µg/m³,
+reported as severe MAE, severe RMSE, severe mean residual and severe
+under-prediction rate.
+
+Residual convention. Residual = actual − prediction. A positive residual
+therefore denotes under-prediction, and this sign convention is used without
+exception throughout the manuscript.
+
+No inferential procedure is reported. None was predeclared before the test was
+opened, so no interval, no p-value and no significance test appears anywhere in
+this study. Differences are reported as measured quantities. (C5)
+
+
+6. Experimental protocol
+
+Evidence was accumulated in stages, and the stage at which a result was
+produced determines its evidence class.
+
+Stage 1 — training-only audit and preprocessing. Exploratory analysis,
+missingness characterisation and every preprocessing constant were derived from
+training data alone. The test partition was structurally unreadable: the data
+loader refused to return values for any partition other than training except in
+a presence-checking mode that discards numeric values in the parser.
+
+Stage 2 — development validation. Classical references and engineered
+gradient boosting were evaluated on the validation partition.
+
+Stage 3 — architecture and regime evaluation. Sequence, transformer-style
+and station-attention families were added, with hyperparameters selected on the
+training-only internal split rather than on validation.
+
+Stage 4 — robustness and controlled cross-station analysis. Candidates were
+replicated across five seeds; the paired cross-station contrast was replicated;
+leave-one-station-out transfer and attention diagnostics were run.
+
+Stage 5 — pre-test role freeze. Primary, secondary and reference roles,
+endpoints and the severe threshold were frozen in a signed artifact while the
+test remained sealed.
+
+Stage 6 — single locked final-test evaluation. An authorisation receipt was
+written; predictions were generated chronologically with metrics unseen;
+prediction arrays were hashed and locked; only then were metrics computed.
+
+Stage 7 — post-test exploratory diagnostics. Error analysis was performed
+from the frozen prediction arrays, after scoring, and is reported separately as
+exploratory.
+
+The governance mechanics that enforce these stages — per-phase validators,
+append-only tooling registries, manifest hashing — are summarised in
+Reproducibility statement and detailed in manuscript/SUPPLEMENTARY_METHODS.md.
+
+
+7. Development-validation results
+
+All results in this section are C2: development validation, obtained before
+the final test was opened. They motivated the model roles frozen at Stage 5.
+None of them is a final-test result.
+
+    Model            Family             Regime  Validation macro MAE  Validation severe MAE  Severe under-prediction (%)
+    ---------------  -----------------  ------  --------------------  ---------------------  ---------------------------
+    B0               classical          —       33.13                 101.27                 71.62
+    B1               classical          —       51.21                 152.59                 85.88
+    B2               classical          —       56.73                 278.80                 100.00
+    B3_R0            boosted            R0      40.62                 176.94                 97.05
+    B3_R1            boosted            R1      30.47                 138.32                 88.51
+    B3_R2            boosted            R2      30.11                 136.61                 88.29
+    GRU_R1           neural             R1      30.91                 118.96                 93.56
+    GRU_R2           neural             R2      31.84                 145.13                 95.13
+    TCN_R1           neural             R1      30.69                 152.53                 95.42
+    TCN_R2           neural             R2      34.08                 183.21                 98.29
+    iTransformer_R1  transformer        R1      32.48                 140.99                 84.03
+    iTransformer_R2  transformer        R2      32.72                 145.14                 89.19
+    SA_R2            station-attention  R2      32.24                 142.70                 92.01
+    SA_R3            station-attention  R3      31.53                 121.27                 88.04
+
+
+Table 3. Development-validation comparison. Values are development
+evidence and must not be read as final-test performance. (C2)
+
+7.1 Target history dominates the gain (H1)
+
+Moving from R0 to R1 in the boosted family reduced macro MAE from 40.62 to
+30.47. Meteorology and calendar alone (R0, 40.62) are worse than simply
+carrying the last observation forward (B0, 33.13). Almost everything the
+boosted model gains over persistence comes from PM2.5's own history, not from
+meteorology. H1 is supported on development validation. It was not
+re-tested as a paired contrast on the locked final test, because neither B3_R0
+nor B3_R1 was an authorised final-test model. (C2)
+
+7.2 The gain is largest at short lead (H2)
+
+On development validation the R0-to-R1 benefit was largest at the shortest
+horizon and diminished with lead time, consistent with the decay of PM2.5
+autocorrelation. H2 is supported on development validation and was not
+re-tested on the locked final test. (C2)
+
+7.3 Co-pollutant history is model-dependent (H3)
+
+Adding co-pollutant history (R1 to R2) changed macro MAE by +0.36 for the
+boosted family — an improvement — but by −0.93 for the GRU, −3.39 for the TCN
+and −0.24 for the transformer variant, where a negative value is a
+degradation. The direction of the effect depends on the model family: it helped
+only gradient boosting. H3 has weak, model-dependent development support,
+and the general claim that co-pollutants improve forecasting is not supported.
+(C2)
+
+7.4 Architectures cluster more tightly than families suggest
+
+Four of the learned configurations land between 30.11 and 30.91 on macro MAE. A
+learned sequence representation did not separate itself from engineered lag
+features on this task at development scale. The severe tail behaves quite
+differently: the GRU at R1 reached 118.96 against the boosted model's 136.61,
+while persistence stayed ahead of both at 101.27. This divergence between
+overall and severe behaviour is what motivated a secondary severe-tail role in
+the frozen hierarchy.
+
+
+8. Robustness results
+
+All results in this section are C2. Seeds 42 to 46 were used. The seed-42
+artifacts were not retrained; their frozen prediction arrays were re-scored
+through the robustness code path and reproduced the published values exactly.
+
+    Model   Seeds  Macro MAE mean  Macro MAE SD  Macro MAE range  Severe MAE mean  Severe MAE SD  Severe MAE range
+    ------  -----  --------------  ------------  ---------------  ---------------  -------------  ----------------
+    GRU_R1  5      30.76           0.12          0.29             115.79           3.60           7.44
+    TCN_R1  5      30.54           0.34          0.80             137.76           10.43          29.43
+    SA_R3   5      31.55           0.42          1.05             136.82           13.97          35.16
+    SA_R2   5      32.52           0.55          1.36             154.44           14.80          34.79
+
+
+Table 4. Multi-seed robustness. Spreads are descriptive across five seeds
+and are not inferential intervals. (C2)
+
+8.1 Severe-tail metrics are far less seed-stable than overall metrics
+
+Overall macro MAE varies across seeds by roughly 0.3 to 1.4 µg/m³, while severe
+MAE varies by 7.4 to 35.2. Two consequences follow. First, single-seed
+severe-tail claims should be treated as provisional, including several made
+earlier in this programme. Second, the apparent rank order among the learned
+models on overall MAE sits inside seed noise: GRU_R1 and TCN_R1 have mean macro
+MAE of 30.76 and 30.54 respectively, while TCN_R1 alone spans 0.80 across its
+five seeds.
+
+Reseeding also corrected an earlier published characterisation. TCN_R1's
+severe-tail weakness, reported from a single run at 152.53, spans 123.10 to
+152.53 across seeds with a mean of 137.76 — close to the boosted model's
+136.61. The published figure was that model's worst of five.
+
+8.2 The paired cross-station contrast (H4)
+
+SA_R2 and SA_R3 differ only in information access: identical architecture,
+capacity, training protocol and seed, with cross-station attention forbidden or
+permitted. Across five paired seeds, SA_R3 was better than SA_R2 on overall
+macro MAE in 5 of 5 seeds. At the published seed the improvement was 32.24 to
+31.53, or 2.19%. Across seeds the means were 32.52 for SA_R2 and 31.55 for
+SA_R3, and in the severe tail 154.44 against 136.82, with SA_R3 better in 5 of
+5 seeds there as well.
+
+The horizon structure is not uniform. Mean paired differences, where a positive
+value favours cross-station access, were 0.19 at 1 hour, 1.99 at 6 hours, 1.54
+at 12 hours and 0.17 at 24 hours. At 6 and 12 hours all five seeds agreed in
+direction; at 1 and 24 hours they did not. An earlier single-seed finding that
+cross-station context was harmful at 24 hours did not survive reseeding, and
+the honest statement is that cross-station information neither reliably helps
+nor reliably hurts at a full day's lead.
+
+H4 is robustly supported on development and robustness evidence, and was not
+independently confirmed on the locked final test, because SA_R2 and SA_R3
+were excluded from the confirmatory set. (C2)
+
+8.3 Attention is not proximity-driven
+
+Station coordinates were acquired after every model was frozen, from a
+licensed, citable source, and verified against it. They were used for
+descriptive diagnostics only: never a model input, never a graph, never a
+selection criterion.
+
+Across 132 directed station pairs, the Spearman correlation between
+inter-station distance and learned attention weight is +0.136289 — slightly
+positive, meaning attention very mildly increases with distance. The nearest
+station is the most-attended source for 1 of 12 stations. By contrast, the
+Spearman correlation between distance and training PM2.5 correlation is
+−0.938086, confirming that the coordinates are correctly mapped and that nearer
+stations genuinely are more correlated. The absence of a distance effect in
+attention is therefore a finding rather than a mapping error.
+
+Cross-station access improves this architecture, and the mechanism is not
+proximity. These weights must not be interpreted as physical transport. (C2)
+
+8.4 Leave-one-station-out transfer
+
+Twelve folds each withheld one station's training targets from the loss while
+leaving that station's causal history visible to the shared encoder, then
+evaluated on exactly that station. The mean relative penalty was +0.134022%
+— a mean absolute penalty of 0.015185 µg/m³ — and 5 of 12 stations were better
+when held out. The severe tail cost slightly more, at 3.394045 µg/m³ mean.
+
+The required description of this experiment is held-out target-station
+supervision transfer with causal historical observations from the held-out
+station available. It is not forecasting at a site whose observations are
+absent: only the station's training targets were withheld, while its
+observation stream still reached the shared encoder. (C2)
+
+
+9. Locked final-test results
+
+This section reports the study's only confirmatory evidence. Every value here
+is C1.
+
+The test block was sealed from the start of the programme and opened exactly
+once, at Stage 6, after an authorisation receipt was written. Predictions were
+generated chronologically with metrics unseen, the prediction arrays were
+hashed and locked, and only then was any metric computed. Roles were frozen
+before opening and did not change afterwards. No model was retrained after the
+test was opened, and no model was selected after the test was opened.
+
+    Model   Frozen role                               Macro station-horizon MAE  Micro MAE  Macro RMSE  Macro R²  Severe MAE  Severe mean residual  Severe under-prediction (%)  Negative predictions
+    ------  ----------------------------------------  -------------------------  ---------  ----------  --------  ----------  --------------------  ---------------------------  --------------------
+    B3_R2   primary confirmatory model                **31.99**                  31.98      51.28       0.54      131.90      127.65                88.60                        53
+    GRU_R1  secondary confirmatory severe-tail model  33.08                      33.07      52.38       0.54      **109.33**  106.59                93.73                        1,358
+    B0      reference benchmark                       36.14                      36.13      58.47       0.40      **93.22**   65.55                 72.59                        0
+
+
+Table 5. Locked final-test confirmatory results, over 411,012 samples and
+48 equally weighted station-horizon cells; severe stratum n = 20,336. Roles
+were frozen before opening. (C1)
+
+9.1 Primary endpoint
+
+On the locked final test the primary confirmatory model B3_R2 achieved a
+macro station-horizon MAE of 31.98722559774534 µg/m³, against
+36.138513538776856 for the causal persistence reference benchmark B0.
+The relative improvement is 11.487157424383705%, computed as
+100 × (B0 − B3_R2) / B0 from the frozen full-precision values. B3_R2 improved
+on persistence at every horizon from 1 to 24 hours.
+
+No inferential interval accompanies this number, because none was predeclared
+before the test was opened.
+
+9.2 Secondary endpoint
+
+In the severe stratum, defined as observed PM2.5 > 244.0 µg/m³ with n = 20,336,
+the prespecified secondary confirmatory severe-tail model GRU_R1 at seed 42
+achieved a severe MAE of 109.3328897571946 µg/m³, lower than B3_R2's
+131.90112073760537.
+
+9.3 The reference benchmark held the severe tail
+
+The causal persistence reference benchmark B0 recorded the lowest severe MAE
+of the three evaluated models, at 93.22447875688434 µg/m³. This is the
+study's central negative result and it is reported without qualification: on
+the endpoint that motivates air-quality forecasting most directly, neither
+learned model improved on carrying the last observation forward.
+
+B0 is a reference benchmark, not a selected learned model, and it is not
+promoted to any other role by this outcome. Equally, GRU_R1's lower severe MAE
+than B3_R2 does not promote it: the roles frozen before opening are the roles
+reported, and no overall winner label is assigned. A single label would collapse
+two endpoints that behave differently — the primary model leads overall while
+the reference benchmark leads in the severe tail.
+
+9.4 What the two endpoints mean together
+
+Both halves belong in any summary of this study. Engineered causal history beat
+persistence on average across 1 to 24 hours, by 11.49%, and at every horizon.
+Persistence remained the strongest severe benchmark. Reporting either half
+alone misrepresents the result.
+
+
+10. Post-test exploratory error analysis
+
+Every result in this section is C3: post-test exploratory. All of it was
+produced after the locked final test had been scored, from the frozen
+prediction arrays, and none of it was predeclared. These diagnostics are
+exploratory and not confirmatory. They exist to explain the locked result,
+not to add to it, and no finding here changes any role, endpoint or hypothesis
+status. No new model was trained and no prediction was regenerated.
+
+    Subject         Diagnostic                                    Value
+    --------------  --------------------------------------------  ----------
+    B3_R2           residual ACF, lag 1, 24 h                     0.962625
+    B3_R2           residual ACF, lag 24, 24 h                    0.266948
+    B3_R2           severe MAE at 24 h                            229.790698
+    B3_R2           severe under-prediction at 24 h (%)           99.901652
+    B3_R2           severe detection recall at 24 h               0.006884
+    B3_R2           negative predictions                          53
+    GRU_R1          residual ACF, lag 1, 24 h                     0.949952
+    GRU_R1          residual ACF, lag 24, 24 h                    −0.232078
+    GRU_R1          severe MAE at 24 h                            152.630723
+    GRU_R1          severe under-prediction at 24 h (%)           96.144768
+    GRU_R1          severe detection recall at 24 h               0.235641
+    GRU_R1          negative predictions                          1,358
+    B0              residual ACF, lag 1, 24 h                     0.952522
+    B0              residual ACF, lag 24, 24 h                    −0.297138
+    B0              severe MAE at 24 h                            142.528324
+    B0              severe under-prediction at 24 h (%)           85.464201
+    B0              severe detection recall at 24 h               0.356216
+    B0              negative predictions                          0
+    Observed PM2.5  target ACF, lag 1                             0.971949
+    Observed PM2.5  target ACF, lag 24                            0.427467
+    All models      severe events                                 586
+    B0              strictly best of three on severe samples (%)  52.876573
+    All models      severe hours in DJF at 24 h                   3,120
+
+
+Table 6. Post-test severe and error diagnostics. Exploratory only, and
+visibly separate from Table 5. (C3)
+
+10.1 Generalisation from development to the locked test
+
+All three models lost overall accuracy moving from development validation to
+the locked test and gained severe-tail accuracy, the later period's tail being
+somewhat easier. Relative ordering was preserved on both endpoints. Overall
+degradation was smallest for B3_R2 at 6.23% and largest for B0 at 9.09%. (C3)
+
+10.2 Horizon structure
+
+Relative improvement over persistence for B3_R2 was 9.47% at 1 hour, 11.54% at
+6 hours, 10.82% at 12 hours and 12.30% at 24 hours. GRU_R1 was markedly worse
+than persistence at 1 hour, at −25.16%, and better at longer lead. Persistence
+itself becomes weak in absolute terms at long lead: its micro R² at 24 hours is
+−0.131365, meaning that at a full day's lead it is worse than predicting the
+test mean — even though it still wins the severe tail. (C3)
+
+10.3 Station structure
+
+Northern suburban sites are easiest and central urban sites hardest for every
+model, with near-identical ordering across models. For B3_R2 the easiest
+station was Huairou at 26.835069 and the hardest Dongsi at 35.738812. Because
+the ordering barely changes across models, it is associated with site character
+rather than with model behaviour. (C3)
+
+10.4 Residual temporal structure
+
+Residual autocorrelation at lag 1 remains approximately 0.95 to 0.96 for every
+model at a 24-hour horizon. Substantial short-lag residual dependence remains
+after forecasting, indicating unresolved temporal structure in the locked
+predictions. A large share of the remaining error is systematic structure
+rather than noise.
+
+At lag 24 the models separate by sign: +0.266948 for B3_R2, −0.232078 for
+GRU_R1 and −0.297138 for B0. At lag 168 all three are near zero. This is an
+association, and no causal mechanism is established by it. (C3)
+
+10.5 Why persistence remains hard to beat in the tail
+
+Observed PM2.5 is strongly autocorrelated: 0.971949 at 1 hour, 0.780487 at 6
+hours and 0.427467 at 24 hours. At long horizons, persistence retains an
+advantage during sustained severe episodes because recently observed extreme
+values remain informative about a continuing episode. (C3)
+
+10.6 Concentration regimes and regression toward the mean
+
+Using strata bounded by training-derived constants, every model over-predicts
+in the low stratum — mean residual −19.155200 for B3_R2, −22.121379 for GRU_R1
+and −17.930293 for B0 — and under-predicts in the elevated and severe strata,
+reaching mean residuals of 127.650421, 106.594564 and 65.549321 respectively in
+the severe stratum. Error grows steeply with concentration.
+
+The exploratory pattern is consistent with regression toward the conditional
+mean during extreme episodes. Severe errors are strongly one-directional: the
+mean residual accounts for most of the severe MAE, while residuals also retain
+substantial temporal dependence. This is a description of the observed pattern,
+not a demonstrated model mechanism, and no formal decomposition into bias and
+variance components was performed — such a decomposition is only partially
+identifiable from point forecasts. (C3)
+
+10.7 The severe gap is a long-horizon phenomenon
+
+Severe MAE by horizon shows the persistence advantage is concentrated at long
+lead. At 1 hour the three models are close — 26.759515 for B3_R2, 26.016719 for
+B0 and 56.010530 for GRU_R1. By 24 hours they diverge sharply: 229.790698 for
+B3_R2, 152.630723 for GRU_R1 and 142.528324 for B0.
+
+Severe under-prediction rises monotonically with horizon for every model,
+reaching 99.901652% for B3_R2 at 24 hours, 96.144768% for GRU_R1 and 85.464201%
+for B0. At a full day's lead the primary model under-predicts almost every
+severe hour. (C3)
+
+10.8 Severe events and detection
+
+The test period contains 586 strict severe events, with a median duration of 4
+hours. At 1 hour B3_R2 has a mean absolute error of 41.545912 at event peaks
+and flags the first severe hour of 19.4539% of events. At 24 hours the mean
+absolute error at peaks is 225.357642, the peak is under-predicted in 100.0% of
+events, and the first severe hour is flagged in 0.3413%.
+
+Severe detection recall at 24 hours is 0.006884 for B3_R2, 0.235641 for GRU_R1
+and 0.356216 for B0, so persistence is also the best severe detector at long
+lead.
+
+The frozen severe-event diagnostics are insufficient to establish reliable
+early-warning capability at 24 hours under the study's fixed 244.0 µg/m³
+threshold. This is a statement about what the study measured. Operational
+usability was never formally defined or tested here, so no claim is made in
+either direction about fitness for operational use. (C3)
+
+10.9 Seasonality and diurnal structure
+
+Severe hours concentrate overwhelmingly in winter: at a 24-hour horizon the DJF
+season holds 3,120 severe hours against 1,101 in MAM, 835 in SON and 28 in JJA.
+Severe error is associated with the winter season. The diurnal pattern is
+shallow by comparison, with error lowest in the morning and highest just after
+midnight, spanning roughly 7 to 8 µg/m³ at a 24-hour horizon — small next to
+the horizon and concentration effects. (C3)
+
+10.10 Error complementarity
+
+The three models largely fail on the same samples: absolute-error correlations
+range from 0.667901 to 0.872808 overall. In the severe stratum, however, B0
+holds the strictly smallest error on 52.876573% of samples, against 26.386703%
+for B3_R2 and 20.736625% for GRU_R1. Persistence is therefore complementary to
+the learned models in the tail.
+
+This was measured descriptively. No ensemble, oracle or weighting scheme was
+constructed, and no performance claim about any combination is made. (C3)
+
+10.11 Negative predictions
+
+Neither neural head is constrained to non-negative output, and nothing was
+clipped. B3_R2 produced 53 negative predictions with a minimum of −14.424702;
+GRU_R1 produced 1,358 with a minimum of −28.539839, concentrated at the 1-hour
+horizon; B0 is structurally non-negative and produced 0, with a minimum
+prediction of 2.0. Leaving these visible is deliberate: clipping would hide a
+real property of the fitted models. (C3)
+
+10.12 Structural continuity with the earlier V1 programme
+
+A qualitative comparison with the earlier, frozen AirSense V1 programme is
+recorded as C4. The two are different tasks on different periods with
+different designs: V1 performed concurrent-hour PM2.5 estimation at a single
+station with a different severe threshold, while V2 performs future
+multi-horizon forecasting across twelve stations. No numerical benchmark
+between them is valid, and none is computed or reported.
+
+What carries over is structural. Two failure modes recur in both programmes:
+systematic severe under-prediction, and strong residual temporal structure.
+What V2 adds is a test the earlier programme could not run, because its task
+had no persistence reference at all: the demonstration that persistence is hard
+to beat during extreme episodes. The methodological progression is from
+concurrent estimation to strict multi-horizon forecasting under a sealed
+evaluation. (C4)
+
+
+11. Discussion
+
+Why the primary model generalises overall. B3_R2 carries an explicit causal
+representation of recent pollutant, meteorological and temporal history. Its
+advantage over persistence is consistent with richer causal history providing
+useful information beyond the last observation. We do not attribute the
+advantage to feature count: 405 features is a property of the R2 regime, not an
+established cause of the result.
+
+Why learned features beat persistence across the bulk distribution. Most
+test hours are ordinary hours in which concentration is changing smoothly.
+There, meteorological state, diurnal and seasonal position and multi-scale
+trailing statistics all carry information that a single lagged value does not.
+The 11.49% improvement is an average over a distribution dominated by such
+hours.
+
+Why severe episodes remain hard. During extreme episodes the conditional
+distribution is far from its mean, and a model trained under an absolute-error
+objective on a distribution whose 95th percentile is 244.0 µg/m³ has little
+incentive to commit to extreme values. The exploratory evidence — one-directional
+severe residuals, over-prediction at low concentrations and under-prediction at
+high ones — is consistent with regression toward the conditional mean.
+
+Why persistence is unusually strong during sustained extremes. Severe
+episodes persist: the median event lasts 4 hours and observed autocorrelation
+is high at short lag. Carrying forward an already-extreme observation is a
+strong strategy precisely while an episode continues, and it requires no
+willingness to extrapolate. This is why the reference benchmark, weak in
+absolute terms at long lead, still holds the severe endpoint.
+
+What the secondary model contributes. GRU_R1 reduced severe MAE relative to
+B3_R2 on the locked final test, at 109.33 against 131.90, and it retained more
+severe detection recall at long lead. Its overall macro MAE is worse, at 33.08.
+It is therefore a severe-magnitude improvement over the primary model and not a
+replacement for it, and it did not improve on the reference benchmark in the
+tail.
+
+Why severe seed stability matters. Severe-tail metrics moved by up to 35
+µg/m³ across five seeds while overall metrics moved by around one. Any
+severe-tail conclusion resting on a single training run is fragile, and the
+evaluated GRU artifact is a single seed. This is a limitation of the
+confirmatory design itself, not only of the analysis.
+
+What the cross-station evidence supports. Under a paired contrast holding
+everything but information access fixed, cross-station context improved the
+same architecture in 5 of 5 seeds on development validation, most consistently
+at 6 and 12 hours. That is a statement about information value.
+
+What the attention analysis does not support. It does not support a
+geographic interpretation. Attention weights show no proximity relationship —
+Spearman +0.136289 against inter-station distance — even though distance and
+observed correlation are strongly related in the same data. Whatever the
+cross-station channel is exploiting, the diagnostics give no support for
+reading it as physical transport between neighbouring sites.
+
+What the foundation-model exclusion teaches. Two independent eligibility
+constraints removed all three candidates before any inference: a
+pretraining-overlap risk identified by provenance audit, and weight licensing.
+Neither is a statement about forecasting quality. The lesson is that for
+pretrained models, corpus provenance is part of evaluation design, and it has
+to be settled before a checkpoint is downloaded rather than reported afterwards
+as a caveat.
+
+How this should influence future work. The gap this study measures is not
+between model families; four learned configurations landed within 0.8 µg/m³ of
+each other on development validation. The gap is between average-case and
+extreme-case behaviour, and it was not closed by added architectural capacity.
+Progress on severe episodes will more plausibly come from changing the
+objective, the output representation or the evaluation target than from a
+larger sequence model trained under the same absolute-error criterion.
+
+
+12. Limitations
+
+The following limitations are stated in full rather than summarised, because
+several of them bound the study's central claims directly.
+
+1. Single metropolitan network. One city, one pollutant, one monitoring
+   network. Nothing here establishes behaviour in other urban environments.
+2. No external-city validation. There is no independent external-city test
+   set, so geographic generalisation is untested.
+3. Historical, not forecast, meteorology. Only historical observed
+   meteorology was available. No future weather forecast was used as an input,
+   by design, so this study does not measure what a forecast-conditioned system
+   would achieve.
+4. The secondary artifact is a single seed. The evaluated GRU artifact is
+   seed 42, while its secondary role was motivated by five-seed robustness
+   evidence, and severe-tail metrics are the least seed-stable quantities
+   measured.
+5. The hypotheses were not all re-tested confirmatorily. H1 to H4 were not
+   all independently re-tested on the locked final test, because the
+   confirmatory set contained three models and no paired regime variant. Their
+   status remains development-supported.
+6. The severe threshold is study-internal. It is the training pooled P95,
+   not a regulatory or air-quality-index boundary, and severe rates are not
+   comparable to studies using regulatory definitions.
+7. The error analysis is exploratory. The event, seasonal, detection and
+   residual analyses are post-test exploratory and were not predeclared.
+8. No predeclared uncertainty quantification. No formal inferential
+   confidence intervals were predeclared for the locked test, so none is
+   reported and no statement about sampling variability of the locked values is
+   made.
+9. LOSO scope. The transfer experiment measures
+   held-out target-station supervision transfer with causal historical observations from the held-out station available.
+   It does not measure forecasting at a site whose observation stream is
+   absent.
+10. Coordinates are analysis-only. Coordinates were used for descriptive
+    spatial diagnostics only, never as a model feature, and were acquired after
+    every model was frozen.
+11. Attention is not geographic. SA_R3 attention was not proximity-driven
+    and must not be interpreted as physical pollution transport.
+12. No foundation model was evaluated. No eligible foundation model could
+    be evaluated under the study's pretraining-overlap and licensing
+    constraints, so this study offers no evidence about their performance here.
+13. Negative predictions were left unclipped. Both neural heads are
+    unconstrained; negative outputs are reported rather than clipped, which
+    keeps the property visible but means the raw outputs are not directly
+    usable as concentrations.
+14. Residual dependence remains. Substantial short-lag residual
+    autocorrelation remains in the locked predictions, so the models have not
+    extracted all available temporal structure.
+15. Severe forecasting is unresolved. Severe-episode forecasting remains an
+    open problem in this study, and the reference benchmark was the strongest
+    severe performer.
+16. Operational usability was never defined. Operational early-warning
+    usability was never formally defined or tested, so this study supports no
+    conclusion in either direction about deployment.
+17. Bitwise reproduction of the neural artifact requires care. GRU
+    predictions carry an order-1e-5 dependence on inference batch composition
+    arising from floating-point reduction order. This is immaterial at the
+    precision reported, but exact bitwise reproduction requires the identical
+    batch structure.
+
+
+13. Future work
+
+Every direction below is motivated by an observed failure mode of this study.
+None was tested in this study, and no claim is made that any of them
+improves on the results reported here.
+
+1. Tail-aware loss functions. Not tested in this study.
+2. Probabilistic forecasting. Not tested in this study.
+3. Quantile forecasting for the upper tail. Not tested in this study.
+4. Event-aware training objectives. Not tested in this study.
+5. Persistence/model hybrid gating, motivated by the reference benchmark's tail
+   behaviour and by the measured error complementarity. *Not tested in this
+   study.*
+6. Forecast meteorology as an exogenous input. Not tested in this study.
+7. Cross-city external validation. Not tested in this study.
+8. A clean-pretraining foundation-model benchmark. Not tested in this study.
+9. Graph or geographic inductive biases. Not tested in this study.
+10. Calibrated severe-event warning probabilities, framed as classification
+    rather than point regression. Not tested in this study.
+11. Longer contexts where scientifically justified. Not tested in this study.
+12. Uncertainty quantification with predeclared temporal block methods. *Not
+    tested in this study.*
+
+
+14. Conclusion
+
+On a sealed test block covering 2016-03-01 to 2017-02-28, opened exactly once
+under a hierarchy frozen beforehand, a gradient-boosted model over causal
+pollutant, meteorological and temporal history achieved a macro station-horizon
+MAE of 31.99 µg/m³ against 36.14 for causal persistence — an improvement of
+11.49% — and improved on persistence at every horizon from 1 to 24 hours. In
+the severe stratum the prespecified secondary model reached 109.33 µg/m³
+against 131.90 for the primary model, while persistence remained the strongest
+severe reference benchmark at 93.22.
+
+Development and robustness evidence showed substantial value from target PM2.5
+history, weak and model-dependent value from co-pollutant history, and a paired
+cross-station benefit favouring the cross-station regime in all five seeds.
+None of those contrasts was independently re-tested on the locked final test.
+
+Post-test exploratory analysis is consistent with regression toward the
+conditional mean during extreme episodes, and substantial short-lag residual
+dependence remains in the locked predictions.
+
+Average multi-horizon accuracy improved measurably. Extreme-episode accuracy
+did not. The principal open problem is reliable forecasting of extreme
+pollution episodes rather than average multi-horizon accuracy, and on that
+endpoint a one-line causal rule remained the strongest benchmark in this study.
+
+
+15. Reproducibility statement
+
+The repository is github.com/DebalekhaChakraborty/AirSense, branch master.
+Evidence is anchored to immutable commits:
+
+pre-test research freeze          75494266792e09bbcfa51c00aaacec58c5b0fb4a
+locked final-test evaluation      9a787a6320a3eca2104abfcbf10c8dbd29bfc19b
+post-evaluation semantics         7ccfc7e54f7d9008421cfcf764fcfaacc353e1db
+post-test exploratory closure     8cc3a7ab8a069b9a187904be68f14b9040928ab4
+final synthesis closure           9a1685355713dd56d7cf2e912cb16681eabc0531
+frozen V1 programme (legacy)      16c9030cf74508b620cc6d28f90346aa379f29cd
+
+Every commit after the pre-test snapshot is strictly additive: no earlier
+artifact was deleted or modified.
+
+Raw data. The source archive and all twelve station CSVs are pinned by
+SHA-256. The canonical processed layer is derived and regenerable from the
+tracked raw data by a single documented command; every output digest is
+recorded in the Phase-2 manifest.
+
+Partitions and universe. Train, validation and locked test are contiguous
+chronological blocks by target timestamp with 821,184, 413,148 and 411,012
+eligible samples. The sample universe is hash-pinned and was not rewritten by
+any later phase.
+
+Seeds. Training seed 42 throughout; robustness seeds 42 to 46; the
+final-test artifact for the secondary model is seed 42.
+
+Environment. CPython 3.11.2 with numpy 2.4.6, scipy 1.17.1, lightgbm 4.7.0,
+torch 2.14.0 CPU build and safetensors 0.8.0, on Linux x86-64 with no GPU.
+Determinism controls were enabled for every neural fit.
+
+Test-access chronology. The test remained sealed through Stage 5. Opening
+required an authorisation receipt. Predictions were generated with metrics
+unseen, then hashed and locked before scoring. Post-test analysis worked only
+from those frozen arrays.
+
+Audit counts. Future-target access violations: 0, across 1,233,036
+index checks. Models retrained after the test was opened: 0. Models
+selected after the test was opened: 0. Foundation models executed: 0.
+
+Verification. Each phase carries a validator that exits non-zero on
+failure, an append-only verification-tooling registry recording the SHA-256 of
+the code doing the verifying, and a manifest with no volatile timestamps.
+Independent recomputation of headline quantities runs through a separate code
+path from the code that produced them. Governance mechanics are detailed in
+manuscript/SUPPLEMENTARY_METHODS.md.
+
+
+16. Data availability, code availability and ethics
+
+Data availability. This study uses the publicly available Beijing
+Multi-Site Air-Quality dataset from the UCI Machine Learning Repository (ID
+501, doi:10.24432/C5RK5G), distributed under CC BY 4.0 as presented by UCI. The
+authors do not own the dataset and claim no rights over it. Station
+coordinates used for descriptive diagnostics were obtained from a separately
+licensed published source, cited in the references and used under CC BY 4.0.
+Exact dataset citation formatting has not been verified against the
+publisher's preferred form: [REF-NEEDED: canonical citation for the UCI Beijing
+Multi-Site Air-Quality dataset, including the associated source publication].
+
+Code availability. Analysis code, per-phase validators, freezes, manifests
+and hash registries are in the repository named in the reproducibility
+statement. The derived processed data layer is excluded from version control
+for size reasons and is regenerable from the tracked raw data.
+
+Ethics. This study involves no human participants, no personally
+identifiable information and no animal subjects. It analyses publicly released
+environmental monitoring measurements only. No ethics approval was required.
+
+Competing interests. [AUTHOR NAME] declares [COMPETING INTERESTS
+STATEMENT — human confirmation required].
+
+Funding. [FUNDING STATEMENT — human confirmation required].
+
+Author contributions. [AUTHOR CONTRIBUTIONS — human confirmation required].
+
+
+References
+
+Verified references appear below. Every remaining citation need is marked
+in-text with a REF-NEEDED marker and enumerated in
+manuscript/RELATED_WORK_CITATION_NEEDS.md. Unverified references are listed
+separately in manuscript/REFERENCES_VERIFIED.md under NEEDS VERIFICATION and
+are not presented as verified here. No bibliographic entry in this
+manuscript was generated without verification against an authoritative source.
+
+[V1] Beijing Multi-Site Air-Quality Data. UCI Machine Learning Repository,
+dataset 501. DOI: 10.24432/C5RK5G. Licence: CC BY 4.0 as presented by UCI.
+Landing page: https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data
+*Verification source: repository provenance record, with the raw archive and
+all twelve station CSVs pinned by SHA-256.*
+
+[V2] Wu, L., Xie, J. & Kang, K. *Changing weekend effects of air pollutants
+in Beijing under 2020 COVID-19 lockdown controls.* npj Urban Sustainability,
+volume 2, article 23 (2022). DOI: 10.1038/s42949-022-00070-0. Licence: CC BY
+4.0. *Verification source: station coordinates were matched by exact
+case-sensitive name against Table 1 of this paper, with all twelve
+latitude/longitude pairs agreeing exactly and the licence statement confirmed.*

@@ -1,0 +1,33 @@
+# Locked final-test confirmatory results
+
+**Evidence class:** C1
+**Source artifact:** `artifacts/phase10_table_locked_test.csv`
+**Source SHA-256:** `49d8444423279549fcaef49f97e178d4eac2918cfacf56030bfe68eae80de7b1`
+**Manuscript section:** 9. Locked final-test results
+
+| model | role | confirmatory_endpoint | n | macro_station_horizon_MAE | micro_MAE | macro_station_horizon_RMSE | micro_RMSE | macro_station_horizon_R2 | severe_n | severe_MAE_gt_244 | severe_RMSE | severe_mean_residual | severe_underprediction_pct | n_negative | min_prediction |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| B3_R2 | PRIMARY CONFIRMATORY MODEL | macro station-horizon MAE (PRIMARY ENDPOINT) | 411012 | 31.98722559774534 | 31.979018615044854 | 51.27741220829381 | 55.896372786930115 | 0.5401248179368833 | 20336 | 131.90112073760537 | 173.42331814255644 | 127.65042053056364 | 88.59657749803304 | 53 | -14.424701690673828 |
+| GRU_R1 | SECONDARY CONFIRMATORY SEVERE-TAIL MODEL | severe MAE > 244.0 (SECONDARY ENDPOINT) | 411012 | 33.08209845348378 | 33.073377774190554 | 52.37848810657227 | 55.82551955876531 | 0.5395790951515026 | 20336 | 109.3328897571946 | 141.98560654375157 | 106.59456445659525 | 93.73033044846578 | 1358 | -28.539838790893555 |
+| B0 | REFERENCE BENCHMARK | both, as REFERENCE METRICS | 411012 | 36.138513538776856 | 36.12615690052845 | 58.46738620411264 | 63.936494753022856 | 0.39620626128492514 | 20336 | 93.22447875688434 | 134.65696192096576 | 65.54932140047207 | 72.59047993705744 | 0 | 2.0 |
+
+**Caption (draft).** Locked final-test confirmatory results over 411,012
+samples and 48 equally weighted station-horizon cells; severe stratum n = 20,336.
+Model roles were frozen before the test block was opened and did not change.
+
+**Footnotes and qualifiers.**
+
+- **This is the study's only confirmatory table.** Values are reported at full
+  precision here; the manuscript body rounds to two decimal places.
+- Roles are frozen: `B3_R2` primary confirmatory model, `GRU_R1` secondary
+  confirmatory severe-tail model (seed 42), `B0` reference benchmark. No model
+  was promoted after the test was opened, and **no overall winner label is
+  assigned**.
+- `B0` recorded the lowest severe MAE of the three evaluated models. It remains a
+  reference benchmark and is not promoted by that outcome.
+- `GRU_R1`'s lower severe MAE than `B3_R2` does not promote it either.
+- Severe rule is strictly `> 244.0`; 232 locked-test targets sit at exactly
+  244.0 and are excluded.
+- Residual = actual - prediction, so a positive residual denotes under-prediction.
+- No inferential interval accompanies any value: none was predeclared before the
+  test was opened.
